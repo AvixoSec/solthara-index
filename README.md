@@ -13,7 +13,7 @@
 
 - 🔍 **Interactive Web Observatory (`index.html`)**:
   - Live full-text search (`Ctrl+K` shortcut).
-  - Multi-criteria filtering by Era (2017–2020, 2021–2023, 2024–2026), Architecture/Decoder (Dense, Sparse MoE, Hybrid, Recurrent/SSM), Attention Bias, Tied Embeddings, and Company.
+  - Multi-criteria filtering by Architecture/Decoder (Dense, Sparse MoE, Hybrid, Recurrent/SSM), Attention Bias, Tied Embeddings, Training Verification, and Company.
   - Deep-dive modal with 7 detailed tabs: *Overview, Architecture, Math Specs, Training, Benchmarks, Theory, Sources*.
 - 📊 **19-Dimensional Model Architecture Matrix**:
   - Full architectural parameter matrix with sortable columns: `Vocab`, `Depth`, `Dim`, `Norm`, `Parallel`, `Pre-norm`, `Pos.Emb`, `Activation`, `Attn`, `Ctx`, `MoE`, `Bias`, `Tied`, `QK-Norm`, `Sliding`, and `Stability`.
@@ -30,40 +30,6 @@
 - 🖼️ **Robust Image Fallback System**:
   - Seamless multi-tier diagram loading (Remote Gallery → Local Mirror → Generative SVG Topology).
   - Includes [`images/mirror.py`](./images/mirror.py) utility for local image vendoring.
-
----
-
-## 🚀 Quick Start
-
-### Option 1: Open Locally (Offline-Ready)
-Simply double-click [`index.html`](./index.html) or open it directly in any browser:
-```bash
-# Windows
-start index.html
-
-# macOS
-open index.html
-
-# Linux
-xdg-open index.html
-```
-
-### Option 2: Run via Local HTTP Server
-```bash
-# Python
-python -m http.server 8000
-
-# Node.js
-npx serve .
-```
-Then navigate to `http://localhost:8000`.
-
-### Option 3: GitHub Pages Deployment
-You can publish this repository directly via GitHub Pages:
-1. Push this repository to GitHub.
-2. Go to **Settings** → **Pages**.
-3. Under **Build and deployment**, select **Deploy from a branch** → branch `main` / `master` (root folder `/`).
-4. Your site will be live instantly!
 
 ---
 
