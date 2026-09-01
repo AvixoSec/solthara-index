@@ -1,0 +1,26 @@
+Solthara Index
+Copyright 2024-2026 Solthara Index Contributors
+
+This product includes software and data developed by the Solthara Index project.
+
+===============================================================================
+Third-Party Acknowledgements and Attributions
+===============================================================================
+
+1. Architecture Diagram Images:
+   Sourced from and credited to:
+   Sebastian Raschka — https://github.com/rasbt/llm-architecture-gallery
+   Licensed under the Apache License, Version 2.0.
+
+2. 19-Dimensional Model Architecture Matrix:
+   Inspired by and credited to:
+   YichenZW — https://github.com/YichenZW/llm-arch-table
+
+3. Theory, Scaling Laws & TTL Analysis:
+   Sourced and synthesized from:
+   Superposition09m — https://github.com/Superposition09m/Awesome-LM-Architecture
+
+4. Model Metadata & Configurations:
+   Compiled from publicly available config.json files, technical reports,
+   academic papers, and API documentation. See individual model sources
+   in the dataset for specific per-model attributions.
