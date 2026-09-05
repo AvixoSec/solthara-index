@@ -1,0 +1,53 @@
+{
+  "status": "pass",
+  "desktop_viewport": [
+    1440,
+    1050
+  ],
+  "phone_viewport": [
+    390,
+    1000
+  ],
+  "states_reviewed": [
+    "registry table",
+    "registry gallery",
+    "architecture matrix",
+    "timeline",
+    "theory library",
+    "about and provenance",
+    "dossier overview",
+    "dossier architecture",
+    "dossier mathematics",
+    "dossier training",
+    "dossier benchmarks",
+    "dossier theory",
+    "dossier sources",
+    "dossier raw JSON",
+    "split context categories",
+    "architecture viewer 100%",
+    "comparison",
+    "empty results",
+    "advanced filters",
+    "phone registry",
+    "phone menu",
+    "phone filters",
+    "phone dossier",
+    "phone training",
+    "phone viewer",
+    "phone empty results",
+    "architecture viewer 125%"
+  ],
+  "fixes_verified": [
+    "Gallery titles moved above figures",
+    "Matrix names constrained to sticky column",
+    "Spacing between numeric cards and subsequent content",
+    "Five benchmark cards aligned",
+    "Shorter phone filter labels",
+    "Real geometric zoom with fixed viewer controls"
+  ],
+  "limitations": [
+    "Remote source images could not be visually inspected because external network resolution is unavailable.",
+    "Configuration maps are explicitly labeled simplified fallback visualizations.",
+    "Contrast samples are not a full WCAG certification."
+  ]
+}

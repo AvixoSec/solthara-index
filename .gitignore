@@ -4,3 +4,7 @@ __pycache__/
 *.backup.html
 .DS_Store
 Thumbs.db
+
+node_modules/
+
+build-meta.json

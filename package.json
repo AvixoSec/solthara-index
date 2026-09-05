@@ -1,0 +1,23 @@
+{
+  "name": "solthara-vector-v2",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Full-record VECTOR interface for Solthara Index",
+  "license": "Apache-2.0",
+  "scripts": {
+    "build": "node build.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "react": "19.2.8",
+    "react-dom": "19.2.8"
+  },
+  "devDependencies": {
+    "esbuild": "0.25.0"
+  },
+  "overrides": {
+    "scheduler": "0.27.0"
+  }
+}
