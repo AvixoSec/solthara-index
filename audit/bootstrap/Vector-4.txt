@@ -1,0 +1,333 @@
+                      <option value="name">Name A–Z</option>
+                    </select>
+                  </label>
+                </div>
+                <div className="filter-row">
+                  <div className="filter-chips" role="group" aria-label="Architecture category">
+                    {[
+                      ['all', 'All models'],
+                      ['moe', 'MoE'],
+                      ['dense', 'Dense'],
+                      ['hybrid', 'Hybrid'],
+                    ].map(([k, l]) => (
+                      <button
+                        key={k}
+                        className="chip"
+                        aria-pressed={kind === k}
+                        onClick={() => setKind(k)}
+                      >
+                        {l}
+                      </button>
+                    ))}
+                    <button
+                      className={'chip filter-toggle ' + (more ? 'active' : '')}
+                      aria-expanded={more}
+                      aria-controls="advanced-filters"
+                      onClick={() => setMore(!more)}
+                    >
+                      <Icon name="filter" />
+                      Filters{activeFilters > 0 && <span>{activeFilters}</span>}
+                    </button>
+                    {activeFilters > 0 && (
+                      <button className="text-button" onClick={reset}>
+                        Reset
+                      </button>
+                    )}
+                  </div>
+                  <div className="view-controls">
+                    <span className="result-count" role="status">
+                      {filtered.length} / {models.length}
+                    </span>
+                    {route === 'registry' && (
+                      <div className="segmented" role="group" aria-label="Registry layout">
+                        <button
+                          aria-label="Table view"
+                          aria-pressed={view === 'table'}
+                          onClick={() => setView('table')}
+                        >
+                          <Icon name="table" />
+                        </button>
+                        <button
+                          aria-label="Gallery view"
+                          aria-pressed={view === 'gallery'}
+                          onClick={() => setView('gallery')}
+                        >
+                          <Icon name="grid" />
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                </div>
+                <div className="advanced-filters" id="advanced-filters" hidden={!more}>
+                  {[
+                    [
+                      'Attention',
+                      att,
+                      setAtt,
+                      [
+                        ['all', 'All types'],
+                        ...Array.from(
+                          new Set(
+                            models.map((m) => m.architecture?.attention?.primary).filter(Boolean),
+                          ),
+                        )
+                          .sort()
+                          .map((k) => [
+                            k,
+                            {
+                              gqa: 'GQA',
+                              mla: 'MLA',
+                              gated_deltanet: 'DeltaNet',
+                              mha: 'MHA',
+                              sliding_window: 'Sliding window',
+                            }[k] || human(k),
+                          ]),
+                      ],
+                    ],
+                    [
+                      'Training status',
+                      training,
+                      setTraining,
+                      [
+                        ['all', 'Any status'],
+                        ['verified', 'Verified'],
+                        ['mixed', 'Mixed'],
+                        ['inferred', 'Inferred'],
+                      ],
+                    ],
+                    [
+                      'Attention bias',
+                      bias,
+                      setBias,
+                      [
+                        ['all', 'Any bias'],
+                        ['no bias', 'No bias'],
+                        ['with bias', 'With bias'],
+                        ['undisclosed', 'Undisclosed'],
+                      ],
+                    ],
+                    [
+                      'Weight tying',
+                      tied,
+                      setTied,
+                      [
+                        ['all', 'Any tying'],
+                        ['tied', 'Tied'],
+                        ['untied', 'Untied'],
+                      ],
+                    ],
+                  ].map(([label, value, setter, options]) => (
+                    <label key={label}>
+                      {label}
+                      <select value={value} onChange={(e) => setter(e.target.value)}>
+                        {options.map(([v, l]) => (
+                          <option value={v} key={v}>
+                            {l}
+                          </option>
+                        ))}
+                      </select>
+                    </label>
+                  ))}
+                </div>
+                <div
+                  className={
+                    'registry-layout ' + (route === 'matrix' || view === 'gallery' ? 'wide' : '')
+                  }
+                >
+                  <div className="registry-results">
+                    {!visible.length ? (
+                      <Empty onReset={reset} />
+                    ) : route === 'registry' && view === 'gallery' ? (
+                      <div className="gallery-grid">
+                        {visible.map((m) => (
+                          <article className="gallery-card" key={m.model_id}>
+                            <div className="gallery-card-head">
+                              <div className="tag-row">
+                                <Badge>{m.architecture?.decoder_display}</Badge>
+                                <span className="muted">{m.company}</span>
+                              </div>
+                              <h3>
+                                <button onClick={() => open(m.model_id)}>{m.model_name}</button>
+                              </h3>
+                            </div>
+                            <Figure
+                              model={m}
+                              onZoom={(model, mode) => setLightbox({ model, mode })}
+                            />
+                            <div className="gallery-card-content">
+                              <p className="gallery-summary">
+                                {m.summary || 'Open the full model record.'}
+                              </p>
+                              <div className="gallery-values">
+                                <span>
+                                  <b>{compact(params(m))}</b>parameters
+                                </span>
+                                <span>
+                                  <b>{contextText(m)}</b>context
+                                </span>
+                                <span>
+                                  <b>{attention(m)}</b>attention
+                                </span>
+                              </div>
+                              <div className="gallery-foot">
+                                {checkbox(m)}
+                                <button className="text-button" onClick={() => open(m.model_id)}>
+                                  Full dossier <Icon name="arrow" />
+                                </button>
+                              </div>
+                            </div>
+                          </article>
+                        ))}
+                      </div>
+                    ) : (
+                      renderTable()
+                    )}
+                    <PageControls
+                      page={currentPage}
+                      setPage={pageTo}
+                      count={filtered.length}
+                      pageSize={pageSize}
+                    />
+                  </div>
+                  {route === 'registry' && view === 'table' && inspectModel && (
+                    <aside
+                      className="inspector"
+                      ref={inspectorRef}
+                      aria-label="Selected model preview"
+                    >
+                      <div className="inspector-head">
+                        <span className="eyebrow">Record inspector</span>
+                        <button
+                          className="icon-button"
+                          aria-label="Open inspected model details"
+                          onClick={() => open(inspectModel.model_id)}
+                        >
+                          <Icon name="external" />
+                        </button>
+                      </div>
+                      <div className="inspector-title">
+                        <div className="tag-row">
+                          <Badge tone="accent-badge">{attention(inspectModel)}</Badge>
+                          <span className="muted">{inspectModel.company}</span>
+                        </div>
+                        <h2>{inspectModel.model_name}</h2>
+                      </div>
+                      <Figure
+                        model={inspectModel}
+                        onZoom={(model, mode) => setLightbox({ model, mode })}
+                      />
+                      <div className="inspector-body">
+                        <p className="inspector-summary">
+                          {inspectModel.summary || 'Explore the complete source record.'}
+                        </p>
+                        <KeyValues
+                          items={[
+                            [
+                              'Total / active',
+                              compact(params(inspectModel)) +
+                                ' / ' +
+                                compact(inspectModel.scale?.active_params),
+                            ],
+                            ['Effective context', contextText(inspectModel)],
+                            [
+                              'Layers / hidden',
+                              num(inspectModel.architecture?.num_hidden_layers) +
+                                ' / ' +
+                                num(inspectModel.architecture?.hidden_size),
+                            ],
+                            ['License', inspectModel.license?.spdx],
+                          ]}
+                        />
+                        <button
+                          className="button inspector-open"
+                          onClick={() => open(inspectModel.model_id)}
+                        >
+                          Open full dossier <Icon name="arrow" />
+                        </button>
+                        <p className="inspector-hint">
+                          Architecture · Training · Benchmarks · Sources
+                        </p>
+                      </div>
+                    </aside>
+                  )}
+                </div>
+              </section>
+            ) : route === 'timeline' ? (
+              <Timeline data={data} />
+            ) : route === 'theory' ? (
+              <Theory data={data} />
+            ) : (
+              <About data={data} />
+            )}
+          </main>
+          <footer className="site-footer">
+            <span>
+              SOLTHARA <span className="muted">/ VECTOR 02</span>
+            </span>
+            <span>Repository snapshot. Not a live ranking.</span>
+            <Link href={REPO}>
+              Source <Icon name="external" size={15} />
+            </Link>
+          </footer>
+        </div>
+      </div>
+      {selected.size > 0 && (
+        <div className="compare-tray" aria-label="Selected models for comparison">
+          <div>
+            <Icon name="compare" />
+            <strong>{selected.size} / 3 selected</strong>
+            <span className="tray-names">
+              {models
+                .filter((m) => selected.has(m.model_id))
+                .map((m) => m.model_name)
+                .join(' · ')}
+            </span>
+          </div>
+          <div>
+            <button className="text-button" onClick={() => setSelected(new Set())}>
+              Clear
+            </button>
+            <button
+              className="button"
+              disabled={selected.size < 2}
+              onClick={() => setComparison(true)}
+            >
+              Compare <Icon name="arrow" />
+            </button>
+          </div>
+        </div>
+      )}
+      {modalModel && (
+        <Dossier
+          model={modalModel}
+          data={data}
+          selected={selected}
+          onSelect={choose}
+          onClose={() => setDossier(null)}
+          onZoom={(model, mode) => setLightbox({ model, mode })}
+          index={(filtered.some((m) => m.model_id === dossier) ? filtered : models).findIndex(
+            (m) => m.model_id === dossier,
+          )}
+          total={filtered.some((m) => m.model_id === dossier) ? filtered.length : models.length}
+          onStep={(direction) => {
+            const pool = filtered.some((m) => m.model_id === dossier) ? filtered : models,
+              n = pool.findIndex((m) => m.model_id === dossier);
+            if (pool[n + direction]) open(pool[n + direction].model_id);
+          }}
+        />
+      )}
+      {comparison && (
+        <Comparison
+          models={models.filter((m) => selected.has(m.model_id))}
+          onClose={() => setComparison(false)}
+        />
+      )}{' '}
+      {lightbox && <Lightbox {...lightbox} onClose={() => setLightbox(null)} />}{' '}
+      {toast && (
+        <div className="toast" role="status">
+          {toast}
+        </div>
+      )}
+    </div>
+  );
+}

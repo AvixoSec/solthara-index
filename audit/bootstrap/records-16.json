@@ -1,0 +1,2058 @@
+[
+  {
+    "index": 75,
+    "model_id": "gemma-3-270m",
+    "model_name": "Gemma 3 270M",
+    "company": "Google",
+    "release_date": "2025-08-14",
+    "family": "gemma-3",
+    "summary": "Tiny Gemma 3 variant that preserves the family's local-global attention recipe at a toy scale.",
+    "yichen": {
+      "vocab": 262144,
+      "depth": 18,
+      "dim": 640,
+      "norm": "RMSNorm",
+      "parallel_layer": "Serial",
+      "pre_norm": "Both",
+      "pos_emb": "RoPE",
+      "activation": "GeLU",
+      "attn_type": "sliding_window",
+      "context": 128000,
+      "bias_display": "no bias",
+      "tied_display": "undisclosed",
+      "qk_norm": "—",
+      "sliding": "yes",
+      "stability": "RMSNorm eps=1e-06"
+    },
+    "math_tricks": {
+      "attention_bias": false,
+      "attention_bias_display": "no bias",
+      "tie_word_embeddings": null,
+      "tie_display": "undisclosed",
+      "rms_norm_eps": 0.000001,
+      "rope_theta": 1000000,
+      "hidden_act": "gelu_pytorch_tanh",
+      "swiglu_limit": null,
+      "use_qk_norm": null,
+      "learnable_sink": null,
+      "rope_scaling": null,
+      "attention_dropout": 0,
+      "norm_topk_prob": null,
+      "initializer_range": 0.02,
+      "tricks": [
+        "RMSNorm eps=1e-06"
+      ],
+      "tricks_display": "RMSNorm eps=1e-06"
+    },
+    "scale": {
+      "total_params": 270000000,
+      "active_params": 270000000,
+      "active_pct": 100,
+      "extra": {
+        "mtp_params": null,
+        "lora_mb": null,
+        "lora_rank": null,
+        "backbone_label": "total",
+        "ngram_params": null,
+        "embedding_params": null
+      },
+      "raw": "270M parameters",
+      "parsed": true
+    },
+    "architecture": {
+      "decoder_type": "dense",
+      "decoder_display": "Dense",
+      "attention": {
+        "primary": "sliding_window",
+        "raw": "Multi-query attention with QK-Norm and 5:1 sliding-window/global attention",
+        "options": [],
+        "ratio": null
+      },
+      "layer_mix": {
+        "raw": "15 sliding-window + 3 global",
+        "total_layers": 18,
+        "by_type": {},
+        "mtp_layers": 0
+      },
+      "hidden_size": 640,
+      "hidden_size_source": "hidden_size",
+      "num_hidden_layers": 18,
+      "num_attention_heads": 4,
+      "num_key_value_heads": 1,
+      "head_dim": 256,
+      "intermediate_size": 2048,
+      "vocab_size": 262144,
+      "max_position_embeddings": 32768,
+      "rope": {
+        "theta": 1000000,
+        "rope_scaling": null
+      },
+      "sliding_window": 512,
+      "layer_types": [
+        "sliding_attention",
+        "sliding_attention",
+        "sliding_attention",
+        "sliding_attention",
+        "sliding_attention",
+        "full_attention",
+        "sliding_attention",
+        "sliding_attention",
+        "sliding_attention",
+        "sliding_attention",
+        "sliding_attention",
+        "full_attention",
+        "sliding_attention",
+        "sliding_attention",
+        "sliding_attention",
+        "sliding_attention",
+        "sliding_attention",
+        "full_attention"
+      ],
+      "moe": {},
+      "model_type": "gemma3_text",
+      "architectures": [
+        "Gemma3ForCausalLM"
+      ],
+      "raw_config_source": "google/gemma-3-270m:config.json"
+    },
+    "raw_config": {
+      "_sliding_window_pattern": 6,
+      "architectures": [
+        "Gemma3ForCausalLM"
+      ],
+      "attention_bias": false,
+      "attention_dropout": 0,
+      "attn_logit_softcapping": null,
+      "bos_token_id": 2,
+      "eos_token_id": 1,
+      "final_logit_softcapping": null,
+      "head_dim": 256,
+      "hidden_activation": "gelu_pytorch_tanh",
+      "hidden_size": 640,
+      "initializer_range": 0.02,
+      "intermediate_size": 2048,
+      "layer_types": [
+        "sliding_attention",
+        "sliding_attention",
+        "sliding_attention",
+        "sliding_attention",
+        "sliding_attention",
+        "full_attention",
+        "sliding_attention",
+        "sliding_attention",
+        "sliding_attention",
+        "sliding_attention",
+        "sliding_attention",
+        "full_attention",
+        "sliding_attention",
+        "sliding_attention",
+        "sliding_attention",
+        "sliding_attention",
+        "sliding_attention",
+        "full_attention"
+      ],
+      "max_position_embeddings": 32768,
+      "model_type": "gemma3_text",
+      "num_attention_heads": 4,
+      "num_hidden_layers": 18,
+      "num_key_value_heads": 1,
+      "pad_token_id": 0,
+      "query_pre_attn_scalar": 256,
+      "rms_norm_eps": 0.000001,
+      "rope_local_base_freq": 10000,
+      "rope_scaling": null,
+      "rope_theta": 1000000,
+      "sliding_window": 512,
+      "torch_dtype": "bfloat16",
+      "transformers_version": "4.55.0.dev0",
+      "use_bidirectional_attention": false,
+      "use_cache": true,
+      "vocab_size": 262144
+    },
+    "raw_config_bytes": 1122,
+    "context": {
+      "length": 128000,
+      "effective_length": 128000,
+      "recommended_context": 128000,
+      "is_unlimited": false,
+      "is_approx": false,
+      "raw": "128,000",
+      "input_length": null,
+      "output_length": null,
+      "config_context": {
+        "value": 32768,
+        "source": "config.json",
+        "source_path": "max_position_embeddings",
+        "confidence": 0.95,
+        "status": "verified",
+        "sources": [
+          {
+            "kind": "config",
+            "url": "https://huggingface.co/google/gemma-3-270m/blob/main/config.json",
+            "confidence": 0.5
+          },
+          {
+            "kind": "config_raw",
+            "url": "https://huggingface.co/google/gemma-3-270m/raw/main/config.json",
+            "confidence": 0.3
+          }
+        ],
+        "note": null
+      },
+      "advertised_context": {
+        "value": 128000,
+        "source": "gallery",
+        "confidence": 0.9,
+        "status": "verified",
+        "sources": [
+          {
+            "kind": "gallery_image",
+            "url": "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/gemma-3-270m.webp",
+            "confidence": 0.9
+          }
+        ],
+        "note": null
+      },
+      "native_context": {
+        "value": 32768,
+        "source": "config_max_position_embeddings",
+        "confidence": 0.55,
+        "status": "inferred",
+        "sources": [
+          {
+            "kind": "config",
+            "url": "https://huggingface.co/google/gemma-3-270m/blob/main/config.json",
+            "confidence": 0.5
+          },
+          {
+            "kind": "config_raw",
+            "url": "https://huggingface.co/google/gemma-3-270m/raw/main/config.json",
+            "confidence": 0.3
+          }
+        ],
+        "note": null
+      },
+      "trained_context": {
+        "value": 32768,
+        "source": "config_max_position_embeddings",
+        "confidence": 0.5,
+        "status": "inferred",
+        "sources": [],
+        "note": "requires tech report to confirm trained window"
+      },
+      "tested_context": {
+        "value": null,
+        "status": "unverified",
+        "confidence": 0,
+        "sources": [],
+        "note": "no independent HELM/BenchLM long-context eval; requires Needle-in-Haystack run"
+      },
+      "api_context": {
+        "value": null,
+        "status": "unverified",
+        "confidence": 0,
+        "sources": [],
+        "note": "requires live API max_tokens probe; may differ from advertised"
+      },
+      "conflict": true,
+      "conflict_note": "gallery 128000 vs config 32768",
+      "resolution": "split contexts; display=advertised (128000), config=32768; no longer auto-trust config",
+      "verified_source": "split",
+      "confidence": 0.62,
+      "config_max_position_embeddings": 32768,
+      "config_source_path": "max_position_embeddings",
+      "_legacy_length": 128000,
+      "_legacy_resolution": "trust config 32768 over gallery 128000 (YaRN/RoPE scaling or gallery stale)",
+      "schema_version": "2.2-six-contexts"
+    },
+    "training": {
+      "dataset": {
+        "value": "Google Gemma 3 distillation 6T subset (verified Gemma 3 card 2-14T range)",
+        "status": "verified",
+        "confidence": 0.95,
+        "sources": [
+          {
+            "kind": "tech_report",
+            "url": "https://arxiv.org/pdf/2503.19786",
+            "confidence": 0.95
+          },
+          {
+            "kind": "benchmark",
+            "url": "https://artificialanalysis.ai/models/gemma-3-270m",
+            "confidence": 0.9
+          }
+        ],
+        "note": null
+      },
+      "tokens": {
+        "value": 2000,
+        "unit": "B",
+        "status": "verified",
+        "confidence": 0.95,
+        "sources": [
+          {
+            "kind": "tech_report",
+            "url": "https://arxiv.org/pdf/2503.19786",
+            "confidence": 0.95
+          }
+        ],
+        "note": null
+      },
+      "tokens_b": 2000,
+      "hardware": {
+        "value": "TPUv5e (inferred)",
+        "status": "inferred",
+        "confidence": 0.55,
+        "sources": [],
+        "note": null
+      },
+      "compute": {
+        "value": null,
+        "status": "undisclosed",
+        "confidence": 0,
+        "sources": [],
+        "note": null
+      },
+      "post_training": {
+        "value": [
+          "Distillation + RL"
+        ],
+        "status": "verified",
+        "confidence": 0.95,
+        "sources": [
+          {
+            "kind": "tech_report",
+            "url": "https://arxiv.org/pdf/2503.19786",
+            "confidence": 0.95
+          }
+        ],
+        "note": null
+      },
+      "post_training_methods": [
+        "Distillation + RL"
+      ],
+      "_flat": {
+        "dataset": "Google Gemma 3 distillation 6T subset (verified Gemma 3 card 2-14T range)",
+        "hardware": "TPUv5e (inferred)",
+        "compute": null
+      },
+      "overall_status": "mixed",
+      "overall_confidence": 0.85,
+      "verified_status": "mixed",
+      "confidence": 0.85,
+      "note": "verified from tech report/blog",
+      "_legacy_verified_status": "verified",
+      "_legacy_confidence": 0.95,
+      "schema_version": "2.2-per-field",
+      "_provenance_note": "per-field status fix 2.2: verified no longer whole-block; each claim now has status+confidence+sources"
+    },
+    "sources": [
+      {
+        "kind": "config",
+        "url": "https://huggingface.co/google/gemma-3-270m/blob/main/config.json",
+        "repo": "google/gemma-3-270m",
+        "label": "config.json",
+        "verified_status": "unverified",
+        "confidence": 0.5,
+        "note": "fetch ok_gated"
+      },
+      {
+        "kind": "config_raw",
+        "url": "https://huggingface.co/google/gemma-3-270m/raw/main/config.json",
+        "repo": "google/gemma-3-270m",
+        "label": "config.json raw",
+        "verified_status": "failed",
+        "confidence": 0.3,
+        "note": "bytes 1352"
+      },
+      {
+        "kind": "tech_report",
+        "url": "https://arxiv.org/pdf/2503.19786",
+        "repo": null,
+        "label": null,
+        "arxiv_id": "2503.19786",
+        "verified_status": "verified",
+        "confidence": 0.95
+      },
+      {
+        "kind": "gallery_image",
+        "url": "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/gemma-3-270m.webp",
+        "repo": null,
+        "label": null,
+        "verified_status": "unverified",
+        "confidence": 0.9,
+        "note": "Raschka gallery"
+      },
+      {
+        "kind": "benchmark",
+        "url": "https://artificialanalysis.ai/models/gemma-3-270m",
+        "repo": null,
+        "label": "Artificial Analysis",
+        "verified_status": "verified",
+        "confidence": 0.9,
+        "note": "AA index 2.4"
+      },
+      {
+        "kind": "license",
+        "url": "https://ai.google.dev/gemma/prohibited_use_policy",
+        "repo": null,
+        "label": "Gemma Terms of Use + Gemma Prohibited Use Policy",
+        "verified_status": "unverified",
+        "confidence": 0.9
+      }
+    ]
+  },
+  {
+    "index": 76,
+    "model_id": "gpt-oss-120b",
+    "model_name": "GPT-OSS 120B",
+    "company": "OpenAI",
+    "release_date": "2025-08-04",
+    "family": "gpt-oss-120",
+    "summary": "Larger gpt-oss variant keeps the same alternating-attention recipe as the 20B model.",
+    "yichen": {
+      "vocab": 201088,
+      "depth": 36,
+      "dim": 2880,
+      "norm": "RMSNorm",
+      "parallel_layer": "Serial",
+      "pre_norm": "Both",
+      "pos_emb": "RoPE",
+      "activation": "silu",
+      "attn_type": "gqa",
+      "context": 128000,
+      "bias_display": "with bias",
+      "tied_display": "untied",
+      "qk_norm": "—",
+      "sliding": "yes",
+      "stability": "RMSNorm eps=1e-05 • SwiGLU cap 7.0 • RoPE scaling yarn"
+    },
+    "math_tricks": {
+      "attention_bias": true,
+      "attention_bias_display": "with bias",
+      "tie_word_embeddings": false,
+      "tie_display": "untied",
+      "rms_norm_eps": 0.00001,
+      "rope_theta": 150000,
+      "hidden_act": "silu",
+      "swiglu_limit": 7,
+      "use_qk_norm": null,
+      "learnable_sink": null,
+      "rope_scaling": {
+        "beta_fast": 32,
+        "beta_slow": 1,
+        "factor": 32,
+        "original_max_position_embeddings": 4096,
+        "rope_type": "yarn",
+        "truncate": false
+      },
+      "attention_dropout": 0,
+      "norm_topk_prob": null,
+      "initializer_range": 0.02,
+      "tricks": [
+        "RMSNorm eps=1e-05",
+        "SwiGLU cap 7.0",
+        "RoPE scaling yarn"
+      ],
+      "tricks_display": "RMSNorm eps=1e-05 • SwiGLU cap 7.0 • RoPE scaling yarn"
+    },
+    "scale": {
+      "total_params": 117000000000,
+      "active_params": 5100000000,
+      "active_pct": 4.4,
+      "extra": {
+        "mtp_params": null,
+        "lora_mb": null,
+        "lora_rank": null,
+        "backbone_label": "total",
+        "ngram_params": null,
+        "embedding_params": null
+      },
+      "raw": "117B total, 5.1B active (4.4% active)",
+      "parsed": true
+    },
+    "architecture": {
+      "decoder_type": "sparse_moe",
+      "decoder_display": "Sparse MoE",
+      "attention": {
+        "primary": "gqa",
+        "raw": "GQA with alternating sliding-window and global layers",
+        "options": [],
+        "ratio": null
+      },
+      "layer_mix": {
+        "raw": "18 sliding-window + 18 global",
+        "total_layers": 36,
+        "by_type": {},
+        "mtp_layers": 0
+      },
+      "hidden_size": 2880,
+      "hidden_size_source": "hidden_size",
+      "num_hidden_layers": 36,
+      "num_attention_heads": 64,
+      "num_key_value_heads": 8,
+      "head_dim": 64,
+      "intermediate_size": 2880,
+      "vocab_size": 201088,
+      "max_position_embeddings": 131072,
+      "rope": {
+        "theta": 150000,
+        "rope_scaling": {
+          "beta_fast": 32,
+          "beta_slow": 1,
+          "factor": 32,
+          "original_max_position_embeddings": 4096,
+          "rope_type": "yarn",
+          "truncate": false
+        }
+      },
+      "sliding_window": 128,
+      "layer_types": {
+        "audit_display_truncated": true,
+        "total_items": 36,
+        "first_items": [
+          "sliding_attention",
+          "full_attention",
+          "sliding_attention",
+          "full_attention",
+          "sliding_attention",
+          "full_attention",
+          "sliding_attention",
+          "full_attention",
+          "sliding_attention",
+          "full_attention",
+          "sliding_attention",
+          "full_attention",
+          "sliding_attention",
+          "full_attention",
+          "sliding_attention",
+          "full_attention",
+          "sliding_attention",
+          "full_attention",
+          "sliding_attention",
+          "full_attention",
+          "sliding_attention",
+          "full_attention",
+          "sliding_attention",
+          "full_attention"
+        ]
+      },
+      "moe": {
+        "num_experts_per_tok": 4
+      },
+      "model_type": "gpt_oss",
+      "architectures": [
+        "GptOssForCausalLM"
+      ],
+      "raw_config_source": "openai/gpt-oss-120b:config.json"
+    },
+    "raw_config": {
+      "architectures": [
+        "GptOssForCausalLM"
+      ],
+      "attention_bias": true,
+      "attention_dropout": 0,
+      "eos_token_id": 200002,
+      "experts_per_token": 4,
+      "head_dim": 64,
+      "hidden_act": "silu",
+      "hidden_size": 2880,
+      "initial_context_length": 4096,
+      "initializer_range": 0.02,
+      "intermediate_size": 2880,
+      "layer_types": {
+        "audit_display_truncated": true,
+        "total_items": 36,
+        "first_items": [
+          "sliding_attention",
+          "full_attention",
+          "sliding_attention",
+          "full_attention",
+          "sliding_attention",
+          "full_attention",
+          "sliding_attention",
+          "full_attention",
+          "sliding_attention",
+          "full_attention",
+          "sliding_attention",
+          "full_attention",
+          "sliding_attention",
+          "full_attention",
+          "sliding_attention",
+          "full_attention",
+          "sliding_attention",
+          "full_attention",
+          "sliding_attention",
+          "full_attention",
+          "sliding_attention",
+          "full_attention",
+          "sliding_attention",
+          "full_attention"
+        ]
+      },
+      "max_position_embeddings": 131072,
+      "model_type": "gpt_oss",
+      "num_attention_heads": 64,
+      "num_experts_per_tok": 4,
+      "num_hidden_layers": 36,
+      "num_key_value_heads": 8,
+      "num_local_experts": 128,
+      "output_router_logits": false,
+      "pad_token_id": 199999,
+      "quantization_config": {
+        "modules_to_not_convert": [
+          "model.layers.*.self_attn",
+          "model.layers.*.mlp.router",
+          "model.embed_tokens",
+          "lm_head"
+        ],
+        "quant_method": "mxfp4"
+      },
+      "rms_norm_eps": 0.00001,
+      "rope_scaling": {
+        "beta_fast": 32,
+        "beta_slow": 1,
+        "factor": 32,
+        "original_max_position_embeddings": 4096,
+        "rope_type": "yarn",
+        "truncate": false
+      },
+      "rope_theta": 150000,
+      "router_aux_loss_coef": 0.9,
+      "sliding_window": 128,
+      "swiglu_limit": 7,
+      "tie_word_embeddings": false,
+      "transformers_version": "4.55.0.dev0",
+      "use_cache": true,
+      "vocab_size": 201088
+    },
+    "raw_config_bytes": 1673,
+    "context": {
+      "length": 128000,
+      "effective_length": 128000,
+      "recommended_context": 128000,
+      "is_unlimited": false,
+      "is_approx": false,
+      "raw": "128,000",
+      "input_length": null,
+      "output_length": null,
+      "config_context": {
+        "value": 131072,
+        "source": "config.json",
+        "source_path": "max_position_embeddings",
+        "confidence": 0.95,
+        "status": "verified",
+        "sources": [
+          {
+            "kind": "config",
+            "url": "https://huggingface.co/openai/gpt-oss-120b/blob/main/config.json",
+            "confidence": 1
+          },
+          {
+            "kind": "config_raw",
+            "url": "https://huggingface.co/openai/gpt-oss-120b/raw/main/config.json",
+            "confidence": 1
+          }
+        ],
+        "note": null
+      },
+      "advertised_context": {
+        "value": 128000,
+        "source": "gallery",
+        "confidence": 0.9,
+        "status": "verified",
+        "sources": [
+          {
+            "kind": "gallery_image",
+            "url": "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/gpt-oss-120b.webp",
+            "confidence": 0.9
+          }
+        ],
+        "note": null
+      },
+      "native_context": {
+        "value": 4096,
+        "source": "rope_scaling.original_max_position_embeddings",
+        "confidence": 0.88,
+        "status": "verified",
+        "sources": [
+          {
+            "kind": "config",
+            "url": "https://huggingface.co/openai/gpt-oss-120b/blob/main/config.json",
+            "confidence": 1
+          },
+          {
+            "kind": "config_raw",
+            "url": "https://huggingface.co/openai/gpt-oss-120b/raw/main/config.json",
+            "confidence": 1
+          }
+        ],
+        "note": "pre-YaRN window; scaled x32.0 -> 131072"
+      },
+      "trained_context": {
+        "value": 4096,
+        "source": "rope_scaling.original_max_position_embeddings",
+        "confidence": 0.82,
+        "status": "verified",
+        "sources": [],
+        "note": "pre-YaRN window; scaled x32.0 -> 131072"
+      },
+      "tested_context": {
+        "value": null,
+        "status": "unverified",
+        "confidence": 0,
+        "sources": [],
+        "note": "no independent HELM/BenchLM long-context eval; requires Needle-in-Haystack run"
+      },
+      "api_context": {
+        "value": null,
+        "status": "unverified",
+        "confidence": 0,
+        "sources": [],
+        "note": "requires live API max_tokens probe; may differ from advertised"
+      },
+      "conflict": true,
+      "conflict_note": "gallery 128000 vs config 131072",
+      "resolution": "split contexts; display=advertised (128000), config=131072; no longer auto-trust config",
+      "verified_source": "split",
+      "confidence": 0.62,
+      "config_max_position_embeddings": 131072,
+      "config_source_path": "max_position_embeddings",
+      "_legacy_length": 128000,
+      "_legacy_resolution": "trust config 131072 over gallery 128000 (YaRN/RoPE scaling or gallery stale)",
+      "schema_version": "2.2-six-contexts"
+    },
+    "training": {
+      "dataset": {
+        "value": "Trillions text STEM/coding/general CBRN-filtered from GPT-4o cutoff Jun 2024 o200k_harmony 201K BPE",
+        "status": "verified",
+        "confidence": 0.95,
+        "sources": [
+          {
+            "kind": "tech_report",
+            "url": "https://cdn.openai.com/pdf/419b6906-9da6-406c-a19d-1bb078ac7637/oai_gpt-oss_model_card.pdf",
+            "confidence": 0.7
+          },
+          {
+            "kind": "benchmark",
+            "url": "https://artificialanalysis.ai/models/gpt-oss-120b",
+            "confidence": 0.9
+          }
+        ],
+        "note": null
+      },
+      "tokens": {
+        "value": null,
+        "unit": null,
+        "status": "undisclosed",
+        "confidence": 0,
+        "sources": [],
+        "note": null
+      },
+      "tokens_b": null,
+      "hardware": {
+        "value": "NVIDIA H100, PyTorch Triton FlashAttention, 2.1M H100-hr",
+        "status": "verified",
+        "confidence": 0.95,
+        "sources": [
+          {
+            "kind": "tech_report",
+            "url": "https://cdn.openai.com/pdf/419b6906-9da6-406c-a19d-1bb078ac7637/oai_gpt-oss_model_card.pdf",
+            "confidence": 0.7
+          }
+        ],
+        "note": null
+      },
+      "compute": {
+        "value": "2.1M H100-hr ~1.5e24 FLOPs MXFP4",
+        "status": "verified",
+        "confidence": 0.95,
+        "sources": [
+          {
+            "kind": "tech_report",
+            "url": "https://cdn.openai.com/pdf/419b6906-9da6-406c-a19d-1bb078ac7637/oai_gpt-oss_model_card.pdf",
+            "confidence": 0.7
+          }
+        ],
+        "note": null
+      },
+      "post_training": {
+        "value": [
+          "CoT RL as o3",
+          "Tool use browsing/python/Harmony hierarchy",
+          "MXFP4 quant 80GB",
+          "Adversarial fine-tune Bio/Cyber"
+        ],
+        "status": "verified",
+        "confidence": 0.95,
+        "sources": [
+          {
+            "kind": "tech_report",
+            "url": "https://cdn.openai.com/pdf/419b6906-9da6-406c-a19d-1bb078ac7637/oai_gpt-oss_model_card.pdf",
+            "confidence": 0.7
+          }
+        ],
+        "note": null
+      },
+      "post_training_methods": [
+        "CoT RL as o3",
+        "Tool use browsing/python/Harmony hierarchy",
+        "MXFP4 quant 80GB",
+        "Adversarial fine-tune Bio/Cyber"
+      ],
+      "_flat": {
+        "dataset": "Trillions text STEM/coding/general CBRN-filtered from GPT-4o cutoff Jun 2024 o200k_harmony 201K BPE",
+        "hardware": "NVIDIA H100, PyTorch Triton FlashAttention, 2.1M H100-hr",
+        "compute": "2.1M H100-hr ~1.5e24 FLOPs MXFP4"
+      },
+      "overall_status": "mixed",
+      "overall_confidence": 0.68,
+      "verified_status": "mixed",
+      "confidence": 0.68,
+      "note": "verified from tech report/blog",
+      "_legacy_verified_status": "verified",
+      "_legacy_confidence": 0.95,
+      "schema_version": "2.2-per-field",
+      "_provenance_note": "per-field status fix 2.2: verified no longer whole-block; each claim now has status+confidence+sources"
+    },
+    "sources": [
+      {
+        "kind": "config",
+        "url": "https://huggingface.co/openai/gpt-oss-120b/blob/main/config.json",
+        "repo": "openai/gpt-oss-120b",
+        "label": "config.json",
+        "verified_status": "verified",
+        "confidence": 1,
+        "note": "fetch ok"
+      },
+      {
+        "kind": "config_raw",
+        "url": "https://huggingface.co/openai/gpt-oss-120b/raw/main/config.json",
+        "repo": "openai/gpt-oss-120b",
+        "label": "config.json raw",
+        "verified_status": "verified",
+        "confidence": 1,
+        "note": "bytes 2089"
+      },
+      {
+        "kind": "tech_report",
+        "url": "https://cdn.openai.com/pdf/419b6906-9da6-406c-a19d-1bb078ac7637/oai_gpt-oss_model_card.pdf",
+        "repo": null,
+        "label": null,
+        "arxiv_id": null,
+        "verified_status": "unverified",
+        "confidence": 0.7
+      },
+      {
+        "kind": "gallery_image",
+        "url": "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/gpt-oss-120b.webp",
+        "repo": null,
+        "label": null,
+        "verified_status": "unverified",
+        "confidence": 0.9,
+        "note": "Raschka gallery"
+      },
+      {
+        "kind": "benchmark",
+        "url": "https://artificialanalysis.ai/models/gpt-oss-120b",
+        "repo": null,
+        "label": "Artificial Analysis",
+        "verified_status": "verified",
+        "confidence": 0.9,
+        "note": "AA index 23.8"
+      },
+      {
+        "kind": "license",
+        "url": "https://huggingface.co/openai/gpt-oss-120b/blob/main/LICENSE",
+        "repo": null,
+        "label": "Apache License 2.0",
+        "verified_status": "unverified",
+        "confidence": 0.9
+      }
+    ]
+  },
+  {
+    "index": 77,
+    "model_id": "gpt-oss-20b",
+    "model_name": "GPT-OSS 20B",
+    "company": "OpenAI",
+    "release_date": "2025-08-04",
+    "family": "gpt-oss-20",
+    "summary": "OpenAI's smaller open-weight MoE model favors width and alternating local/global attention.",
+    "yichen": {
+      "vocab": 201088,
+      "depth": 24,
+      "dim": 2880,
+      "norm": "RMSNorm",
+      "parallel_layer": "Serial",
+      "pre_norm": "Both",
+      "pos_emb": "RoPE",
+      "activation": "silu",
+      "attn_type": "gqa",
+      "context": 128000,
+      "bias_display": "with bias",
+      "tied_display": "untied",
+      "qk_norm": "—",
+      "sliding": "yes",
+      "stability": "RMSNorm eps=1e-05 • SwiGLU cap 7.0 • RoPE scaling yarn"
+    },
+    "math_tricks": {
+      "attention_bias": true,
+      "attention_bias_display": "with bias",
+      "tie_word_embeddings": false,
+      "tie_display": "untied",
+      "rms_norm_eps": 0.00001,
+      "rope_theta": 150000,
+      "hidden_act": "silu",
+      "swiglu_limit": 7,
+      "use_qk_norm": null,
+      "learnable_sink": null,
+      "rope_scaling": {
+        "beta_fast": 32,
+        "beta_slow": 1,
+        "factor": 32,
+        "original_max_position_embeddings": 4096,
+        "rope_type": "yarn",
+        "truncate": false
+      },
+      "attention_dropout": 0,
+      "norm_topk_prob": null,
+      "initializer_range": 0.02,
+      "tricks": [
+        "RMSNorm eps=1e-05",
+        "SwiGLU cap 7.0",
+        "RoPE scaling yarn"
+      ],
+      "tricks_display": "RMSNorm eps=1e-05 • SwiGLU cap 7.0 • RoPE scaling yarn"
+    },
+    "scale": {
+      "total_params": 21000000000,
+      "active_params": 3600000000,
+      "active_pct": 17.1,
+      "extra": {
+        "mtp_params": null,
+        "lora_mb": null,
+        "lora_rank": null,
+        "backbone_label": "total",
+        "ngram_params": null,
+        "embedding_params": null
+      },
+      "raw": "21B total, 3.6B active (17.1% active)",
+      "parsed": true
+    },
+    "architecture": {
+      "decoder_type": "sparse_moe",
+      "decoder_display": "Sparse MoE",
+      "attention": {
+        "primary": "gqa",
+        "raw": "GQA with alternating sliding-window and global layers",
+        "options": [],
+        "ratio": null
+      },
+      "layer_mix": {
+        "raw": "12 sliding-window + 12 global",
+        "total_layers": 24,
+        "by_type": {},
+        "mtp_layers": 0
+      },
+      "hidden_size": 2880,
+      "hidden_size_source": "hidden_size",
+      "num_hidden_layers": 24,
+      "num_attention_heads": 64,
+      "num_key_value_heads": 8,
+      "head_dim": 64,
+      "intermediate_size": 2880,
+      "vocab_size": 201088,
+      "max_position_embeddings": 131072,
+      "rope": {
+        "theta": 150000,
+        "rope_scaling": {
+          "beta_fast": 32,
+          "beta_slow": 1,
+          "factor": 32,
+          "original_max_position_embeddings": 4096,
+          "rope_type": "yarn",
+          "truncate": false
+        }
+      },
+      "sliding_window": 128,
+      "layer_types": [
+        "sliding_attention",
+        "full_attention",
+        "sliding_attention",
+        "full_attention",
+        "sliding_attention",
+        "full_attention",
+        "sliding_attention",
+        "full_attention",
+        "sliding_attention",
+        "full_attention",
+        "sliding_attention",
+        "full_attention",
+        "sliding_attention",
+        "full_attention",
+        "sliding_attention",
+        "full_attention",
+        "sliding_attention",
+        "full_attention",
+        "sliding_attention",
+        "full_attention",
+        "sliding_attention",
+        "full_attention",
+        "sliding_attention",
+        "full_attention"
+      ],
+      "moe": {
+        "num_experts_per_tok": 4
+      },
+      "model_type": "gpt_oss",
+      "architectures": [
+        "GptOssForCausalLM"
+      ],
+      "raw_config_source": "openai/gpt-oss-20b:config.json"
+    },
+    "raw_config": {
+      "architectures": [
+        "GptOssForCausalLM"
+      ],
+      "attention_bias": true,
+      "attention_dropout": 0,
+      "eos_token_id": 200002,
+      "experts_per_token": 4,
+      "head_dim": 64,
+      "hidden_act": "silu",
+      "hidden_size": 2880,
+      "initial_context_length": 4096,
+      "initializer_range": 0.02,
+      "intermediate_size": 2880,
+      "layer_types": [
+        "sliding_attention",
+        "full_attention",
+        "sliding_attention",
+        "full_attention",
+        "sliding_attention",
+        "full_attention",
+        "sliding_attention",
+        "full_attention",
+        "sliding_attention",
+        "full_attention",
+        "sliding_attention",
+        "full_attention",
+        "sliding_attention",
+        "full_attention",
+        "sliding_attention",
+        "full_attention",
+        "sliding_attention",
+        "full_attention",
+        "sliding_attention",
+        "full_attention",
+        "sliding_attention",
+        "full_attention",
+        "sliding_attention",
+        "full_attention"
+      ],
+      "max_position_embeddings": 131072,
+      "model_type": "gpt_oss",
+      "num_attention_heads": 64,
+      "num_experts_per_tok": 4,
+      "num_hidden_layers": 24,
+      "num_key_value_heads": 8,
+      "num_local_experts": 32,
+      "output_router_logits": false,
+      "pad_token_id": 199999,
+      "quantization_config": {
+        "modules_to_not_convert": [
+          "model.layers.*.self_attn",
+          "model.layers.*.mlp.router",
+          "model.embed_tokens",
+          "lm_head"
+        ],
+        "quant_method": "mxfp4"
+      },
+      "rms_norm_eps": 0.00001,
+      "rope_scaling": {
+        "beta_fast": 32,
+        "beta_slow": 1,
+        "factor": 32,
+        "original_max_position_embeddings": 4096,
+        "rope_type": "yarn",
+        "truncate": false
+      },
+      "rope_theta": 150000,
+      "router_aux_loss_coef": 0.9,
+      "sliding_window": 128,
+      "swiglu_limit": 7,
+      "tie_word_embeddings": false,
+      "transformers_version": "4.55.0.dev0",
+      "use_cache": true,
+      "vocab_size": 201088
+    },
+    "raw_config_bytes": 1450,
+    "context": {
+      "length": 128000,
+      "effective_length": 128000,
+      "recommended_context": 128000,
+      "is_unlimited": false,
+      "is_approx": false,
+      "raw": "128,000",
+      "input_length": null,
+      "output_length": null,
+      "config_context": {
+        "value": 131072,
+        "source": "config.json",
+        "source_path": "max_position_embeddings",
+        "confidence": 0.95,
+        "status": "verified",
+        "sources": [
+          {
+            "kind": "config",
+            "url": "https://huggingface.co/openai/gpt-oss-20b/blob/main/config.json",
+            "confidence": 1
+          },
+          {
+            "kind": "config_raw",
+            "url": "https://huggingface.co/openai/gpt-oss-20b/raw/main/config.json",
+            "confidence": 1
+          }
+        ],
+        "note": null
+      },
+      "advertised_context": {
+        "value": 128000,
+        "source": "gallery",
+        "confidence": 0.9,
+        "status": "verified",
+        "sources": [
+          {
+            "kind": "gallery_image",
+            "url": "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/gpt-oss-20b.webp",
+            "confidence": 0.9
+          }
+        ],
+        "note": null
+      },
+      "native_context": {
+        "value": 4096,
+        "source": "rope_scaling.original_max_position_embeddings",
+        "confidence": 0.88,
+        "status": "verified",
+        "sources": [
+          {
+            "kind": "config",
+            "url": "https://huggingface.co/openai/gpt-oss-20b/blob/main/config.json",
+            "confidence": 1
+          },
+          {
+            "kind": "config_raw",
+            "url": "https://huggingface.co/openai/gpt-oss-20b/raw/main/config.json",
+            "confidence": 1
+          }
+        ],
+        "note": "pre-YaRN window; scaled x32.0 -> 131072"
+      },
+      "trained_context": {
+        "value": 4096,
+        "source": "rope_scaling.original_max_position_embeddings",
+        "confidence": 0.82,
+        "status": "verified",
+        "sources": [],
+        "note": "pre-YaRN window; scaled x32.0 -> 131072"
+      },
+      "tested_context": {
+        "value": null,
+        "status": "unverified",
+        "confidence": 0,
+        "sources": [],
+        "note": "no independent HELM/BenchLM long-context eval; requires Needle-in-Haystack run"
+      },
+      "api_context": {
+        "value": null,
+        "status": "unverified",
+        "confidence": 0,
+        "sources": [],
+        "note": "requires live API max_tokens probe; may differ from advertised"
+      },
+      "conflict": true,
+      "conflict_note": "gallery 128000 vs config 131072",
+      "resolution": "split contexts; display=advertised (128000), config=131072; no longer auto-trust config",
+      "verified_source": "split",
+      "confidence": 0.62,
+      "config_max_position_embeddings": 131072,
+      "config_source_path": "max_position_embeddings",
+      "_legacy_length": 128000,
+      "_legacy_resolution": "trust config 131072 over gallery 128000 (YaRN/RoPE scaling or gallery stale)",
+      "schema_version": "2.2-six-contexts"
+    },
+    "training": {
+      "dataset": {
+        "value": "Same as 120B",
+        "status": "verified",
+        "confidence": 0.95,
+        "sources": [
+          {
+            "kind": "tech_report",
+            "url": "https://cdn.openai.com/pdf/419b6906-9da6-406c-a19d-1bb078ac7637/oai_gpt-oss_model_card.pdf",
+            "confidence": 0.7
+          },
+          {
+            "kind": "benchmark",
+            "url": "https://artificialanalysis.ai/models/gpt-oss-20b",
+            "confidence": 0.9
+          }
+        ],
+        "note": null
+      },
+      "tokens": {
+        "value": null,
+        "unit": null,
+        "status": "undisclosed",
+        "confidence": 0,
+        "sources": [],
+        "note": null
+      },
+      "tokens_b": null,
+      "hardware": {
+        "value": "H100 ~10x less than 120B",
+        "status": "verified",
+        "confidence": 0.95,
+        "sources": [
+          {
+            "kind": "tech_report",
+            "url": "https://cdn.openai.com/pdf/419b6906-9da6-406c-a19d-1bb078ac7637/oai_gpt-oss_model_card.pdf",
+            "confidence": 0.7
+          }
+        ],
+        "note": null
+      },
+      "compute": {
+        "value": null,
+        "status": "undisclosed",
+        "confidence": 0,
+        "sources": [],
+        "note": null
+      },
+      "post_training": {
+        "value": [
+          "Same as 120B"
+        ],
+        "status": "verified",
+        "confidence": 0.95,
+        "sources": [
+          {
+            "kind": "tech_report",
+            "url": "https://cdn.openai.com/pdf/419b6906-9da6-406c-a19d-1bb078ac7637/oai_gpt-oss_model_card.pdf",
+            "confidence": 0.7
+          }
+        ],
+        "note": null
+      },
+      "post_training_methods": [
+        "Same as 120B"
+      ],
+      "_flat": {
+        "dataset": "Same as 120B",
+        "hardware": "H100 ~10x less than 120B",
+        "compute": null
+      },
+      "overall_status": "mixed",
+      "overall_confidence": 0.68,
+      "verified_status": "mixed",
+      "confidence": 0.68,
+      "note": "verified from tech report/blog",
+      "_legacy_verified_status": "verified",
+      "_legacy_confidence": 0.95,
+      "schema_version": "2.2-per-field",
+      "_provenance_note": "per-field status fix 2.2: verified no longer whole-block; each claim now has status+confidence+sources"
+    },
+    "sources": [
+      {
+        "kind": "config",
+        "url": "https://huggingface.co/openai/gpt-oss-20b/blob/main/config.json",
+        "repo": "openai/gpt-oss-20b",
+        "label": "config.json",
+        "verified_status": "verified",
+        "confidence": 1,
+        "note": "fetch ok"
+      },
+      {
+        "kind": "config_raw",
+        "url": "https://huggingface.co/openai/gpt-oss-20b/raw/main/config.json",
+        "repo": "openai/gpt-oss-20b",
+        "label": "config.json raw",
+        "verified_status": "verified",
+        "confidence": 1,
+        "note": "bytes 1806"
+      },
+      {
+        "kind": "tech_report",
+        "url": "https://cdn.openai.com/pdf/419b6906-9da6-406c-a19d-1bb078ac7637/oai_gpt-oss_model_card.pdf",
+        "repo": null,
+        "label": null,
+        "arxiv_id": null,
+        "verified_status": "unverified",
+        "confidence": 0.7
+      },
+      {
+        "kind": "gallery_image",
+        "url": "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/gpt-oss-20b.webp",
+        "repo": null,
+        "label": null,
+        "verified_status": "unverified",
+        "confidence": 0.9,
+        "note": "Raschka gallery"
+      },
+      {
+        "kind": "benchmark",
+        "url": "https://artificialanalysis.ai/models/gpt-oss-20b",
+        "repo": null,
+        "label": "Artificial Analysis",
+        "verified_status": "verified",
+        "confidence": 0.9,
+        "note": "AA index 14.9"
+      },
+      {
+        "kind": "license",
+        "url": "https://huggingface.co/openai/gpt-oss-20b/blob/main/LICENSE",
+        "repo": null,
+        "label": "Apache License 2.0",
+        "verified_status": "unverified",
+        "confidence": 0.9
+      }
+    ]
+  },
+  {
+    "index": 78,
+    "model_id": "qwen3-coder-flash-30b-a3b",
+    "model_name": "Qwen3 Coder Flash 30B-A3B",
+    "company": "Alibaba Cloud",
+    "release_date": "2025-07-31",
+    "family": "qwen3",
+    "summary": "Coding-tuned Qwen model that keeps a straightforward grouped-query MoE stack instead of the newer hybrid-attention variants.",
+    "yichen": {
+      "vocab": 151936,
+      "depth": 48,
+      "dim": 2048,
+      "norm": "RMSNorm",
+      "parallel_layer": "Serial",
+      "pre_norm": "Pre",
+      "pos_emb": "RoPE",
+      "activation": "silu",
+      "attn_type": "gqa",
+      "context": 256000,
+      "bias_display": "no bias",
+      "tied_display": "untied",
+      "qk_norm": "—",
+      "sliding": "—",
+      "stability": "RMSNorm eps=1e-06 • norm_topk"
+    },
+    "math_tricks": {
+      "attention_bias": false,
+      "attention_bias_display": "no bias",
+      "tie_word_embeddings": false,
+      "tie_display": "untied",
+      "rms_norm_eps": 0.000001,
+      "rope_theta": 10000000,
+      "hidden_act": "silu",
+      "swiglu_limit": null,
+      "use_qk_norm": null,
+      "learnable_sink": null,
+      "rope_scaling": null,
+      "attention_dropout": 0,
+      "norm_topk_prob": true,
+      "initializer_range": 0.02,
+      "tricks": [
+        "RMSNorm eps=1e-06",
+        "norm_topk"
+      ],
+      "tricks_display": "RMSNorm eps=1e-06 • norm_topk"
+    },
+    "scale": {
+      "total_params": 30000000000,
+      "active_params": 3300000000,
+      "active_pct": 11,
+      "extra": {
+        "mtp_params": null,
+        "lora_mb": null,
+        "lora_rank": null,
+        "backbone_label": "total",
+        "ngram_params": null,
+        "embedding_params": null
+      },
+      "raw": "30B total, 3.3B active (11% active)",
+      "parsed": true
+    },
+    "architecture": {
+      "decoder_type": "sparse_moe",
+      "decoder_display": "Sparse MoE",
+      "attention": {
+        "primary": "gqa",
+        "raw": "GQA",
+        "options": [],
+        "ratio": null
+      },
+      "layer_mix": {
+        "raw": "48 GQA",
+        "total_layers": 48,
+        "by_type": {},
+        "mtp_layers": 0
+      },
+      "hidden_size": 2048,
+      "hidden_size_source": "hidden_size",
+      "num_hidden_layers": 48,
+      "num_attention_heads": 32,
+      "num_key_value_heads": 4,
+      "head_dim": 128,
+      "intermediate_size": 6144,
+      "vocab_size": 151936,
+      "max_position_embeddings": 262144,
+      "rope": {
+        "theta": 10000000,
+        "rope_scaling": null
+      },
+      "sliding_window": null,
+      "layer_types": null,
+      "moe": {
+        "num_experts": 128,
+        "num_experts_per_tok": 8,
+        "moe_intermediate_size": 768
+      },
+      "model_type": "qwen3_moe",
+      "architectures": [
+        "Qwen3MoeForCausalLM"
+      ],
+      "raw_config_source": "Qwen/Qwen3-Coder-30B-A3B-Instruct:config.json"
+    },
+    "raw_config": {
+      "architectures": [
+        "Qwen3MoeForCausalLM"
+      ],
+      "attention_bias": false,
+      "attention_dropout": 0,
+      "bos_token_id": 151643,
+      "decoder_sparse_step": 1,
+      "eos_token_id": 151645,
+      "head_dim": 128,
+      "hidden_act": "silu",
+      "hidden_size": 2048,
+      "initializer_range": 0.02,
+      "intermediate_size": 6144,
+      "max_position_embeddings": 262144,
+      "max_window_layers": 48,
+      "mlp_only_layers": [],
+      "model_type": "qwen3_moe",
+      "moe_intermediate_size": 768,
+      "norm_topk_prob": true,
+      "num_attention_heads": 32,
+      "num_experts": 128,
+      "num_experts_per_tok": 8,
+      "num_hidden_layers": 48,
+      "num_key_value_heads": 4,
+      "output_router_logits": false,
+      "rms_norm_eps": 0.000001,
+      "rope_scaling": null,
+      "rope_theta": 10000000,
+      "router_aux_loss_coef": 0.001,
+      "sliding_window": null,
+      "tie_word_embeddings": false,
+      "torch_dtype": "bfloat16",
+      "transformers_version": "4.52.3",
+      "use_cache": true,
+      "use_sliding_window": false,
+      "vocab_size": 151936
+    },
+    "raw_config_bytes": 819,
+    "context": {
+      "length": 256000,
+      "effective_length": 256000,
+      "recommended_context": 256000,
+      "is_unlimited": false,
+      "is_approx": false,
+      "raw": "256,000",
+      "input_length": null,
+      "output_length": null,
+      "config_context": {
+        "value": 262144,
+        "source": "config.json",
+        "source_path": "max_position_embeddings",
+        "confidence": 0.95,
+        "status": "verified",
+        "sources": [
+          {
+            "kind": "config",
+            "url": "https://huggingface.co/Qwen/Qwen3-Coder-30B-A3B-Instruct/blob/main/config.json",
+            "confidence": 1
+          },
+          {
+            "kind": "config_raw",
+            "url": "https://huggingface.co/Qwen/Qwen3-Coder-30B-A3B-Instruct/raw/main/config.json",
+            "confidence": 1
+          }
+        ],
+        "note": null
+      },
+      "advertised_context": {
+        "value": 256000,
+        "source": "gallery",
+        "confidence": 0.9,
+        "status": "verified",
+        "sources": [
+          {
+            "kind": "gallery_image",
+            "url": "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/qwen3-coder-flash-30b-a3b-mixture-of-experts.webp",
+            "confidence": 0.9
+          }
+        ],
+        "note": null
+      },
+      "native_context": {
+        "value": 262144,
+        "source": "config_max_position_embeddings",
+        "confidence": 0.55,
+        "status": "inferred",
+        "sources": [
+          {
+            "kind": "config",
+            "url": "https://huggingface.co/Qwen/Qwen3-Coder-30B-A3B-Instruct/blob/main/config.json",
+            "confidence": 1
+          },
+          {
+            "kind": "config_raw",
+            "url": "https://huggingface.co/Qwen/Qwen3-Coder-30B-A3B-Instruct/raw/main/config.json",
+            "confidence": 1
+          }
+        ],
+        "note": null
+      },
+      "trained_context": {
+        "value": 262144,
+        "source": "config_max_position_embeddings",
+        "confidence": 0.5,
+        "status": "inferred",
+        "sources": [],
+        "note": "requires tech report to confirm trained window"
+      },
+      "tested_context": {
+        "value": null,
+        "status": "unverified",
+        "confidence": 0,
+        "sources": [],
+        "note": "no independent HELM/BenchLM long-context eval; requires Needle-in-Haystack run"
+      },
+      "api_context": {
+        "value": null,
+        "status": "unverified",
+        "confidence": 0,
+        "sources": [],
+        "note": "requires live API max_tokens probe; may differ from advertised"
+      },
+      "conflict": true,
+      "conflict_note": "gallery 256000 vs config 262144",
+      "resolution": "split contexts; display=advertised (256000), config=262144; no longer auto-trust config",
+      "verified_source": "split",
+      "confidence": 0.62,
+      "config_max_position_embeddings": 262144,
+      "config_source_path": "max_position_embeddings",
+      "_legacy_length": 256000,
+      "_legacy_resolution": "trust config 262144 over gallery 256000 (YaRN/RoPE scaling or gallery stale)",
+      "schema_version": "2.2-six-contexts"
+    },
+    "training": {
+      "dataset": {
+        "value": "Qwen3 family 36T shared corpus (inferred, subset for small) - Web/Code/STEM/Multilingual/Synthetic",
+        "status": "inferred",
+        "confidence": 0.55,
+        "sources": [],
+        "note": "(inferred, subset for small) - Web/Code/STEM/Multilingual/Synthetic"
+      },
+      "tokens": {
+        "value": 36000,
+        "unit": "B",
+        "status": "inferred",
+        "confidence": 0.52,
+        "sources": [],
+        "note": null
+      },
+      "tokens_b": 36000,
+      "hardware": {
+        "value": "Undisclosed Alibaba Cloud H100/H800 (inferred)",
+        "status": "inferred",
+        "confidence": 0.55,
+        "sources": [],
+        "note": null
+      },
+      "compute": {
+        "value": null,
+        "status": "undisclosed",
+        "confidence": 0,
+        "sources": [],
+        "note": null
+      },
+      "post_training": {
+        "value": [
+          "SFT",
+          "GRPO RL (inferred from family)"
+        ],
+        "status": "inferred",
+        "confidence": 0.55,
+        "sources": [],
+        "note": null
+      },
+      "post_training_methods": [
+        "SFT",
+        "GRPO RL (inferred from family)"
+      ],
+      "_flat": {
+        "dataset": "Qwen3 family 36T shared corpus (inferred, subset for small) - Web/Code/STEM/Multilingual/Synthetic",
+        "hardware": "Undisclosed Alibaba Cloud H100/H800 (inferred)",
+        "compute": null
+      },
+      "overall_status": "inferred",
+      "overall_confidence": 0.45,
+      "verified_status": "inferred",
+      "confidence": 0.45,
+      "note": "inferred from family/company heuristic",
+      "_legacy_verified_status": "inferred",
+      "_legacy_confidence": 0.45,
+      "schema_version": "2.2-per-field",
+      "_provenance_note": "per-field status fix 2.2: verified no longer whole-block; each claim now has status+confidence+sources"
+    },
+    "sources": [
+      {
+        "kind": "config",
+        "url": "https://huggingface.co/Qwen/Qwen3-Coder-30B-A3B-Instruct/blob/main/config.json",
+        "repo": "Qwen/Qwen3-Coder-30B-A3B-Instruct",
+        "label": "config.json",
+        "verified_status": "verified",
+        "confidence": 1,
+        "note": "fetch ok"
+      },
+      {
+        "kind": "config_raw",
+        "url": "https://huggingface.co/Qwen/Qwen3-Coder-30B-A3B-Instruct/raw/main/config.json",
+        "repo": "Qwen/Qwen3-Coder-30B-A3B-Instruct",
+        "label": "config.json raw",
+        "verified_status": "verified",
+        "confidence": 1,
+        "note": "bytes 963"
+      },
+      {
+        "kind": "gallery_image",
+        "url": "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/qwen3-coder-flash-30b-a3b-mixture-of-experts.webp",
+        "repo": null,
+        "label": null,
+        "verified_status": "unverified",
+        "confidence": 0.9,
+        "note": "Raschka gallery"
+      },
+      {
+        "kind": "benchmark",
+        "url": "https://artificialanalysis.ai/models/qwen3-coder-30b-a3b-instruct",
+        "repo": null,
+        "label": "Artificial Analysis",
+        "verified_status": "verified",
+        "confidence": 0.9,
+        "note": "AA index 13.6"
+      },
+      {
+        "kind": "license",
+        "url": "https://huggingface.co/Qwen/Qwen3-Coder-30B-A3B-Instruct/blob/main/LICENSE",
+        "repo": null,
+        "label": "Apache License 2.0",
+        "verified_status": "unverified",
+        "confidence": 0.9
+      }
+    ]
+  },
+  {
+    "index": 79,
+    "model_id": "glm-4-5-355b",
+    "model_name": "GLM-4.5 355B",
+    "company": "Z.ai",
+    "release_date": "2025-07-28",
+    "family": "glm-4-5",
+    "summary": "Agent-oriented instruction/reasoning hybrid that borrows DeepSeek's dense-prefix MoE layout.",
+    "yichen": {
+      "vocab": 151552,
+      "depth": 92,
+      "dim": 5120,
+      "norm": "RMSNorm",
+      "parallel_layer": "Serial",
+      "pre_norm": "Pre",
+      "pos_emb": "RoPE",
+      "activation": "silu",
+      "attn_type": "gqa",
+      "context": 128000,
+      "bias_display": "with bias",
+      "tied_display": "untied",
+      "qk_norm": "QK-Norm",
+      "sliding": "—",
+      "stability": "RMSNorm eps=1e-05 • QK-LayerNorm • norm_topk"
+    },
+    "math_tricks": {
+      "attention_bias": true,
+      "attention_bias_display": "with bias",
+      "tie_word_embeddings": false,
+      "tie_display": "untied",
+      "rms_norm_eps": 0.00001,
+      "rope_theta": 1000000,
+      "hidden_act": "silu",
+      "swiglu_limit": null,
+      "use_qk_norm": true,
+      "learnable_sink": null,
+      "rope_scaling": null,
+      "attention_dropout": 0,
+      "norm_topk_prob": true,
+      "initializer_range": 0.02,
+      "tricks": [
+        "RMSNorm eps=1e-05",
+        "QK-LayerNorm",
+        "norm_topk"
+      ],
+      "tricks_display": "RMSNorm eps=1e-05 • QK-LayerNorm • norm_topk"
+    },
+    "scale": {
+      "total_params": 355000000000,
+      "active_params": 32000000000,
+      "active_pct": 9,
+      "extra": {
+        "mtp_params": null,
+        "lora_mb": null,
+        "lora_rank": null,
+        "backbone_label": "total",
+        "ngram_params": null,
+        "embedding_params": null
+      },
+      "raw": "355B total, 32B active (9% active)",
+      "parsed": true
+    },
+    "architecture": {
+      "decoder_type": "sparse_moe",
+      "decoder_display": "Sparse MoE",
+      "attention": {
+        "primary": "gqa",
+        "raw": "GQA with QK-Norm",
+        "options": [],
+        "ratio": null
+      },
+      "layer_mix": {
+        "raw": "92 GQA",
+        "total_layers": 92,
+        "by_type": {},
+        "mtp_layers": 0
+      },
+      "hidden_size": 5120,
+      "hidden_size_source": "hidden_size",
+      "num_hidden_layers": 92,
+      "num_attention_heads": 96,
+      "num_key_value_heads": 8,
+      "head_dim": 128,
+      "intermediate_size": 12288,
+      "vocab_size": 151552,
+      "max_position_embeddings": 131072,
+      "rope": {
+        "theta": 1000000,
+        "rope_scaling": null
+      },
+      "sliding_window": null,
+      "layer_types": null,
+      "moe": {
+        "n_routed_experts": 160,
+        "num_experts_per_tok": 8,
+        "n_group": 1,
+        "topk_group": 1,
+        "n_shared_experts": 1,
+        "moe_intermediate_size": 1536,
+        "first_k_dense_replace": 3,
+        "routed_scaling_factor": 2.5
+      },
+      "model_type": "glm4_moe",
+      "architectures": [
+        "Glm4MoeForCausalLM"
+      ],
+      "raw_config_source": "zai-org/GLM-4.5:config.json"
+    },
+    "raw_config": {
+      "architectures": [
+        "Glm4MoeForCausalLM"
+      ],
+      "attention_bias": true,
+      "attention_dropout": 0,
+      "pad_token_id": 151329,
+      "eos_token_id": [
+        151329,
+        151336,
+        151338
+      ],
+      "head_dim": 128,
+      "hidden_act": "silu",
+      "hidden_size": 5120,
+      "partial_rotary_factor": 0.5,
+      "initializer_range": 0.02,
+      "intermediate_size": 12288,
+      "max_position_embeddings": 131072,
+      "model_type": "glm4_moe",
+      "moe_intermediate_size": 1536,
+      "norm_topk_prob": true,
+      "num_attention_heads": 96,
+      "n_group": 1,
+      "topk_group": 1,
+      "n_routed_experts": 160,
+      "n_shared_experts": 1,
+      "routed_scaling_factor": 2.5,
+      "num_experts_per_tok": 8,
+      "first_k_dense_replace": 3,
+      "num_hidden_layers": 92,
+      "num_key_value_heads": 8,
+      "rms_norm_eps": 0.00001,
+      "rope_scaling": null,
+      "rope_theta": 1000000,
+      "num_nextn_predict_layers": 1,
+      "tie_word_embeddings": false,
+      "torch_dtype": "bfloat16",
+      "transformers_version": "4.54.0",
+      "use_cache": true,
+      "use_qk_norm": true,
+      "vocab_size": 151552
+    },
+    "raw_config_bytes": 840,
+    "context": {
+      "length": 128000,
+      "effective_length": 128000,
+      "recommended_context": 128000,
+      "is_unlimited": false,
+      "is_approx": false,
+      "raw": "128,000",
+      "input_length": null,
+      "output_length": null,
+      "config_context": {
+        "value": 131072,
+        "source": "config.json",
+        "source_path": "max_position_embeddings",
+        "confidence": 0.95,
+        "status": "verified",
+        "sources": [
+          {
+            "kind": "config",
+            "url": "https://huggingface.co/zai-org/GLM-4.5/blob/main/config.json",
+            "confidence": 1
+          },
+          {
+            "kind": "config_raw",
+            "url": "https://huggingface.co/zai-org/GLM-4.5/raw/main/config.json",
+            "confidence": 1
+          }
+        ],
+        "note": null
+      },
+      "advertised_context": {
+        "value": 128000,
+        "source": "gallery",
+        "confidence": 0.9,
+        "status": "verified",
+        "sources": [
+          {
+            "kind": "gallery_image",
+            "url": "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/glm-4-5-355b.webp",
+            "confidence": 0.9
+          }
+        ],
+        "note": null
+      },
+      "native_context": {
+        "value": 131072,
+        "source": "config_max_position_embeddings",
+        "confidence": 0.55,
+        "status": "inferred",
+        "sources": [
+          {
+            "kind": "config",
+            "url": "https://huggingface.co/zai-org/GLM-4.5/blob/main/config.json",
+            "confidence": 1
+          },
+          {
+            "kind": "config_raw",
+            "url": "https://huggingface.co/zai-org/GLM-4.5/raw/main/config.json",
+            "confidence": 1
+          }
+        ],
+        "note": null
+      },
+      "trained_context": {
+        "value": 131072,
+        "source": "config_max_position_embeddings",
+        "confidence": 0.5,
+        "status": "inferred",
+        "sources": [],
+        "note": "requires tech report to confirm trained window"
+      },
+      "tested_context": {
+        "value": null,
+        "status": "unverified",
+        "confidence": 0,
+        "sources": [],
+        "note": "no independent HELM/BenchLM long-context eval; requires Needle-in-Haystack run"
+      },
+      "api_context": {
+        "value": null,
+        "status": "unverified",
+        "confidence": 0,
+        "sources": [],
+        "note": "requires live API max_tokens probe; may differ from advertised"
+      },
+      "conflict": true,
+      "conflict_note": "gallery 128000 vs config 131072",
+      "resolution": "split contexts; display=advertised (128000), config=131072; no longer auto-trust config",
+      "verified_source": "split",
+      "confidence": 0.62,
+      "config_max_position_embeddings": 131072,
+      "config_source_path": "max_position_embeddings",
+      "_legacy_length": 128000,
+      "_legacy_resolution": "trust config 131072 over gallery 128000 (YaRN/RoPE scaling or gallery stale)",
+      "schema_version": "2.2-six-contexts"
+    },
+    "training": {
+      "dataset": {
+        "value": "23T web quality-bucketed Nemotron-CC + code/math upsample + repo-level + synthetic CoT",
+        "status": "verified",
+        "confidence": 0.95,
+        "sources": [
+          {
+            "kind": "tech_report",
+            "url": "https://arxiv.org/pdf/2508.06471",
+            "confidence": 0.95
+          },
+          {
+            "kind": "benchmark",
+            "url": "https://artificialanalysis.ai/models/glm-4.5",
+            "confidence": 0.9
+          }
+        ],
+        "note": null
+      },
+      "tokens": {
+        "value": 23000,
+        "unit": "B",
+        "status": "verified",
+        "confidence": 0.95,
+        "sources": [
+          {
+            "kind": "tech_report",
+            "url": "https://arxiv.org/pdf/2508.06471",
+            "confidence": 0.95
+          }
+        ],
+        "note": null
+      },
+      "tokens_b": 23000,
+      "hardware": {
+        "value": "Undisclosed H800/H20, Megatron TP2 PP8 EP16=256 GPU, slime",
+        "status": "undisclosed",
+        "confidence": 0.35,
+        "sources": [],
+        "note": null
+      },
+      "compute": {
+        "value": "Muon, batch 16M->64M",
+        "status": "verified",
+        "confidence": 0.95,
+        "sources": [
+          {
+            "kind": "tech_report",
+            "url": "https://arxiv.org/pdf/2508.06471",
+            "confidence": 0.95
+          }
+        ],
+        "note": null
+      },
+      "post_training": {
+        "value": [
+          "Expert Model Iteration: Expert Training (Reasoning/Agent/General)",
+          "Unified Training distillation + RL 64K"
+        ],
+        "status": "verified",
+        "confidence": 0.95,
+        "sources": [
+          {
+            "kind": "tech_report",
+            "url": "https://arxiv.org/pdf/2508.06471",
+            "confidence": 0.95
+          }
+        ],
+        "note": null
+      },
+      "post_training_methods": [
+        "Expert Model Iteration: Expert Training (Reasoning/Agent/General)",
+        "Unified Training distillation + RL 64K"
+      ],
+      "_flat": {
+        "dataset": "23T web quality-bucketed Nemotron-CC + code/math upsample + repo-level + synthetic CoT",
+        "hardware": "Undisclosed H800/H20, Megatron TP2 PP8 EP16=256 GPU, slime",
+        "compute": "Muon, batch 16M->64M"
+      },
+      "overall_status": "mixed",
+      "overall_confidence": 0.83,
+      "verified_status": "mixed",
+      "confidence": 0.83,
+      "note": "verified from tech report/blog",
+      "_legacy_verified_status": "verified",
+      "_legacy_confidence": 0.95,
+      "schema_version": "2.2-per-field",
+      "_provenance_note": "per-field status fix 2.2: verified no longer whole-block; each claim now has status+confidence+sources"
+    },
+    "sources": [
+      {
+        "kind": "config",
+        "url": "https://huggingface.co/zai-org/GLM-4.5/blob/main/config.json",
+        "repo": "zai-org/GLM-4.5",
+        "label": "config.json",
+        "verified_status": "verified",
+        "confidence": 1,
+        "note": "fetch ok"
+      },
+      {
+        "kind": "config_raw",
+        "url": "https://huggingface.co/zai-org/GLM-4.5/raw/main/config.json",
+        "repo": "zai-org/GLM-4.5",
+        "label": "config.json raw",
+        "verified_status": "verified",
+        "confidence": 1,
+        "note": "bytes 1007"
+      },
+      {
+        "kind": "tech_report",
+        "url": "https://arxiv.org/pdf/2508.06471",
+        "repo": null,
+        "label": null,
+        "arxiv_id": "2508.06471",
+        "verified_status": "verified",
+        "confidence": 0.95
+      },
+      {
+        "kind": "gallery_image",
+        "url": "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/glm-4-5-355b.webp",
+        "repo": null,
+        "label": null,
+        "verified_status": "unverified",
+        "confidence": 0.9,
+        "note": "Raschka gallery"
+      },
+      {
+        "kind": "benchmark",
+        "url": "https://artificialanalysis.ai/models/glm-4.5",
+        "repo": null,
+        "label": "Artificial Analysis",
+        "verified_status": "verified",
+        "confidence": 0.9,
+        "note": "AA index 19.5"
+      },
+      {
+        "kind": "license",
+        "url": "https://huggingface.co/zai-org/GLM-4.5/blob/main/README.md",
+        "repo": null,
+        "label": "MIT License",
+        "verified_status": "unverified",
+        "confidence": 0.9
+      }
+    ]
+  }
+]

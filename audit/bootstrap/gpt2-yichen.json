@@ -1,0 +1,17 @@
+{
+  "vocab": 50257,
+  "depth": 48,
+  "dim": 1600,
+  "norm": "RMSNorm",
+  "parallel_layer": "Serial",
+  "pre_norm": "Pre",
+  "pos_emb": "RoPE",
+  "activation": "SwiGLU",
+  "attn_type": "mha",
+  "context": 1024,
+  "bias_display": "undisclosed",
+  "tied_display": "undisclosed",
+  "qk_norm": "—",
+  "sliding": "—",
+  "stability": "—"
+}

@@ -1,0 +1,46 @@
+[
+  {
+    "kind": "config",
+    "url": "https://huggingface.co/openai-community/gpt2-xl/blob/main/config.json",
+    "repo": "openai-community/gpt2-xl",
+    "label": "config.json",
+    "verified_status": "verified",
+    "confidence": 1,
+    "note": "fetch ok"
+  },
+  {
+    "kind": "config_raw",
+    "url": "https://huggingface.co/openai-community/gpt2-xl/raw/main/config.json",
+    "repo": "openai-community/gpt2-xl",
+    "label": "config.json raw",
+    "verified_status": "verified",
+    "confidence": 1,
+    "note": "bytes 689"
+  },
+  {
+    "kind": "tech_report",
+    "url": "https://cdn.openai.com/better-language-models/language_models_are_unsupervised_multitask_learners.pdf",
+    "repo": null,
+    "label": null,
+    "arxiv_id": null,
+    "verified_status": "unverified",
+    "confidence": 0.7
+  },
+  {
+    "kind": "gallery_image",
+    "url": "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/gpt-2-xl.webp",
+    "repo": null,
+    "label": null,
+    "verified_status": "unverified",
+    "confidence": 0.9,
+    "note": "Raschka gallery"
+  },
+  {
+    "kind": "license",
+    "url": "https://github.com/openai/gpt-2",
+    "repo": null,
+    "label": "OpenAI \"Modified MIT\" license",
+    "verified_status": "unverified",
+    "confidence": 0.9
+  }
+]

@@ -1,0 +1,50 @@
+name: Temporary full-dataset audit
+
+on:
+  push:
+    branches: ['fix/research-audit-2026-09-05']
+    paths:
+      - 'tools/research-bootstrap.mjs'
+      - '.github/workflows/research-bootstrap.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  inspect:
+    if: github.repository == 'AvixoSec/solthara-index' && github.ref == 'refs/heads/fix/research-audit-2026-09-05'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Inspect data without executing repository application code
+        run: node tools/research-bootstrap.mjs
+      - name: Commit small audit projections to the repair branch only
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const branch = 'fix/research-audit-2026-09-05';
+            if (context.repo.owner !== 'AvixoSec' || context.repo.repo !== 'solthara-index' || context.ref !== `refs/heads/${branch}`) throw new Error('Unexpected target');
+            const api = {owner: context.repo.owner, repo: context.repo.repo};
+            const head = await github.rest.git.getRef({...api, ref: `heads/${branch}`});
+            if (head.data.object.sha !== context.sha) throw new Error('Branch changed during audit; refusing to overwrite');
+            const base = await github.rest.git.getCommit({...api, commit_sha: context.sha});
+            const tree = [];
+            for (const name of fs.readdirSync('audit/bootstrap').sort()) {
+              if (!/^[A-Za-z0-9_-]+\.(json|txt)$/.test(name)) throw new Error('Unexpected report filename');
+              const blob = await github.rest.git.createBlob({...api, content: fs.readFileSync(`audit/bootstrap/${name}`).toString('base64'), encoding: 'base64'});
+              tree.push({path: `audit/bootstrap/${name}`, mode: '100644', type: 'blob', sha: blob.data.sha});
+            }
+            const nextTree = await github.rest.git.createTree({...api, base_tree: base.data.tree.sha, tree});
+            const commit = await github.rest.git.createCommit({...api, message: 'chore: record actual dataset audit for repair', tree: nextTree.data.sha, parents: [context.sha]});
+            await github.rest.git.updateRef({...api, ref: `heads/${branch}`, sha: commit.data.sha, force: false});
+            core.summary.addHeading('Full dataset audit recorded').addRaw('Only the repair branch was updated; main and the backup were untouched.').write();

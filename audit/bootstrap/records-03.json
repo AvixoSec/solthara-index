@@ -1,0 +1,1889 @@
+[
+  {
+    "index": 10,
+    "model_id": "motif-3-beta",
+    "model_name": "Motif 3 Beta",
+    "company": "Motif Technologies",
+    "release_date": "2026-07-21",
+    "family": "motif",
+    "summary": "Large sparse MoE that combines Grouped Differential Latent Attention, per-expert PolyNorm, and modified mHC in a 53-layer decoder.",
+    "yichen": {
+      "vocab": 220160,
+      "depth": 53,
+      "dim": 4096,
+      "norm": "RMSNorm",
+      "parallel_layer": "Serial",
+      "pre_norm": "Pre",
+      "pos_emb": "RoPE",
+      "activation": "poly_norm",
+      "attn_type": "mla",
+      "context": 262144,
+      "bias_display": "undisclosed",
+      "tied_display": "untied",
+      "qk_norm": "—",
+      "sliding": "yes",
+      "stability": "RMSNorm eps=1e-05 • RoPE scaling yarn"
+    },
+    "math_tricks": {
+      "attention_bias": null,
+      "attention_bias_display": "undisclosed",
+      "tie_word_embeddings": false,
+      "tie_display": "untied",
+      "rms_norm_eps": 0.00001,
+      "rope_theta": 10000,
+      "hidden_act": "poly_norm",
+      "swiglu_limit": null,
+      "use_qk_norm": null,
+      "learnable_sink": null,
+      "rope_scaling": {
+        "original_max_position_embeddings": 4096,
+        "factor": 64,
+        "mscale": 1,
+        "rope_type": "yarn",
+        "rope_theta": 10000,
+        "beta_fast": 32,
+        "beta_slow": 1,
+        "apply_yarn_scaling": false
+      },
+      "attention_dropout": 0,
+      "norm_topk_prob": null,
+      "initializer_range": 0.02,
+      "tricks": [
+        "RMSNorm eps=1e-05",
+        "RoPE scaling yarn"
+      ],
+      "tricks_display": "RMSNorm eps=1e-05 • RoPE scaling yarn"
+    },
+    "scale": {
+      "total_params": 314000000000,
+      "active_params": 13000000000,
+      "active_pct": 4.1,
+      "extra": {
+        "mtp_params": null,
+        "lora_mb": null,
+        "lora_rank": null,
+        "backbone_label": "total",
+        "ngram_params": null,
+        "embedding_params": null
+      },
+      "raw": "314B total, 13B active (4.1% active)",
+      "parsed": true
+    },
+    "architecture": {
+      "decoder_type": "sparse_moe",
+      "decoder_display": "Sparse MoE",
+      "attention": {
+        "primary": "mla",
+        "raw": "GDLA with MLA-style latent projections, RoPE, and 3:1 sliding-window/full attention",
+        "options": [],
+        "ratio": null
+      },
+      "layer_mix": {
+        "raw": "39 sliding-window + 14 full GDLA",
+        "total_layers": 53,
+        "by_type": {},
+        "mtp_layers": 0
+      },
+      "hidden_size": 4096,
+      "hidden_size_source": "hidden_size",
+      "num_hidden_layers": 53,
+      "num_attention_heads": 80,
+      "num_key_value_heads": 16,
+      "head_dim": 192,
+      "intermediate_size": 12288,
+      "vocab_size": 220160,
+      "max_position_embeddings": 262144,
+      "rope": {
+        "theta": 10000,
+        "rope_scaling": {
+          "original_max_position_embeddings": 4096,
+          "factor": 64,
+          "mscale": 1,
+          "rope_type": "yarn",
+          "rope_theta": 10000,
+          "beta_fast": 32,
+          "beta_slow": 1,
+          "apply_yarn_scaling": false
+        }
+      },
+      "sliding_window": 128,
+      "layer_types": null,
+      "moe": {
+        "num_experts": 384,
+        "num_shared_experts": 1,
+        "moe_intermediate_size": 1280,
+        "score_func": "sigmoid"
+      },
+      "model_type": "Motif",
+      "architectures": [
+        "MotifForCausalLM"
+      ],
+      "raw_config_source": "Motif-Technologies/Motif-3-Beta:config.json"
+    },
+    "raw_config": {
+      "_debug_force_load_balance": false,
+      "architectures": [
+        "MotifForCausalLM"
+      ],
+      "attention_cls": "gdla",
+      "attention_dropout": 0,
+      "auto_map": {
+        "AutoConfig": "configuration_motif.MotifConfig",
+        "AutoModel": "modeling_motif.MotifForCausalLM",
+        "AutoModelForCausalLM": "modeling_motif.MotifForCausalLM"
+      },
+      "diff_v2": true,
+      "dtype": "bfloat16",
+      "elementwise_attn_output_gate": true,
+      "eos_token_id": 0,
+      "experts_top_k": 8,
+      "head_dim": 192,
+      "headwise_attn_output_gate": false,
+      "hidden_act": "poly_norm",
+      "hidden_size": 4096,
+      "initializer_range": 0.02,
+      "interleave_moe_layer_step": 1,
+      "intermediate_size": 12288,
+      "k_ratio": 1,
+      "kv_lora_rank": 512,
+      "load_balance_coeff": 0.0001,
+      "max_position_embeddings": 262144,
+      "max_window_layers": 9,
+      "mhc_enabled": true,
+      "mhc_expansion_rate": 4,
+      "mhc_identity_init": false,
+      "mhc_sinkhorn_iters": 20,
+      "model_type": "Motif",
+      "moe_intermediate_size": 1280,
+      "mscale": 1,
+      "n_dense_first_layers": 2,
+      "num_attention_heads": 80,
+      "num_experts": 384,
+      "num_hidden_layers": 53,
+      "num_key_value_heads": 16,
+      "num_noise_heads": 16,
+      "num_shared_experts": 1,
+      "output_router_logits": false,
+      "q_lora_rank": 1024,
+      "qk_rope_head_dim": 64,
+      "rms_norm_eps": 0.00001,
+      "rope_theta": 10000,
+      "route_norm": true,
+      "route_scale": 2,
+      "router_aux_loss_coef": 0,
+      "score_before_experts": false,
+      "score_func": "sigmoid",
+      "sliding_window": 128,
+      "sliding_window_pattern": "interleave",
+      "sliding_window_period": 4,
+      "swa_rope_theta": 10000,
+      "tie_word_embeddings": false,
+      "transformers_version": "5.7.0",
+      "use_cache": true,
+      "use_sliding_window": true,
+      "v_head_dim": 128,
+      "vocab_size": 220160,
+      "rope_factor": 64,
+      "original_seq_len": 4096,
+      "rope_scaling": {
+        "original_max_position_embeddings": 4096,
+        "factor": 64,
+        "mscale": 1,
+        "rope_type": "yarn",
+        "rope_theta": 10000,
+        "beta_fast": 32,
+        "beta_slow": 1,
+        "apply_yarn_scaling": false
+      },
+      "polynorm_output_scale": 0.5,
+      "polynorm_output_scale_per_layer": {},
+      "polynorm_bias_clamp": 0.5,
+      "hidden_clamp": 1000000,
+      "num_nextn_predict_layers": 1
+    },
+    "raw_config_bytes": 1814,
+    "context": {
+      "length": 262144,
+      "effective_length": 262144,
+      "recommended_context": 262144,
+      "is_unlimited": false,
+      "is_approx": false,
+      "raw": "262,144",
+      "input_length": null,
+      "output_length": null,
+      "config_context": {
+        "value": 262144,
+        "source": "config.json",
+        "source_path": "max_position_embeddings",
+        "confidence": 0.95,
+        "status": "verified",
+        "sources": [
+          {
+            "kind": "config",
+            "url": "https://huggingface.co/Motif-Technologies/Motif-3-Beta/blob/main/config.json",
+            "confidence": 1
+          },
+          {
+            "kind": "config_raw",
+            "url": "https://huggingface.co/Motif-Technologies/Motif-3-Beta/raw/main/config.json",
+            "confidence": 1
+          }
+        ],
+        "note": null
+      },
+      "advertised_context": {
+        "value": 262144,
+        "source": "gallery/config",
+        "confidence": 0.9,
+        "status": "verified",
+        "sources": [
+          {
+            "kind": "gallery_image",
+            "url": "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/motif-3-beta.webp",
+            "confidence": 0.9
+          }
+        ],
+        "note": null
+      },
+      "native_context": {
+        "value": 4096,
+        "source": "rope_scaling.original_max_position_embeddings",
+        "confidence": 0.88,
+        "status": "verified",
+        "sources": [
+          {
+            "kind": "config",
+            "url": "https://huggingface.co/Motif-Technologies/Motif-3-Beta/blob/main/config.json",
+            "confidence": 1
+          },
+          {
+            "kind": "config_raw",
+            "url": "https://huggingface.co/Motif-Technologies/Motif-3-Beta/raw/main/config.json",
+            "confidence": 1
+          }
+        ],
+        "note": "pre-YaRN window; scaled x64.0 -> 262144"
+      },
+      "trained_context": {
+        "value": 4096,
+        "source": "rope_scaling.original_max_position_embeddings",
+        "confidence": 0.82,
+        "status": "verified",
+        "sources": [],
+        "note": "pre-YaRN window; scaled x64.0 -> 262144"
+      },
+      "tested_context": {
+        "value": null,
+        "status": "unverified",
+        "confidence": 0,
+        "sources": [],
+        "note": "no independent HELM/BenchLM long-context eval; requires Needle-in-Haystack run"
+      },
+      "api_context": {
+        "value": null,
+        "status": "unverified",
+        "confidence": 0,
+        "sources": [],
+        "note": "requires live API max_tokens probe; may differ from advertised"
+      },
+      "conflict": false,
+      "conflict_note": null,
+      "resolution": "consistent within 2%",
+      "verified_source": "config+gallery (consistent)",
+      "confidence": 0.9,
+      "config_max_position_embeddings": 262144,
+      "config_source_path": "max_position_embeddings",
+      "_legacy_length": 262144,
+      "_legacy_resolution": "consistent within 2%",
+      "schema_version": "2.2-six-contexts"
+    },
+    "training": {
+      "dataset": {
+        "value": "Undisclosed web-scale (vendor not published, inferred)",
+        "status": "inferred",
+        "confidence": 0.55,
+        "sources": [],
+        "note": "inferred from family/company heuristic"
+      },
+      "tokens": {
+        "value": null,
+        "unit": null,
+        "status": "undisclosed",
+        "confidence": 0,
+        "sources": [],
+        "note": null
+      },
+      "tokens_b": null,
+      "hardware": {
+        "value": "Undisclosed (inferred)",
+        "status": "inferred",
+        "confidence": 0.55,
+        "sources": [],
+        "note": null
+      },
+      "compute": {
+        "value": null,
+        "status": "undisclosed",
+        "confidence": 0,
+        "sources": [],
+        "note": null
+      },
+      "post_training": {
+        "value": [
+          "SFT (inferred)"
+        ],
+        "status": "inferred",
+        "confidence": 0.55,
+        "sources": [],
+        "note": null
+      },
+      "post_training_methods": [
+        "SFT (inferred)"
+      ],
+      "_flat": {
+        "dataset": "Undisclosed web-scale (vendor not published, inferred)",
+        "hardware": "Undisclosed (inferred)",
+        "compute": null
+      },
+      "overall_status": "inferred",
+      "overall_confidence": 0.35,
+      "verified_status": "inferred",
+      "confidence": 0.35,
+      "note": "inferred from family/company heuristic",
+      "_legacy_verified_status": "inferred",
+      "_legacy_confidence": 0.35,
+      "schema_version": "2.2-per-field",
+      "_provenance_note": "per-field status fix 2.2: verified no longer whole-block; each claim now has status+confidence+sources"
+    },
+    "sources": [
+      {
+        "kind": "config",
+        "url": "https://huggingface.co/Motif-Technologies/Motif-3-Beta/blob/main/config.json",
+        "repo": "Motif-Technologies/Motif-3-Beta",
+        "label": "config.json",
+        "verified_status": "verified",
+        "confidence": 1,
+        "note": "fetch ok"
+      },
+      {
+        "kind": "config_raw",
+        "url": "https://huggingface.co/Motif-Technologies/Motif-3-Beta/raw/main/config.json",
+        "repo": "Motif-Technologies/Motif-3-Beta",
+        "label": "config.json raw",
+        "verified_status": "verified",
+        "confidence": 1,
+        "note": "bytes 2175"
+      },
+      {
+        "kind": "gallery_image",
+        "url": "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/motif-3-beta.webp",
+        "repo": null,
+        "label": null,
+        "verified_status": "unverified",
+        "confidence": 0.9,
+        "note": "Raschka gallery"
+      },
+      {
+        "kind": "benchmark",
+        "url": "https://artificialanalysis.ai/models/motif-0714",
+        "repo": null,
+        "label": "Artificial Analysis",
+        "verified_status": "verified",
+        "confidence": 0.9,
+        "note": "AA index 44"
+      },
+      {
+        "kind": "license",
+        "url": "https://huggingface.co/Motif-Technologies/Motif-3-Beta/blob/main/README.md#license",
+        "repo": null,
+        "label": "Motif Technologies Non-Commercial License",
+        "verified_status": "unverified",
+        "confidence": 0.9
+      }
+    ]
+  },
+  {
+    "index": 11,
+    "model_id": "laguna-s-2-1",
+    "model_name": "Laguna S 2.1",
+    "company": "Poolside",
+    "release_date": "2026-07-21",
+    "family": "laguna-s",
+    "summary": "Poolside's 118B sparse MoE scales the Laguna XS recipe to 48 layers and 1M context while activating about 8B parameters per token.",
+    "yichen": {
+      "vocab": 100352,
+      "depth": 48,
+      "dim": 3072,
+      "norm": "RMSNorm",
+      "parallel_layer": "Serial",
+      "pre_norm": "Pre",
+      "pos_emb": "RoPE",
+      "activation": "SwiGLU",
+      "attn_type": "gqa",
+      "context": 1048576,
+      "bias_display": "no bias",
+      "tied_display": "untied",
+      "qk_norm": "—",
+      "sliding": "yes",
+      "stability": "RMSNorm eps=1e-06 • norm_topk"
+    },
+    "math_tricks": {
+      "attention_bias": false,
+      "attention_bias_display": "no bias",
+      "tie_word_embeddings": false,
+      "tie_display": "untied",
+      "rms_norm_eps": 0.000001,
+      "rope_theta": null,
+      "hidden_act": null,
+      "swiglu_limit": null,
+      "use_qk_norm": null,
+      "learnable_sink": null,
+      "rope_scaling": null,
+      "attention_dropout": 0,
+      "norm_topk_prob": true,
+      "initializer_range": null,
+      "tricks": [
+        "RMSNorm eps=1e-06",
+        "norm_topk"
+      ],
+      "tricks_display": "RMSNorm eps=1e-06 • norm_topk"
+    },
+    "scale": {
+      "total_params": 118000000000,
+      "active_params": 8000000000,
+      "active_pct": 6.8,
+      "extra": {
+        "mtp_params": null,
+        "lora_mb": null,
+        "lora_rank": null,
+        "backbone_label": "total",
+        "ngram_params": null,
+        "embedding_params": null
+      },
+      "raw": "118B total, 8B active (6.8% active)",
+      "parsed": true
+    },
+    "architecture": {
+      "decoder_type": "sparse_moe",
+      "decoder_display": "Sparse MoE",
+      "attention": {
+        "primary": "gqa",
+        "raw": "Gated GQA with QK-Norm and 3:1 sliding-window/global attention",
+        "options": [],
+        "ratio": null
+      },
+      "layer_mix": {
+        "raw": "36 sliding-window + 12 global GQA",
+        "total_layers": 48,
+        "by_type": {},
+        "mtp_layers": 0
+      },
+      "hidden_size": 3072,
+      "hidden_size_source": "hidden_size",
+      "num_hidden_layers": 48,
+      "num_attention_heads": 48,
+      "num_key_value_heads": 8,
+      "head_dim": 128,
+      "intermediate_size": 12288,
+      "vocab_size": 100352,
+      "max_position_embeddings": 1048576,
+      "rope": {
+        "rope_parameters": {
+          "full_attention": {
+            "rope_theta": 500000,
+            "rope_type": "yarn",
+            "factor": 128,
+            "original_max_position_embeddings": 8192,
+            "beta_slow": 1,
+            "beta_fast": 32,
+            "attention_factor": 1.4852030263919618,
+            "partial_rotary_factor": 0.5
+          },
+          "sliding_attention": {
+            "rope_type": "default",
+            "rope_theta": 10000,
+            "partial_rotary_factor": 1
+          }
+        }
+      },
+      "sliding_window": 512,
+      "layer_types": {
+        "audit_display_truncated": true,
+        "total_items": 48,
+        "first_items": [
+          "full_attention",
+          "sliding_attention",
+          "sliding_attention",
+          "sliding_attention",
+          "full_attention",
+          "sliding_attention",
+          "sliding_attention",
+          "sliding_attention",
+          "full_attention",
+          "sliding_attention",
+          "sliding_attention",
+          "sliding_attention",
+          "full_attention",
+          "sliding_attention",
+          "sliding_attention",
+          "sliding_attention",
+          "full_attention",
+          "sliding_attention",
+          "sliding_attention",
+          "sliding_attention",
+          "full_attention",
+          "sliding_attention",
+          "sliding_attention",
+          "sliding_attention"
+        ]
+      },
+      "moe": {
+        "num_experts": 256,
+        "num_experts_per_tok": 10,
+        "moe_intermediate_size": 1024
+      },
+      "model_type": "laguna",
+      "architectures": [
+        "LagunaForCausalLM"
+      ],
+      "raw_config_source": "poolside/Laguna-S-2.1:config.json"
+    },
+    "raw_config": {
+      "architectures": [
+        "LagunaForCausalLM"
+      ],
+      "auto_map": {
+        "AutoConfig": "configuration_laguna.LagunaConfig",
+        "AutoModelForCausalLM": "modeling_laguna.LagunaForCausalLM"
+      },
+      "model_type": "laguna",
+      "vocab_size": 100352,
+      "hidden_size": 3072,
+      "intermediate_size": 12288,
+      "num_hidden_layers": 48,
+      "num_attention_heads": 48,
+      "num_key_value_heads": 8,
+      "head_dim": 128,
+      "max_position_embeddings": 1048576,
+      "attention_bias": false,
+      "attention_dropout": 0,
+      "rms_norm_eps": 0.000001,
+      "num_experts": 256,
+      "num_experts_per_tok": 10,
+      "moe_intermediate_size": 1024,
+      "shared_expert_intermediate_size": 1024,
+      "norm_topk_prob": true,
+      "router_aux_loss_coef": 0,
+      "decoder_sparse_step": 1,
+      "mlp_only_layers": [
+        0
+      ],
+      "bos_token_id": 2,
+      "eos_token_id": [
+        2,
+        24
+      ],
+      "pad_token_id": 9,
+      "tie_word_embeddings": false,
+      "use_cache": true,
+      "torch_dtype": "bfloat16",
+      "gating": "per-head",
+      "sliding_window": 512,
+      "rope_parameters": {
+        "full_attention": {
+          "rope_theta": 500000,
+          "rope_type": "yarn",
+          "factor": 128,
+          "original_max_position_embeddings": 8192,
+          "beta_slow": 1,
+          "beta_fast": 32,
+          "attention_factor": 1.4852030263919618,
+          "partial_rotary_factor": 0.5
+        },
+        "sliding_attention": {
+          "rope_type": "default",
+          "rope_theta": 10000,
+          "partial_rotary_factor": 1
+        }
+      },
+      "layer_types": {
+        "audit_display_truncated": true,
+        "total_items": 48,
+        "first_items": [
+          "full_attention",
+          "sliding_attention",
+          "sliding_attention",
+          "sliding_attention",
+          "full_attention",
+          "sliding_attention",
+          "sliding_attention",
+          "sliding_attention",
+          "full_attention",
+          "sliding_attention",
+          "sliding_attention",
+          "sliding_attention",
+          "full_attention",
+          "sliding_attention",
+          "sliding_attention",
+          "sliding_attention",
+          "full_attention",
+          "sliding_attention",
+          "sliding_attention",
+          "sliding_attention",
+          "full_attention",
+          "sliding_attention",
+          "sliding_attention",
+          "sliding_attention"
+        ]
+      },
+      "moe_apply_router_weight_on_input": false,
+      "mlp_layer_types": {
+        "audit_display_truncated": true,
+        "total_items": 48,
+        "first_items": [
+          "dense",
+          "sparse",
+          "sparse",
+          "sparse",
+          "sparse",
+          "sparse",
+          "sparse",
+          "sparse",
+          "sparse",
+          "sparse",
+          "sparse",
+          "sparse",
+          "sparse",
+          "sparse",
+          "sparse",
+          "sparse",
+          "sparse",
+          "sparse",
+          "sparse",
+          "sparse",
+          "sparse",
+          "sparse",
+          "sparse",
+          "sparse"
+        ]
+      },
+      "gating_types": {
+        "audit_display_truncated": true,
+        "total_items": 48,
+        "first_items": [
+          "per_head",
+          "per_head",
+          "per_head",
+          "per_head",
+          "per_head",
+          "per_head",
+          "per_head",
+          "per_head",
+          "per_head",
+          "per_head",
+          "per_head",
+          "per_head",
+          "per_head",
+          "per_head",
+          "per_head",
+          "per_head",
+          "per_head",
+          "per_head",
+          "per_head",
+          "per_head",
+          "per_head",
+          "per_head",
+          "per_head",
+          "per_head"
+        ]
+      },
+      "moe_routed_scaling_factor": 2.5,
+      "num_attention_heads_per_layer": {
+        "audit_display_truncated": true,
+        "total_items": 48,
+        "first_items": [
+          48,
+          72,
+          72,
+          72,
+          48,
+          72,
+          72,
+          72,
+          48,
+          72,
+          72,
+          72,
+          48,
+          72,
+          72,
+          72,
+          48,
+          72,
+          72,
+          72,
+          48,
+          72,
+          72,
+          72
+        ]
+      },
+      "moe_router_logit_softcapping": 0
+    },
+    "raw_config_bytes": 3343,
+    "context": {
+      "length": 1048576,
+      "effective_length": 1048576,
+      "recommended_context": 1048576,
+      "is_unlimited": false,
+      "is_approx": false,
+      "raw": "1,048,576",
+      "input_length": null,
+      "output_length": null,
+      "config_context": {
+        "value": 1048576,
+        "source": "config.json",
+        "source_path": "max_position_embeddings",
+        "confidence": 0.95,
+        "status": "verified",
+        "sources": [
+          {
+            "kind": "config",
+            "url": "https://huggingface.co/poolside/Laguna-S-2.1/blob/main/config.json",
+            "confidence": 1
+          },
+          {
+            "kind": "config_raw",
+            "url": "https://huggingface.co/poolside/Laguna-S-2.1/raw/main/config.json",
+            "confidence": 1
+          }
+        ],
+        "note": null
+      },
+      "advertised_context": {
+        "value": 1048576,
+        "source": "gallery/config",
+        "confidence": 0.9,
+        "status": "verified",
+        "sources": [
+          {
+            "kind": "gallery_image",
+            "url": "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/laguna-s-2-1.webp",
+            "confidence": 0.9
+          }
+        ],
+        "note": null
+      },
+      "native_context": {
+        "value": 1048576,
+        "source": "config_max_position_embeddings",
+        "confidence": 0.55,
+        "status": "inferred",
+        "sources": [
+          {
+            "kind": "config",
+            "url": "https://huggingface.co/poolside/Laguna-S-2.1/blob/main/config.json",
+            "confidence": 1
+          },
+          {
+            "kind": "config_raw",
+            "url": "https://huggingface.co/poolside/Laguna-S-2.1/raw/main/config.json",
+            "confidence": 1
+          }
+        ],
+        "note": null
+      },
+      "trained_context": {
+        "value": 1048576,
+        "source": "config_max_position_embeddings",
+        "confidence": 0.5,
+        "status": "inferred",
+        "sources": [],
+        "note": "requires tech report to confirm trained window"
+      },
+      "tested_context": {
+        "value": null,
+        "status": "unverified",
+        "confidence": 0,
+        "sources": [],
+        "note": "no independent HELM/BenchLM long-context eval; requires Needle-in-Haystack run"
+      },
+      "api_context": {
+        "value": null,
+        "status": "unverified",
+        "confidence": 0,
+        "sources": [],
+        "note": "requires live API max_tokens probe; may differ from advertised"
+      },
+      "conflict": false,
+      "conflict_note": null,
+      "resolution": "consistent within 2%",
+      "verified_source": "config+gallery (consistent)",
+      "confidence": 0.9,
+      "config_max_position_embeddings": 1048576,
+      "config_source_path": "max_position_embeddings",
+      "_legacy_length": 1048576,
+      "_legacy_resolution": "consistent within 2%",
+      "schema_version": "2.2-six-contexts"
+    },
+    "training": {
+      "dataset": {
+        "value": "Undisclosed web-scale (vendor not published, inferred)",
+        "status": "inferred",
+        "confidence": 0.55,
+        "sources": [],
+        "note": "inferred from family/company heuristic"
+      },
+      "tokens": {
+        "value": null,
+        "unit": null,
+        "status": "undisclosed",
+        "confidence": 0,
+        "sources": [],
+        "note": null
+      },
+      "tokens_b": null,
+      "hardware": {
+        "value": "Undisclosed (inferred)",
+        "status": "inferred",
+        "confidence": 0.55,
+        "sources": [],
+        "note": null
+      },
+      "compute": {
+        "value": null,
+        "status": "undisclosed",
+        "confidence": 0,
+        "sources": [],
+        "note": null
+      },
+      "post_training": {
+        "value": [
+          "SFT (inferred)"
+        ],
+        "status": "inferred",
+        "confidence": 0.55,
+        "sources": [],
+        "note": null
+      },
+      "post_training_methods": [
+        "SFT (inferred)"
+      ],
+      "_flat": {
+        "dataset": "Undisclosed web-scale (vendor not published, inferred)",
+        "hardware": "Undisclosed (inferred)",
+        "compute": null
+      },
+      "overall_status": "inferred",
+      "overall_confidence": 0.35,
+      "verified_status": "inferred",
+      "confidence": 0.35,
+      "note": "inferred from family/company heuristic",
+      "_legacy_verified_status": "inferred",
+      "_legacy_confidence": 0.35,
+      "schema_version": "2.2-per-field",
+      "_provenance_note": "per-field status fix 2.2: verified no longer whole-block; each claim now has status+confidence+sources"
+    },
+    "sources": [
+      {
+        "kind": "config",
+        "url": "https://huggingface.co/poolside/Laguna-S-2.1/blob/main/config.json",
+        "repo": "poolside/Laguna-S-2.1",
+        "label": "config.json",
+        "verified_status": "verified",
+        "confidence": 1,
+        "note": "fetch ok"
+      },
+      {
+        "kind": "config_raw",
+        "url": "https://huggingface.co/poolside/Laguna-S-2.1/raw/main/config.json",
+        "repo": "poolside/Laguna-S-2.1",
+        "label": "config.json raw",
+        "verified_status": "verified",
+        "confidence": 1,
+        "note": "bytes 4640"
+      },
+      {
+        "kind": "tech_report",
+        "url": "https://poolside.ai/blog/introducing-laguna-s-2-1",
+        "repo": null,
+        "label": null,
+        "arxiv_id": null,
+        "verified_status": "unverified",
+        "confidence": 0.7
+      },
+      {
+        "kind": "gallery_image",
+        "url": "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/laguna-s-2-1.webp",
+        "repo": null,
+        "label": null,
+        "verified_status": "unverified",
+        "confidence": 0.9,
+        "note": "Raschka gallery"
+      },
+      {
+        "kind": "license",
+        "url": "https://huggingface.co/poolside/Laguna-S-2.1/blob/main/LICENSE.md",
+        "repo": null,
+        "label": "OpenMDW License 1.1",
+        "verified_status": "unverified",
+        "confidence": 0.9
+      }
+    ]
+  },
+  {
+    "index": 12,
+    "model_id": "nanbeige-4-2-3b",
+    "model_name": "Nanbeige 4.2 3B",
+    "company": "BOSS Zhipin",
+    "release_date": "2026-07-21",
+    "family": "nanbeige",
+    "summary": "Compact agentic model that runs the same 22-layer dense transformer stack twice, resulting in 44 transformer blocks (layers) without duplicating the layer weights.",
+    "yichen": {
+      "vocab": 166144,
+      "depth": 22,
+      "dim": 3072,
+      "norm": "RMSNorm",
+      "parallel_layer": "Serial",
+      "pre_norm": "Pre",
+      "pos_emb": "RoPE",
+      "activation": "silu",
+      "attn_type": "gqa",
+      "context": 262144,
+      "bias_display": "no bias",
+      "tied_display": "untied",
+      "qk_norm": "—",
+      "sliding": "—",
+      "stability": "RMSNorm eps=1e-05"
+    },
+    "math_tricks": {
+      "attention_bias": false,
+      "attention_bias_display": "no bias",
+      "tie_word_embeddings": false,
+      "tie_display": "untied",
+      "rms_norm_eps": 0.00001,
+      "rope_theta": 70000000,
+      "hidden_act": "silu",
+      "swiglu_limit": null,
+      "use_qk_norm": null,
+      "learnable_sink": null,
+      "rope_scaling": null,
+      "attention_dropout": 0,
+      "norm_topk_prob": null,
+      "initializer_range": 0.02,
+      "tricks": [
+        "RMSNorm eps=1e-05"
+      ],
+      "tricks_display": "RMSNorm eps=1e-05"
+    },
+    "scale": {
+      "total_params": 4000000000,
+      "active_params": 4000000000,
+      "active_pct": 100,
+      "extra": {
+        "mtp_params": null,
+        "lora_mb": null,
+        "lora_rank": null,
+        "backbone_label": "total",
+        "ngram_params": null,
+        "embedding_params": 1000000000
+      },
+      "raw": "4B total, 3B non-embedding",
+      "parsed": true
+    },
+    "architecture": {
+      "decoder_type": "dense",
+      "decoder_display": "Dense",
+      "attention": {
+        "primary": "gqa",
+        "raw": "GQA with RoPE",
+        "options": [],
+        "ratio": null
+      },
+      "layer_mix": {
+        "raw": "22 shared GQA layers × 2 passes",
+        "total_layers": 22,
+        "by_type": {},
+        "mtp_layers": 0
+      },
+      "hidden_size": 3072,
+      "hidden_size_source": "hidden_size",
+      "num_hidden_layers": 22,
+      "num_attention_heads": 48,
+      "num_key_value_heads": 8,
+      "head_dim": 128,
+      "intermediate_size": 10752,
+      "vocab_size": 166144,
+      "max_position_embeddings": 262144,
+      "rope": {
+        "theta": 70000000,
+        "rope_scaling": null
+      },
+      "sliding_window": null,
+      "layer_types": null,
+      "moe": {},
+      "model_type": "nanbeige",
+      "architectures": [
+        "NanbeigeForCausalLM"
+      ],
+      "raw_config_source": "Nanbeige/Nanbeige4.2-3B:config.json"
+    },
+    "raw_config": {
+      "architectures": [
+        "NanbeigeForCausalLM"
+      ],
+      "attention_bias": false,
+      "attention_dropout": 0,
+      "auto_map": {
+        "AutoConfig": "configuration_nanbeige.NanbeigeConfig",
+        "AutoModel": "modeling_nanbeige.NanbeigeModel",
+        "AutoModelForCausalLM": "modeling_nanbeige.NanbeigeForCausalLM"
+      },
+      "bos_token_id": 166100,
+      "eos_token_id": 166101,
+      "head_dim": 128,
+      "hidden_act": "silu",
+      "hidden_size": 3072,
+      "initializer_range": 0.02,
+      "intermediate_size": 10752,
+      "kv_channels": 128,
+      "loop_loss_weights": [],
+      "max_length": null,
+      "max_position_embeddings": 262144,
+      "model_type": "nanbeige",
+      "num_attention_heads": 48,
+      "num_hidden_layers": 22,
+      "num_key_value_heads": 8,
+      "num_loops": 2,
+      "pad_token_id": 0,
+      "pretraining_tp": 1,
+      "rms_norm_eps": 0.00001,
+      "rope_scaling": null,
+      "rope_theta": 70000000,
+      "skip_loop_final_norm": false,
+      "tie_word_embeddings": false,
+      "torch_dtype": "bfloat16",
+      "transformers_version": "4.42.4",
+      "use_cache": true,
+      "vocab_size": 166144
+    },
+    "raw_config_bytes": 864,
+    "context": {
+      "length": 262144,
+      "effective_length": 262144,
+      "recommended_context": 262144,
+      "is_unlimited": false,
+      "is_approx": false,
+      "raw": "262,144",
+      "input_length": null,
+      "output_length": null,
+      "config_context": {
+        "value": 262144,
+        "source": "config.json",
+        "source_path": "max_position_embeddings",
+        "confidence": 0.95,
+        "status": "verified",
+        "sources": [
+          {
+            "kind": "config",
+            "url": "https://huggingface.co/Nanbeige/Nanbeige4.2-3B/blob/main/config.json",
+            "confidence": 1
+          },
+          {
+            "kind": "config_raw",
+            "url": "https://huggingface.co/Nanbeige/Nanbeige4.2-3B/raw/main/config.json",
+            "confidence": 1
+          }
+        ],
+        "note": null
+      },
+      "advertised_context": {
+        "value": 262144,
+        "source": "gallery/config",
+        "confidence": 0.9,
+        "status": "verified",
+        "sources": [
+          {
+            "kind": "gallery_image",
+            "url": "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/nanbeige-4-2-3b.webp",
+            "confidence": 0.9
+          }
+        ],
+        "note": null
+      },
+      "native_context": {
+        "value": 262144,
+        "source": "config_max_position_embeddings",
+        "confidence": 0.55,
+        "status": "inferred",
+        "sources": [
+          {
+            "kind": "config",
+            "url": "https://huggingface.co/Nanbeige/Nanbeige4.2-3B/blob/main/config.json",
+            "confidence": 1
+          },
+          {
+            "kind": "config_raw",
+            "url": "https://huggingface.co/Nanbeige/Nanbeige4.2-3B/raw/main/config.json",
+            "confidence": 1
+          }
+        ],
+        "note": null
+      },
+      "trained_context": {
+        "value": 262144,
+        "source": "config_max_position_embeddings",
+        "confidence": 0.5,
+        "status": "inferred",
+        "sources": [],
+        "note": "requires tech report to confirm trained window"
+      },
+      "tested_context": {
+        "value": null,
+        "status": "unverified",
+        "confidence": 0,
+        "sources": [],
+        "note": "no independent HELM/BenchLM long-context eval; requires Needle-in-Haystack run"
+      },
+      "api_context": {
+        "value": null,
+        "status": "unverified",
+        "confidence": 0,
+        "sources": [],
+        "note": "requires live API max_tokens probe; may differ from advertised"
+      },
+      "conflict": false,
+      "conflict_note": null,
+      "resolution": "consistent within 2%",
+      "verified_source": "config+gallery (consistent)",
+      "confidence": 0.9,
+      "config_max_position_embeddings": 262144,
+      "config_source_path": "max_position_embeddings",
+      "_legacy_length": 262144,
+      "_legacy_resolution": "consistent within 2%",
+      "schema_version": "2.2-six-contexts"
+    },
+    "training": {
+      "dataset": {
+        "value": "Undisclosed web-scale (vendor not published, inferred)",
+        "status": "inferred",
+        "confidence": 0.55,
+        "sources": [],
+        "note": "inferred from family/company heuristic"
+      },
+      "tokens": {
+        "value": null,
+        "unit": null,
+        "status": "undisclosed",
+        "confidence": 0,
+        "sources": [],
+        "note": null
+      },
+      "tokens_b": null,
+      "hardware": {
+        "value": "Undisclosed (inferred)",
+        "status": "inferred",
+        "confidence": 0.55,
+        "sources": [],
+        "note": null
+      },
+      "compute": {
+        "value": null,
+        "status": "undisclosed",
+        "confidence": 0,
+        "sources": [],
+        "note": null
+      },
+      "post_training": {
+        "value": [
+          "SFT (inferred)"
+        ],
+        "status": "inferred",
+        "confidence": 0.55,
+        "sources": [],
+        "note": null
+      },
+      "post_training_methods": [
+        "SFT (inferred)"
+      ],
+      "_flat": {
+        "dataset": "Undisclosed web-scale (vendor not published, inferred)",
+        "hardware": "Undisclosed (inferred)",
+        "compute": null
+      },
+      "overall_status": "inferred",
+      "overall_confidence": 0.35,
+      "verified_status": "inferred",
+      "confidence": 0.35,
+      "note": "inferred from family/company heuristic",
+      "_legacy_verified_status": "inferred",
+      "_legacy_confidence": 0.35,
+      "schema_version": "2.2-per-field",
+      "_provenance_note": "per-field status fix 2.2: verified no longer whole-block; each claim now has status+confidence+sources"
+    },
+    "sources": [
+      {
+        "kind": "config",
+        "url": "https://huggingface.co/Nanbeige/Nanbeige4.2-3B/blob/main/config.json",
+        "repo": "Nanbeige/Nanbeige4.2-3B",
+        "label": "config.json",
+        "verified_status": "verified",
+        "confidence": 1,
+        "note": "fetch ok"
+      },
+      {
+        "kind": "config_raw",
+        "url": "https://huggingface.co/Nanbeige/Nanbeige4.2-3B/raw/main/config.json",
+        "repo": "Nanbeige/Nanbeige4.2-3B",
+        "label": "config.json raw",
+        "verified_status": "verified",
+        "confidence": 1,
+        "note": "bytes 1019"
+      },
+      {
+        "kind": "tech_report",
+        "url": "https://huggingface.co/Nanbeige/Nanbeige4.2-3B/blob/main/Nanbeige42_report.pdf",
+        "repo": null,
+        "label": null,
+        "arxiv_id": null,
+        "verified_status": "unverified",
+        "confidence": 0.7
+      },
+      {
+        "kind": "gallery_image",
+        "url": "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/nanbeige-4-2-3b.webp",
+        "repo": null,
+        "label": null,
+        "verified_status": "unverified",
+        "confidence": 0.9,
+        "note": "Raschka gallery"
+      },
+      {
+        "kind": "license",
+        "url": "https://huggingface.co/Nanbeige/Nanbeige4.2-3B/blob/main/README.md",
+        "repo": null,
+        "label": "Apache License 2.0",
+        "verified_status": "unverified",
+        "confidence": 0.9
+      }
+    ]
+  },
+  {
+    "index": 13,
+    "model_id": "antares-1b",
+    "model_name": "Antares 1B",
+    "company": "Cisco",
+    "release_date": "2026-07-21",
+    "family": "antares",
+    "summary": "Cisco Foundation AI's compact terminal agent uses a dense Granite 4.0 backbone and is post-trained with SFT and GRPO for vulnerability localization.",
+    "yichen": {
+      "vocab": null,
+      "depth": null,
+      "dim": null,
+      "norm": "RMSNorm",
+      "parallel_layer": "Serial",
+      "pre_norm": "Pre",
+      "pos_emb": "RoPE",
+      "activation": "SwiGLU",
+      "attn_type": "gqa",
+      "context": 131072,
+      "bias_display": "undisclosed",
+      "tied_display": "undisclosed",
+      "qk_norm": "—",
+      "sliding": "—",
+      "stability": "—"
+    },
+    "math_tricks": {
+      "attention_bias": null,
+      "attention_bias_display": "undisclosed",
+      "tie_word_embeddings": null,
+      "tie_display": "undisclosed",
+      "rms_norm_eps": null,
+      "rope_theta": null,
+      "hidden_act": null,
+      "swiglu_limit": null,
+      "use_qk_norm": null,
+      "learnable_sink": null,
+      "rope_scaling": null,
+      "attention_dropout": null,
+      "norm_topk_prob": null,
+      "initializer_range": null,
+      "tricks": [],
+      "tricks_display": "—"
+    },
+    "scale": {
+      "total_params": 1000000000,
+      "active_params": 1000000000,
+      "active_pct": 100,
+      "extra": {
+        "mtp_params": null,
+        "lora_mb": null,
+        "lora_rank": null,
+        "backbone_label": "total",
+        "ngram_params": null,
+        "embedding_params": null
+      },
+      "raw": "1B parameters",
+      "parsed": true
+    },
+    "architecture": {
+      "decoder_type": "dense",
+      "decoder_display": "Dense",
+      "attention": {
+        "primary": "gqa",
+        "raw": "GQA with RoPE",
+        "options": [],
+        "ratio": null
+      },
+      "layer_mix": {
+        "raw": "40 GQA",
+        "total_layers": null,
+        "by_type": {},
+        "mtp_layers": 0
+      },
+      "hidden_size": null,
+      "hidden_size_source": null,
+      "num_hidden_layers": null,
+      "num_attention_heads": null,
+      "num_key_value_heads": null,
+      "head_dim": null,
+      "intermediate_size": null,
+      "vocab_size": null,
+      "max_position_embeddings": null,
+      "rope": {},
+      "sliding_window": null,
+      "layer_types": null,
+      "moe": {},
+      "model_type": null,
+      "architectures": [],
+      "raw_config_source": "fdtn-ai/antares-1b:config.json"
+    },
+    "raw_config": null,
+    "raw_config_bytes": 0,
+    "context": {
+      "length": 131072,
+      "effective_length": 131072,
+      "recommended_context": 131072,
+      "is_unlimited": false,
+      "is_approx": false,
+      "raw": "131,072",
+      "input_length": null,
+      "output_length": null,
+      "config_context": {
+        "value": null,
+        "source": "config.json",
+        "source_path": null,
+        "confidence": 0,
+        "status": "undisclosed",
+        "sources": [
+          {
+            "kind": "config",
+            "url": "https://huggingface.co/fdtn-ai/antares-1b/blob/main/config.json",
+            "confidence": 0.5
+          },
+          {
+            "kind": "config_raw",
+            "url": "https://huggingface.co/fdtn-ai/antares-1b/raw/main/config.json",
+            "confidence": 0.3
+          }
+        ],
+        "note": "no config value"
+      },
+      "advertised_context": {
+        "value": 131072,
+        "source": "gallery",
+        "confidence": 0.9,
+        "status": "verified",
+        "sources": [
+          {
+            "kind": "gallery_image",
+            "url": "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/antares-1b.webp",
+            "confidence": 0.9
+          }
+        ],
+        "note": null
+      },
+      "native_context": {
+        "value": 131072,
+        "source": "advertised",
+        "confidence": 0.55,
+        "status": "inferred",
+        "sources": [
+          {
+            "kind": "config",
+            "url": "https://huggingface.co/fdtn-ai/antares-1b/blob/main/config.json",
+            "confidence": 0.5
+          },
+          {
+            "kind": "config_raw",
+            "url": "https://huggingface.co/fdtn-ai/antares-1b/raw/main/config.json",
+            "confidence": 0.3
+          }
+        ],
+        "note": null
+      },
+      "trained_context": {
+        "value": 131072,
+        "source": "advertised",
+        "confidence": 0.5,
+        "status": "inferred",
+        "sources": [],
+        "note": "requires tech report to confirm trained window"
+      },
+      "tested_context": {
+        "value": null,
+        "status": "unverified",
+        "confidence": 0,
+        "sources": [],
+        "note": "no independent HELM/BenchLM long-context eval; requires Needle-in-Haystack run"
+      },
+      "api_context": {
+        "value": null,
+        "status": "unverified",
+        "confidence": 0,
+        "sources": [],
+        "note": "requires live API max_tokens probe; may differ from advertised"
+      },
+      "conflict": false,
+      "conflict_note": null,
+      "resolution": "no config (gated), trust gallery with low confidence",
+      "verified_source": "gallery",
+      "confidence": 0.6,
+      "config_max_position_embeddings": null,
+      "config_source_path": null,
+      "_legacy_length": 131072,
+      "_legacy_resolution": "no config (gated), trust gallery with low confidence",
+      "schema_version": "2.2-six-contexts"
+    },
+    "training": {
+      "dataset": {
+        "value": "Undisclosed web-scale (vendor not published, inferred)",
+        "status": "inferred",
+        "confidence": 0.55,
+        "sources": [],
+        "note": "inferred from family/company heuristic"
+      },
+      "tokens": {
+        "value": null,
+        "unit": null,
+        "status": "undisclosed",
+        "confidence": 0,
+        "sources": [],
+        "note": null
+      },
+      "tokens_b": null,
+      "hardware": {
+        "value": "Undisclosed (inferred)",
+        "status": "inferred",
+        "confidence": 0.55,
+        "sources": [],
+        "note": null
+      },
+      "compute": {
+        "value": null,
+        "status": "undisclosed",
+        "confidence": 0,
+        "sources": [],
+        "note": null
+      },
+      "post_training": {
+        "value": [
+          "SFT (inferred)"
+        ],
+        "status": "inferred",
+        "confidence": 0.55,
+        "sources": [],
+        "note": null
+      },
+      "post_training_methods": [
+        "SFT (inferred)"
+      ],
+      "_flat": {
+        "dataset": "Undisclosed web-scale (vendor not published, inferred)",
+        "hardware": "Undisclosed (inferred)",
+        "compute": null
+      },
+      "overall_status": "inferred",
+      "overall_confidence": 0.35,
+      "verified_status": "inferred",
+      "confidence": 0.35,
+      "note": "inferred from family/company heuristic",
+      "_legacy_verified_status": "inferred",
+      "_legacy_confidence": 0.35,
+      "schema_version": "2.2-per-field",
+      "_provenance_note": "per-field status fix 2.2: verified no longer whole-block; each claim now has status+confidence+sources"
+    },
+    "sources": [
+      {
+        "kind": "config",
+        "url": "https://huggingface.co/fdtn-ai/antares-1b/blob/main/config.json",
+        "repo": "fdtn-ai/antares-1b",
+        "label": "config.json",
+        "verified_status": "unverified",
+        "confidence": 0.5,
+        "note": "fetch http_401"
+      },
+      {
+        "kind": "config_raw",
+        "url": "https://huggingface.co/fdtn-ai/antares-1b/raw/main/config.json",
+        "repo": "fdtn-ai/antares-1b",
+        "label": "config.json raw",
+        "verified_status": "failed",
+        "confidence": 0.3,
+        "note": "bytes None"
+      },
+      {
+        "kind": "tech_report",
+        "url": "https://cisco-foundation-ai.github.io/antares/technical-report.pdf",
+        "repo": null,
+        "label": null,
+        "arxiv_id": null,
+        "verified_status": "unverified",
+        "confidence": 0.7
+      },
+      {
+        "kind": "gallery_image",
+        "url": "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/antares-1b.webp",
+        "repo": null,
+        "label": null,
+        "verified_status": "unverified",
+        "confidence": 0.9,
+        "note": "Raschka gallery"
+      },
+      {
+        "kind": "license",
+        "url": "https://huggingface.co/fdtn-ai/antares-1b/blob/main/README.md",
+        "repo": null,
+        "label": "Apache License 2.0",
+        "verified_status": "unverified",
+        "confidence": 0.9
+      }
+    ]
+  },
+  {
+    "index": 14,
+    "model_id": "btl-3-27b",
+    "model_name": "BTL-3 27B",
+    "company": "Bad Theory Labs",
+    "release_date": "2026-07-20",
+    "family": "btl",
+    "summary": "Agent-oriented Qwen3.6-27B derivative that adds a rank-32 LoRA adapter for coding, structured tool use, and long multi-turn execution.",
+    "yichen": {
+      "vocab": null,
+      "depth": null,
+      "dim": null,
+      "norm": "RMSNorm",
+      "parallel_layer": "Serial",
+      "pre_norm": "Pre",
+      "pos_emb": "RoPE",
+      "activation": "SwiGLU",
+      "attn_type": "gated_deltanet",
+      "context": 262144,
+      "bias_display": "undisclosed",
+      "tied_display": "undisclosed",
+      "qk_norm": "—",
+      "sliding": "—",
+      "stability": "—"
+    },
+    "math_tricks": {
+      "attention_bias": null,
+      "attention_bias_display": "undisclosed",
+      "tie_word_embeddings": null,
+      "tie_display": "undisclosed",
+      "rms_norm_eps": null,
+      "rope_theta": null,
+      "hidden_act": null,
+      "swiglu_limit": null,
+      "use_qk_norm": null,
+      "learnable_sink": null,
+      "rope_scaling": null,
+      "attention_dropout": null,
+      "norm_topk_prob": null,
+      "initializer_range": null,
+      "tricks": [],
+      "tricks_display": "—"
+    },
+    "scale": {
+      "total_params": 27000000000,
+      "active_params": 27000000000,
+      "active_pct": 100,
+      "extra": {
+        "mtp_params": null,
+        "lora_mb": 934,
+        "lora_rank": null,
+        "backbone_label": null,
+        "ngram_params": null,
+        "embedding_params": null
+      },
+      "raw": "27B base + 934 MB LoRA adapter",
+      "parsed": true
+    },
+    "architecture": {
+      "decoder_type": "dense_hybrid",
+      "decoder_display": "Dense hybrid",
+      "attention": {
+        "primary": "gated_deltanet",
+        "raw": "3:1 Gated DeltaNet and Gated Attention",
+        "options": [],
+        "ratio": null
+      },
+      "layer_mix": {
+        "raw": "16 gated attention + 48 DeltaNet",
+        "total_layers": null,
+        "by_type": {},
+        "mtp_layers": 0
+      },
+      "hidden_size": null,
+      "hidden_size_source": null,
+      "num_hidden_layers": null,
+      "num_attention_heads": null,
+      "num_key_value_heads": null,
+      "head_dim": null,
+      "intermediate_size": null,
+      "vocab_size": null,
+      "max_position_embeddings": null,
+      "rope": {},
+      "sliding_window": null,
+      "layer_types": null,
+      "moe": {},
+      "model_type": null,
+      "architectures": [],
+      "raw_config_source": "badtheorylabs/BTL-3:adapter_config.json"
+    },
+    "raw_config": {
+      "alora_invocation_tokens": null,
+      "alpha_pattern": {},
+      "arrow_config": null,
+      "auto_mapping": {
+        "base_model_class": "Qwen3_5ForConditionalGeneration",
+        "parent_library": "transformers.models.qwen3_5.modeling_qwen3_5",
+        "unsloth_fixed": true
+      },
+      "base_model_name_or_path": "Qwen/Qwen3.6-27B",
+      "bias": "none",
+      "corda_config": null,
+      "ensure_weight_tying": false,
+      "eva_config": null,
+      "exclude_modules": null,
+      "fan_in_fan_out": false,
+      "inference_mode": true,
+      "init_lora_weights": true,
+      "layer_replication": null,
+      "layers_pattern": null,
+      "layers_to_transform": null,
+      "loftq_config": {},
+      "lora_alpha": 64,
+      "lora_bias": false,
+      "lora_dropout": 0,
+      "lora_ga_config": null,
+      "megatron_config": null,
+      "megatron_core": "megatron.core",
+      "modules_to_save": null,
+      "peft_type": "LORA",
+      "peft_version": "0.19.1",
+      "qalora_group_size": 16,
+      "r": 32,
+      "rank_pattern": {},
+      "revision": null,
+      "target_modules": "(?:.*?(?:language|text).*?(?:self_attn|attention|attn|mixer|mlp|feed_forward|ffn|dense|mixer).*?(?:q_proj|k_proj|v_proj|o_proj|in_proj_qkv|in_proj_z|in_proj_b|in_proj_a|out_proj|gate_proj|up_proj|down_proj))|(?:\\bmodel\\.layers\\.[\\d]{1,}\\.(?:self_attn|attention|attn|mixer|mlp|feed_forward|ffn|dense|mixer)\\.(?:(?:q_proj|k_proj|v_proj|o_proj|in_proj_qkv|in_proj_z|in_proj_b|in_proj_a|out_proj|gate_proj|up_proj|down_proj)))",
+      "target_parameters": null,
+      "task_type": "CAUSAL_LM",
+      "trainable_token_indices": null,
+      "use_bdlora": null,
+      "use_dora": false,
+      "use_qalora": false,
+      "use_rslora": false
+    },
+    "raw_config_bytes": 1395,
+    "context": {
+      "length": 262144,
+      "effective_length": 262144,
+      "recommended_context": 262144,
+      "is_unlimited": false,
+      "is_approx": false,
+      "raw": "262,144",
+      "input_length": null,
+      "output_length": null,
+      "config_context": {
+        "value": null,
+        "source": "config.json",
+        "source_path": null,
+        "confidence": 0,
+        "status": "undisclosed",
+        "sources": [
+          {
+            "kind": "config",
+            "url": "https://huggingface.co/badtheorylabs/BTL-3/blob/main/adapter_config.json",
+            "confidence": 1
+          },
+          {
+            "kind": "config_raw",
+            "url": "https://huggingface.co/badtheorylabs/BTL-3/raw/main/adapter_config.json",
+            "confidence": 1
+          }
+        ],
+        "note": "no config value"
+      },
+      "advertised_context": {
+        "value": 262144,
+        "source": "gallery",
+        "confidence": 0.9,
+        "status": "verified",
+        "sources": [
+          {
+            "kind": "gallery_image",
+            "url": "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/btl-3-27b.webp",
+            "confidence": 0.9
+          }
+        ],
+        "note": null
+      },
+      "native_context": {
+        "value": 262144,
+        "source": "advertised",
+        "confidence": 0.55,
+        "status": "inferred",
+        "sources": [
+          {
+            "kind": "config",
+            "url": "https://huggingface.co/badtheorylabs/BTL-3/blob/main/adapter_config.json",
+            "confidence": 1
+          },
+          {
+            "kind": "config_raw",
+            "url": "https://huggingface.co/badtheorylabs/BTL-3/raw/main/adapter_config.json",
+            "confidence": 1
+          }
+        ],
+        "note": null
+      },
+      "trained_context": {
+        "value": 262144,
+        "source": "advertised",
+        "confidence": 0.5,
+        "status": "inferred",
+        "sources": [],
+        "note": "requires tech report to confirm trained window"
+      },
+      "tested_context": {
+        "value": null,
+        "status": "unverified",
+        "confidence": 0,
+        "sources": [],
+        "note": "no independent HELM/BenchLM long-context eval; requires Needle-in-Haystack run"
+      },
+      "api_context": {
+        "value": null,
+        "status": "unverified",
+        "confidence": 0,
+        "sources": [],
+        "note": "requires live API max_tokens probe; may differ from advertised"
+      },
+      "conflict": false,
+      "conflict_note": null,
+      "resolution": "no config (gated), trust gallery with low confidence",
+      "verified_source": "gallery",
+      "confidence": 0.6,
+      "config_max_position_embeddings": null,
+      "config_source_path": null,
+      "_legacy_length": 262144,
+      "_legacy_resolution": "no config (gated), trust gallery with low confidence",
+      "schema_version": "2.2-six-contexts"
+    },
+    "training": {
+      "dataset": {
+        "value": "Undisclosed web-scale (vendor not published, inferred)",
+        "status": "inferred",
+        "confidence": 0.55,
+        "sources": [],
+        "note": "inferred from family/company heuristic"
+      },
+      "tokens": {
+        "value": null,
+        "unit": null,
+        "status": "undisclosed",
+        "confidence": 0,
+        "sources": [],
+        "note": null
+      },
+      "tokens_b": null,
+      "hardware": {
+        "value": "Undisclosed (inferred)",
+        "status": "inferred",
+        "confidence": 0.55,
+        "sources": [],
+        "note": null
+      },
+      "compute": {
+        "value": null,
+        "status": "undisclosed",
+        "confidence": 0,
+        "sources": [],
+        "note": null
+      },
+      "post_training": {
+        "value": [
+          "SFT (inferred)"
+        ],
+        "status": "inferred",
+        "confidence": 0.55,
+        "sources": [],
+        "note": null
+      },
+      "post_training_methods": [
+        "SFT (inferred)"
+      ],
+      "_flat": {
+        "dataset": "Undisclosed web-scale (vendor not published, inferred)",
+        "hardware": "Undisclosed (inferred)",
+        "compute": null
+      },
+      "overall_status": "inferred",
+      "overall_confidence": 0.35,
+      "verified_status": "inferred",
+      "confidence": 0.35,
+      "note": "inferred from family/company heuristic",
+      "_legacy_verified_status": "inferred",
+      "_legacy_confidence": 0.35,
+      "schema_version": "2.2-per-field",
+      "_provenance_note": "per-field status fix 2.2: verified no longer whole-block; each claim now has status+confidence+sources"
+    },
+    "sources": [
+      {
+        "kind": "config",
+        "url": "https://huggingface.co/badtheorylabs/BTL-3/blob/main/adapter_config.json",
+        "repo": "badtheorylabs/BTL-3",
+        "label": "adapter_config.json",
+        "verified_status": "verified",
+        "confidence": 1,
+        "note": "fetch ok"
+      },
+      {
+        "kind": "config_raw",
+        "url": "https://huggingface.co/badtheorylabs/BTL-3/raw/main/adapter_config.json",
+        "repo": "badtheorylabs/BTL-3",
+        "label": "config.json raw",
+        "verified_status": "verified",
+        "confidence": 1,
+        "note": "bytes 1571"
+      },
+      {
+        "kind": "gallery_image",
+        "url": "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/btl-3-27b.webp",
+        "repo": null,
+        "label": null,
+        "verified_status": "unverified",
+        "confidence": 0.9,
+        "note": "Raschka gallery"
+      },
+      {
+        "kind": "license",
+        "url": "https://huggingface.co/badtheorylabs/BTL-3/blob/main/LICENSE",
+        "repo": null,
+        "label": "Apache License 2.0",
+        "verified_status": "unverified",
+        "confidence": 0.9
+      }
+    ]
+  }
+]

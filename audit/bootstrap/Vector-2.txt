@@ -1,0 +1,634 @@
+            The source’s architecture matrix and mathematical configuration, without flattening away
+            uncertainty.
+          </p>
+        </div>
+      </div>
+      <Stats
+        className="four"
+        items={[
+          ['Vocabulary', num(y.vocab ?? m.architecture?.vocab_size)],
+          ['Depth', num(y.depth ?? m.architecture?.num_hidden_layers)],
+          ['Hidden dimension', num(y.dim ?? m.architecture?.hidden_size)],
+          ['Activation', y.activation || t.hidden_act || '—'],
+        ]}
+      />
+      <div className="two-columns">
+        <section className="panel">
+          <h3>Block design</h3>
+          <KeyValues
+            items={[
+              ['Normalization', y.norm],
+              ['Norm placement', y.pre_norm],
+              ['Parallel layers', y.parallel_layer],
+              ['Position encoding', y.pos_emb],
+              ['QK normalization', y.qk_norm],
+              ['Attention type', y.attn_type],
+              ['Sliding window', y.sliding],
+              ['Stability', y.stability],
+            ]}
+          />
+        </section>
+        <section className="panel">
+          <h3>Configuration flags</h3>
+          <KeyValues
+            items={[
+              ['Attention bias', t.attention_bias],
+              ['Tied embeddings', t.tie_word_embeddings],
+              ['RMS norm epsilon', t.rms_norm_eps],
+              ['RoPE theta', t.rope_theta],
+              ['Initializer range', t.initializer_range],
+              ['Attention dropout', t.attention_dropout],
+              ['SwiGLU limit', t.swiglu_limit],
+              ['Learnable sink', t.learnable_sink],
+              ['Normalize top-k', t.norm_topk_prob],
+            ]}
+          />
+        </section>
+      </div>
+      <section className="panel detail-section">
+        <h3>Stability & precision notes</h3>
+        <div className="tag-row">
+          {t.tricks?.length ? (
+            t.tricks.map((x, i) => <Badge key={i}>{x}</Badge>)
+          ) : (
+            <p className="muted">No extra implementation notes supplied.</p>
+          )}
+        </div>
+        {t.rope_scaling && (
+          <pre className="code-block">{JSON.stringify(t.rope_scaling, null, 2)}</pre>
+        )}
+      </section>
+      <details className="panel disclosure">
+        <summary>All mathematical fields</summary>
+        <LazyRaw value={t} filename={m.model_id + '-math.json'} />
+      </details>
+    </>
+  );
+}
+function Training({ model: m }) {
+  const t = m.training || {};
+  const field = (k, legacy) => {
+    const x = t[k];
+    return x && typeof x === 'object' && !Array.isArray(x)
+      ? x
+      : {
+          value: x ?? t[legacy],
+          status: t.overall_status || t.verified_status,
+          confidence: t.overall_confidence ?? t.confidence,
+        };
+  };
+  const fields = [
+    ['Dataset', field('dataset')],
+    ['Training tokens', field('tokens', 'tokens_b')],
+    ['Hardware', field('hardware')],
+    ['Compute', field('compute')],
+    ['Post-training', field('post_training', 'post_training_methods')],
+  ];
+  return (
+    <>
+      <div className="section-title">
+        <div>
+          <p className="eyebrow accent">Training provenance</p>
+          <h3>Evidence, one field at a time.</h3>
+        </div>
+        <Status
+          field={{
+            status: t.overall_status || t.verified_status,
+            confidence: t.overall_confidence ?? t.confidence,
+          }}
+        />
+      </div>
+      <Note>
+        Verification labels and confidence values below belong to the original dataset. “Verified”
+        is not a new audit by this interface; mixed and inferred fields remain clearly marked.
+      </Note>
+      <div className="training-grid">
+        {fields.map(([label, f]) => (
+          <article className="training-card" key={label}>
+            <div className="section-title">
+              <h4>{label}</h4>
+              <Status field={f} />
+            </div>
+            <p className="training-value">
+              {label === 'Training tokens' && typeof f.value === 'number'
+                ? compact(f.value * 1e9) + ' tokens'
+                : val(f.value)}
+            </p>
+            {label === 'Training tokens' && !absent(f.value) && (
+              <p className="muted">Source unit: billions of tokens · {num(f.value)} B</p>
+            )}
+            {f.note && <p className="muted">{f.note}</p>}
+            <details className="inline-details">
+              <summary>Evidence · {f.sources?.length || 0} links</summary>
+              <SourceList sources={f.sources || []} />
+            </details>
+          </article>
+        ))}
+      </div>
+      <section className="panel detail-section">
+        <h3>Technical notes</h3>
+        <p>{t.note || 'No technical note supplied.'}</p>
+        {t._provenance_note && <p className="muted">{t._provenance_note}</p>}
+      </section>
+    </>
+  );
+}
+function Benchmarks({ model: m }) {
+  const b = m.benchmarks || {},
+    aa = b.artificial_analysis || {};
+  return (
+    <>
+      <Note>
+        Scores and evaluation notes are copied from the repository snapshot. They are not live Arena
+        ratings and are not normalized into a new ranking.
+      </Note>
+      <div className="section-title detail-section">
+        <div>
+          <p className="eyebrow accent">Artificial Analysis</p>
+          <h3>Reported evaluation snapshot</h3>
+        </div>
+        {aa.url && (
+          <Link href={aa.url} className="button">
+            Open source <Icon name="external" />
+          </Link>
+        )}
+      </div>
+      <Stats
+        className="benchmark-stats"
+        items={[
+          [
+            'Intelligence index',
+            num(aa.intelligence_index),
+            aa.raw_index === 'N/A' ? 'Not available in source' : aa.raw_index,
+          ],
+          ...Object.entries(aa.profile || {}).map(([k, v]) => [
+            human(k),
+            num(v),
+            'As supplied in the snapshot',
+          ]),
+        ]}
+      />
+      {absent(aa.intelligence_index) && (
+        <p className="muted">
+          No intelligence index is supplied for this model. Missing scores are not shown as zero.
+        </p>
+      )}
+      <section className="panel detail-section">
+        <h3>Third-party evaluation notes</h3>
+        {Object.keys(b.third_party || {}).length ? (
+          <KeyValues items={Object.entries(b.third_party).map(([k, v]) => [human(k), v])} />
+        ) : (
+          <p className="muted">No third-party evaluation entries supplied.</p>
+        )}
+      </section>
+      <details className="panel disclosure">
+        <summary>Complete benchmark record</summary>
+        <LazyRaw value={b} filename={m.model_id + '-benchmarks.json'} />
+      </details>
+    </>
+  );
+}
+const THEORY_LABELS = {
+  optimizers: 'Optimizers',
+  scaling: 'Scaling laws',
+  ttl: 'Test-time learning',
+  literature: 'Literature',
+  tokenizer: 'Tokenizers',
+  residual: 'Residual paths',
+  short_conv: 'Convolutions',
+  cross_domain: 'Cross-domain',
+};
+function Theory({ data, inside = false }) {
+  const theory = data.theory || {},
+    keys = Object.keys(theory).filter((k) => Array.isArray(theory[k])),
+    [category, setCategory] = useState(keys[0]),
+    list = theory[category] || [];
+  return (
+    <section className="theory-view">
+      <Note>
+        {inside
+          ? 'General reference notes from the dataset — not a claim that every technique is used by this model.'
+          : 'Original theory library: preserved notes and literature, not an independently reviewed technical reference.'}
+      </Note>
+      <div className="theory-categories" role="group" aria-label="Theory category">
+        {keys.map((k) => (
+          <button
+            className="chip"
+            aria-pressed={k === category}
+            key={k}
+            onClick={() => setCategory(k)}
+          >
+            {THEORY_LABELS[k] || human(k)}
+          </button>
+        ))}
+      </div>
+      <div className="section-title">
+        <h3>{THEORY_LABELS[category] || human(category)}</h3>
+        <span className="muted">{list.length} entries</span>
+      </div>
+      <div className="theory-grid">
+        {list.map((x, i) => (
+          <article className="theory-card" key={i}>
+            <span className="eyebrow accent">{String(i + 1).padStart(2, '0')}</span>
+            <h4>{x.name || x.title || x.law || 'Reference'}</h4>
+            {x.formula && <div className="formula">{x.formula}</div>}
+            {Object.entries(x)
+              .filter(([k]) => !['name', 'title', 'law', 'url', 'formula'].includes(k))
+              .map(([k, v]) => (
+                <div className="theory-field" key={k}>
+                  <span>{human(k)}</span>
+                  <p>{val(v)}</p>
+                </div>
+              ))}
+            {x.url && (
+              <Link href={x.url} className="text-link">
+                Read source <Icon name="external" />
+              </Link>
+            )}
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+function DossierContent({ tab, model: m, data, onZoom }) {
+  if (tab === 'overview') return <Overview model={m} onZoom={onZoom} />;
+  if (tab === 'architecture') return <Architecture model={m} onZoom={onZoom} />;
+  if (tab === 'math') return <MathSpecs model={m} />;
+  if (tab === 'training') return <Training model={m} />;
+  if (tab === 'benchmarks') return <Benchmarks model={m} />;
+  if (tab === 'theory') return <Theory data={data} inside />;
+  if (tab === 'sources')
+    return (
+      <>
+        <Note>
+          Original references and field-level evidence. Status labels are preserved from the
+          dataset, not independently checked.
+        </Note>
+        <div className="section-title detail-section">
+          <h3>Follow the primary sources</h3>
+          <span className="muted">{collectSources(m).length} references</span>
+        </div>
+        <SourceList sources={collectSources(m)} />
+      </>
+    );
+  return <Raw value={m} filename={m.model_id + '.json'} />;
+}
+
+const TABS = [
+  ['overview', 'Overview'],
+  ['architecture', 'Architecture'],
+  ['math', 'Math & config'],
+  ['training', 'Training'],
+  ['benchmarks', 'Benchmarks'],
+  ['theory', 'Theory'],
+  ['sources', 'Sources'],
+  ['raw', 'Raw JSON'],
+];
+function Modal({ children, onClose, className = '', labelId = 'modal-title' }) {
+  const ref = useRef(null),
+    restore = useRef(null);
+  useEffect(() => {
+    const d = ref.current;
+    restore.current = document.activeElement;
+    d.showModal();
+    const before = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      if (d.open) d.close();
+      document.body.style.overflow = before;
+      if (restore.current?.isConnected) restore.current.focus();
+    };
+  }, []);
+  return (
+    <dialog
+      ref={ref}
+      className={'modal ' + className}
+      aria-labelledby={labelId}
+      onCancel={(e) => {
+        e.preventDefault();
+        onClose();
+      }}
+      onClick={(e) => {
+        if (e.target !== ref.current) return;
+        const r = ref.current.getBoundingClientRect();
+        if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom)
+          onClose();
+      }}
+    >
+      {children}
+    </dialog>
+  );
+}
+function Dossier({ model: m, data, onClose, selected, onSelect, onZoom, onStep, index, total }) {
+  const [tab, setTab] = useState('overview'),
+    body = useRef(null);
+  useEffect(() => {
+    setTab('overview');
+    if (body.current) body.current.scrollTop = 0;
+  }, [m]);
+  const setView = (t) => {
+    setTab(t);
+    if (body.current) body.current.scrollTop = 0;
+  };
+  const navKeys = (e) => {
+    const n = TABS.findIndex(([k]) => k === tab);
+    let next;
+    if (e.key === 'ArrowRight') next = (n + 1) % TABS.length;
+    if (e.key === 'ArrowLeft') next = (n + TABS.length - 1) % TABS.length;
+    if (e.key === 'Home') next = 0;
+    if (e.key === 'End') next = TABS.length - 1;
+    if (next !== undefined) {
+      e.preventDefault();
+      setView(TABS[next][0]);
+      e.currentTarget.querySelectorAll('[role=tab]')[next].focus();
+    }
+  };
+  return (
+    <Modal onClose={onClose} className="dossier">
+      <header className="dossier-head">
+        <div>
+          <p className="eyebrow accent">
+            Model dossier{' '}
+            <span className="muted">
+              / {String(index + 1).padStart(2, '0')} of {total}
+            </span>
+          </p>
+          <h2 id="modal-title">{m.model_name}</h2>
+          <p className="dossier-meta">
+            {m.company}
+            <span>·</span>
+            {date(m.release_date)}
+            <span>·</span>
+            <Link href={m.license?.url}>{m.license?.spdx || 'License not specified'}</Link>
+          </p>
+        </div>
+        <div className="dossier-head-actions">
+          <button
+            className="icon-button"
+            aria-label="Previous model"
+            disabled={index <= 0}
+            onClick={() => onStep(-1)}
+          >
+            ←
+          </button>
+          <button
+            className="icon-button"
+            aria-label="Next model"
+            disabled={index >= total - 1}
+            onClick={() => onStep(1)}
+          >
+            →
+          </button>
+          <button className="icon-button close" aria-label="Close model details" onClick={onClose}>
+            <Icon name="close" />
+          </button>
+        </div>
+      </header>
+      <div className="dossier-tabs" role="tablist" aria-label="Model details" onKeyDown={navKeys}>
+        {TABS.map(([k, label]) => (
+          <button
+            id={'tab-' + k}
+            role="tab"
+            aria-selected={tab === k}
+            aria-controls="dossier-panel"
+            tabIndex={tab === k ? 0 : -1}
+            key={k}
+            onClick={() => setView(k)}
+          >
+            {label}
+            {k === 'sources' && <span>{collectSources(m).length}</span>}
+          </button>
+        ))}
+      </div>
+      <div
+        className="dossier-body"
+        ref={body}
+        id="dossier-panel"
+        role="tabpanel"
+        aria-labelledby={'tab-' + tab}
+        tabIndex="0"
+      >
+        <DossierContent tab={tab} model={m} data={data} onZoom={onZoom} />
+      </div>
+      <footer className="dossier-foot">
+        <span>Repository snapshot · {data.generated_at?.slice(0, 10) || data.version}</span>
+        <div className="button-row">
+          <button className="button secondary" onClick={() => download(m, m.model_id + '.json')}>
+            <Icon name="download" />
+            Record JSON
+          </button>
+          <button className="button" onClick={() => onSelect(m.model_id)}>
+            <Icon name="compare" />
+            {selected.has(m.model_id) ? 'Remove comparison' : 'Add to comparison'}
+          </button>
+        </div>
+      </footer>
+    </Modal>
+  );
+}
+function Lightbox({ model, mode, onClose }) {
+  const [zoom, setZoom] = useState(1);
+  return (
+    <Modal onClose={onClose} className="lightbox" labelId="image-title">
+      <header className="lightbox-head">
+        <div>
+          <p className="eyebrow accent">Architecture viewer</p>
+          <h2 id="image-title">{model.model_name}</h2>
+        </div>
+        <div className="button-row">
+          <button
+            className="icon-button"
+            onClick={() => setZoom((z) => Math.max(1, z - 0.25))}
+            disabled={zoom === 1}
+            aria-label="Zoom out"
+          >
+            −
+          </button>
+          <button className="zoom-reset" onClick={() => setZoom(1)} aria-label="Reset image zoom">
+            {Math.round(zoom * 100)}%
+          </button>
+          <button
+            className="icon-button"
+            onClick={() => setZoom((z) => Math.min(3, z + 0.25))}
+            disabled={zoom === 3}
+            aria-label="Zoom in"
+          >
+            +
+          </button>
+          <button className="icon-button" aria-label="Close image viewer" onClick={onClose}>
+            <Icon name="close" />
+          </button>
+        </div>
+      </header>
+      <div className="lightbox-scroll">
+        <div
+          style={{
+            width: '100%',
+            minWidth: 0,
+            transform: `scale(${zoom})`,
+            transformOrigin: 'top left',
+          }}
+        >
+          <Figure model={model} large initialMode={mode} />
+        </div>
+      </div>
+    </Modal>
+  );
+}
+const COMPARE = [
+  ['Scale', (m) => compact(params(m))],
+  ['Active parameters', (m) => compact(m.scale?.active_params)],
+  ['Context · effective', contextText],
+  ['Attention', attention],
+  ['Layers', (m) => num(m.architecture?.num_hidden_layers)],
+  ['Hidden dimension', (m) => num(m.architecture?.hidden_size)],
+  ['Vocabulary', (m) => num(m.architecture?.vocab_size)],
+  ['KV cache · BF16', (m) => (m.kv_cache?.kib != null ? num(m.kv_cache.kib) + ' KiB' : '—')],
+  ['Normalization', (m) => val(m.yichen?.norm)],
+  ['Position encoding', (m) => val(m.yichen?.pos_emb)],
+  ['Activation', (m) => val(m.yichen?.activation)],
+  [
+    'Training · source status',
+    (m) => m.training?.overall_status || m.training?.verified_status || '—',
+  ],
+  ['Release', (m) => date(m.release_date)],
+  ['License', (m) => m.license?.spdx || '—'],
+];
+function Comparison({ models, onClose }) {
+  return (
+    <Modal onClose={onClose} className="comparison">
+      <header className="dossier-head">
+        <div>
+          <p className="eyebrow accent">Same snapshot. Side by side.</p>
+          <h2 id="modal-title">Compare architectures</h2>
+        </div>
+        <button className="icon-button" aria-label="Close comparison" onClick={onClose}>
+          <Icon name="close" />
+        </button>
+      </header>
+      <div className="dossier-body">
+        <Note>
+          A specification comparison, not a performance ranking. Missing values stay unknown.
+        </Note>
+        <div
+          className="comparison-scroll"
+          role="region"
+          aria-label="Comparison table; scroll horizontally"
+          tabIndex="0"
+        >
+          <table className="comparison-table">
+            <thead>
+              <tr>
+                <th scope="col">Specification</th>
+                {models.map((m) => (
+                  <th key={m.model_id} scope="col">
+                    <span className="eyebrow">{m.company}</span>
+                    <strong>{m.model_name}</strong>
+                    <span className="muted">{m.architecture?.decoder_display}</span>
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {COMPARE.map(([label, fn]) => (
+                <tr key={label}>
+                  <th scope="row">{label}</th>
+                  {models.map((m) => (
+                    <td key={m.model_id}>{fn(m)}</td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </Modal>
+  );
+}
+const MATRIX = [
+  ['model_name', 'Model', (m) => m.model_name],
+  ['company', 'Lab', (m) => m.company],
+  ['release_date', 'Release', (m) => m.release_date],
+  ['vocab', 'Vocabulary', (m) => m.yichen?.vocab ?? m.architecture?.vocab_size],
+  ['depth', 'Depth', (m) => m.yichen?.depth ?? m.architecture?.num_hidden_layers],
+  ['dim', 'Dimension', (m) => m.yichen?.dim ?? m.architecture?.hidden_size],
+  ['norm', 'Norm', (m) => m.yichen?.norm],
+  ['parallel', 'Parallel layers', (m) => m.yichen?.parallel_layer],
+  ['placement', 'Norm placement', (m) => m.yichen?.pre_norm],
+  ['position', 'Position', (m) => m.yichen?.pos_emb],
+  ['activation', 'Activation', (m) => m.yichen?.activation],
+  ['attention', 'Attention', attention],
+  ['context', 'Context', effective],
+  ['scale', 'Parameters', params],
+  ['bias', 'Bias', (m) => m.yichen?.bias_display],
+  ['tied', 'Tied weights', (m) => m.yichen?.tied_display],
+  ['qk', 'QK norm', (m) => m.yichen?.qk_norm],
+  ['sliding', 'Sliding', (m) => m.yichen?.sliding],
+  ['stability', 'Stability', (m) => m.yichen?.stability],
+];
+const CATALOG = [
+  MATRIX[0],
+  ['scale', 'Scale', params],
+  ['context', 'Context', effective],
+  ['attention', 'Attention', attention],
+  ['depth', 'Layers', (m) => m.architecture?.num_hidden_layers],
+];
+const ROUTES = [
+  ['registry', 'Model registry', 'table'],
+  ['matrix', 'Architecture matrix', 'grid'],
+  ['timeline', 'Release timeline', 'clock'],
+  ['theory', 'Theory library', 'book'],
+  ['about', 'About & sources', 'info'],
+];
+function PageControls({ page, setPage, count, pageSize }) {
+  const pages = Math.max(1, Math.ceil(count / pageSize));
+  return (
+    <div className="page-controls">
+      <span>
+        {count ? `${(page - 1) * pageSize + 1}–${Math.min(page * pageSize, count)}` : '0'} of{' '}
+        {count} models
+      </span>
+      <div>
+        <button
+          className="icon-button"
+          disabled={page <= 1}
+          onClick={() => setPage(page - 1)}
+          aria-label="Previous results page"
+        >
+          ←
+        </button>
+        <span aria-live="polite">
+          {page} / {pages}
+        </span>
+        <button
+          className="icon-button"
+          disabled={page >= pages}
+          onClick={() => setPage(page + 1)}
+          aria-label="Next results page"
+        >
+          →
+        </button>
+      </div>
+    </div>
+  );
+}
+function Timeline({ data }) {
+  return (
+    <div className="timeline-list">
+      {[...(data.milestones || [])]
+        .sort((a, b) => (a.date || '').localeCompare(b.date || ''))
+        .map((m, i) => (
+          <article key={m.id || i} className="milestone">
+            <div className="milestone-date">
+              <time dateTime={m.date}>{date(m.date)}</time>
+              <span>{String(i + 1).padStart(2, '0')}</span>
+            </div>
+            <div>
+              <p className="eyebrow accent">{m.org}</p>
+              <h3>{m.name}</h3>
+              <p>{m.note}</p>
+              <div className="tag-row">
+                <Badge>{m.params} parameters</Badge>
+                <Badge>{m.ctx} context</Badge>
+              </div>

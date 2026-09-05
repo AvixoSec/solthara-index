@@ -1,0 +1,702 @@
+/* Solthara VECTOR v2. Apache-2.0. Complete repository records, unchanged. */
+import React, { useState, useMemo, useEffect, useRef } from 'react';
+import './vector.css';
+const REPO = 'https://github.com/AvixoSec/solthara-index';
+const ICONS = {
+  grid: (
+    <>
+      <rect x="3" y="3" width="7" height="7" rx="1" />
+      <rect x="14" y="3" width="7" height="7" rx="1" />
+      <rect x="3" y="14" width="7" height="7" rx="1" />
+      <rect x="14" y="14" width="7" height="7" rx="1" />
+    </>
+  ),
+  table: (
+    <>
+      <rect x="3" y="4" width="18" height="16" rx="2" />
+      <path d="M3 10h18M9 4v16M3 15h18" />
+    </>
+  ),
+  search: (
+    <>
+      <circle cx="10.5" cy="10.5" r="6.5" />
+      <path d="m16 16 5 5" />
+    </>
+  ),
+  arrow: <path d="M4 12h16m-6-6 6 6-6 6" />,
+  external: <path d="M6 18 18 6M6 6h12v12" />,
+  close: <path d="m6 6 12 12M6 18 18 6" />,
+  menu: <path d="M4 6h16M4 12h16M4 18h16" />,
+  download: <path d="M12 3v12m-5-5 5 5 5-5M4 16v5h16v-5" />,
+  image: (
+    <>
+      <rect x="3" y="3" width="18" height="18" rx="2" />
+      <circle cx="8" cy="8" r="1" />
+      <path d="m3 17 6-6 4 4 3-3 5 5" />
+    </>
+  ),
+  eye: (
+    <>
+      <path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12Z" />
+      <circle cx="12" cy="12" r="3" />
+    </>
+  ),
+  clock: (
+    <>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M12 7v5l3 2" />
+    </>
+  ),
+  book: <path d="M12 5C8 3 4 3 2 4v15c3-1 6-1 10 1 4-2 7-2 10-1V4c-3-1-6-1-10 1v15" />,
+  info: (
+    <>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M12 11v6M12 7v1" />
+    </>
+  ),
+  filter: (
+    <>
+      <path d="M4 7h16M4 17h16" />
+      <circle cx="9" cy="7" r="2" />
+      <circle cx="15" cy="17" r="2" />
+    </>
+  ),
+  compare: <path d="M8 3v18M16 3v18M4 7l4-4 4 4M12 17l4 4 4-4" />,
+  zoom: (
+    <>
+      <circle cx="10" cy="10" r="6" />
+      <path d="m15 15 6 6M7 10h6M10 7v6" />
+    </>
+  ),
+  mark: (
+    <>
+      <path d="m12 2 10 6v9l-10 5-10-5V8Z" />
+      <path d="m2 8 10 6 10-6M12 14v8M7 5l10 6v8" />
+    </>
+  ),
+};
+function Icon({ name, size = 18 }) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      {ICONS[name] || ICONS.mark}
+    </svg>
+  );
+}
+const get = (o, p) => p.split('.').reduce((v, k) => v?.[k], o),
+  absent = (v) => v === null || v === undefined || v === '';
+const num = (v) =>
+  absent(v)
+    ? '—'
+    : typeof v === 'number'
+      ? v.toLocaleString('en-US', { maximumSignificantDigits: 15 })
+      : String(v);
+function compact(v) {
+  if (absent(v)) return '—';
+  if (typeof v !== 'number') return String(v);
+  for (const [n, s] of [
+    [1e12, 'T'],
+    [1e9, 'B'],
+    [1e6, 'M'],
+    [1e3, 'K'],
+  ])
+    if (Math.abs(v) >= n) return (v / n).toLocaleString('en-US', { maximumFractionDigits: 2 }) + s;
+  return num(v);
+}
+const human = (s) =>
+  String(s || '')
+    .replace(/_/g, ' ')
+    .replace(/\b\w/g, (c) => c.toUpperCase());
+const attention = (m) =>
+  ({
+    gqa: 'GQA',
+    mla: 'MLA',
+    gated_deltanet: 'DeltaNet',
+    mha: 'MHA',
+    sliding_window: 'Sliding',
+    other: 'Other',
+  })[get(m, 'architecture.attention.primary')] ||
+  get(m, 'architecture.attention.primary') ||
+  '—';
+const effective = (m) =>
+    get(m, 'context.effective_length') ??
+    get(m, 'context.recommended_context') ??
+    get(m, 'context.advertised_context.value') ??
+    get(m, 'context.length'),
+  params = (m) => get(m, 'scale.total_params');
+const contextText = (m) => (get(m, 'context.is_unlimited') ? 'Unlimited' : compact(effective(m)));
+const date = (v) => {
+  if (!v) return '—';
+  const d = new Date(v);
+  return isNaN(d)
+    ? String(v)
+    : d.toLocaleDateString('en-GB', {
+        day: '2-digit',
+        month: 'short',
+        year: 'numeric',
+        timeZone: 'UTC',
+      });
+};
+const val = (v) =>
+  absent(v)
+    ? '—'
+    : typeof v === 'boolean'
+      ? v
+        ? 'Yes'
+        : 'No'
+      : Array.isArray(v)
+        ? v.map(val).join(' · ')
+        : typeof v === 'object'
+          ? JSON.stringify(v)
+          : num(v);
+function safeUrl(u) {
+  if (typeof u !== 'string') return '';
+  try {
+    const x = new URL(u);
+    return ['http:', 'https:'].includes(x.protocol) ? x.href : '';
+  } catch {
+    return '';
+  }
+}
+function originalImage(m) {
+  const u = typeof m.image === 'string' ? m.image : m.image?.url;
+  return typeof u === 'string' && /^data:image\/(png|jpeg|webp|gif);base64,/i.test(u)
+    ? u
+    : safeUrl(u);
+}
+function figureCandidates(m) {
+  const u = originalImage(m),
+    local = m.image?.local_path,
+    list = [];
+  if (local && /^(?:\.\/)?images\/[\w./-]+$/.test(local) && !local.includes('..')) list.push(local);
+  if (u) list.push(u);
+  if (u) {
+    try {
+      const n = new URL(u).pathname.split('/').pop();
+      if (/^[\w.-]+\.(webp|png|jpe?g)$/i.test(n)) list.push('images/architectures/' + n);
+    } catch {}
+  }
+  return [...new Set(list)];
+}
+function Link({ href, children, className = '', ...rest }) {
+  const u = safeUrl(href);
+  return u ? (
+    <a href={u} target="_blank" rel="noopener noreferrer" className={className} {...rest}>
+      {children}
+    </a>
+  ) : (
+    <span className={className}>{children}</span>
+  );
+}
+function download(value, name) {
+  const u = URL.createObjectURL(
+    new Blob([typeof value === 'string' ? value : JSON.stringify(value, null, 2)], {
+      type: 'application/json;charset=utf-8',
+    }),
+  );
+  const a = document.createElement('a');
+  a.href = u;
+  a.download = name;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  setTimeout(() => URL.revokeObjectURL(u), 1500);
+}
+function Badge({ children, tone = '' }) {
+  return <span className={'badge ' + tone}>{children}</span>;
+}
+function Status({ field = {} }) {
+  const s = field.status || field.verified_status || 'not stated';
+  return (
+    <span
+      className={'status status-' + s}
+      title="Assessment from the original dataset, not a new audit"
+    >
+      {s}
+      {typeof field.confidence === 'number' ? ' · ' + field.confidence.toFixed(2) : ''}
+    </span>
+  );
+}
+function Stats({ items, className = '' }) {
+  return (
+    <dl className={'stats-grid ' + className}>
+      {items.map(([k, v, n]) => (
+        <div key={k}>
+          <dt>{k}</dt>
+          <dd>{v}</dd>
+          {n && <p>{n}</p>}
+        </div>
+      ))}
+    </dl>
+  );
+}
+function Note({ children, kind = '' }) {
+  return (
+    <div className={'notice ' + kind}>
+      <Icon name="info" />
+      <div>{children}</div>
+    </div>
+  );
+}
+function KeyValues({ items }) {
+  return (
+    <dl className="key-values">
+      {items.map(([k, v]) => (
+        <div key={k}>
+          <dt>{k}</dt>
+          <dd>{val(v)}</dd>
+        </div>
+      ))}
+    </dl>
+  );
+}
+function Raw({ value, filename = 'record.json' }) {
+  const text = useMemo(() => JSON.stringify(value, null, 2), [value]),
+    limited = text.length > 160000;
+  return (
+    <section className="raw-section">
+      <div className="section-title">
+        <div>
+          <h3>Machine-readable record</h3>
+          <p>Original keys and values. No enrichment or silent corrections.</p>
+        </div>
+        <button className="button" onClick={() => download(value, filename)}>
+          <Icon name="download" />
+          Download JSON
+        </button>
+      </div>
+      {limited && (
+        <Note>
+          The on-screen preview is limited to 160,000 characters for performance. The download
+          contains the complete record.
+        </Note>
+      )}
+      <pre className="code-block" tabIndex="0">
+        {limited ? text.slice(0, 160000) + '\n… preview ends here' : text}
+      </pre>
+    </section>
+  );
+}
+function ConfigMap({ model: m, large = false }) {
+  const a = m.architecture || {},
+    moe = a.moe || {},
+    experts = moe.n_routed_experts ?? moe.num_experts ?? moe.num_local_experts,
+    active = moe.num_experts_per_tok ?? moe.num_selected_experts;
+  const mechanism = a.decoder_type === 'recurrent' ? 'Recurrent mixing' : attention(m);
+  return (
+    <div
+      className={'config-map local-map ' + (large ? 'large' : '')}
+      role="img"
+      aria-label={`${m.model_name}: simplified configuration map, ${num(a.num_hidden_layers)} layers and ${num(a.hidden_size)} hidden dimension.`}
+    >
+      <div className="map-top">
+        <span>CONFIG MAP</span>
+        <b>{num(a.num_hidden_layers)}L</b>
+      </div>
+      <div className="map-node">
+        <strong>Token embeddings</strong>
+        <span>{compact(a.vocab_size)} vocabulary</span>
+      </div>
+      <div className="map-arrow" aria-hidden="true">
+        ↓
+      </div>
+      <div className="map-block">
+        <p>
+          {a.decoder_display || human(a.decoder_type) || 'Decoder'}
+          <span>× {num(a.num_hidden_layers)}</span>
+        </p>
+        <div className="map-attention">
+          {mechanism}
+          {a.num_attention_heads ? <span>{num(a.num_attention_heads)} heads</span> : null}
+        </div>
+        <div className="map-arrow inner" aria-hidden="true">
+          ↓
+        </div>
+        <div className="map-ffn">
+          {experts ? (
+            <>
+              {absent(active) ? '?' : num(active)} / {num(experts)} experts
+            </>
+          ) : (
+            <>{m.yichen?.activation || m.math_tricks?.hidden_act || 'Feed-forward'}</>
+          )}
+        </div>
+      </div>
+      <div className="map-arrow" aria-hidden="true">
+        ↓
+      </div>
+      <div className="map-node output">
+        <strong>Output projection</strong>
+      </div>
+      <div className="map-foot">
+        <span>{num(a.hidden_size)} hidden</span>
+        <span>Simplified</span>
+      </div>
+    </div>
+  );
+}
+
+function Figure({ model: m, onZoom, large = false, initialMode = 'source' }) {
+  const [mode, setMode] = useState(initialMode),
+    [candidate, setCandidate] = useState(0),
+    [loaded, setLoaded] = useState(false),
+    [failed, setFailed] = useState(false),
+    candidates = useMemo(() => figureCandidates(m), [m]);
+  useEffect(() => {
+    setCandidate(0);
+    setLoaded(false);
+    setFailed(!candidates.length);
+    setMode(initialMode);
+  }, [m, initialMode, candidates]);
+  const fail = () => {
+    if (candidate + 1 < candidates.length) setCandidate(candidate + 1);
+    else setFailed(true);
+  };
+  return (
+    <figure className={'model-figure ' + (large ? 'figure-large' : '')} data-figure={m.model_id}>
+      <div className="figure-head">
+        <span>
+          <Icon name="image" />
+          Architecture
+        </span>
+        <div className="segmented small" role="group" aria-label="Diagram type">
+          <button aria-pressed={mode === 'source'} onClick={() => setMode('source')}>
+            Source
+          </button>
+          <button aria-pressed={mode === 'map'} onClick={() => setMode('map')}>
+            Local map
+          </button>
+        </div>
+      </div>
+      <div className={'figure-stage ' + (loaded && mode === 'source' ? 'has-source' : '')}>
+        {(mode === 'map' || failed || !loaded) && <ConfigMap model={m} large={large} />}{' '}
+        {mode === 'source' && !failed && candidates[candidate] && (
+          <img
+            key={candidates[candidate]}
+            className={loaded ? 'source-figure' : 'source-figure loading'}
+            src={candidates[candidate]}
+            referrerPolicy="no-referrer"
+            alt={'Original architecture diagram for ' + m.model_name}
+            onLoad={() => setLoaded(true)}
+            onError={fail}
+            onClick={onZoom ? () => onZoom(m, mode) : undefined}
+            style={onZoom ? { cursor: 'zoom-in' } : undefined}
+          />
+        )}{' '}
+        {onZoom && (
+          <button
+            className="figure-zoom"
+            onClick={() => onZoom(m, mode)}
+            aria-label={'Enlarge architecture diagram for ' + m.model_name}
+          >
+            <Icon name="zoom" />
+            Expand
+          </button>
+        )}
+      </div>
+      <figcaption>
+        {mode === 'map' ? (
+          <>Simplified from this model’s configuration. Not the original figure.</>
+        ) : loaded ? (
+          <>
+            Original figure ·{' '}
+            <Link href={originalImage(m)}>
+              Sebastian Raschka <Icon name="external" size={14} />
+            </Link>
+          </>
+        ) : failed ? (
+          <>Source image unavailable. A labeled local configuration map is shown.</>
+        ) : (
+          <>Loading original figure. Local configuration map shown meanwhile.</>
+        )}
+        {originalImage(m) && (
+          <Link href={originalImage(m)} className="figure-source-link">
+            Open original <Icon name="external" size={14} />
+          </Link>
+        )}
+      </figcaption>
+    </figure>
+  );
+}
+function Thumb({ model: m }) {
+  const [failed, setFailed] = useState(false);
+  useEffect(() => setFailed(false), [m]);
+  const src = originalImage(m);
+  return (
+    <span className="model-thumb">
+      {src && !failed ? (
+        <img
+          src={src}
+          alt=""
+          loading="lazy"
+          referrerPolicy="no-referrer"
+          onError={() => setFailed(true)}
+        />
+      ) : (
+        <Icon name="mark" size={25} />
+      )}
+    </span>
+  );
+}
+function SourceList({ sources = [] }) {
+  if (!sources.length) return <Note>No links are provided in this part of the source record.</Note>;
+  return (
+    <div className="source-list">
+      {sources.map((s, i) => (
+        <article className="source-item" key={(s.url || '') + i}>
+          <div className="source-kind">{human(s.kind || 'source')}</div>
+          <div>
+            <Link href={s.url} className="source-url">
+              {s.label || s.url || 'No URL supplied'} <Icon name="external" size={16} />
+            </Link>
+            {s.label && s.url && <p className="source-domain">{s.url}</p>}
+            <div className="source-meta">
+              <Status field={s} />
+              {s.repo && <span>{s.repo}</span>}
+              {s.arxiv_id && <span>arXiv {s.arxiv_id}</span>}
+            </div>
+            {s.note && <p>{s.note}</p>}
+          </div>
+        </article>
+      ))}
+    </div>
+  );
+}
+function collectSources(m) {
+  const out = [...(m.sources || [])];
+  for (const obj of [m.context, m.training])
+    Object.values(obj || {}).forEach((v) => {
+      if (v && typeof v === 'object' && Array.isArray(v.sources)) out.push(...v.sources);
+    });
+  const seen = new Set();
+  return out.filter((s) => {
+    const key = s.kind + '|' + s.url;
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+}
+function LazyRaw(props) {
+  const ref = useRef(null),
+    [open, setOpen] = useState(false);
+  useEffect(() => {
+    const p = ref.current?.closest('details');
+    if (!p) return;
+    const fn = () => setOpen(p.open);
+    p.addEventListener('toggle', fn);
+    fn();
+    return () => p.removeEventListener('toggle', fn);
+  }, []);
+  return <div ref={ref}>{open && <Raw {...props} />}</div>;
+}
+
+function Contexts({ model: m }) {
+  const c = m.context || {},
+    fields = [
+      ['config_context', 'Configuration'],
+      ['advertised_context', 'Advertised'],
+      ['native_context', 'Native'],
+      ['trained_context', 'Trained'],
+      ['tested_context', 'Tested'],
+      ['api_context', 'API'],
+    ].filter(([k]) => c[k] !== undefined);
+  return (
+    <section className="detail-section">
+      <div className="section-title">
+        <div>
+          <h3>Context, without the shortcuts</h3>
+          <p>Configuration, training and advertised limits are not interchangeable.</p>
+        </div>
+        <Badge>{contextText(m)} effective</Badge>
+      </div>
+      {fields.length ? (
+        <div className="context-grid">
+          {fields.map(([k, label]) => {
+            const f = c[k] || {};
+            return (
+              <article className="context-item" key={k}>
+                <span className="eyebrow">{label}</span>
+                <strong>
+                  {compact(f.value)}
+                  <small>{!absent(f.value) ? ' tokens' : ''}</small>
+                </strong>
+                <Status field={f} />
+                {f.note && <p>{f.note}</p>}
+                <div className="context-source">
+                  {f.source_path || f.source || 'Source not specified'}
+                </div>
+                {f.sources?.length > 0 && (
+                  <details className="inline-details">
+                    <summary>Evidence · {f.sources.length}</summary>
+                    <SourceList sources={f.sources} />
+                  </details>
+                )}
+              </article>
+            );
+          })}
+        </div>
+      ) : (
+        <Note>{c.raw || 'No split context values are supplied in this record.'}</Note>
+      )}
+      {c.conflict && (
+        <Note kind="warning">Source context conflict: {c.conflict_note || c.resolution}</Note>
+      )}
+    </section>
+  );
+}
+function Overview({ model: m, onZoom }) {
+  return (
+    <>
+      <div className="overview-grid">
+        <section className="model-brief">
+          <p className="eyebrow accent">Inside the model</p>
+          <h3 className="brief-heading">
+            {m.architecture?.decoder_display ||
+              human(m.architecture?.decoder_type) ||
+              'Model architecture'}
+          </h3>
+          <p className="summary-copy">
+            {m.summary || 'No summary is supplied in the original record.'}
+          </p>
+          {m.highlight && (
+            <div className="highlight">
+              <span>What stands out</span>
+              <p>{m.highlight}</p>
+            </div>
+          )}
+          <div className="tag-row">
+            {(m.tags || []).map((t) => (
+              <Badge key={t}>{human(t)}</Badge>
+            ))}
+          </div>
+        </section>
+        <Figure model={m} onZoom={onZoom} />
+      </div>
+      <Stats
+        className="four"
+        items={[
+          ['Total parameters', compact(params(m)), m.scale?.raw],
+          [
+            'Active parameters',
+            compact(m.scale?.active_params),
+            m.scale?.active_pct != null ? num(m.scale.active_pct) + '% active per token' : null,
+          ],
+          ['Effective context', contextText(m), 'See the source-specific limits below'],
+          [
+            'KV cache / token',
+            m.kv_cache?.kib != null ? num(m.kv_cache.kib) + ' KiB' : '—',
+            'BF16 · as reported in the dataset',
+          ],
+        ]}
+      />
+      <div className="overview-facts">
+        <KeyValues
+          items={[
+            ['Lab', m.company],
+            ['Release', m.release_date],
+            ['Date confidence', m.date_confidence],
+            ['Family', m.family],
+            ['License', m.license?.spdx],
+          ]}
+        />
+        <div className="notice compact-note">
+          Release basis: {m.release_date_source || 'not supplied'}
+          {m.date_note && <p>{m.date_note}</p>}
+          <p>Dataset statements are preserved, not independently re-verified.</p>
+        </div>
+      </div>
+      <Contexts model={m} />
+    </>
+  );
+}
+function Architecture({ model: m, onZoom }) {
+  const a = m.architecture || {};
+  return (
+    <>
+      <div className="architecture-grid">
+        <Figure model={m} onZoom={onZoom} />
+        <section>
+          <p className="eyebrow accent">The structural record</p>
+          <h3>Layers, heads & routing</h3>
+          <KeyValues
+            items={[
+              ['Decoder', a.decoder_display || a.decoder_type],
+              ['Model type', a.model_type],
+              ['Layers', a.num_hidden_layers],
+              ['Hidden dimension', a.hidden_size],
+              ['Attention heads', a.num_attention_heads],
+              ['KV heads', a.num_key_value_heads],
+              ['Head dimension', a.head_dim],
+              ['Intermediate size', a.intermediate_size],
+              ['Vocabulary', a.vocab_size],
+              ['Attention', a.attention?.raw || a.attention?.primary],
+              ['Layer mix', a.layer_mix?.raw],
+            ]}
+          />
+        </section>
+      </div>
+      <div className="two-columns detail-section">
+        <section className="panel">
+          <h3>Mixture of experts</h3>
+          {a.moe && Object.keys(a.moe).length ? (
+            <KeyValues items={Object.entries(a.moe).map(([k, v]) => [human(k), v])} />
+          ) : (
+            <p className="muted">No MoE configuration is supplied for this model.</p>
+          )}
+        </section>
+        <section className="panel">
+          <h3>Position & window</h3>
+          <KeyValues
+            items={[
+              ['Maximum positions', a.max_position_embeddings],
+              ['Sliding window', a.sliding_window],
+              ['Architectures', a.architectures],
+              ['Raw config source', a.raw_config_source],
+            ]}
+          />
+          {a.rope && (
+            <details className="inline-details">
+              <summary>RoPE configuration</summary>
+              <pre className="code-block">{JSON.stringify(a.rope, null, 2)}</pre>
+            </details>
+          )}
+        </section>
+      </div>
+      {a.layer_types?.length > 0 && (
+        <details className="panel disclosure">
+          <summary>Layer sequence · {a.layer_types.length} entries</summary>
+          <ol className="layer-sequence">
+            {a.layer_types.map((x, i) => (
+              <li key={i}>
+                <span>{i + 1}</span>
+                {x}
+              </li>
+            ))}
+          </ol>
+        </details>
+      )}
+      <details className="panel disclosure">
+        <summary>Full architecture configuration</summary>
+        <LazyRaw value={a} filename={m.model_id + '-architecture.json'} />
+      </details>
+    </>
+  );
+}
+function MathSpecs({ model: m }) {
+  const y = m.yichen || {},
+    t = m.math_tricks || {};
+  return (
+    <>
+      <div className="section-title">
+        <div>
+          <h3>Mathematical & implementation details</h3>
+          <p>

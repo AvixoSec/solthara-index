@@ -1,0 +1,1556 @@
+[
+  {
+    "index": 95,
+    "model_id": "phi-4",
+    "model_name": "Phi-4",
+    "company": "Microsoft",
+    "release_date": "2024-12-12",
+    "family": "phi",
+    "summary": "Microsoft's 14B dense Phi refresh stays close to Phi-3-medium but swaps its sliding-window attention for full-context GQA and a larger tokenizer.",
+    "yichen": {
+      "vocab": 100352,
+      "depth": 40,
+      "dim": 5120,
+      "norm": "RMSNorm",
+      "parallel_layer": "Serial",
+      "pre_norm": "Pre",
+      "pos_emb": "RoPE",
+      "activation": "silu",
+      "attn_type": "gqa",
+      "context": 16384,
+      "bias_display": "no bias",
+      "tied_display": "untied",
+      "qk_norm": "—",
+      "sliding": "—",
+      "stability": "RMSNorm eps=1e-05"
+    },
+    "math_tricks": {
+      "attention_bias": false,
+      "attention_bias_display": "no bias",
+      "tie_word_embeddings": false,
+      "tie_display": "untied",
+      "rms_norm_eps": 0.00001,
+      "rope_theta": 250000,
+      "hidden_act": "silu",
+      "swiglu_limit": null,
+      "use_qk_norm": null,
+      "learnable_sink": null,
+      "rope_scaling": null,
+      "attention_dropout": 0,
+      "norm_topk_prob": null,
+      "initializer_range": 0.02,
+      "tricks": [
+        "RMSNorm eps=1e-05"
+      ],
+      "tricks_display": "RMSNorm eps=1e-05"
+    },
+    "scale": {
+      "total_params": 14000000000,
+      "active_params": 14000000000,
+      "active_pct": 100,
+      "extra": {
+        "mtp_params": null,
+        "lora_mb": null,
+        "lora_rank": null,
+        "backbone_label": "total",
+        "ngram_params": null,
+        "embedding_params": null
+      },
+      "raw": "14B parameters",
+      "parsed": true
+    },
+    "architecture": {
+      "decoder_type": "dense",
+      "decoder_display": "Dense",
+      "attention": {
+        "primary": "gqa",
+        "raw": "GQA with RoPE",
+        "options": [],
+        "ratio": null
+      },
+      "layer_mix": {
+        "raw": "40 GQA",
+        "total_layers": 40,
+        "by_type": {},
+        "mtp_layers": 0
+      },
+      "hidden_size": 5120,
+      "hidden_size_source": "hidden_size",
+      "num_hidden_layers": 40,
+      "num_attention_heads": 40,
+      "num_key_value_heads": 10,
+      "head_dim": 128,
+      "intermediate_size": 17920,
+      "vocab_size": 100352,
+      "max_position_embeddings": 16384,
+      "rope": {
+        "theta": 250000,
+        "rope_scaling": null
+      },
+      "sliding_window": null,
+      "layer_types": null,
+      "moe": {},
+      "model_type": "phi3",
+      "architectures": [
+        "Phi3ForCausalLM"
+      ],
+      "raw_config_source": "microsoft/phi-4:config.json"
+    },
+    "raw_config": {
+      "_name_or_path": "microsoft/phi-4",
+      "architectures": [
+        "Phi3ForCausalLM"
+      ],
+      "attention_bias": false,
+      "attention_dropout": 0,
+      "bos_token_id": 100257,
+      "embd_pdrop": 0,
+      "eos_token_id": 100265,
+      "hidden_act": "silu",
+      "hidden_size": 5120,
+      "initializer_range": 0.02,
+      "intermediate_size": 17920,
+      "max_position_embeddings": 16384,
+      "model_type": "phi3",
+      "num_attention_heads": 40,
+      "num_hidden_layers": 40,
+      "num_key_value_heads": 10,
+      "original_max_position_embeddings": 16384,
+      "pad_token_id": 100349,
+      "resid_pdrop": 0,
+      "rms_norm_eps": 0.00001,
+      "rope_scaling": null,
+      "rope_theta": 250000,
+      "sliding_window": null,
+      "tie_word_embeddings": false,
+      "torch_dtype": "bfloat16",
+      "transformers_version": "4.47.0",
+      "use_cache": true,
+      "vocab_size": 100352
+    },
+    "raw_config_bytes": 676,
+    "context": {
+      "length": 16384,
+      "effective_length": 16384,
+      "recommended_context": 16384,
+      "is_unlimited": false,
+      "is_approx": false,
+      "raw": "16,384",
+      "input_length": null,
+      "output_length": null,
+      "config_context": {
+        "value": 16384,
+        "source": "config.json",
+        "source_path": "max_position_embeddings",
+        "confidence": 0.95,
+        "status": "verified",
+        "sources": [
+          {
+            "kind": "config",
+            "url": "https://huggingface.co/microsoft/phi-4/blob/main/config.json",
+            "confidence": 1
+          },
+          {
+            "kind": "config_raw",
+            "url": "https://huggingface.co/microsoft/phi-4/raw/main/config.json",
+            "confidence": 1
+          }
+        ],
+        "note": null
+      },
+      "advertised_context": {
+        "value": 16384,
+        "source": "gallery/config",
+        "confidence": 0.9,
+        "status": "verified",
+        "sources": [
+          {
+            "kind": "gallery_image",
+            "url": "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/phi-4.webp",
+            "confidence": 0.9
+          }
+        ],
+        "note": null
+      },
+      "native_context": {
+        "value": 16384,
+        "source": "config_max_position_embeddings",
+        "confidence": 0.55,
+        "status": "inferred",
+        "sources": [
+          {
+            "kind": "config",
+            "url": "https://huggingface.co/microsoft/phi-4/blob/main/config.json",
+            "confidence": 1
+          },
+          {
+            "kind": "config_raw",
+            "url": "https://huggingface.co/microsoft/phi-4/raw/main/config.json",
+            "confidence": 1
+          }
+        ],
+        "note": null
+      },
+      "trained_context": {
+        "value": 16384,
+        "source": "config_max_position_embeddings",
+        "confidence": 0.5,
+        "status": "inferred",
+        "sources": [],
+        "note": "requires tech report to confirm trained window"
+      },
+      "tested_context": {
+        "value": null,
+        "status": "unverified",
+        "confidence": 0,
+        "sources": [],
+        "note": "no independent HELM/BenchLM long-context eval; requires Needle-in-Haystack run"
+      },
+      "api_context": {
+        "value": null,
+        "status": "unverified",
+        "confidence": 0,
+        "sources": [],
+        "note": "requires live API max_tokens probe; may differ from advertised"
+      },
+      "conflict": false,
+      "conflict_note": null,
+      "resolution": "consistent within 2%",
+      "verified_source": "config+gallery (consistent)",
+      "confidence": 0.9,
+      "config_max_position_embeddings": 16384,
+      "config_source_path": "max_position_embeddings",
+      "_legacy_length": 16384,
+      "_legacy_resolution": "consistent within 2%",
+      "schema_version": "2.2-six-contexts"
+    },
+    "training": {
+      "dataset": {
+        "value": "Microsoft Phi 9.8T synthetic web/code/math high-quality filtered (inferred from Phi-3 3.3T + Phi-4 tech report)",
+        "status": "inferred",
+        "confidence": 0.55,
+        "sources": [],
+        "note": "(inferred from Phi-3 3.3T + Phi-4 tech report"
+      },
+      "tokens": {
+        "value": 9800,
+        "unit": "B",
+        "status": "inferred",
+        "confidence": 0.52,
+        "sources": [],
+        "note": null
+      },
+      "tokens_b": 9800,
+      "hardware": {
+        "value": "Undisclosed Microsoft Torch + A100/H100 (inferred)",
+        "status": "inferred",
+        "confidence": 0.55,
+        "sources": [],
+        "note": null
+      },
+      "compute": {
+        "value": null,
+        "status": "undisclosed",
+        "confidence": 0,
+        "sources": [],
+        "note": null
+      },
+      "post_training": {
+        "value": [
+          "SFT high-quality synthetic",
+          "DPO/RLHF (inferred)"
+        ],
+        "status": "inferred",
+        "confidence": 0.55,
+        "sources": [],
+        "note": null
+      },
+      "post_training_methods": [
+        "SFT high-quality synthetic",
+        "DPO/RLHF (inferred)"
+      ],
+      "_flat": {
+        "dataset": "Microsoft Phi 9.8T synthetic web/code/math high-quality filtered (inferred from Phi-3 3.3T + Phi-4 tech report)",
+        "hardware": "Undisclosed Microsoft Torch + A100/H100 (inferred)",
+        "compute": null
+      },
+      "overall_status": "mixed",
+      "overall_confidence": 0.54,
+      "verified_status": "mixed",
+      "confidence": 0.54,
+      "note": "verified from tech report/blog",
+      "_legacy_verified_status": "verified",
+      "_legacy_confidence": 0.95,
+      "schema_version": "2.2-per-field",
+      "_provenance_note": "per-field status fix 2.2: verified no longer whole-block; each claim now has status+confidence+sources"
+    },
+    "sources": [
+      {
+        "kind": "config",
+        "url": "https://huggingface.co/microsoft/phi-4/blob/main/config.json",
+        "repo": "microsoft/phi-4",
+        "label": "config.json",
+        "verified_status": "verified",
+        "confidence": 1,
+        "note": "fetch ok"
+      },
+      {
+        "kind": "config_raw",
+        "url": "https://huggingface.co/microsoft/phi-4/raw/main/config.json",
+        "repo": "microsoft/phi-4",
+        "label": "config.json raw",
+        "verified_status": "verified",
+        "confidence": 1,
+        "note": "bytes 802"
+      },
+      {
+        "kind": "tech_report",
+        "url": "https://arxiv.org/pdf/2412.08905",
+        "repo": null,
+        "label": null,
+        "arxiv_id": "2412.08905",
+        "verified_status": "verified",
+        "confidence": 0.95
+      },
+      {
+        "kind": "gallery_image",
+        "url": "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/phi-4.webp",
+        "repo": null,
+        "label": null,
+        "verified_status": "unverified",
+        "confidence": 0.9,
+        "note": "Raschka gallery"
+      },
+      {
+        "kind": "benchmark",
+        "url": "https://artificialanalysis.ai/models/phi-4",
+        "repo": null,
+        "label": "Artificial Analysis",
+        "verified_status": "verified",
+        "confidence": 0.9,
+        "note": "AA index 4.9"
+      },
+      {
+        "kind": "license",
+        "url": "https://huggingface.co/microsoft/phi-4/blob/main/LICENSE",
+        "repo": null,
+        "label": "MIT License",
+        "verified_status": "unverified",
+        "confidence": 0.9
+      }
+    ]
+  },
+  {
+    "index": 96,
+    "model_id": "olmo-2-7b",
+    "model_name": "OLMo 2 7B",
+    "company": "Ai2",
+    "release_date": "2024-11-25",
+    "family": "olmo",
+    "summary": "Transparent dense model that keeps classic MHA and pushes normalization changes for training stability.",
+    "yichen": {
+      "vocab": 100352,
+      "depth": 32,
+      "dim": 4096,
+      "norm": "RMSNorm",
+      "parallel_layer": "Serial",
+      "pre_norm": "Post",
+      "pos_emb": "RoPE",
+      "activation": "silu",
+      "attn_type": "mha",
+      "context": 4096,
+      "bias_display": "no bias",
+      "tied_display": "untied",
+      "qk_norm": "—",
+      "sliding": "—",
+      "stability": "RMSNorm eps=1e-06"
+    },
+    "math_tricks": {
+      "attention_bias": false,
+      "attention_bias_display": "no bias",
+      "tie_word_embeddings": false,
+      "tie_display": "untied",
+      "rms_norm_eps": 0.000001,
+      "rope_theta": 500000,
+      "hidden_act": "silu",
+      "swiglu_limit": null,
+      "use_qk_norm": null,
+      "learnable_sink": null,
+      "rope_scaling": null,
+      "attention_dropout": 0,
+      "norm_topk_prob": null,
+      "initializer_range": 0.02,
+      "tricks": [
+        "RMSNorm eps=1e-06"
+      ],
+      "tricks_display": "RMSNorm eps=1e-06"
+    },
+    "scale": {
+      "total_params": 7000000000,
+      "active_params": 7000000000,
+      "active_pct": 100,
+      "extra": {
+        "mtp_params": null,
+        "lora_mb": null,
+        "lora_rank": null,
+        "backbone_label": "total",
+        "ngram_params": null,
+        "embedding_params": null
+      },
+      "raw": "7B parameters",
+      "parsed": true
+    },
+    "architecture": {
+      "decoder_type": "dense",
+      "decoder_display": "Dense",
+      "attention": {
+        "primary": "mha",
+        "raw": "MHA with QK-Norm",
+        "options": [],
+        "ratio": null
+      },
+      "layer_mix": {
+        "raw": "32 MHA",
+        "total_layers": 32,
+        "by_type": {},
+        "mtp_layers": 0
+      },
+      "hidden_size": 4096,
+      "hidden_size_source": "hidden_size",
+      "num_hidden_layers": 32,
+      "num_attention_heads": 32,
+      "num_key_value_heads": 32,
+      "head_dim": 128,
+      "intermediate_size": 11008,
+      "vocab_size": 100352,
+      "max_position_embeddings": 4096,
+      "rope": {
+        "theta": 500000,
+        "rope_scaling": null
+      },
+      "sliding_window": null,
+      "layer_types": null,
+      "moe": {},
+      "model_type": "olmo2",
+      "architectures": [
+        "Olmo2ForCausalLM"
+      ],
+      "raw_config_source": "allenai/OLMo-2-1124-7B-Instruct:config.json"
+    },
+    "raw_config": {
+      "_name_or_path": "allenai/open_instruct_dev",
+      "architectures": [
+        "Olmo2ForCausalLM"
+      ],
+      "attention_bias": false,
+      "attention_dropout": 0,
+      "eos_token_id": 100257,
+      "hidden_act": "silu",
+      "hidden_size": 4096,
+      "initializer_range": 0.02,
+      "intermediate_size": 11008,
+      "max_position_embeddings": 4096,
+      "model_type": "olmo2",
+      "num_attention_heads": 32,
+      "num_hidden_layers": 32,
+      "num_key_value_heads": 32,
+      "pad_token_id": 100277,
+      "rms_norm_eps": 0.000001,
+      "rope_scaling": null,
+      "rope_theta": 500000,
+      "tie_word_embeddings": false,
+      "torch_dtype": "bfloat16",
+      "transformers_version": "4.47.0.dev0",
+      "use_cache": false,
+      "vocab_size": 100352
+    },
+    "raw_config_bytes": 578,
+    "context": {
+      "length": 4096,
+      "effective_length": 4096,
+      "recommended_context": 4096,
+      "is_unlimited": false,
+      "is_approx": false,
+      "raw": "4,096",
+      "input_length": null,
+      "output_length": null,
+      "config_context": {
+        "value": 4096,
+        "source": "config.json",
+        "source_path": "max_position_embeddings",
+        "confidence": 0.95,
+        "status": "verified",
+        "sources": [
+          {
+            "kind": "config",
+            "url": "https://huggingface.co/allenai/OLMo-2-1124-7B-Instruct/blob/main/config.json",
+            "confidence": 1
+          },
+          {
+            "kind": "config_raw",
+            "url": "https://huggingface.co/allenai/OLMo-2-1124-7B-Instruct/raw/main/config.json",
+            "confidence": 1
+          }
+        ],
+        "note": null
+      },
+      "advertised_context": {
+        "value": 4096,
+        "source": "gallery/config",
+        "confidence": 0.9,
+        "status": "verified",
+        "sources": [
+          {
+            "kind": "gallery_image",
+            "url": "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/olmo-2-7b.webp",
+            "confidence": 0.9
+          }
+        ],
+        "note": null
+      },
+      "native_context": {
+        "value": 4096,
+        "source": "config_max_position_embeddings",
+        "confidence": 0.55,
+        "status": "inferred",
+        "sources": [
+          {
+            "kind": "config",
+            "url": "https://huggingface.co/allenai/OLMo-2-1124-7B-Instruct/blob/main/config.json",
+            "confidence": 1
+          },
+          {
+            "kind": "config_raw",
+            "url": "https://huggingface.co/allenai/OLMo-2-1124-7B-Instruct/raw/main/config.json",
+            "confidence": 1
+          }
+        ],
+        "note": null
+      },
+      "trained_context": {
+        "value": 4096,
+        "source": "config_max_position_embeddings",
+        "confidence": 0.5,
+        "status": "inferred",
+        "sources": [],
+        "note": "requires tech report to confirm trained window"
+      },
+      "tested_context": {
+        "value": null,
+        "status": "unverified",
+        "confidence": 0,
+        "sources": [],
+        "note": "no independent HELM/BenchLM long-context eval; requires Needle-in-Haystack run"
+      },
+      "api_context": {
+        "value": null,
+        "status": "unverified",
+        "confidence": 0,
+        "sources": [],
+        "note": "requires live API max_tokens probe; may differ from advertised"
+      },
+      "conflict": false,
+      "conflict_note": null,
+      "resolution": "consistent within 2%",
+      "verified_source": "config+gallery (consistent)",
+      "confidence": 0.9,
+      "config_max_position_embeddings": 4096,
+      "config_source_path": "max_position_embeddings",
+      "_legacy_length": 4096,
+      "_legacy_resolution": "consistent within 2%",
+      "schema_version": "2.2-six-contexts"
+    },
+    "training": {
+      "dataset": {
+        "value": "AllenAI Dolma 1.7 4T + DCLM-Baseline 7T mixed (verified OLMo 2 paper)",
+        "status": "verified",
+        "confidence": 0.95,
+        "sources": [
+          {
+            "kind": "tech_report",
+            "url": "https://arxiv.org/pdf/2501.00656",
+            "confidence": 0.95
+          },
+          {
+            "kind": "benchmark",
+            "url": "https://artificialanalysis.ai/models/olmo-2-7b",
+            "confidence": 0.9
+          }
+        ],
+        "note": null
+      },
+      "tokens": {
+        "value": 4000,
+        "unit": "B",
+        "status": "verified",
+        "confidence": 0.95,
+        "sources": [
+          {
+            "kind": "tech_report",
+            "url": "https://arxiv.org/pdf/2501.00656",
+            "confidence": 0.95
+          }
+        ],
+        "note": null
+      },
+      "tokens_b": 4000,
+      "hardware": {
+        "value": "AMD MI300X / NVIDIA H100 on LUMI & Mosaic (verified)",
+        "status": "verified",
+        "confidence": 0.95,
+        "sources": [
+          {
+            "kind": "tech_report",
+            "url": "https://arxiv.org/pdf/2501.00656",
+            "confidence": 0.95
+          }
+        ],
+        "note": null
+      },
+      "compute": {
+        "value": "Verified via OLMo 2 paper §4",
+        "status": "verified",
+        "confidence": 0.95,
+        "sources": [
+          {
+            "kind": "tech_report",
+            "url": "https://arxiv.org/pdf/2501.00656",
+            "confidence": 0.95
+          }
+        ],
+        "note": null
+      },
+      "post_training": {
+        "value": [
+          "SFT Tulu 3 + DPO + RLVR"
+        ],
+        "status": "verified",
+        "confidence": 0.95,
+        "sources": [
+          {
+            "kind": "tech_report",
+            "url": "https://arxiv.org/pdf/2501.00656",
+            "confidence": 0.95
+          }
+        ],
+        "note": null
+      },
+      "post_training_methods": [
+        "SFT Tulu 3 + DPO + RLVR"
+      ],
+      "_flat": {
+        "dataset": "AllenAI Dolma 1.7 4T + DCLM-Baseline 7T mixed (verified OLMo 2 paper)",
+        "hardware": "AMD MI300X / NVIDIA H100 on LUMI & Mosaic (verified)",
+        "compute": "Verified via OLMo 2 paper §4"
+      },
+      "overall_status": "verified",
+      "overall_confidence": 0.95,
+      "verified_status": "verified",
+      "confidence": 0.95,
+      "note": "verified from tech report/blog",
+      "_legacy_verified_status": "verified",
+      "_legacy_confidence": 0.95,
+      "schema_version": "2.2-per-field",
+      "_provenance_note": "per-field status fix 2.2: verified no longer whole-block; each claim now has status+confidence+sources"
+    },
+    "sources": [
+      {
+        "kind": "config",
+        "url": "https://huggingface.co/allenai/OLMo-2-1124-7B-Instruct/blob/main/config.json",
+        "repo": "allenai/OLMo-2-1124-7B-Instruct",
+        "label": "config.json",
+        "verified_status": "verified",
+        "confidence": 1,
+        "note": "fetch ok"
+      },
+      {
+        "kind": "config_raw",
+        "url": "https://huggingface.co/allenai/OLMo-2-1124-7B-Instruct/raw/main/config.json",
+        "repo": "allenai/OLMo-2-1124-7B-Instruct",
+        "label": "config.json raw",
+        "verified_status": "verified",
+        "confidence": 1,
+        "note": "bytes 679"
+      },
+      {
+        "kind": "tech_report",
+        "url": "https://arxiv.org/pdf/2501.00656",
+        "repo": null,
+        "label": null,
+        "arxiv_id": "2501.00656",
+        "verified_status": "verified",
+        "confidence": 0.95
+      },
+      {
+        "kind": "gallery_image",
+        "url": "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/olmo-2-7b.webp",
+        "repo": null,
+        "label": null,
+        "verified_status": "unverified",
+        "confidence": 0.9,
+        "note": "Raschka gallery"
+      },
+      {
+        "kind": "benchmark",
+        "url": "https://artificialanalysis.ai/models/olmo-2-7b",
+        "repo": null,
+        "label": "Artificial Analysis",
+        "verified_status": "verified",
+        "confidence": 0.9,
+        "note": "AA index 3.9"
+      },
+      {
+        "kind": "license",
+        "url": "https://huggingface.co/allenai/OLMo-2-1124-7B-Instruct/blob/main/README.md",
+        "repo": null,
+        "label": "Apache License 2.0",
+        "verified_status": "unverified",
+        "confidence": 0.9
+      }
+    ]
+  },
+  {
+    "index": 97,
+    "model_id": "llama-3-2-3b",
+    "model_name": "Llama 3.2 3B",
+    "company": "Meta",
+    "release_date": "2024-09-25",
+    "family": "llama-3",
+    "summary": "Small Llama baseline used to show how closely Nanbeige follows the mainstream compact decoder recipe.",
+    "yichen": {
+      "vocab": null,
+      "depth": null,
+      "dim": null,
+      "norm": "RMSNorm",
+      "parallel_layer": "Serial",
+      "pre_norm": "Pre",
+      "pos_emb": "RoPE",
+      "activation": "SwiGLU",
+      "attn_type": "gqa",
+      "context": 128000,
+      "bias_display": "undisclosed",
+      "tied_display": "undisclosed",
+      "qk_norm": "—",
+      "sliding": "—",
+      "stability": "—"
+    },
+    "math_tricks": {
+      "attention_bias": null,
+      "attention_bias_display": "undisclosed",
+      "tie_word_embeddings": null,
+      "tie_display": "undisclosed",
+      "rms_norm_eps": null,
+      "rope_theta": null,
+      "hidden_act": null,
+      "swiglu_limit": null,
+      "use_qk_norm": null,
+      "learnable_sink": null,
+      "rope_scaling": null,
+      "attention_dropout": null,
+      "norm_topk_prob": null,
+      "initializer_range": null,
+      "tricks": [],
+      "tricks_display": "—"
+    },
+    "scale": {
+      "total_params": 3000000000,
+      "active_params": 3000000000,
+      "active_pct": 100,
+      "extra": {
+        "mtp_params": null,
+        "lora_mb": null,
+        "lora_rank": null,
+        "backbone_label": "total",
+        "ngram_params": null,
+        "embedding_params": null
+      },
+      "raw": "3B parameters",
+      "parsed": true
+    },
+    "architecture": {
+      "decoder_type": "dense",
+      "decoder_display": "Dense",
+      "attention": {
+        "primary": "gqa",
+        "raw": "GQA",
+        "options": [],
+        "ratio": null
+      },
+      "layer_mix": {
+        "raw": "28 GQA",
+        "total_layers": null,
+        "by_type": {},
+        "mtp_layers": 0
+      },
+      "hidden_size": null,
+      "hidden_size_source": null,
+      "num_hidden_layers": null,
+      "num_attention_heads": null,
+      "num_key_value_heads": null,
+      "head_dim": null,
+      "intermediate_size": null,
+      "vocab_size": null,
+      "max_position_embeddings": null,
+      "rope": {},
+      "sliding_window": null,
+      "layer_types": null,
+      "moe": {},
+      "model_type": null,
+      "architectures": [],
+      "raw_config_source": null
+    },
+    "raw_config": null,
+    "raw_config_bytes": 0,
+    "context": {
+      "length": 128000,
+      "effective_length": 128000,
+      "recommended_context": 128000,
+      "is_unlimited": false,
+      "is_approx": false,
+      "raw": "128,000",
+      "input_length": null,
+      "output_length": null,
+      "config_context": {
+        "value": null,
+        "source": "config.json",
+        "source_path": null,
+        "confidence": 0,
+        "status": "undisclosed",
+        "sources": [],
+        "note": "no config value"
+      },
+      "advertised_context": {
+        "value": 128000,
+        "source": "gallery",
+        "confidence": 0.9,
+        "status": "verified",
+        "sources": [
+          {
+            "kind": "gallery_image",
+            "url": "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/llama-3-2-3b.webp",
+            "confidence": 0.9
+          }
+        ],
+        "note": null
+      },
+      "native_context": {
+        "value": 128000,
+        "source": "advertised",
+        "confidence": 0.55,
+        "status": "inferred",
+        "sources": [],
+        "note": null
+      },
+      "trained_context": {
+        "value": 128000,
+        "source": "advertised",
+        "confidence": 0.5,
+        "status": "inferred",
+        "sources": [],
+        "note": "requires tech report to confirm trained window"
+      },
+      "tested_context": {
+        "value": null,
+        "status": "unverified",
+        "confidence": 0,
+        "sources": [],
+        "note": "no independent HELM/BenchLM long-context eval; requires Needle-in-Haystack run"
+      },
+      "api_context": {
+        "value": null,
+        "status": "unverified",
+        "confidence": 0,
+        "sources": [],
+        "note": "requires live API max_tokens probe; may differ from advertised"
+      },
+      "conflict": false,
+      "conflict_note": null,
+      "resolution": "no config (gated), trust gallery with low confidence",
+      "verified_source": "gallery",
+      "confidence": 0.6,
+      "config_max_position_embeddings": null,
+      "config_source_path": null,
+      "_legacy_length": 128000,
+      "_legacy_resolution": "no config (gated), trust gallery with low confidence",
+      "schema_version": "2.2-six-contexts"
+    },
+    "training": {
+      "dataset": {
+        "value": "Meta Llama public web + synthetic (inferred)",
+        "status": "inferred",
+        "confidence": 0.55,
+        "sources": [],
+        "note": "(inferred"
+      },
+      "tokens": {
+        "value": 15000,
+        "unit": "B",
+        "status": "inferred",
+        "confidence": 0.52,
+        "sources": [],
+        "note": null
+      },
+      "tokens_b": 15000,
+      "hardware": {
+        "value": "Undisclosed Meta RSC H100 (inferred)",
+        "status": "inferred",
+        "confidence": 0.55,
+        "sources": [],
+        "note": null
+      },
+      "compute": {
+        "value": null,
+        "status": "undisclosed",
+        "confidence": 0,
+        "sources": [],
+        "note": null
+      },
+      "post_training": {
+        "value": [
+          "SFT + RLHF (inferred)"
+        ],
+        "status": "inferred",
+        "confidence": 0.55,
+        "sources": [],
+        "note": null
+      },
+      "post_training_methods": [
+        "SFT + RLHF (inferred)"
+      ],
+      "_flat": {
+        "dataset": "Meta Llama public web + synthetic (inferred)",
+        "hardware": "Undisclosed Meta RSC H100 (inferred)",
+        "compute": null
+      },
+      "overall_status": "inferred",
+      "overall_confidence": 0.45,
+      "verified_status": "inferred",
+      "confidence": 0.45,
+      "note": "inferred from family/company heuristic",
+      "_legacy_verified_status": "inferred",
+      "_legacy_confidence": 0.45,
+      "schema_version": "2.2-per-field",
+      "_provenance_note": "per-field status fix 2.2: verified no longer whole-block; each claim now has status+confidence+sources"
+    },
+    "sources": [
+      {
+        "kind": "gallery_image",
+        "url": "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/llama-3-2-3b.webp",
+        "repo": null,
+        "label": null,
+        "verified_status": "unverified",
+        "confidence": 0.9,
+        "note": "Raschka gallery"
+      },
+      {
+        "kind": "benchmark",
+        "url": "https://artificialanalysis.ai/models/llama-3-2-instruct-3b",
+        "repo": null,
+        "label": "Artificial Analysis",
+        "verified_status": "verified",
+        "confidence": 0.9,
+        "note": "AA index 4.2"
+      },
+      {
+        "kind": "license",
+        "url": "https://huggingface.co/meta-llama/Llama-3.2-3B/blob/main/LICENSE.txt",
+        "repo": null,
+        "label": "Llama 3.2 Community License Agreement",
+        "verified_status": "unverified",
+        "confidence": 0.9
+      }
+    ]
+  },
+  {
+    "index": 98,
+    "model_id": "llama-3-2-1b",
+    "model_name": "Llama 3.2 1B",
+    "company": "Meta",
+    "release_date": "2024-09-25",
+    "family": "llama-3",
+    "summary": "Small dense Llama baseline in the Qwen comparison, with fewer layers but more width.",
+    "yichen": {
+      "vocab": null,
+      "depth": null,
+      "dim": null,
+      "norm": "RMSNorm",
+      "parallel_layer": "Serial",
+      "pre_norm": "Pre",
+      "pos_emb": "RoPE",
+      "activation": "SwiGLU",
+      "attn_type": "gqa",
+      "context": 128000,
+      "bias_display": "undisclosed",
+      "tied_display": "undisclosed",
+      "qk_norm": "—",
+      "sliding": "—",
+      "stability": "—"
+    },
+    "math_tricks": {
+      "attention_bias": null,
+      "attention_bias_display": "undisclosed",
+      "tie_word_embeddings": null,
+      "tie_display": "undisclosed",
+      "rms_norm_eps": null,
+      "rope_theta": null,
+      "hidden_act": null,
+      "swiglu_limit": null,
+      "use_qk_norm": null,
+      "learnable_sink": null,
+      "rope_scaling": null,
+      "attention_dropout": null,
+      "norm_topk_prob": null,
+      "initializer_range": null,
+      "tricks": [],
+      "tricks_display": "—"
+    },
+    "scale": {
+      "total_params": 1000000000,
+      "active_params": 1000000000,
+      "active_pct": 100,
+      "extra": {
+        "mtp_params": null,
+        "lora_mb": null,
+        "lora_rank": null,
+        "backbone_label": "total",
+        "ngram_params": null,
+        "embedding_params": null
+      },
+      "raw": "1B parameters",
+      "parsed": true
+    },
+    "architecture": {
+      "decoder_type": "dense",
+      "decoder_display": "Dense",
+      "attention": {
+        "primary": "gqa",
+        "raw": "GQA",
+        "options": [],
+        "ratio": null
+      },
+      "layer_mix": {
+        "raw": "16 GQA",
+        "total_layers": null,
+        "by_type": {},
+        "mtp_layers": 0
+      },
+      "hidden_size": null,
+      "hidden_size_source": null,
+      "num_hidden_layers": null,
+      "num_attention_heads": null,
+      "num_key_value_heads": null,
+      "head_dim": null,
+      "intermediate_size": null,
+      "vocab_size": null,
+      "max_position_embeddings": null,
+      "rope": {},
+      "sliding_window": null,
+      "layer_types": null,
+      "moe": {},
+      "model_type": null,
+      "architectures": [],
+      "raw_config_source": null
+    },
+    "raw_config": null,
+    "raw_config_bytes": 0,
+    "context": {
+      "length": 128000,
+      "effective_length": 128000,
+      "recommended_context": 128000,
+      "is_unlimited": false,
+      "is_approx": false,
+      "raw": "128,000",
+      "input_length": null,
+      "output_length": null,
+      "config_context": {
+        "value": null,
+        "source": "config.json",
+        "source_path": null,
+        "confidence": 0,
+        "status": "undisclosed",
+        "sources": [],
+        "note": "no config value"
+      },
+      "advertised_context": {
+        "value": 128000,
+        "source": "gallery",
+        "confidence": 0.9,
+        "status": "verified",
+        "sources": [
+          {
+            "kind": "gallery_image",
+            "url": "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/llama-3-2-1b.webp",
+            "confidence": 0.9
+          }
+        ],
+        "note": null
+      },
+      "native_context": {
+        "value": 128000,
+        "source": "advertised",
+        "confidence": 0.55,
+        "status": "inferred",
+        "sources": [],
+        "note": null
+      },
+      "trained_context": {
+        "value": 128000,
+        "source": "advertised",
+        "confidence": 0.5,
+        "status": "inferred",
+        "sources": [],
+        "note": "requires tech report to confirm trained window"
+      },
+      "tested_context": {
+        "value": null,
+        "status": "unverified",
+        "confidence": 0,
+        "sources": [],
+        "note": "no independent HELM/BenchLM long-context eval; requires Needle-in-Haystack run"
+      },
+      "api_context": {
+        "value": null,
+        "status": "unverified",
+        "confidence": 0,
+        "sources": [],
+        "note": "requires live API max_tokens probe; may differ from advertised"
+      },
+      "conflict": false,
+      "conflict_note": null,
+      "resolution": "no config (gated), trust gallery with low confidence",
+      "verified_source": "gallery",
+      "confidence": 0.6,
+      "config_max_position_embeddings": null,
+      "config_source_path": null,
+      "_legacy_length": 128000,
+      "_legacy_resolution": "no config (gated), trust gallery with low confidence",
+      "schema_version": "2.2-six-contexts"
+    },
+    "training": {
+      "dataset": {
+        "value": "Meta Llama public web + synthetic (inferred)",
+        "status": "inferred",
+        "confidence": 0.55,
+        "sources": [],
+        "note": "(inferred"
+      },
+      "tokens": {
+        "value": 15000,
+        "unit": "B",
+        "status": "inferred",
+        "confidence": 0.52,
+        "sources": [],
+        "note": null
+      },
+      "tokens_b": 15000,
+      "hardware": {
+        "value": "Undisclosed Meta RSC H100 (inferred)",
+        "status": "inferred",
+        "confidence": 0.55,
+        "sources": [],
+        "note": null
+      },
+      "compute": {
+        "value": null,
+        "status": "undisclosed",
+        "confidence": 0,
+        "sources": [],
+        "note": null
+      },
+      "post_training": {
+        "value": [
+          "SFT + RLHF (inferred)"
+        ],
+        "status": "inferred",
+        "confidence": 0.55,
+        "sources": [],
+        "note": null
+      },
+      "post_training_methods": [
+        "SFT + RLHF (inferred)"
+      ],
+      "_flat": {
+        "dataset": "Meta Llama public web + synthetic (inferred)",
+        "hardware": "Undisclosed Meta RSC H100 (inferred)",
+        "compute": null
+      },
+      "overall_status": "inferred",
+      "overall_confidence": 0.45,
+      "verified_status": "inferred",
+      "confidence": 0.45,
+      "note": "inferred from family/company heuristic",
+      "_legacy_verified_status": "inferred",
+      "_legacy_confidence": 0.45,
+      "schema_version": "2.2-per-field",
+      "_provenance_note": "per-field status fix 2.2: verified no longer whole-block; each claim now has status+confidence+sources"
+    },
+    "sources": [
+      {
+        "kind": "gallery_image",
+        "url": "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/llama-3-2-1b.webp",
+        "repo": null,
+        "label": null,
+        "verified_status": "unverified",
+        "confidence": 0.9,
+        "note": "Raschka gallery"
+      },
+      {
+        "kind": "benchmark",
+        "url": "https://artificialanalysis.ai/models/llama-3-2-instruct-1b",
+        "repo": null,
+        "label": "Artificial Analysis",
+        "verified_status": "verified",
+        "confidence": 0.9,
+        "note": "AA index 1.1"
+      },
+      {
+        "kind": "license",
+        "url": "https://huggingface.co/meta-llama/Llama-3.2-1B/blob/main/LICENSE.txt",
+        "repo": null,
+        "label": "Llama Community License Agreement (variant-specific)",
+        "verified_status": "unverified",
+        "confidence": 0.9
+      }
+    ]
+  },
+  {
+    "index": 99,
+    "model_id": "llama-3-8b",
+    "model_name": "Llama 3 8B",
+    "company": "Meta",
+    "release_date": "2024-04-18",
+    "family": "llama-3",
+    "summary": "Reference dense Llama stack used to contrast OLMo 2's normalization and attention choices.",
+    "yichen": {
+      "vocab": null,
+      "depth": null,
+      "dim": null,
+      "norm": "RMSNorm",
+      "parallel_layer": "Serial",
+      "pre_norm": "Pre",
+      "pos_emb": "RoPE",
+      "activation": "SwiGLU",
+      "attn_type": "gqa",
+      "context": 8192,
+      "bias_display": "undisclosed",
+      "tied_display": "undisclosed",
+      "qk_norm": "—",
+      "sliding": "—",
+      "stability": "—"
+    },
+    "math_tricks": {
+      "attention_bias": null,
+      "attention_bias_display": "undisclosed",
+      "tie_word_embeddings": null,
+      "tie_display": "undisclosed",
+      "rms_norm_eps": null,
+      "rope_theta": null,
+      "hidden_act": null,
+      "swiglu_limit": null,
+      "use_qk_norm": null,
+      "learnable_sink": null,
+      "rope_scaling": null,
+      "attention_dropout": null,
+      "norm_topk_prob": null,
+      "initializer_range": null,
+      "tricks": [],
+      "tricks_display": "—"
+    },
+    "scale": {
+      "total_params": 8000000000,
+      "active_params": 8000000000,
+      "active_pct": 100,
+      "extra": {
+        "mtp_params": null,
+        "lora_mb": null,
+        "lora_rank": null,
+        "backbone_label": "total",
+        "ngram_params": null,
+        "embedding_params": null
+      },
+      "raw": "8B parameters",
+      "parsed": true
+    },
+    "architecture": {
+      "decoder_type": "dense",
+      "decoder_display": "Dense",
+      "attention": {
+        "primary": "gqa",
+        "raw": "GQA with RoPE",
+        "options": [],
+        "ratio": null
+      },
+      "layer_mix": {
+        "raw": "32 GQA",
+        "total_layers": null,
+        "by_type": {},
+        "mtp_layers": 0
+      },
+      "hidden_size": null,
+      "hidden_size_source": null,
+      "num_hidden_layers": null,
+      "num_attention_heads": null,
+      "num_key_value_heads": null,
+      "head_dim": null,
+      "intermediate_size": null,
+      "vocab_size": null,
+      "max_position_embeddings": null,
+      "rope": {},
+      "sliding_window": null,
+      "layer_types": null,
+      "moe": {},
+      "model_type": null,
+      "architectures": [],
+      "raw_config_source": "meta-llama/Meta-Llama-3-8B:config.json"
+    },
+    "raw_config": null,
+    "raw_config_bytes": 0,
+    "context": {
+      "length": 8192,
+      "effective_length": 8192,
+      "recommended_context": 8192,
+      "is_unlimited": false,
+      "is_approx": false,
+      "raw": "8,192",
+      "input_length": null,
+      "output_length": null,
+      "config_context": {
+        "value": null,
+        "source": "config.json",
+        "source_path": null,
+        "confidence": 0,
+        "status": "undisclosed",
+        "sources": [
+          {
+            "kind": "config",
+            "url": "https://huggingface.co/meta-llama/Meta-Llama-3-8B/blob/main/config.json",
+            "confidence": 0.5
+          },
+          {
+            "kind": "config_raw",
+            "url": "https://huggingface.co/meta-llama/Meta-Llama-3-8B/raw/main/config.json",
+            "confidence": 0.3
+          }
+        ],
+        "note": "no config value"
+      },
+      "advertised_context": {
+        "value": 8192,
+        "source": "gallery",
+        "confidence": 0.9,
+        "status": "verified",
+        "sources": [
+          {
+            "kind": "gallery_image",
+            "url": "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/llama-3-8b.webp",
+            "confidence": 0.9
+          }
+        ],
+        "note": null
+      },
+      "native_context": {
+        "value": 8192,
+        "source": "advertised",
+        "confidence": 0.55,
+        "status": "inferred",
+        "sources": [
+          {
+            "kind": "config",
+            "url": "https://huggingface.co/meta-llama/Meta-Llama-3-8B/blob/main/config.json",
+            "confidence": 0.5
+          },
+          {
+            "kind": "config_raw",
+            "url": "https://huggingface.co/meta-llama/Meta-Llama-3-8B/raw/main/config.json",
+            "confidence": 0.3
+          }
+        ],
+        "note": null
+      },
+      "trained_context": {
+        "value": 8192,
+        "source": "advertised",
+        "confidence": 0.5,
+        "status": "inferred",
+        "sources": [],
+        "note": "requires tech report to confirm trained window"
+      },
+      "tested_context": {
+        "value": null,
+        "status": "unverified",
+        "confidence": 0,
+        "sources": [],
+        "note": "no independent HELM/BenchLM long-context eval; requires Needle-in-Haystack run"
+      },
+      "api_context": {
+        "value": null,
+        "status": "unverified",
+        "confidence": 0,
+        "sources": [],
+        "note": "requires live API max_tokens probe; may differ from advertised"
+      },
+      "conflict": false,
+      "conflict_note": null,
+      "resolution": "no config (gated), trust gallery with low confidence",
+      "verified_source": "gallery",
+      "confidence": 0.6,
+      "config_max_position_embeddings": null,
+      "config_source_path": null,
+      "_legacy_length": 8192,
+      "_legacy_resolution": "no config (gated), trust gallery with low confidence",
+      "schema_version": "2.2-six-contexts"
+    },
+    "training": {
+      "dataset": {
+        "value": "Public web heuristic dedup classifier, 4x code vs Llama2, 5% multilingual 30 langs, cutoff Mar 2023",
+        "status": "verified",
+        "confidence": 0.95,
+        "sources": [
+          {
+            "kind": "tech_report",
+            "url": "https://arxiv.org/pdf/2407.21783",
+            "confidence": 0.95
+          },
+          {
+            "kind": "benchmark",
+            "url": "https://artificialanalysis.ai/models/llama-3-instruct-8b",
+            "confidence": 0.9
+          }
+        ],
+        "note": null
+      },
+      "tokens": {
+        "value": 15000,
+        "unit": "B",
+        "status": "verified",
+        "confidence": 0.95,
+        "sources": [
+          {
+            "kind": "tech_report",
+            "url": "https://arxiv.org/pdf/2407.21783",
+            "confidence": 0.95
+          }
+        ],
+        "note": null
+      },
+      "tokens_b": 15000,
+      "hardware": {
+        "value": "24K GPU Meta RSC, 1.3M H100-hr for 8B (7.7M total 8B+70B)",
+        "status": "verified",
+        "confidence": 0.95,
+        "sources": [
+          {
+            "kind": "tech_report",
+            "url": "https://arxiv.org/pdf/2407.21783",
+            "confidence": 0.95
+          }
+        ],
+        "note": null
+      },
+      "compute": {
+        "value": "1.3M H100-hr ~7.2e23 FLOPs, 390 tCO2eq offset",
+        "status": "verified",
+        "confidence": 0.95,
+        "sources": [
+          {
+            "kind": "tech_report",
+            "url": "https://arxiv.org/pdf/2407.21783",
+            "confidence": 0.95
+          }
+        ],
+        "note": null
+      },
+      "post_training": {
+        "value": [
+          "SFT >10M human",
+          "RLHF: Rejection Sampling + DPO + PPO",
+          "Synthetic for long-context/tool use"
+        ],
+        "status": "verified",
+        "confidence": 0.95,
+        "sources": [
+          {
+            "kind": "tech_report",
+            "url": "https://arxiv.org/pdf/2407.21783",
+            "confidence": 0.95
+          }
+        ],
+        "note": null
+      },
+      "post_training_methods": [
+        "SFT >10M human",
+        "RLHF: Rejection Sampling + DPO + PPO",
+        "Synthetic for long-context/tool use"
+      ],
+      "_flat": {
+        "dataset": "Public web heuristic dedup classifier, 4x code vs Llama2, 5% multilingual 30 langs, cutoff Mar 2023",
+        "hardware": "24K GPU Meta RSC, 1.3M H100-hr for 8B (7.7M total 8B+70B)",
+        "compute": "1.3M H100-hr ~7.2e23 FLOPs, 390 tCO2eq offset"
+      },
+      "overall_status": "verified",
+      "overall_confidence": 0.95,
+      "verified_status": "verified",
+      "confidence": 0.95,
+      "note": "verified from tech report/blog",
+      "_legacy_verified_status": "verified",
+      "_legacy_confidence": 0.95,
+      "schema_version": "2.2-per-field",
+      "_provenance_note": "per-field status fix 2.2: verified no longer whole-block; each claim now has status+confidence+sources"
+    },
+    "sources": [
+      {
+        "kind": "config",
+        "url": "https://huggingface.co/meta-llama/Meta-Llama-3-8B/blob/main/config.json",
+        "repo": "meta-llama/Meta-Llama-3-8B",
+        "label": "config.json",
+        "verified_status": "unverified",
+        "confidence": 0.5,
+        "note": "fetch http_401"
+      },
+      {
+        "kind": "config_raw",
+        "url": "https://huggingface.co/meta-llama/Meta-Llama-3-8B/raw/main/config.json",
+        "repo": "meta-llama/Meta-Llama-3-8B",
+        "label": "config.json raw",
+        "verified_status": "failed",
+        "confidence": 0.3,
+        "note": "bytes None"
+      },
+      {
+        "kind": "tech_report",
+        "url": "https://arxiv.org/pdf/2407.21783",
+        "repo": null,
+        "label": null,
+        "arxiv_id": "2407.21783",
+        "verified_status": "verified",
+        "confidence": 0.95
+      },
+      {
+        "kind": "gallery_image",
+        "url": "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/llama-3-8b.webp",
+        "repo": null,
+        "label": null,
+        "verified_status": "unverified",
+        "confidence": 0.9,
+        "note": "Raschka gallery"
+      },
+      {
+        "kind": "benchmark",
+        "url": "https://artificialanalysis.ai/models/llama-3-instruct-8b",
+        "repo": null,
+        "label": "Artificial Analysis",
+        "verified_status": "verified",
+        "confidence": 0.9,
+        "note": "AA index 1.2"
+      },
+      {
+        "kind": "license",
+        "url": "https://huggingface.co/meta-llama/Meta-Llama-3-8B/blob/main/LICENSE",
+        "repo": null,
+        "label": "Llama 3 Community License Agreement",
+        "verified_status": "unverified",
+        "confidence": 0.9
+      }
+    ]
+  }
+]

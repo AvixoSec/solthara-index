@@ -1,0 +1,18 @@
+{
+  "attention_bias": null,
+  "attention_bias_display": "undisclosed",
+  "tie_word_embeddings": null,
+  "tie_display": "undisclosed",
+  "rms_norm_eps": null,
+  "rope_theta": null,
+  "hidden_act": null,
+  "swiglu_limit": null,
+  "use_qk_norm": null,
+  "learnable_sink": null,
+  "rope_scaling": null,
+  "attention_dropout": null,
+  "norm_topk_prob": null,
+  "initializer_range": 0.02,
+  "tricks": [],
+  "tricks_display": "—"
+}
