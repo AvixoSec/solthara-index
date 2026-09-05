@@ -1,0 +1,1728 @@
+[
+  {
+    "index": 85,
+    "model_id": "qwen3-30b-a3b",
+    "model_name": "Qwen3 30B-A3B",
+    "company": "Alibaba Cloud",
+    "release_date": "2025-04-28",
+    "family": "qwen3",
+    "summary": "Small sparse Qwen3 model that sits close to GPT-OSS in active size but uses a deeper stack.",
+    "yichen": {
+      "vocab": 151936,
+      "depth": 48,
+      "dim": 2048,
+      "norm": "RMSNorm",
+      "parallel_layer": "Serial",
+      "pre_norm": "Pre",
+      "pos_emb": "RoPE",
+      "activation": "silu",
+      "attn_type": "gqa",
+      "context": 128000,
+      "bias_display": "no bias",
+      "tied_display": "untied",
+      "qk_norm": "—",
+      "sliding": "—",
+      "stability": "RMSNorm eps=1e-06 • norm_topk"
+    },
+    "math_tricks": {
+      "attention_bias": false,
+      "attention_bias_display": "no bias",
+      "tie_word_embeddings": false,
+      "tie_display": "untied",
+      "rms_norm_eps": 0.000001,
+      "rope_theta": 1000000,
+      "hidden_act": "silu",
+      "swiglu_limit": null,
+      "use_qk_norm": null,
+      "learnable_sink": null,
+      "rope_scaling": null,
+      "attention_dropout": 0,
+      "norm_topk_prob": true,
+      "initializer_range": 0.02,
+      "tricks": [
+        "RMSNorm eps=1e-06",
+        "norm_topk"
+      ],
+      "tricks_display": "RMSNorm eps=1e-06 • norm_topk"
+    },
+    "scale": {
+      "total_params": 30000000000,
+      "active_params": 3000000000,
+      "active_pct": 10,
+      "extra": {
+        "mtp_params": null,
+        "lora_mb": null,
+        "lora_rank": null,
+        "backbone_label": "total",
+        "ngram_params": null,
+        "embedding_params": null
+      },
+      "raw": "30B total, 3B active (10% active)",
+      "parsed": true
+    },
+    "architecture": {
+      "decoder_type": "sparse_moe",
+      "decoder_display": "Sparse MoE",
+      "attention": {
+        "primary": "gqa",
+        "raw": "GQA",
+        "options": [],
+        "ratio": null
+      },
+      "layer_mix": {
+        "raw": "48 GQA",
+        "total_layers": 48,
+        "by_type": {},
+        "mtp_layers": 0
+      },
+      "hidden_size": 2048,
+      "hidden_size_source": "hidden_size",
+      "num_hidden_layers": 48,
+      "num_attention_heads": 32,
+      "num_key_value_heads": 4,
+      "head_dim": 128,
+      "intermediate_size": 6144,
+      "vocab_size": 151936,
+      "max_position_embeddings": 40960,
+      "rope": {
+        "theta": 1000000,
+        "rope_scaling": null
+      },
+      "sliding_window": null,
+      "layer_types": null,
+      "moe": {
+        "num_experts": 128,
+        "num_experts_per_tok": 8,
+        "moe_intermediate_size": 768
+      },
+      "model_type": "qwen3_moe",
+      "architectures": [
+        "Qwen3MoeForCausalLM"
+      ],
+      "raw_config_source": "Qwen/Qwen3-30B-A3B:config.json"
+    },
+    "raw_config": {
+      "architectures": [
+        "Qwen3MoeForCausalLM"
+      ],
+      "attention_bias": false,
+      "attention_dropout": 0,
+      "bos_token_id": 151643,
+      "decoder_sparse_step": 1,
+      "eos_token_id": 151645,
+      "head_dim": 128,
+      "hidden_act": "silu",
+      "hidden_size": 2048,
+      "initializer_range": 0.02,
+      "intermediate_size": 6144,
+      "max_position_embeddings": 40960,
+      "max_window_layers": 48,
+      "mlp_only_layers": [],
+      "model_type": "qwen3_moe",
+      "moe_intermediate_size": 768,
+      "norm_topk_prob": true,
+      "num_attention_heads": 32,
+      "num_experts": 128,
+      "num_experts_per_tok": 8,
+      "num_hidden_layers": 48,
+      "num_key_value_heads": 4,
+      "output_router_logits": false,
+      "rms_norm_eps": 0.000001,
+      "rope_scaling": null,
+      "rope_theta": 1000000,
+      "router_aux_loss_coef": 0.001,
+      "sliding_window": null,
+      "tie_word_embeddings": false,
+      "torch_dtype": "bfloat16",
+      "transformers_version": "4.51.0",
+      "use_cache": true,
+      "use_sliding_window": false,
+      "vocab_size": 151936
+    },
+    "raw_config_bytes": 817,
+    "context": {
+      "length": 128000,
+      "effective_length": 128000,
+      "recommended_context": 128000,
+      "is_unlimited": false,
+      "is_approx": false,
+      "raw": "128,000",
+      "input_length": null,
+      "output_length": null,
+      "config_context": {
+        "value": 40960,
+        "source": "config.json",
+        "source_path": "max_position_embeddings",
+        "confidence": 0.95,
+        "status": "verified",
+        "sources": [
+          {
+            "kind": "config",
+            "url": "https://huggingface.co/Qwen/Qwen3-30B-A3B/blob/main/config.json",
+            "confidence": 1
+          },
+          {
+            "kind": "config_raw",
+            "url": "https://huggingface.co/Qwen/Qwen3-30B-A3B/raw/main/config.json",
+            "confidence": 1
+          }
+        ],
+        "note": null
+      },
+      "advertised_context": {
+        "value": 128000,
+        "source": "gallery",
+        "confidence": 0.9,
+        "status": "verified",
+        "sources": [
+          {
+            "kind": "gallery_image",
+            "url": "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/qwen3-30b-a3b.webp",
+            "confidence": 0.9
+          }
+        ],
+        "note": null
+      },
+      "native_context": {
+        "value": 40960,
+        "source": "config_max_position_embeddings",
+        "confidence": 0.55,
+        "status": "inferred",
+        "sources": [
+          {
+            "kind": "config",
+            "url": "https://huggingface.co/Qwen/Qwen3-30B-A3B/blob/main/config.json",
+            "confidence": 1
+          },
+          {
+            "kind": "config_raw",
+            "url": "https://huggingface.co/Qwen/Qwen3-30B-A3B/raw/main/config.json",
+            "confidence": 1
+          }
+        ],
+        "note": null
+      },
+      "trained_context": {
+        "value": 40960,
+        "source": "config_max_position_embeddings",
+        "confidence": 0.5,
+        "status": "inferred",
+        "sources": [],
+        "note": "requires tech report to confirm trained window"
+      },
+      "tested_context": {
+        "value": null,
+        "status": "unverified",
+        "confidence": 0,
+        "sources": [],
+        "note": "no independent HELM/BenchLM long-context eval; requires Needle-in-Haystack run"
+      },
+      "api_context": {
+        "value": null,
+        "status": "unverified",
+        "confidence": 0,
+        "sources": [],
+        "note": "requires live API max_tokens probe; may differ from advertised"
+      },
+      "conflict": true,
+      "conflict_note": "gallery 128000 vs config 40960",
+      "resolution": "split contexts; display=advertised (128000), config=40960; no longer auto-trust config",
+      "verified_source": "split",
+      "confidence": 0.62,
+      "config_max_position_embeddings": 40960,
+      "config_source_path": "max_position_embeddings",
+      "_legacy_length": 128000,
+      "_legacy_resolution": "trust config 40960 over gallery 128000 (YaRN/RoPE scaling or gallery stale)",
+      "schema_version": "2.2-six-contexts"
+    },
+    "training": {
+      "dataset": {
+        "value": "Qwen3 36T subset",
+        "status": "verified",
+        "confidence": 0.95,
+        "sources": [
+          {
+            "kind": "benchmark",
+            "url": "https://artificialanalysis.ai/models/qwen3-30b-a3b-instruct",
+            "confidence": 0.9
+          }
+        ],
+        "note": null
+      },
+      "tokens": {
+        "value": 36000,
+        "unit": "B",
+        "status": "verified",
+        "confidence": 0.95,
+        "sources": [
+          {
+            "kind": "config",
+            "url": "https://huggingface.co/Qwen/Qwen3-30B-A3B/blob/main/config.json",
+            "confidence": 1
+          }
+        ],
+        "note": null
+      },
+      "tokens_b": 36000,
+      "hardware": {
+        "value": "Undisclosed",
+        "status": "undisclosed",
+        "confidence": 0.35,
+        "sources": [],
+        "note": null
+      },
+      "compute": {
+        "value": null,
+        "status": "undisclosed",
+        "confidence": 0,
+        "sources": [],
+        "note": null
+      },
+      "post_training": {
+        "value": [
+          "GRPO"
+        ],
+        "status": "verified",
+        "confidence": 0.95,
+        "sources": [
+          {
+            "kind": "config",
+            "url": "https://huggingface.co/Qwen/Qwen3-30B-A3B/blob/main/config.json",
+            "confidence": 1
+          }
+        ],
+        "note": null
+      },
+      "post_training_methods": [
+        "GRPO"
+      ],
+      "_flat": {
+        "dataset": "Qwen3 36T subset",
+        "hardware": "Undisclosed",
+        "compute": null
+      },
+      "overall_status": "mixed",
+      "overall_confidence": 0.8,
+      "verified_status": "mixed",
+      "confidence": 0.8,
+      "note": "verified from tech report/blog",
+      "_legacy_verified_status": "verified",
+      "_legacy_confidence": 0.95,
+      "schema_version": "2.2-per-field",
+      "_provenance_note": "per-field status fix 2.2: verified no longer whole-block; each claim now has status+confidence+sources"
+    },
+    "sources": [
+      {
+        "kind": "config",
+        "url": "https://huggingface.co/Qwen/Qwen3-30B-A3B/blob/main/config.json",
+        "repo": "Qwen/Qwen3-30B-A3B",
+        "label": "config.json",
+        "verified_status": "verified",
+        "confidence": 1,
+        "note": "fetch ok"
+      },
+      {
+        "kind": "config_raw",
+        "url": "https://huggingface.co/Qwen/Qwen3-30B-A3B/raw/main/config.json",
+        "repo": "Qwen/Qwen3-30B-A3B",
+        "label": "config.json raw",
+        "verified_status": "verified",
+        "confidence": 1,
+        "note": "bytes 963"
+      },
+      {
+        "kind": "gallery_image",
+        "url": "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/qwen3-30b-a3b.webp",
+        "repo": null,
+        "label": null,
+        "verified_status": "unverified",
+        "confidence": 0.9,
+        "note": "Raschka gallery"
+      },
+      {
+        "kind": "benchmark",
+        "url": "https://artificialanalysis.ai/models/qwen3-30b-a3b-instruct",
+        "repo": null,
+        "label": "Artificial Analysis",
+        "verified_status": "verified",
+        "confidence": 0.9,
+        "note": "AA index 6.8"
+      },
+      {
+        "kind": "license",
+        "url": "https://huggingface.co/Qwen/Qwen3-30B-A3B/blob/main/LICENSE",
+        "repo": null,
+        "label": "Apache License 2.0",
+        "verified_status": "unverified",
+        "confidence": 0.9
+      }
+    ]
+  },
+  {
+    "index": 86,
+    "model_id": "qwen3-8b",
+    "model_name": "Qwen3 8B",
+    "company": "Alibaba Cloud",
+    "release_date": "2025-04-28",
+    "family": "qwen3",
+    "summary": "Dense Qwen3 baseline used here to show how little OLMo 3 changed the overall decoder recipe.",
+    "yichen": {
+      "vocab": 151936,
+      "depth": 36,
+      "dim": 4096,
+      "norm": "RMSNorm",
+      "parallel_layer": "Serial",
+      "pre_norm": "Pre",
+      "pos_emb": "RoPE",
+      "activation": "silu",
+      "attn_type": "gqa",
+      "context": 128000,
+      "bias_display": "no bias",
+      "tied_display": "untied",
+      "qk_norm": "—",
+      "sliding": "—",
+      "stability": "RMSNorm eps=1e-06"
+    },
+    "math_tricks": {
+      "attention_bias": false,
+      "attention_bias_display": "no bias",
+      "tie_word_embeddings": false,
+      "tie_display": "untied",
+      "rms_norm_eps": 0.000001,
+      "rope_theta": 1000000,
+      "hidden_act": "silu",
+      "swiglu_limit": null,
+      "use_qk_norm": null,
+      "learnable_sink": null,
+      "rope_scaling": null,
+      "attention_dropout": 0,
+      "norm_topk_prob": null,
+      "initializer_range": 0.02,
+      "tricks": [
+        "RMSNorm eps=1e-06"
+      ],
+      "tricks_display": "RMSNorm eps=1e-06"
+    },
+    "scale": {
+      "total_params": 8000000000,
+      "active_params": 8000000000,
+      "active_pct": 100,
+      "extra": {
+        "mtp_params": null,
+        "lora_mb": null,
+        "lora_rank": null,
+        "backbone_label": "total",
+        "ngram_params": null,
+        "embedding_params": null
+      },
+      "raw": "8B parameters",
+      "parsed": true
+    },
+    "architecture": {
+      "decoder_type": "dense",
+      "decoder_display": "Dense",
+      "attention": {
+        "primary": "gqa",
+        "raw": "GQA with QK-Norm",
+        "options": [],
+        "ratio": null
+      },
+      "layer_mix": {
+        "raw": "36 GQA",
+        "total_layers": 36,
+        "by_type": {},
+        "mtp_layers": 0
+      },
+      "hidden_size": 4096,
+      "hidden_size_source": "hidden_size",
+      "num_hidden_layers": 36,
+      "num_attention_heads": 32,
+      "num_key_value_heads": 8,
+      "head_dim": 128,
+      "intermediate_size": 12288,
+      "vocab_size": 151936,
+      "max_position_embeddings": 40960,
+      "rope": {
+        "theta": 1000000,
+        "rope_scaling": null
+      },
+      "sliding_window": null,
+      "layer_types": null,
+      "moe": {},
+      "model_type": "qwen3",
+      "architectures": [
+        "Qwen3ForCausalLM"
+      ],
+      "raw_config_source": "Qwen/Qwen3-8B:config.json"
+    },
+    "raw_config": {
+      "architectures": [
+        "Qwen3ForCausalLM"
+      ],
+      "attention_bias": false,
+      "attention_dropout": 0,
+      "bos_token_id": 151643,
+      "eos_token_id": 151645,
+      "head_dim": 128,
+      "hidden_act": "silu",
+      "hidden_size": 4096,
+      "initializer_range": 0.02,
+      "intermediate_size": 12288,
+      "max_position_embeddings": 40960,
+      "max_window_layers": 36,
+      "model_type": "qwen3",
+      "num_attention_heads": 32,
+      "num_hidden_layers": 36,
+      "num_key_value_heads": 8,
+      "rms_norm_eps": 0.000001,
+      "rope_scaling": null,
+      "rope_theta": 1000000,
+      "sliding_window": null,
+      "tie_word_embeddings": false,
+      "torch_dtype": "bfloat16",
+      "transformers_version": "4.51.0",
+      "use_cache": true,
+      "use_sliding_window": false,
+      "vocab_size": 151936
+    },
+    "raw_config_bytes": 616,
+    "context": {
+      "length": 128000,
+      "effective_length": 128000,
+      "recommended_context": 128000,
+      "is_unlimited": false,
+      "is_approx": false,
+      "raw": "128,000",
+      "input_length": null,
+      "output_length": null,
+      "config_context": {
+        "value": 40960,
+        "source": "config.json",
+        "source_path": "max_position_embeddings",
+        "confidence": 0.95,
+        "status": "verified",
+        "sources": [
+          {
+            "kind": "config",
+            "url": "https://huggingface.co/Qwen/Qwen3-8B/blob/main/config.json",
+            "confidence": 1
+          },
+          {
+            "kind": "config_raw",
+            "url": "https://huggingface.co/Qwen/Qwen3-8B/raw/main/config.json",
+            "confidence": 1
+          }
+        ],
+        "note": null
+      },
+      "advertised_context": {
+        "value": 128000,
+        "source": "gallery",
+        "confidence": 0.9,
+        "status": "verified",
+        "sources": [
+          {
+            "kind": "gallery_image",
+            "url": "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/qwen3-8b.webp",
+            "confidence": 0.9
+          }
+        ],
+        "note": null
+      },
+      "native_context": {
+        "value": 40960,
+        "source": "config_max_position_embeddings",
+        "confidence": 0.55,
+        "status": "inferred",
+        "sources": [
+          {
+            "kind": "config",
+            "url": "https://huggingface.co/Qwen/Qwen3-8B/blob/main/config.json",
+            "confidence": 1
+          },
+          {
+            "kind": "config_raw",
+            "url": "https://huggingface.co/Qwen/Qwen3-8B/raw/main/config.json",
+            "confidence": 1
+          }
+        ],
+        "note": null
+      },
+      "trained_context": {
+        "value": 40960,
+        "source": "config_max_position_embeddings",
+        "confidence": 0.5,
+        "status": "inferred",
+        "sources": [],
+        "note": "requires tech report to confirm trained window"
+      },
+      "tested_context": {
+        "value": null,
+        "status": "unverified",
+        "confidence": 0,
+        "sources": [],
+        "note": "no independent HELM/BenchLM long-context eval; requires Needle-in-Haystack run"
+      },
+      "api_context": {
+        "value": null,
+        "status": "unverified",
+        "confidence": 0,
+        "sources": [],
+        "note": "requires live API max_tokens probe; may differ from advertised"
+      },
+      "conflict": true,
+      "conflict_note": "gallery 128000 vs config 40960",
+      "resolution": "split contexts; display=advertised (128000), config=40960; no longer auto-trust config",
+      "verified_source": "split",
+      "confidence": 0.62,
+      "config_max_position_embeddings": 40960,
+      "config_source_path": "max_position_embeddings",
+      "_legacy_length": 128000,
+      "_legacy_resolution": "trust config 40960 over gallery 128000 (YaRN/RoPE scaling or gallery stale)",
+      "schema_version": "2.2-six-contexts"
+    },
+    "training": {
+      "dataset": {
+        "value": "Qwen3 shared 36T (verified)",
+        "status": "verified",
+        "confidence": 0.95,
+        "sources": [
+          {
+            "kind": "tech_report",
+            "url": "https://arxiv.org/pdf/2505.09388",
+            "confidence": 0.95
+          },
+          {
+            "kind": "benchmark",
+            "url": "https://artificialanalysis.ai/models/qwen3-8b-instruct",
+            "confidence": 0.9
+          }
+        ],
+        "note": null
+      },
+      "tokens": {
+        "value": 36000,
+        "unit": "B",
+        "status": "verified",
+        "confidence": 0.95,
+        "sources": [
+          {
+            "kind": "tech_report",
+            "url": "https://arxiv.org/pdf/2505.09388",
+            "confidence": 0.95
+          }
+        ],
+        "note": null
+      },
+      "tokens_b": 36000,
+      "hardware": {
+        "value": "Undisclosed Alibaba H100",
+        "status": "undisclosed",
+        "confidence": 0.35,
+        "sources": [],
+        "note": null
+      },
+      "compute": {
+        "value": null,
+        "status": "undisclosed",
+        "confidence": 0,
+        "sources": [],
+        "note": null
+      },
+      "post_training": {
+        "value": [
+          "GRPO RL"
+        ],
+        "status": "verified",
+        "confidence": 0.95,
+        "sources": [
+          {
+            "kind": "tech_report",
+            "url": "https://arxiv.org/pdf/2505.09388",
+            "confidence": 0.95
+          }
+        ],
+        "note": null
+      },
+      "post_training_methods": [
+        "GRPO RL"
+      ],
+      "_flat": {
+        "dataset": "Qwen3 shared 36T (verified)",
+        "hardware": "Undisclosed Alibaba H100",
+        "compute": null
+      },
+      "overall_status": "mixed",
+      "overall_confidence": 0.8,
+      "verified_status": "mixed",
+      "confidence": 0.8,
+      "note": "verified from tech report/blog",
+      "_legacy_verified_status": "verified",
+      "_legacy_confidence": 0.95,
+      "schema_version": "2.2-per-field",
+      "_provenance_note": "per-field status fix 2.2: verified no longer whole-block; each claim now has status+confidence+sources"
+    },
+    "sources": [
+      {
+        "kind": "config",
+        "url": "https://huggingface.co/Qwen/Qwen3-8B/blob/main/config.json",
+        "repo": "Qwen/Qwen3-8B",
+        "label": "config.json",
+        "verified_status": "verified",
+        "confidence": 1,
+        "note": "fetch ok"
+      },
+      {
+        "kind": "config_raw",
+        "url": "https://huggingface.co/Qwen/Qwen3-8B/raw/main/config.json",
+        "repo": "Qwen/Qwen3-8B",
+        "label": "config.json raw",
+        "verified_status": "verified",
+        "confidence": 1,
+        "note": "bytes 728"
+      },
+      {
+        "kind": "tech_report",
+        "url": "https://arxiv.org/pdf/2505.09388",
+        "repo": null,
+        "label": null,
+        "arxiv_id": "2505.09388",
+        "verified_status": "verified",
+        "confidence": 0.95
+      },
+      {
+        "kind": "gallery_image",
+        "url": "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/qwen3-8b.webp",
+        "repo": null,
+        "label": null,
+        "verified_status": "unverified",
+        "confidence": 0.9,
+        "note": "Raschka gallery"
+      },
+      {
+        "kind": "benchmark",
+        "url": "https://artificialanalysis.ai/models/qwen3-8b-instruct",
+        "repo": null,
+        "label": "Artificial Analysis",
+        "verified_status": "verified",
+        "confidence": 0.9,
+        "note": "AA index 5.1"
+      },
+      {
+        "kind": "license",
+        "url": "https://huggingface.co/Qwen/Qwen3-8B/blob/main/LICENSE",
+        "repo": null,
+        "label": "Apache License 2.0",
+        "verified_status": "unverified",
+        "confidence": 0.9
+      }
+    ]
+  },
+  {
+    "index": 87,
+    "model_id": "qwen3-4b",
+    "model_name": "Qwen3 4B",
+    "company": "Alibaba Cloud",
+    "release_date": "2025-04-28",
+    "family": "qwen3",
+    "summary": "Mid-size dense Qwen3 model used here as a clean baseline against SmolLM3 and Tiny Aya.",
+    "yichen": {
+      "vocab": 151936,
+      "depth": 36,
+      "dim": 2560,
+      "norm": "RMSNorm",
+      "parallel_layer": "Serial",
+      "pre_norm": "Pre",
+      "pos_emb": "RoPE",
+      "activation": "silu",
+      "attn_type": "gqa",
+      "context": 32768,
+      "bias_display": "no bias",
+      "tied_display": "tied",
+      "qk_norm": "—",
+      "sliding": "—",
+      "stability": "RMSNorm eps=1e-06"
+    },
+    "math_tricks": {
+      "attention_bias": false,
+      "attention_bias_display": "no bias",
+      "tie_word_embeddings": true,
+      "tie_display": "tied",
+      "rms_norm_eps": 0.000001,
+      "rope_theta": 1000000,
+      "hidden_act": "silu",
+      "swiglu_limit": null,
+      "use_qk_norm": null,
+      "learnable_sink": null,
+      "rope_scaling": null,
+      "attention_dropout": 0,
+      "norm_topk_prob": null,
+      "initializer_range": 0.02,
+      "tricks": [
+        "RMSNorm eps=1e-06"
+      ],
+      "tricks_display": "RMSNorm eps=1e-06"
+    },
+    "scale": {
+      "total_params": 4000000000,
+      "active_params": 4000000000,
+      "active_pct": 100,
+      "extra": {
+        "mtp_params": null,
+        "lora_mb": null,
+        "lora_rank": null,
+        "backbone_label": "total",
+        "ngram_params": null,
+        "embedding_params": null
+      },
+      "raw": "4B parameters",
+      "parsed": true
+    },
+    "architecture": {
+      "decoder_type": "dense",
+      "decoder_display": "Dense",
+      "attention": {
+        "primary": "gqa",
+        "raw": "GQA with QK-Norm",
+        "options": [],
+        "ratio": null
+      },
+      "layer_mix": {
+        "raw": "36 GQA",
+        "total_layers": 36,
+        "by_type": {},
+        "mtp_layers": 0
+      },
+      "hidden_size": 2560,
+      "hidden_size_source": "hidden_size",
+      "num_hidden_layers": 36,
+      "num_attention_heads": 32,
+      "num_key_value_heads": 8,
+      "head_dim": 128,
+      "intermediate_size": 9728,
+      "vocab_size": 151936,
+      "max_position_embeddings": 40960,
+      "rope": {
+        "theta": 1000000,
+        "rope_scaling": null
+      },
+      "sliding_window": null,
+      "layer_types": null,
+      "moe": {},
+      "model_type": "qwen3",
+      "architectures": [
+        "Qwen3ForCausalLM"
+      ],
+      "raw_config_source": "Qwen/Qwen3-4B:config.json"
+    },
+    "raw_config": {
+      "architectures": [
+        "Qwen3ForCausalLM"
+      ],
+      "attention_bias": false,
+      "attention_dropout": 0,
+      "bos_token_id": 151643,
+      "eos_token_id": 151645,
+      "head_dim": 128,
+      "hidden_act": "silu",
+      "hidden_size": 2560,
+      "initializer_range": 0.02,
+      "intermediate_size": 9728,
+      "max_position_embeddings": 40960,
+      "max_window_layers": 36,
+      "model_type": "qwen3",
+      "num_attention_heads": 32,
+      "num_hidden_layers": 36,
+      "num_key_value_heads": 8,
+      "rms_norm_eps": 0.000001,
+      "rope_scaling": null,
+      "rope_theta": 1000000,
+      "sliding_window": null,
+      "tie_word_embeddings": true,
+      "torch_dtype": "bfloat16",
+      "transformers_version": "4.51.0",
+      "use_cache": true,
+      "use_sliding_window": false,
+      "vocab_size": 151936
+    },
+    "raw_config_bytes": 614,
+    "context": {
+      "length": 32768,
+      "effective_length": 32768,
+      "recommended_context": 32768,
+      "is_unlimited": false,
+      "is_approx": false,
+      "raw": "32,768",
+      "input_length": null,
+      "output_length": null,
+      "config_context": {
+        "value": 40960,
+        "source": "config.json",
+        "source_path": "max_position_embeddings",
+        "confidence": 0.95,
+        "status": "verified",
+        "sources": [
+          {
+            "kind": "config",
+            "url": "https://huggingface.co/Qwen/Qwen3-4B/blob/main/config.json",
+            "confidence": 1
+          },
+          {
+            "kind": "config_raw",
+            "url": "https://huggingface.co/Qwen/Qwen3-4B/raw/main/config.json",
+            "confidence": 1
+          }
+        ],
+        "note": null
+      },
+      "advertised_context": {
+        "value": 32768,
+        "source": "gallery",
+        "confidence": 0.9,
+        "status": "verified",
+        "sources": [
+          {
+            "kind": "gallery_image",
+            "url": "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/qwen3-4b.webp",
+            "confidence": 0.9
+          }
+        ],
+        "note": null
+      },
+      "native_context": {
+        "value": 40960,
+        "source": "config_max_position_embeddings",
+        "confidence": 0.55,
+        "status": "inferred",
+        "sources": [
+          {
+            "kind": "config",
+            "url": "https://huggingface.co/Qwen/Qwen3-4B/blob/main/config.json",
+            "confidence": 1
+          },
+          {
+            "kind": "config_raw",
+            "url": "https://huggingface.co/Qwen/Qwen3-4B/raw/main/config.json",
+            "confidence": 1
+          }
+        ],
+        "note": null
+      },
+      "trained_context": {
+        "value": 40960,
+        "source": "config_max_position_embeddings",
+        "confidence": 0.5,
+        "status": "inferred",
+        "sources": [],
+        "note": "requires tech report to confirm trained window"
+      },
+      "tested_context": {
+        "value": null,
+        "status": "unverified",
+        "confidence": 0,
+        "sources": [],
+        "note": "no independent HELM/BenchLM long-context eval; requires Needle-in-Haystack run"
+      },
+      "api_context": {
+        "value": null,
+        "status": "unverified",
+        "confidence": 0,
+        "sources": [],
+        "note": "requires live API max_tokens probe; may differ from advertised"
+      },
+      "conflict": true,
+      "conflict_note": "gallery 32768 vs config 40960",
+      "resolution": "split contexts; display=advertised (32768), config=40960; no longer auto-trust config",
+      "verified_source": "split",
+      "confidence": 0.62,
+      "config_max_position_embeddings": 40960,
+      "config_source_path": "max_position_embeddings",
+      "_legacy_length": 32768,
+      "_legacy_resolution": "trust config 40960 over gallery 32768 (YaRN/RoPE scaling or gallery stale)",
+      "schema_version": "2.2-six-contexts"
+    },
+    "training": {
+      "dataset": {
+        "value": "Qwen3 shared 36T (verified)",
+        "status": "verified",
+        "confidence": 0.95,
+        "sources": [
+          {
+            "kind": "tech_report",
+            "url": "https://arxiv.org/pdf/2505.09388",
+            "confidence": 0.95
+          },
+          {
+            "kind": "benchmark",
+            "url": "https://artificialanalysis.ai/models/qwen3-4b-instruct",
+            "confidence": 0.9
+          }
+        ],
+        "note": null
+      },
+      "tokens": {
+        "value": 36000,
+        "unit": "B",
+        "status": "verified",
+        "confidence": 0.95,
+        "sources": [
+          {
+            "kind": "tech_report",
+            "url": "https://arxiv.org/pdf/2505.09388",
+            "confidence": 0.95
+          }
+        ],
+        "note": null
+      },
+      "tokens_b": 36000,
+      "hardware": {
+        "value": "Undisclosed Alibaba H100",
+        "status": "undisclosed",
+        "confidence": 0.35,
+        "sources": [],
+        "note": null
+      },
+      "compute": {
+        "value": null,
+        "status": "undisclosed",
+        "confidence": 0,
+        "sources": [],
+        "note": null
+      },
+      "post_training": {
+        "value": [
+          "GRPO RL"
+        ],
+        "status": "verified",
+        "confidence": 0.95,
+        "sources": [
+          {
+            "kind": "tech_report",
+            "url": "https://arxiv.org/pdf/2505.09388",
+            "confidence": 0.95
+          }
+        ],
+        "note": null
+      },
+      "post_training_methods": [
+        "GRPO RL"
+      ],
+      "_flat": {
+        "dataset": "Qwen3 shared 36T (verified)",
+        "hardware": "Undisclosed Alibaba H100",
+        "compute": null
+      },
+      "overall_status": "mixed",
+      "overall_confidence": 0.8,
+      "verified_status": "mixed",
+      "confidence": 0.8,
+      "note": "verified from tech report/blog",
+      "_legacy_verified_status": "verified",
+      "_legacy_confidence": 0.95,
+      "schema_version": "2.2-per-field",
+      "_provenance_note": "per-field status fix 2.2: verified no longer whole-block; each claim now has status+confidence+sources"
+    },
+    "sources": [
+      {
+        "kind": "config",
+        "url": "https://huggingface.co/Qwen/Qwen3-4B/blob/main/config.json",
+        "repo": "Qwen/Qwen3-4B",
+        "label": "config.json",
+        "verified_status": "verified",
+        "confidence": 1,
+        "note": "fetch ok"
+      },
+      {
+        "kind": "config_raw",
+        "url": "https://huggingface.co/Qwen/Qwen3-4B/raw/main/config.json",
+        "repo": "Qwen/Qwen3-4B",
+        "label": "config.json raw",
+        "verified_status": "verified",
+        "confidence": 1,
+        "note": "bytes 726"
+      },
+      {
+        "kind": "tech_report",
+        "url": "https://arxiv.org/pdf/2505.09388",
+        "repo": null,
+        "label": null,
+        "arxiv_id": "2505.09388",
+        "verified_status": "verified",
+        "confidence": 0.95
+      },
+      {
+        "kind": "gallery_image",
+        "url": "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/qwen3-4b.webp",
+        "repo": null,
+        "label": null,
+        "verified_status": "unverified",
+        "confidence": 0.9,
+        "note": "Raschka gallery"
+      },
+      {
+        "kind": "benchmark",
+        "url": "https://artificialanalysis.ai/models/qwen3-4b-instruct",
+        "repo": null,
+        "label": "Artificial Analysis",
+        "verified_status": "verified",
+        "confidence": 0.9,
+        "note": "AA index 6.8"
+      },
+      {
+        "kind": "license",
+        "url": "https://huggingface.co/Qwen/Qwen3-4B/blob/main/LICENSE",
+        "repo": null,
+        "label": "Apache License 2.0",
+        "verified_status": "unverified",
+        "confidence": 0.9
+      }
+    ]
+  },
+  {
+    "index": 88,
+    "model_id": "qwen3-0-6b",
+    "model_name": "Qwen3 0.6B",
+    "company": "Alibaba Cloud",
+    "release_date": "2025-04-28",
+    "family": "qwen3",
+    "summary": "Tiny current-generation Qwen model that trades width for more depth and a low memory footprint.",
+    "yichen": {
+      "vocab": 151936,
+      "depth": 28,
+      "dim": 1024,
+      "norm": "RMSNorm",
+      "parallel_layer": "Serial",
+      "pre_norm": "Pre",
+      "pos_emb": "RoPE",
+      "activation": "silu",
+      "attn_type": "gqa",
+      "context": 32768,
+      "bias_display": "no bias",
+      "tied_display": "tied",
+      "qk_norm": "—",
+      "sliding": "—",
+      "stability": "RMSNorm eps=1e-06"
+    },
+    "math_tricks": {
+      "attention_bias": false,
+      "attention_bias_display": "no bias",
+      "tie_word_embeddings": true,
+      "tie_display": "tied",
+      "rms_norm_eps": 0.000001,
+      "rope_theta": 1000000,
+      "hidden_act": "silu",
+      "swiglu_limit": null,
+      "use_qk_norm": null,
+      "learnable_sink": null,
+      "rope_scaling": null,
+      "attention_dropout": 0,
+      "norm_topk_prob": null,
+      "initializer_range": 0.02,
+      "tricks": [
+        "RMSNorm eps=1e-06"
+      ],
+      "tricks_display": "RMSNorm eps=1e-06"
+    },
+    "scale": {
+      "total_params": 600000000,
+      "active_params": 600000000,
+      "active_pct": 100,
+      "extra": {
+        "mtp_params": null,
+        "lora_mb": null,
+        "lora_rank": null,
+        "backbone_label": "total",
+        "ngram_params": null,
+        "embedding_params": null
+      },
+      "raw": "0.6B parameters",
+      "parsed": true
+    },
+    "architecture": {
+      "decoder_type": "dense",
+      "decoder_display": "Dense",
+      "attention": {
+        "primary": "gqa",
+        "raw": "GQA",
+        "options": [],
+        "ratio": null
+      },
+      "layer_mix": {
+        "raw": "28 GQA",
+        "total_layers": 28,
+        "by_type": {},
+        "mtp_layers": 0
+      },
+      "hidden_size": 1024,
+      "hidden_size_source": "hidden_size",
+      "num_hidden_layers": 28,
+      "num_attention_heads": 16,
+      "num_key_value_heads": 8,
+      "head_dim": 128,
+      "intermediate_size": 3072,
+      "vocab_size": 151936,
+      "max_position_embeddings": 32768,
+      "rope": {
+        "theta": 1000000,
+        "rope_scaling": null
+      },
+      "sliding_window": null,
+      "layer_types": null,
+      "moe": {},
+      "model_type": "qwen3",
+      "architectures": [
+        "Qwen3ForCausalLM"
+      ],
+      "raw_config_source": "Qwen/Qwen3-0.6B-Base:config.json"
+    },
+    "raw_config": {
+      "architectures": [
+        "Qwen3ForCausalLM"
+      ],
+      "attention_bias": false,
+      "attention_dropout": 0,
+      "bos_token_id": 151643,
+      "eos_token_id": 151643,
+      "head_dim": 128,
+      "hidden_act": "silu",
+      "hidden_size": 1024,
+      "initializer_range": 0.02,
+      "intermediate_size": 3072,
+      "max_position_embeddings": 32768,
+      "max_window_layers": 28,
+      "model_type": "qwen3",
+      "num_attention_heads": 16,
+      "num_hidden_layers": 28,
+      "num_key_value_heads": 8,
+      "rms_norm_eps": 0.000001,
+      "rope_scaling": null,
+      "rope_theta": 1000000,
+      "sliding_window": null,
+      "tie_word_embeddings": true,
+      "torch_dtype": "bfloat16",
+      "transformers_version": "4.51.0",
+      "use_cache": true,
+      "use_sliding_window": false,
+      "vocab_size": 151936
+    },
+    "raw_config_bytes": 614,
+    "context": {
+      "length": 32768,
+      "effective_length": 32768,
+      "recommended_context": 32768,
+      "is_unlimited": false,
+      "is_approx": false,
+      "raw": "32,768",
+      "input_length": null,
+      "output_length": null,
+      "config_context": {
+        "value": 32768,
+        "source": "config.json",
+        "source_path": "max_position_embeddings",
+        "confidence": 0.95,
+        "status": "verified",
+        "sources": [
+          {
+            "kind": "config",
+            "url": "https://huggingface.co/Qwen/Qwen3-0.6B-Base/blob/main/config.json",
+            "confidence": 1
+          },
+          {
+            "kind": "config_raw",
+            "url": "https://huggingface.co/Qwen/Qwen3-0.6B-Base/raw/main/config.json",
+            "confidence": 1
+          }
+        ],
+        "note": null
+      },
+      "advertised_context": {
+        "value": 32768,
+        "source": "gallery/config",
+        "confidence": 0.9,
+        "status": "verified",
+        "sources": [
+          {
+            "kind": "gallery_image",
+            "url": "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/qwen3-0-6b.webp",
+            "confidence": 0.9
+          }
+        ],
+        "note": null
+      },
+      "native_context": {
+        "value": 32768,
+        "source": "config_max_position_embeddings",
+        "confidence": 0.55,
+        "status": "inferred",
+        "sources": [
+          {
+            "kind": "config",
+            "url": "https://huggingface.co/Qwen/Qwen3-0.6B-Base/blob/main/config.json",
+            "confidence": 1
+          },
+          {
+            "kind": "config_raw",
+            "url": "https://huggingface.co/Qwen/Qwen3-0.6B-Base/raw/main/config.json",
+            "confidence": 1
+          }
+        ],
+        "note": null
+      },
+      "trained_context": {
+        "value": 32768,
+        "source": "config_max_position_embeddings",
+        "confidence": 0.5,
+        "status": "inferred",
+        "sources": [],
+        "note": "requires tech report to confirm trained window"
+      },
+      "tested_context": {
+        "value": null,
+        "status": "unverified",
+        "confidence": 0,
+        "sources": [],
+        "note": "no independent HELM/BenchLM long-context eval; requires Needle-in-Haystack run"
+      },
+      "api_context": {
+        "value": null,
+        "status": "unverified",
+        "confidence": 0,
+        "sources": [],
+        "note": "requires live API max_tokens probe; may differ from advertised"
+      },
+      "conflict": false,
+      "conflict_note": null,
+      "resolution": "consistent within 2%",
+      "verified_source": "config+gallery (consistent)",
+      "confidence": 0.9,
+      "config_max_position_embeddings": 32768,
+      "config_source_path": "max_position_embeddings",
+      "_legacy_length": 32768,
+      "_legacy_resolution": "consistent within 2%",
+      "schema_version": "2.2-six-contexts"
+    },
+    "training": {
+      "dataset": {
+        "value": "Qwen3 shared 36T subset (verified family)",
+        "status": "verified",
+        "confidence": 0.95,
+        "sources": [
+          {
+            "kind": "benchmark",
+            "url": "https://artificialanalysis.ai/models/qwen3-0.6b-instruct",
+            "confidence": 0.9
+          }
+        ],
+        "note": null
+      },
+      "tokens": {
+        "value": 36000,
+        "unit": "B",
+        "status": "verified",
+        "confidence": 0.95,
+        "sources": [
+          {
+            "kind": "config",
+            "url": "https://huggingface.co/Qwen/Qwen3-0.6B-Base/blob/main/config.json",
+            "confidence": 1
+          }
+        ],
+        "note": null
+      },
+      "tokens_b": 36000,
+      "hardware": {
+        "value": "Undisclosed Alibaba H100 (family)",
+        "status": "undisclosed",
+        "confidence": 0.35,
+        "sources": [],
+        "note": null
+      },
+      "compute": {
+        "value": null,
+        "status": "undisclosed",
+        "confidence": 0,
+        "sources": [],
+        "note": null
+      },
+      "post_training": {
+        "value": [
+          "Distilled from Qwen3 32B (Strong-to-Weak)"
+        ],
+        "status": "verified",
+        "confidence": 0.95,
+        "sources": [
+          {
+            "kind": "config",
+            "url": "https://huggingface.co/Qwen/Qwen3-0.6B-Base/blob/main/config.json",
+            "confidence": 1
+          }
+        ],
+        "note": null
+      },
+      "post_training_methods": [
+        "Distilled from Qwen3 32B (Strong-to-Weak)"
+      ],
+      "_flat": {
+        "dataset": "Qwen3 shared 36T subset (verified family)",
+        "hardware": "Undisclosed Alibaba H100 (family)",
+        "compute": null
+      },
+      "overall_status": "mixed",
+      "overall_confidence": 0.8,
+      "verified_status": "mixed",
+      "confidence": 0.8,
+      "note": "verified from tech report/blog",
+      "_legacy_verified_status": "verified",
+      "_legacy_confidence": 0.95,
+      "schema_version": "2.2-per-field",
+      "_provenance_note": "per-field status fix 2.2: verified no longer whole-block; each claim now has status+confidence+sources"
+    },
+    "sources": [
+      {
+        "kind": "config",
+        "url": "https://huggingface.co/Qwen/Qwen3-0.6B-Base/blob/main/config.json",
+        "repo": "Qwen/Qwen3-0.6B-Base",
+        "label": "config.json",
+        "verified_status": "verified",
+        "confidence": 1,
+        "note": "fetch ok"
+      },
+      {
+        "kind": "config_raw",
+        "url": "https://huggingface.co/Qwen/Qwen3-0.6B-Base/raw/main/config.json",
+        "repo": "Qwen/Qwen3-0.6B-Base",
+        "label": "config.json raw",
+        "verified_status": "verified",
+        "confidence": 1,
+        "note": "bytes 727"
+      },
+      {
+        "kind": "gallery_image",
+        "url": "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/qwen3-0-6b.webp",
+        "repo": null,
+        "label": null,
+        "verified_status": "unverified",
+        "confidence": 0.9,
+        "note": "Raschka gallery"
+      },
+      {
+        "kind": "benchmark",
+        "url": "https://artificialanalysis.ai/models/qwen3-0.6b-instruct",
+        "repo": null,
+        "label": "Artificial Analysis",
+        "verified_status": "verified",
+        "confidence": 0.9,
+        "note": "AA index 1.0"
+      },
+      {
+        "kind": "license",
+        "url": "https://huggingface.co/Qwen/Qwen3-0.6B-Base/blob/main/LICENSE",
+        "repo": null,
+        "label": "Apache License 2.0",
+        "verified_status": "unverified",
+        "confidence": 0.9
+      }
+    ]
+  },
+  {
+    "index": 89,
+    "model_id": "llama-4-maverick",
+    "model_name": "Llama 4 Maverick",
+    "company": "Meta",
+    "release_date": "2025-04-05",
+    "family": "llama-4",
+    "summary": "Meta's large MoE follows the DeepSeek V3 playbook but with a more conventional attention stack.",
+    "yichen": {
+      "vocab": null,
+      "depth": null,
+      "dim": null,
+      "norm": "RMSNorm",
+      "parallel_layer": "Serial",
+      "pre_norm": "Pre",
+      "pos_emb": "RoPE",
+      "activation": "SwiGLU",
+      "attn_type": "gqa",
+      "context": 1000000,
+      "bias_display": "undisclosed",
+      "tied_display": "undisclosed",
+      "qk_norm": "—",
+      "sliding": "—",
+      "stability": "—"
+    },
+    "math_tricks": {
+      "attention_bias": null,
+      "attention_bias_display": "undisclosed",
+      "tie_word_embeddings": null,
+      "tie_display": "undisclosed",
+      "rms_norm_eps": null,
+      "rope_theta": null,
+      "hidden_act": null,
+      "swiglu_limit": null,
+      "use_qk_norm": null,
+      "learnable_sink": null,
+      "rope_scaling": null,
+      "attention_dropout": null,
+      "norm_topk_prob": null,
+      "initializer_range": null,
+      "tricks": [],
+      "tricks_display": "—"
+    },
+    "scale": {
+      "total_params": 400000000000,
+      "active_params": 17000000000,
+      "active_pct": 4.3,
+      "extra": {
+        "mtp_params": null,
+        "lora_mb": null,
+        "lora_rank": null,
+        "backbone_label": "total",
+        "ngram_params": null,
+        "embedding_params": null
+      },
+      "raw": "400B total, 17B active (4.3% active)",
+      "parsed": true
+    },
+    "architecture": {
+      "decoder_type": "sparse_moe",
+      "decoder_display": "Sparse MoE",
+      "attention": {
+        "primary": "gqa",
+        "raw": "GQA",
+        "options": [],
+        "ratio": null
+      },
+      "layer_mix": {
+        "raw": "36 chunked + 12 full GQA",
+        "total_layers": null,
+        "by_type": {},
+        "mtp_layers": 0
+      },
+      "hidden_size": null,
+      "hidden_size_source": null,
+      "num_hidden_layers": null,
+      "num_attention_heads": null,
+      "num_key_value_heads": null,
+      "head_dim": null,
+      "intermediate_size": null,
+      "vocab_size": null,
+      "max_position_embeddings": null,
+      "rope": {},
+      "sliding_window": null,
+      "layer_types": null,
+      "moe": {},
+      "model_type": null,
+      "architectures": [],
+      "raw_config_source": "meta-llama/Llama-4-Maverick-17B-128E-Instruct:config.json"
+    },
+    "raw_config": null,
+    "raw_config_bytes": 0,
+    "context": {
+      "length": 1000000,
+      "effective_length": 1000000,
+      "recommended_context": 1000000,
+      "is_unlimited": false,
+      "is_approx": false,
+      "raw": "1,000,000",
+      "input_length": null,
+      "output_length": null,
+      "config_context": {
+        "value": null,
+        "source": "config.json",
+        "source_path": null,
+        "confidence": 0,
+        "status": "undisclosed",
+        "sources": [
+          {
+            "kind": "config",
+            "url": "https://huggingface.co/meta-llama/Llama-4-Maverick-17B-128E-Instruct/blob/main/config.json",
+            "confidence": 0.5
+          },
+          {
+            "kind": "config_raw",
+            "url": "https://huggingface.co/meta-llama/Llama-4-Maverick-17B-128E-Instruct/raw/main/config.json",
+            "confidence": 0.3
+          }
+        ],
+        "note": "no config value"
+      },
+      "advertised_context": {
+        "value": 1000000,
+        "source": "gallery",
+        "confidence": 0.9,
+        "status": "verified",
+        "sources": [
+          {
+            "kind": "gallery_image",
+            "url": "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/llama-4-maverick-400b.webp",
+            "confidence": 0.9
+          }
+        ],
+        "note": null
+      },
+      "native_context": {
+        "value": 1000000,
+        "source": "advertised",
+        "confidence": 0.55,
+        "status": "inferred",
+        "sources": [
+          {
+            "kind": "config",
+            "url": "https://huggingface.co/meta-llama/Llama-4-Maverick-17B-128E-Instruct/blob/main/config.json",
+            "confidence": 0.5
+          },
+          {
+            "kind": "config_raw",
+            "url": "https://huggingface.co/meta-llama/Llama-4-Maverick-17B-128E-Instruct/raw/main/config.json",
+            "confidence": 0.3
+          }
+        ],
+        "note": null
+      },
+      "trained_context": {
+        "value": 1000000,
+        "source": "advertised",
+        "confidence": 0.5,
+        "status": "inferred",
+        "sources": [],
+        "note": "requires tech report to confirm trained window"
+      },
+      "tested_context": {
+        "value": null,
+        "status": "unverified",
+        "confidence": 0,
+        "sources": [],
+        "note": "no independent HELM/BenchLM long-context eval; requires Needle-in-Haystack run"
+      },
+      "api_context": {
+        "value": null,
+        "status": "unverified",
+        "confidence": 0,
+        "sources": [],
+        "note": "requires live API max_tokens probe; may differ from advertised"
+      },
+      "conflict": false,
+      "conflict_note": null,
+      "resolution": "no config (gated), trust gallery with low confidence",
+      "verified_source": "gallery",
+      "confidence": 0.6,
+      "config_max_position_embeddings": null,
+      "config_source_path": null,
+      "_legacy_length": 1000000,
+      "_legacy_resolution": "no config (gated), trust gallery with low confidence",
+      "schema_version": "2.2-six-contexts"
+    },
+    "training": {
+      "dataset": {
+        "value": "Meta Llama public web + synthetic (inferred)",
+        "status": "inferred",
+        "confidence": 0.55,
+        "sources": [],
+        "note": "(inferred"
+      },
+      "tokens": {
+        "value": 15000,
+        "unit": "B",
+        "status": "inferred",
+        "confidence": 0.52,
+        "sources": [],
+        "note": null
+      },
+      "tokens_b": 15000,
+      "hardware": {
+        "value": "Undisclosed Meta RSC H100 (inferred)",
+        "status": "inferred",
+        "confidence": 0.55,
+        "sources": [],
+        "note": null
+      },
+      "compute": {
+        "value": null,
+        "status": "undisclosed",
+        "confidence": 0,
+        "sources": [],
+        "note": null
+      },
+      "post_training": {
+        "value": [
+          "SFT + RLHF (inferred)"
+        ],
+        "status": "inferred",
+        "confidence": 0.55,
+        "sources": [],
+        "note": null
+      },
+      "post_training_methods": [
+        "SFT + RLHF (inferred)"
+      ],
+      "_flat": {
+        "dataset": "Meta Llama public web + synthetic (inferred)",
+        "hardware": "Undisclosed Meta RSC H100 (inferred)",
+        "compute": null
+      },
+      "overall_status": "inferred",
+      "overall_confidence": 0.45,
+      "verified_status": "inferred",
+      "confidence": 0.45,
+      "note": "inferred from family/company heuristic",
+      "_legacy_verified_status": "inferred",
+      "_legacy_confidence": 0.45,
+      "schema_version": "2.2-per-field",
+      "_provenance_note": "per-field status fix 2.2: verified no longer whole-block; each claim now has status+confidence+sources"
+    },
+    "sources": [
+      {
+        "kind": "config",
+        "url": "https://huggingface.co/meta-llama/Llama-4-Maverick-17B-128E-Instruct/blob/main/config.json",
+        "repo": "meta-llama/Llama-4-Maverick-17B-128E-Instruct",
+        "label": "config.json",
+        "verified_status": "unverified",
+        "confidence": 0.5,
+        "note": "fetch http_401"
+      },
+      {
+        "kind": "config_raw",
+        "url": "https://huggingface.co/meta-llama/Llama-4-Maverick-17B-128E-Instruct/raw/main/config.json",
+        "repo": "meta-llama/Llama-4-Maverick-17B-128E-Instruct",
+        "label": "config.json raw",
+        "verified_status": "failed",
+        "confidence": 0.3,
+        "note": "bytes None"
+      },
+      {
+        "kind": "tech_report",
+        "url": "https://ai.meta.com/blog/llama-4-multimodal-intelligence/",
+        "repo": null,
+        "label": null,
+        "arxiv_id": null,
+        "verified_status": "unverified",
+        "confidence": 0.7
+      },
+      {
+        "kind": "gallery_image",
+        "url": "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/llama-4-maverick-400b.webp",
+        "repo": null,
+        "label": null,
+        "verified_status": "unverified",
+        "confidence": 0.9,
+        "note": "Raschka gallery"
+      },
+      {
+        "kind": "benchmark",
+        "url": "https://artificialanalysis.ai/models/llama-4-maverick",
+        "repo": null,
+        "label": "Artificial Analysis",
+        "verified_status": "verified",
+        "confidence": 0.9,
+        "note": "AA index 14.3"
+      },
+      {
+        "kind": "license",
+        "url": "https://huggingface.co/meta-llama/Llama-4-Maverick",
+        "repo": null,
+        "label": "Llama 4 Community License Agreement",
+        "verified_status": "unverified",
+        "confidence": 0.9
+      }
+    ]
+  }
+]

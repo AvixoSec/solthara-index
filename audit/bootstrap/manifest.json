@@ -1,0 +1,881 @@
+{
+  "base_commit": "ec0a31599b7c11f2dccb8639817d88e9d35f8ffd",
+  "input_json_sha256": "5054ceb0133b4eb6249d31f5e47c10d6d8d043cf69f81bfc4b73b1b7832a4de8",
+  "input_bytes": 14009997,
+  "model_count": 101,
+  "milestone_count": 15,
+  "top_level_keys": [
+    "version",
+    "license",
+    "generated_at",
+    "source_file",
+    "total_models",
+    "stats",
+    "provenance",
+    "models",
+    "_source_file_hash_sha256",
+    "_previous_generated_at",
+    "milestones",
+    "theory"
+  ],
+  "metadata": {
+    "version": "2.4",
+    "license": "Apache 2.0",
+    "generated_at": "2026-09-01T09:58:27.088704Z",
+    "source_file": "all-configs.json",
+    "total_models": 101,
+    "stats": {
+      "total": 101,
+      "parsed_scale_ok": 101,
+      "conflicts_context": 37,
+      "gated": 9,
+      "conflicts_context_split": 37,
+      "conflicts_context_legacy_trust_config_removed": true,
+      "training_per_field_schema": "2.2",
+      "source_file_anonymized": true,
+      "generated_at_refreshed": "2026-08-31T23:29:02Z",
+      "training_fully_verified": 4,
+      "training_mixed": 37,
+      "training_inferred": 60,
+      "milestones_count": 15,
+      "math_tricks_enriched": true,
+      "theory_extended": true,
+      "yichen_enriched": true
+    },
+    "provenance": {
+      "description": "Normalized v2 from all-configs.json + sub-agent verified training/dates/benchmarks. Each claim has source + confidence + verified/inferred/rumor.",
+      "schema": "models[].scale.total_params int, context.length int, benchmarks.artificial_analysis.profile object, training verified, sources[] with confidence",
+      "date_types": "official_release vs config_publish vs gallery_add",
+      "training_coverage": "41/101 verified",
+      "date_upgrade": "HF+arXiv cross-check 77 medium, upgraded 59 to high on 2026-08-31T23:03:29.834061Z",
+      "helm_enrich": "BenchLM MMLU-Pro + HELM Capabilities fetched 15 inferred models on 2026-08-31T23:07:31.705823Z",
+      "fix_v22_applied": "2026-08-31T23:29:02Z",
+      "fix_v22_description": "per-field training status (dataset/hardware/compute/tokens/post_training each {value,status,confidence,sources}) ; context split 6 layers (config/advertised/native/trained/tested/api) ; source_file anonymized + hash ; generated_at refreshed at pipeline end ; xlstm unlimited preserved",
+      "fix_v22_training_mixed_count": 37,
+      "fix_v22_context_split_count": 38,
+      "previous_version": "2.0",
+      "source_file_hash": "5dfc078984da0457",
+      "fix_v22_training_distribution": {
+        "mixed": 37,
+        "inferred": 60,
+        "verified": 4
+      },
+      "pipeline_finished_at": "2026-08-31T23:29:02Z",
+      "gemma-4-12b_fix": "2026-08-31T23:31:00Z corrected advertised 128000->262144 per google docs, conflict resolved",
+      "fix_v23_description": "math_tricks per-model from raw_config (attention_bias/tie/rms/rope/hidden_act), 15 milestones 2017-2023, theory (optimizers/scaling/TTL/literature), image fallback + YAML export",
+      "fix_v23_date": "2026-09-01T09:08:57.530652Z",
+      "fix_v24_description": "yichen 11 cols (Vocab/Depth/Dim/Norm/Parallel/Pre-norm/PosEmb/Activation) + theory tokenizer/residual/short_conv/cross_domain to close remaining YichenZW/Superposition gaps",
+      "fix_v24_date": "2026-09-01T09:58:27.088970Z"
+    },
+    "_source_file_hash_sha256": "5dfc078984da04570394a1ff7a5084af3c8324af42ed979231ac11c8268f0c90",
+    "_previous_generated_at": "2026-08-31T22:59:46.782127Z",
+    "theory": {
+      "optimizers": [
+        {
+          "name": "AdamW",
+          "where": "Default pretrain (GPT-3, Llama, Mistral)",
+          "pros": "stable, decoupled decay",
+          "cons": "2 states/param (m,v) — memory",
+          "note": "β1=0.9 β2=0.95 weight_decay 0.1 + cosine + warmup 2k"
+        },
+        {
+          "name": "Muon (2024-25)",
+          "where": "Moonshot Kimi, Qwen3.5+",
+          "pros": "orthogonalized updates, faster converge",
+          "cons": "needs careful LR, new",
+          "note": "Replaces Adam on hidden matrices; Adam on embeddings/norms"
+        },
+        {
+          "name": "Lion / Sophia",
+          "where": "Experimental",
+          "pros": "memory 1 state",
+          "cons": "sensitive to LR",
+          "note": "Rarely in prod 2025-26, but baseline in Awesome-LM"
+        },
+        {
+          "name": "8-bit Adam / Adafactor",
+          "where": "Large-scale on limited VRAM",
+          "pros": "memory -50%",
+          "cons": "quant error",
+          "note": "For 70B+ on 8xH100 without ZeRO-3"
+        }
+      ],
+      "scaling": [
+        {
+          "law": "Chinchilla (Hoffmann 2022)",
+          "formula": "D ≈ 20×N tokens",
+          "takeaway": "70B → 1.4T tokens optimal; Llama 3 405B on 15.6T — over-trained for inference economy"
+        },
+        {
+          "law": "Llama 3 / Qwen3 empirical",
+          "formula": "~15-36T for 7-70B, LR 1.5e-4 → 8e-5",
+          "takeaway": "Over-train 2-4× Chinchilla for quality"
+        },
+        {
+          "law": "MoE scaling (Switch/DeepSeek)",
+          "formula": "Active ≈ 6-12% total, log-linear expert scaling",
+          "takeaway": "770B/49B (6.4%) — balance VRAM vs quality; 256 routed + 1 shared typical"
+        },
+        {
+          "law": "Long-context scaling",
+          "formula": "RoPE θ 10k→500k→10M, YaRN/NTK-aware",
+          "takeaway": "1M via RoPE scaling + 4-6× pos-interp, not native 1M pretrain"
+        }
+      ],
+      "ttl": [
+        {
+          "name": "Test-Time Training (TTT)",
+          "paper": "Sun et al. 2024",
+          "idea": "Update small inner-loop weights on each test (next-token loss)",
+          "use": "Long-context adaptation without retrain"
+        },
+        {
+          "name": "Titans / Mamba-TTR",
+          "paper": "Behrouz et al. 2024-25",
+          "idea": "Surprise-driven memory: gradients as memory update during inference",
+          "use": "1M+ streaming"
+        },
+        {
+          "name": "In-context LoRA / Dynamic adapters",
+          "paper": "Various 2025",
+          "idea": "Generate LoRA on the fly from prompt/context",
+          "use": "Personalization per session (TTL family)"
+        },
+        {
+          "name": "Speculative + MTP",
+          "paper": "DeepSeek V3 / Kimi",
+          "idea": "Multi-Token Prediction: predict 1-4 next tokens",
+          "use": "Decode speedup 1.8-2.3×"
+        }
+      ],
+      "literature": [
+        {
+          "title": "Attention Is All You Need (2017)",
+          "url": "https://arxiv.org/abs/1706.03762"
+        },
+        {
+          "title": "Chinchilla Scaling Laws (2022)",
+          "url": "https://arxiv.org/abs/2203.15556"
+        },
+        {
+          "title": "Llama 3 Herd of Models (2024)",
+          "url": "https://arxiv.org/abs/2407.21783"
+        },
+        {
+          "title": "DeepSeek-V3 Technical Report (2024)",
+          "url": "https://arxiv.org/abs/2412.19437"
+        },
+        {
+          "title": "Mamba: Linear-Time SSM (2023)",
+          "url": "https://arxiv.org/abs/2312.00752"
+        },
+        {
+          "title": "Muon Optimizer (2024)",
+          "url": "https://arxiv.org/abs/2402.10002"
+        },
+        {
+          "title": "Test-Time Training (TTT, 2024)",
+          "url": "https://arxiv.org/abs/2407.01944"
+        },
+        {
+          "title": "Titans: Learning to Memorize at Test Time (2024)",
+          "url": "https://arxiv.org/abs/2501.00663"
+        }
+      ],
+      "tokenizer": [
+        {
+          "name": "BPE Subword (Sennrich 2015)",
+          "paper": "1508.07909",
+          "idea": "Byte-pair subwords, rare words via merges",
+          "use": "GPT-2/3 vocab 50K"
+        },
+        {
+          "name": "Byte-level BPE (Wang 2019)",
+          "paper": "1909.03341",
+          "idea": "bytes as base, no UNK",
+          "use": "Qwen3 152K, Cohere 256K"
+        },
+        {
+          "name": "SentencePiece / Unigram",
+          "paper": "2018",
+          "idea": "Unigram LM sampling",
+          "use": "T5, Gemma 262K"
+        }
+      ],
+      "residual": [
+        {
+          "name": "Deep Residual (He 2015)",
+          "paper": "1512.03385",
+          "idea": "skip connection y=x+F(x)",
+          "use": "Transformer baseline"
+        },
+        {
+          "name": "Hyper-Connections (Zhu 2024)",
+          "paper": "2409.19606",
+          "idea": "multiple residual streams, learnable mixing",
+          "use": "Tencent Hy4 4-stream iHC"
+        },
+        {
+          "name": "mHC Manifold-Constrained (2025)",
+          "paper": "2512.24880",
+          "idea": "constrain hyper-connections to manifold",
+          "use": "Hy4-preview"
+        },
+        {
+          "name": "Post-LN Is Back (2026)",
+          "paper": "2601.19895",
+          "idea": "stable Post-LN with deep scaling",
+          "use": "OLMo2 style"
+        }
+      ],
+      "short_conv": [
+        {
+          "name": "Hippo / S4",
+          "paper": "2212.14052",
+          "idea": "state-space with HiPPO init",
+          "use": "S4, Mamba progenitor"
+        },
+        {
+          "name": "Hyena Hierarchy (2023)",
+          "paper": "2302.10866",
+          "idea": "long convolution + gating, sub-quadratic",
+          "use": "Hyena, alternative to attention"
+        },
+        {
+          "name": "Canon Layers (Allen-Zhu 2025)",
+          "paper": "blog physics.allen-zhu",
+          "idea": "synthetic pretraining reveals canonical layer pattern",
+          "use": "architecture design heuristic"
+        }
+      ],
+      "cross_domain": [
+        {
+          "name": "Physics of Language Models (Allen-Zhu)",
+          "url": "https://physics.allen-zhu.com/",
+          "idea": "scaling, reasoning as physics, canon layers"
+        },
+        {
+          "name": "Weight-sparse interpretable circuits (2025)",
+          "paper": "2511.13653",
+          "idea": "sparse weights → circuits",
+          "use": "interpretability for MoE"
+        },
+        {
+          "name": "Mechanistic Interpretability (SAE Track)",
+          "url": "Superposition09m/SAE-Track",
+          "idea": "feature dynamics during training"
+        }
+      ]
+    }
+  },
+  "issues": [],
+  "model_index": [
+    {
+      "id": "tencent-hy4-preview-770b-a49b",
+      "name": "Tencent Hy4-preview 770B-A49B",
+      "company": "Tencent",
+      "file": "records-01.json"
+    },
+    {
+      "id": "glm-5-3-flash",
+      "name": "GLM-5.3-Flash",
+      "company": "Z.ai",
+      "file": "records-01.json"
+    },
+    {
+      "id": "qwen3-8-flash-next-125b-a6b",
+      "name": "Qwen3.8-Flash-Next 125B-A6B",
+      "company": "Alibaba Cloud",
+      "file": "records-01.json"
+    },
+    {
+      "id": "ornith-1-5-35b-a3b",
+      "name": "Ornith 1.5 35B-A3B",
+      "company": "Ornith",
+      "file": "records-01.json"
+    },
+    {
+      "id": "qwen3-8-27b",
+      "name": "Qwen3.8 27B",
+      "company": "Alibaba Cloud",
+      "file": "records-01.json"
+    },
+    {
+      "id": "nemotron-3-5-lightning-30b-a3b",
+      "name": "Nemotron 3.5 Lightning 30B-A3B",
+      "company": "NVIDIA",
+      "file": "records-02.json"
+    },
+    {
+      "id": "muse-glimmer-30b",
+      "name": "Muse Glimmer 30B",
+      "company": "Meta",
+      "file": "records-02.json"
+    },
+    {
+      "id": "ling-3-0-flash",
+      "name": "Ling 3.0 Flash",
+      "company": "InclusionAI",
+      "file": "records-02.json"
+    },
+    {
+      "id": "kimi-k3",
+      "name": "Kimi K3",
+      "company": "Moonshot AI",
+      "file": "records-02.json"
+    },
+    {
+      "id": "solar-open-2",
+      "name": "Solar Open 2",
+      "company": "Upstage",
+      "file": "records-02.json"
+    },
+    {
+      "id": "motif-3-beta",
+      "name": "Motif 3 Beta",
+      "company": "Motif Technologies",
+      "file": "records-03.json"
+    },
+    {
+      "id": "laguna-s-2-1",
+      "name": "Laguna S 2.1",
+      "company": "Poolside",
+      "file": "records-03.json"
+    },
+    {
+      "id": "nanbeige-4-2-3b",
+      "name": "Nanbeige 4.2 3B",
+      "company": "BOSS Zhipin",
+      "file": "records-03.json"
+    },
+    {
+      "id": "antares-1b",
+      "name": "Antares 1B",
+      "company": "Cisco",
+      "file": "records-03.json"
+    },
+    {
+      "id": "btl-3-27b",
+      "name": "BTL-3 27B",
+      "company": "Bad Theory Labs",
+      "file": "records-03.json"
+    },
+    {
+      "id": "inkling",
+      "name": "Inkling",
+      "company": "Thinking Machines Lab",
+      "file": "records-04.json"
+    },
+    {
+      "id": "soofi-s-30b-a3b",
+      "name": "Soofi S 30B-A3B",
+      "company": "SOOFI Consortium",
+      "file": "records-04.json"
+    },
+    {
+      "id": "laguna-xs-2-1",
+      "name": "Laguna XS 2.1",
+      "company": "Poolside",
+      "file": "records-04.json"
+    },
+    {
+      "id": "glm-5-2",
+      "name": "GLM-5.2",
+      "company": "Z.ai",
+      "file": "records-04.json"
+    },
+    {
+      "id": "vibethinker-3b",
+      "name": "VibeThinker-3B",
+      "company": "Weibo",
+      "file": "records-04.json"
+    },
+    {
+      "id": "minimax-m3-428b",
+      "name": "MiniMax M3 428B",
+      "company": "MiniMax",
+      "file": "records-05.json"
+    },
+    {
+      "id": "kimi-k2-7-code",
+      "name": "Kimi K2.7 Code",
+      "company": "Moonshot AI",
+      "file": "records-05.json"
+    },
+    {
+      "id": "north-mini-code-30b-a3b",
+      "name": "North Mini Code 30B-A3B",
+      "company": "Cohere",
+      "file": "records-05.json"
+    },
+    {
+      "id": "nemotron-3-ultra-550b-a55b",
+      "name": "Nemotron 3 Ultra 550B-A55B",
+      "company": "NVIDIA",
+      "file": "records-05.json"
+    },
+    {
+      "id": "gemma-4-12b",
+      "name": "Gemma 4 12B",
+      "company": "Google",
+      "file": "records-05.json"
+    },
+    {
+      "id": "jetbrains-mellum2-thinking-12b-a2-5b",
+      "name": "JetBrains Mellum2 Thinking 12B-A2.5B",
+      "company": "JetBrains",
+      "file": "records-06.json"
+    },
+    {
+      "id": "command-a-218b-a25b",
+      "name": "Command A+ 218B-A25B",
+      "company": "Cohere",
+      "file": "records-06.json"
+    },
+    {
+      "id": "zaya1-8b",
+      "name": "ZAYA1-8B",
+      "company": "Zyphra",
+      "file": "records-06.json"
+    },
+    {
+      "id": "granite-4-1-30b",
+      "name": "Granite 4.1 30B",
+      "company": "IBM",
+      "file": "records-06.json"
+    },
+    {
+      "id": "laguna-xs-2",
+      "name": "Laguna XS.2",
+      "company": "Poolside",
+      "file": "records-06.json"
+    },
+    {
+      "id": "deepseek-v4-pro",
+      "name": "DeepSeek V4-Pro",
+      "company": "DeepSeek",
+      "file": "records-07.json"
+    },
+    {
+      "id": "deepseek-v4-flash",
+      "name": "DeepSeek V4-Flash",
+      "company": "DeepSeek",
+      "file": "records-07.json"
+    },
+    {
+      "id": "ling-2-6-1t",
+      "name": "Ling 2.6 1T",
+      "company": "InclusionAI",
+      "file": "records-07.json"
+    },
+    {
+      "id": "tencent-hy3-preview-295b-a21b",
+      "name": "Tencent Hy3-preview 295B-A21B",
+      "company": "Tencent",
+      "file": "records-07.json"
+    },
+    {
+      "id": "xiaomi-mimo-v2-5-pro-1-02t",
+      "name": "Xiaomi MiMo-V2.5-Pro 1.02T",
+      "company": "Xiaomi",
+      "file": "records-07.json"
+    },
+    {
+      "id": "xiaomi-mimo-v2-5-310b",
+      "name": "Xiaomi MiMo-V2.5 310B",
+      "company": "Xiaomi",
+      "file": "records-08.json"
+    },
+    {
+      "id": "qwen3-6-35b-a3b",
+      "name": "Qwen3.6 35B-A3B",
+      "company": "Alibaba Cloud",
+      "file": "records-08.json"
+    },
+    {
+      "id": "qwen3-6-27b",
+      "name": "Qwen3.6 27B",
+      "company": "Alibaba Cloud",
+      "file": "records-08.json"
+    },
+    {
+      "id": "kimi-k2-6",
+      "name": "Kimi K2.6",
+      "company": "Moonshot AI",
+      "file": "records-08.json"
+    },
+    {
+      "id": "glm-5-1",
+      "name": "GLM-5.1",
+      "company": "Z.ai",
+      "file": "records-08.json"
+    },
+    {
+      "id": "gemma-4-31b",
+      "name": "Gemma 4 31B",
+      "company": "Google",
+      "file": "records-09.json"
+    },
+    {
+      "id": "gemma-4-26b-a4b",
+      "name": "Gemma 4 26B-A4B",
+      "company": "Google",
+      "file": "records-09.json"
+    },
+    {
+      "id": "gemma-4-e4b",
+      "name": "Gemma 4 E4B",
+      "company": "Google",
+      "file": "records-09.json"
+    },
+    {
+      "id": "gemma-4-e2b",
+      "name": "Gemma 4 E2B",
+      "company": "Google",
+      "file": "records-09.json"
+    },
+    {
+      "id": "lfm2-5-8b-a1b",
+      "name": "LFM2.5 8B-A1B",
+      "company": "Liquid AI",
+      "file": "records-09.json"
+    },
+    {
+      "id": "lfm2-5-350m",
+      "name": "LFM2.5 350M",
+      "company": "Liquid AI",
+      "file": "records-10.json"
+    },
+    {
+      "id": "minimax-m2-7-230b",
+      "name": "MiniMax M2.7 230B",
+      "company": "MiniMax",
+      "file": "records-10.json"
+    },
+    {
+      "id": "mistral-small-4",
+      "name": "Mistral Small 4",
+      "company": "Mistral AI",
+      "file": "records-10.json"
+    },
+    {
+      "id": "nemotron-3-nano-4b",
+      "name": "Nemotron 3 Nano 4B",
+      "company": "NVIDIA",
+      "file": "records-10.json"
+    },
+    {
+      "id": "nemotron-3-super-120b-a12b",
+      "name": "Nemotron 3 Super 120B-A12B",
+      "company": "NVIDIA",
+      "file": "records-10.json"
+    },
+    {
+      "id": "sarvam-105b",
+      "name": "Sarvam 105B",
+      "company": "Sarvam AI",
+      "file": "records-11.json"
+    },
+    {
+      "id": "sarvam-30b",
+      "name": "Sarvam 30B",
+      "company": "Sarvam AI",
+      "file": "records-11.json"
+    },
+    {
+      "id": "ling-2-5-1t",
+      "name": "Ling 2.5 1T",
+      "company": "InclusionAI",
+      "file": "records-11.json"
+    },
+    {
+      "id": "qwen3-5-397b",
+      "name": "Qwen3.5 397B",
+      "company": "Alibaba Cloud",
+      "file": "records-11.json"
+    },
+    {
+      "id": "tiny-aya-3-35b",
+      "name": "Tiny Aya 3.35B",
+      "company": "Cohere",
+      "file": "records-11.json"
+    },
+    {
+      "id": "minimax-m2-5-230b",
+      "name": "MiniMax M2.5 230B",
+      "company": "MiniMax",
+      "file": "records-12.json"
+    },
+    {
+      "id": "glm-5-744b",
+      "name": "GLM-5 744B",
+      "company": "Z.ai",
+      "file": "records-12.json"
+    },
+    {
+      "id": "nanbeige-4-1-3b",
+      "name": "Nanbeige 4.1 3B",
+      "company": "BOSS Zhipin",
+      "file": "records-12.json"
+    },
+    {
+      "id": "step-3-5-flash-196b",
+      "name": "Step 3.5 Flash 196B",
+      "company": "StepFun",
+      "file": "records-12.json"
+    },
+    {
+      "id": "longcat-flash-lite-68-5b-a3b",
+      "name": "LongCat-Flash-Lite 68.5B-A3B",
+      "company": "Meituan",
+      "file": "records-12.json"
+    },
+    {
+      "id": "kimi-k2-5",
+      "name": "Kimi K2.5",
+      "company": "Moonshot AI",
+      "file": "records-13.json"
+    },
+    {
+      "id": "arcee-ai-trinity-large-400b",
+      "name": "Arcee AI Trinity Large 400B",
+      "company": "Arcee AI",
+      "file": "records-13.json"
+    },
+    {
+      "id": "lfm2-5-1-2b",
+      "name": "LFM2.5 1.2B",
+      "company": "Liquid AI",
+      "file": "records-13.json"
+    },
+    {
+      "id": "glm-4-7-355b",
+      "name": "GLM-4.7 355B",
+      "company": "Z.ai",
+      "file": "records-13.json"
+    },
+    {
+      "id": "xiaomi-mimo-v2-flash-309b",
+      "name": "Xiaomi MiMo-V2-Flash 309B",
+      "company": "Xiaomi",
+      "file": "records-13.json"
+    },
+    {
+      "id": "nemotron-3-nano-30b-a3b",
+      "name": "Nemotron 3 Nano 30B-A3B",
+      "company": "NVIDIA",
+      "file": "records-14.json"
+    },
+    {
+      "id": "mistral-large-3",
+      "name": "Mistral Large 3",
+      "company": "Mistral AI",
+      "file": "records-14.json"
+    },
+    {
+      "id": "deepseek-v3-2",
+      "name": "DeepSeek V3.2",
+      "company": "DeepSeek",
+      "file": "records-14.json"
+    },
+    {
+      "id": "intellect-3",
+      "name": "INTELLECT-3",
+      "company": "Prime Intellect",
+      "file": "records-14.json"
+    },
+    {
+      "id": "olmo-3-32b",
+      "name": "OLMo 3 32B",
+      "company": "Ai2",
+      "file": "records-14.json"
+    },
+    {
+      "id": "olmo-3-7b",
+      "name": "OLMo 3 7B",
+      "company": "Ai2",
+      "file": "records-15.json"
+    },
+    {
+      "id": "kimi-linear-48b-a3b",
+      "name": "Kimi Linear 48B-A3B",
+      "company": "Moonshot AI",
+      "file": "records-15.json"
+    },
+    {
+      "id": "minimax-m2-230b",
+      "name": "MiniMax M2 230B",
+      "company": "MiniMax",
+      "file": "records-15.json"
+    },
+    {
+      "id": "qwen3-next-80b-a3b",
+      "name": "Qwen3 Next 80B-A3B",
+      "company": "Alibaba Cloud",
+      "file": "records-15.json"
+    },
+    {
+      "id": "grok-2-5-270b",
+      "name": "Grok 2.5 270B",
+      "company": "xAI",
+      "file": "records-15.json"
+    },
+    {
+      "id": "gemma-3-270m",
+      "name": "Gemma 3 270M",
+      "company": "Google",
+      "file": "records-16.json"
+    },
+    {
+      "id": "gpt-oss-120b",
+      "name": "GPT-OSS 120B",
+      "company": "OpenAI",
+      "file": "records-16.json"
+    },
+    {
+      "id": "gpt-oss-20b",
+      "name": "GPT-OSS 20B",
+      "company": "OpenAI",
+      "file": "records-16.json"
+    },
+    {
+      "id": "qwen3-coder-flash-30b-a3b",
+      "name": "Qwen3 Coder Flash 30B-A3B",
+      "company": "Alibaba Cloud",
+      "file": "records-16.json"
+    },
+    {
+      "id": "glm-4-5-355b",
+      "name": "GLM-4.5 355B",
+      "company": "Z.ai",
+      "file": "records-16.json"
+    },
+    {
+      "id": "glm-4-5-air",
+      "name": "GLM-4.5-Air",
+      "company": "Z.ai",
+      "file": "records-17.json"
+    },
+    {
+      "id": "kimi-k2",
+      "name": "Kimi K2",
+      "company": "Moonshot AI",
+      "file": "records-17.json"
+    },
+    {
+      "id": "smollm3-3b",
+      "name": "SmolLM3 3B",
+      "company": "Hugging Face",
+      "file": "records-17.json"
+    },
+    {
+      "id": "qwen3-235b-a22b",
+      "name": "Qwen3 235B-A22B",
+      "company": "Alibaba Cloud",
+      "file": "records-17.json"
+    },
+    {
+      "id": "qwen3-32b",
+      "name": "Qwen3 32B",
+      "company": "Alibaba Cloud",
+      "file": "records-17.json"
+    },
+    {
+      "id": "qwen3-30b-a3b",
+      "name": "Qwen3 30B-A3B",
+      "company": "Alibaba Cloud",
+      "file": "records-18.json"
+    },
+    {
+      "id": "qwen3-8b",
+      "name": "Qwen3 8B",
+      "company": "Alibaba Cloud",
+      "file": "records-18.json"
+    },
+    {
+      "id": "qwen3-4b",
+      "name": "Qwen3 4B",
+      "company": "Alibaba Cloud",
+      "file": "records-18.json"
+    },
+    {
+      "id": "qwen3-0-6b",
+      "name": "Qwen3 0.6B",
+      "company": "Alibaba Cloud",
+      "file": "records-18.json"
+    },
+    {
+      "id": "llama-4-maverick",
+      "name": "Llama 4 Maverick",
+      "company": "Meta",
+      "file": "records-18.json"
+    },
+    {
+      "id": "mistral-small-3-1-24b",
+      "name": "Mistral Small 3.1 24B",
+      "company": "Mistral AI",
+      "file": "records-19.json"
+    },
+    {
+      "id": "xlstm-7b",
+      "name": "xLSTM 7B",
+      "company": "NXAI",
+      "file": "records-19.json"
+    },
+    {
+      "id": "gemma-3-27b",
+      "name": "Gemma 3 27B",
+      "company": "Google",
+      "file": "records-19.json"
+    },
+    {
+      "id": "deepseek-r1",
+      "name": "DeepSeek R1",
+      "company": "DeepSeek",
+      "file": "records-19.json"
+    },
+    {
+      "id": "deepseek-v3",
+      "name": "DeepSeek V3",
+      "company": "DeepSeek",
+      "file": "records-19.json"
+    },
+    {
+      "id": "phi-4",
+      "name": "Phi-4",
+      "company": "Microsoft",
+      "file": "records-20.json"
+    },
+    {
+      "id": "olmo-2-7b",
+      "name": "OLMo 2 7B",
+      "company": "Ai2",
+      "file": "records-20.json"
+    },
+    {
+      "id": "llama-3-2-3b",
+      "name": "Llama 3.2 3B",
+      "company": "Meta",
+      "file": "records-20.json"
+    },
+    {
+      "id": "llama-3-2-1b",
+      "name": "Llama 3.2 1B",
+      "company": "Meta",
+      "file": "records-20.json"
+    },
+    {
+      "id": "llama-3-8b",
+      "name": "Llama 3 8B",
+      "company": "Meta",
+      "file": "records-20.json"
+    },
+    {
+      "id": "gpt-2-xl-1-5b",
+      "name": "GPT-2 XL 1.5B",
+      "company": "OpenAI",
+      "file": "records-21.json"
+    }
+  ],
+  "note": "Complete input read; compact display projections may be truncated. These are audit observations, not a replacement dataset or scientific verification."
+}

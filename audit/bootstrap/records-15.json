@@ -1,0 +1,1955 @@
+[
+  {
+    "index": 70,
+    "model_id": "olmo-3-7b",
+    "model_name": "OLMo 3 7B",
+    "company": "Ai2",
+    "release_date": "2025-11-20",
+    "family": "olmo",
+    "summary": "New transparent Allen AI model that keeps OLMo's post-norm flavor while modernizing context handling.",
+    "yichen": {
+      "vocab": 100278,
+      "depth": 32,
+      "dim": 4096,
+      "norm": "RMSNorm",
+      "parallel_layer": "Serial",
+      "pre_norm": "Pre",
+      "pos_emb": "RoPE",
+      "activation": "silu",
+      "attn_type": "mha",
+      "context": 65536,
+      "bias_display": "no bias",
+      "tied_display": "untied",
+      "qk_norm": "—",
+      "sliding": "yes",
+      "stability": "RMSNorm eps=1e-06 • RoPE scaling yarn"
+    },
+    "math_tricks": {
+      "attention_bias": false,
+      "attention_bias_display": "no bias",
+      "tie_word_embeddings": false,
+      "tie_display": "untied",
+      "rms_norm_eps": 0.000001,
+      "rope_theta": 500000,
+      "hidden_act": "silu",
+      "swiglu_limit": null,
+      "use_qk_norm": null,
+      "learnable_sink": null,
+      "rope_scaling": {
+        "attention_factor": 1.2079441541679836,
+        "beta_fast": 32,
+        "beta_slow": 1,
+        "factor": 8,
+        "original_max_position_embeddings": 8192,
+        "rope_type": "yarn"
+      },
+      "attention_dropout": 0,
+      "norm_topk_prob": null,
+      "initializer_range": 0.02,
+      "tricks": [
+        "RMSNorm eps=1e-06",
+        "RoPE scaling yarn"
+      ],
+      "tricks_display": "RMSNorm eps=1e-06 • RoPE scaling yarn"
+    },
+    "scale": {
+      "total_params": 7000000000,
+      "active_params": 7000000000,
+      "active_pct": 100,
+      "extra": {
+        "mtp_params": null,
+        "lora_mb": null,
+        "lora_rank": null,
+        "backbone_label": "total",
+        "ngram_params": null,
+        "embedding_params": null
+      },
+      "raw": "7B parameters",
+      "parsed": true
+    },
+    "architecture": {
+      "decoder_type": "dense",
+      "decoder_display": "Dense",
+      "attention": {
+        "primary": "mha",
+        "raw": "MHA with QK-Norm and 3:1 sliding-window/global attention",
+        "options": [],
+        "ratio": null
+      },
+      "layer_mix": {
+        "raw": "24 sliding-window + 8 global",
+        "total_layers": 32,
+        "by_type": {},
+        "mtp_layers": 0
+      },
+      "hidden_size": 4096,
+      "hidden_size_source": "hidden_size",
+      "num_hidden_layers": 32,
+      "num_attention_heads": 32,
+      "num_key_value_heads": 32,
+      "head_dim": 128,
+      "intermediate_size": 11008,
+      "vocab_size": 100278,
+      "max_position_embeddings": 65536,
+      "rope": {
+        "theta": 500000,
+        "rope_scaling": {
+          "attention_factor": 1.2079441541679836,
+          "beta_fast": 32,
+          "beta_slow": 1,
+          "factor": 8,
+          "original_max_position_embeddings": 8192,
+          "rope_type": "yarn"
+        }
+      },
+      "sliding_window": 4096,
+      "layer_types": {
+        "audit_display_truncated": true,
+        "total_items": 32,
+        "first_items": [
+          "sliding_attention",
+          "sliding_attention",
+          "sliding_attention",
+          "full_attention",
+          "sliding_attention",
+          "sliding_attention",
+          "sliding_attention",
+          "full_attention",
+          "sliding_attention",
+          "sliding_attention",
+          "sliding_attention",
+          "full_attention",
+          "sliding_attention",
+          "sliding_attention",
+          "sliding_attention",
+          "full_attention",
+          "sliding_attention",
+          "sliding_attention",
+          "sliding_attention",
+          "full_attention",
+          "sliding_attention",
+          "sliding_attention",
+          "sliding_attention",
+          "full_attention"
+        ]
+      },
+      "moe": {},
+      "model_type": "olmo3",
+      "architectures": [
+        "Olmo3ForCausalLM"
+      ],
+      "raw_config_source": "allenai/Olmo-3-1025-7B:config.json"
+    },
+    "raw_config": {
+      "architectures": [
+        "Olmo3ForCausalLM"
+      ],
+      "attention_bias": false,
+      "attention_dropout": 0,
+      "dtype": "bfloat16",
+      "eos_token_id": 100257,
+      "hidden_act": "silu",
+      "hidden_size": 4096,
+      "initializer_range": 0.02,
+      "intermediate_size": 11008,
+      "layer_types": {
+        "audit_display_truncated": true,
+        "total_items": 32,
+        "first_items": [
+          "sliding_attention",
+          "sliding_attention",
+          "sliding_attention",
+          "full_attention",
+          "sliding_attention",
+          "sliding_attention",
+          "sliding_attention",
+          "full_attention",
+          "sliding_attention",
+          "sliding_attention",
+          "sliding_attention",
+          "full_attention",
+          "sliding_attention",
+          "sliding_attention",
+          "sliding_attention",
+          "full_attention",
+          "sliding_attention",
+          "sliding_attention",
+          "sliding_attention",
+          "full_attention",
+          "sliding_attention",
+          "sliding_attention",
+          "sliding_attention",
+          "full_attention"
+        ]
+      },
+      "max_position_embeddings": 65536,
+      "model_type": "olmo3",
+      "num_attention_heads": 32,
+      "num_hidden_layers": 32,
+      "num_key_value_heads": 32,
+      "pad_token_id": 100277,
+      "rms_norm_eps": 0.000001,
+      "rope_scaling": {
+        "attention_factor": 1.2079441541679836,
+        "beta_fast": 32,
+        "beta_slow": 1,
+        "factor": 8,
+        "original_max_position_embeddings": 8192,
+        "rope_type": "yarn"
+      },
+      "rope_theta": 500000,
+      "sliding_window": 4096,
+      "tie_word_embeddings": false,
+      "transformers_version": "4.57.0",
+      "use_cache": true,
+      "vocab_size": 100278
+    },
+    "raw_config_bytes": 1311,
+    "context": {
+      "length": 65536,
+      "effective_length": 65536,
+      "recommended_context": 65536,
+      "is_unlimited": false,
+      "is_approx": false,
+      "raw": "65,536",
+      "input_length": null,
+      "output_length": null,
+      "config_context": {
+        "value": 65536,
+        "source": "config.json",
+        "source_path": "max_position_embeddings",
+        "confidence": 0.95,
+        "status": "verified",
+        "sources": [
+          {
+            "kind": "config",
+            "url": "https://huggingface.co/allenai/Olmo-3-1025-7B/blob/main/config.json",
+            "confidence": 1
+          },
+          {
+            "kind": "config_raw",
+            "url": "https://huggingface.co/allenai/Olmo-3-1025-7B/raw/main/config.json",
+            "confidence": 1
+          }
+        ],
+        "note": null
+      },
+      "advertised_context": {
+        "value": 65536,
+        "source": "gallery/config",
+        "confidence": 0.9,
+        "status": "verified",
+        "sources": [
+          {
+            "kind": "gallery_image",
+            "url": "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/olmo-3-7b.webp",
+            "confidence": 0.9
+          }
+        ],
+        "note": null
+      },
+      "native_context": {
+        "value": 8192,
+        "source": "rope_scaling.original_max_position_embeddings",
+        "confidence": 0.88,
+        "status": "verified",
+        "sources": [
+          {
+            "kind": "config",
+            "url": "https://huggingface.co/allenai/Olmo-3-1025-7B/blob/main/config.json",
+            "confidence": 1
+          },
+          {
+            "kind": "config_raw",
+            "url": "https://huggingface.co/allenai/Olmo-3-1025-7B/raw/main/config.json",
+            "confidence": 1
+          }
+        ],
+        "note": "pre-YaRN window; scaled x8.0 -> 65536"
+      },
+      "trained_context": {
+        "value": 8192,
+        "source": "rope_scaling.original_max_position_embeddings",
+        "confidence": 0.82,
+        "status": "verified",
+        "sources": [],
+        "note": "pre-YaRN window; scaled x8.0 -> 65536"
+      },
+      "tested_context": {
+        "value": null,
+        "status": "unverified",
+        "confidence": 0,
+        "sources": [],
+        "note": "no independent HELM/BenchLM long-context eval; requires Needle-in-Haystack run"
+      },
+      "api_context": {
+        "value": null,
+        "status": "unverified",
+        "confidence": 0,
+        "sources": [],
+        "note": "requires live API max_tokens probe; may differ from advertised"
+      },
+      "conflict": false,
+      "conflict_note": null,
+      "resolution": "consistent within 2%",
+      "verified_source": "config+gallery (consistent)",
+      "confidence": 0.9,
+      "config_max_position_embeddings": 65536,
+      "config_source_path": "max_position_embeddings",
+      "_legacy_length": 65536,
+      "_legacy_resolution": "consistent within 2%",
+      "schema_version": "2.2-six-contexts"
+    },
+    "training": {
+      "dataset": {
+        "value": "AllenAI Dolma 3 4T (inferred)",
+        "status": "inferred",
+        "confidence": 0.55,
+        "sources": [],
+        "note": "(inferred"
+      },
+      "tokens": {
+        "value": 4000,
+        "unit": "B",
+        "status": "inferred",
+        "confidence": 0.52,
+        "sources": [],
+        "note": null
+      },
+      "tokens_b": 4000,
+      "hardware": {
+        "value": "AMD MI300X (inferred)",
+        "status": "inferred",
+        "confidence": 0.55,
+        "sources": [],
+        "note": null
+      },
+      "compute": {
+        "value": null,
+        "status": "undisclosed",
+        "confidence": 0,
+        "sources": [],
+        "note": null
+      },
+      "post_training": {
+        "value": [
+          "SFT + DPO"
+        ],
+        "status": "verified",
+        "confidence": 0.95,
+        "sources": [
+          {
+            "kind": "tech_report",
+            "url": "https://arxiv.org/pdf/2512.13961",
+            "confidence": 0.95
+          }
+        ],
+        "note": null
+      },
+      "post_training_methods": [
+        "SFT + DPO"
+      ],
+      "_flat": {
+        "dataset": "AllenAI Dolma 3 4T (inferred)",
+        "hardware": "AMD MI300X (inferred)",
+        "compute": null
+      },
+      "overall_status": "mixed",
+      "overall_confidence": 0.64,
+      "verified_status": "mixed",
+      "confidence": 0.64,
+      "note": "verified from tech report/blog",
+      "_legacy_verified_status": "verified",
+      "_legacy_confidence": 0.95,
+      "schema_version": "2.2-per-field",
+      "_provenance_note": "per-field status fix 2.2: verified no longer whole-block; each claim now has status+confidence+sources"
+    },
+    "sources": [
+      {
+        "kind": "config",
+        "url": "https://huggingface.co/allenai/Olmo-3-1025-7B/blob/main/config.json",
+        "repo": "allenai/Olmo-3-1025-7B",
+        "label": "config.json",
+        "verified_status": "verified",
+        "confidence": 1,
+        "note": "fetch ok"
+      },
+      {
+        "kind": "config_raw",
+        "url": "https://huggingface.co/allenai/Olmo-3-1025-7B/raw/main/config.json",
+        "repo": "allenai/Olmo-3-1025-7B",
+        "label": "config.json raw",
+        "verified_status": "verified",
+        "confidence": 1,
+        "note": "bytes 1620"
+      },
+      {
+        "kind": "tech_report",
+        "url": "https://arxiv.org/pdf/2512.13961",
+        "repo": null,
+        "label": null,
+        "arxiv_id": "2512.13961",
+        "verified_status": "verified",
+        "confidence": 0.95
+      },
+      {
+        "kind": "gallery_image",
+        "url": "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/olmo-3-7b.webp",
+        "repo": null,
+        "label": null,
+        "verified_status": "unverified",
+        "confidence": 0.9,
+        "note": "Raschka gallery"
+      },
+      {
+        "kind": "benchmark",
+        "url": "https://artificialanalysis.ai/models/olmo-3-7b-instruct",
+        "repo": null,
+        "label": "Artificial Analysis",
+        "verified_status": "verified",
+        "confidence": 0.9,
+        "note": "AA index 2.8"
+      },
+      {
+        "kind": "license",
+        "url": "https://huggingface.co/allenai/Olmo-3-1025-7B/blob/main/README.md",
+        "repo": null,
+        "label": "Apache License 2.0",
+        "verified_status": "unverified",
+        "confidence": 0.9
+      }
+    ]
+  },
+  {
+    "index": 71,
+    "model_id": "kimi-linear-48b-a3b",
+    "model_name": "Kimi Linear 48B-A3B",
+    "company": "Moonshot AI",
+    "release_date": "2025-10-30",
+    "family": "kimi",
+    "summary": "Linear-attention hybrid that keeps a transformer backbone but replaces most full-attention layers.",
+    "yichen": {
+      "vocab": 163840,
+      "depth": 27,
+      "dim": 2304,
+      "norm": "RMSNorm",
+      "parallel_layer": "Serial",
+      "pre_norm": "Pre",
+      "pos_emb": "RoPE",
+      "activation": "silu",
+      "attn_type": "mla",
+      "context": 1000000,
+      "bias_display": "undisclosed",
+      "tied_display": "untied",
+      "qk_norm": "—",
+      "sliding": "—",
+      "stability": "RMSNorm eps=1e-05"
+    },
+    "math_tricks": {
+      "attention_bias": null,
+      "attention_bias_display": "undisclosed",
+      "tie_word_embeddings": false,
+      "tie_display": "untied",
+      "rms_norm_eps": 0.00001,
+      "rope_theta": 10000,
+      "hidden_act": "silu",
+      "swiglu_limit": null,
+      "use_qk_norm": null,
+      "learnable_sink": null,
+      "rope_scaling": null,
+      "attention_dropout": null,
+      "norm_topk_prob": null,
+      "initializer_range": 0.02,
+      "tricks": [
+        "RMSNorm eps=1e-05"
+      ],
+      "tricks_display": "RMSNorm eps=1e-05"
+    },
+    "scale": {
+      "total_params": 48000000000,
+      "active_params": 3000000000,
+      "active_pct": 6.3,
+      "extra": {
+        "mtp_params": null,
+        "lora_mb": null,
+        "lora_rank": null,
+        "backbone_label": "total",
+        "ngram_params": null,
+        "embedding_params": null
+      },
+      "raw": "48B total, 3B active (6.3% active)",
+      "parsed": true
+    },
+    "architecture": {
+      "decoder_type": "sparse_hybrid",
+      "decoder_display": "Sparse hybrid",
+      "attention": {
+        "primary": "mla",
+        "raw": "3:1 Kimi Delta Attention and MLA",
+        "options": [],
+        "ratio": null
+      },
+      "layer_mix": {
+        "raw": "7 MLA + 20 Kimi Delta Attention",
+        "total_layers": 27,
+        "by_type": {},
+        "mtp_layers": 0
+      },
+      "hidden_size": 2304,
+      "hidden_size_source": "hidden_size",
+      "num_hidden_layers": 27,
+      "num_attention_heads": 32,
+      "num_key_value_heads": 32,
+      "head_dim": 72,
+      "intermediate_size": 9216,
+      "vocab_size": 163840,
+      "max_position_embeddings": null,
+      "rope": {
+        "theta": 10000,
+        "rope_scaling": null
+      },
+      "sliding_window": null,
+      "layer_types": null,
+      "moe": {
+        "num_experts": 256,
+        "topk_group": 1,
+        "num_shared_experts": 1,
+        "moe_intermediate_size": 1024,
+        "first_k_dense_replace": 1,
+        "routed_scaling_factor": 2.446
+      },
+      "model_type": "kimi_linear",
+      "architectures": [
+        "KimiLinearForCausalLM"
+      ],
+      "raw_config_source": "moonshotai/Kimi-Linear-48B-A3B-Base:config.json"
+    },
+    "raw_config": {
+      "architectures": [
+        "KimiLinearForCausalLM"
+      ],
+      "auto_map": {
+        "AutoConfig": "configuration_kimi.KimiLinearConfig",
+        "AutoModel": "modeling_kimi.KimiLinearModel",
+        "AutoModelForCausalLM": "modeling_kimi.KimiLinearForCausalLM"
+      },
+      "bos_token_id": 163584,
+      "dtype": "bfloat16",
+      "eos_token_id": 163586,
+      "first_k_dense_replace": 1,
+      "head_dim": 72,
+      "hidden_act": "silu",
+      "hidden_size": 2304,
+      "initializer_range": 0.02,
+      "intermediate_size": 9216,
+      "kv_lora_rank": 512,
+      "linear_attn_config": {
+        "full_attn_layers": [
+          4,
+          8,
+          12,
+          16,
+          20,
+          24,
+          27
+        ],
+        "head_dim": 128,
+        "kda_layers": [
+          1,
+          2,
+          3,
+          5,
+          6,
+          7,
+          9,
+          10,
+          11,
+          13,
+          14,
+          15,
+          17,
+          18,
+          19,
+          21,
+          22,
+          23,
+          25,
+          26
+        ],
+        "num_heads": 32,
+        "short_conv_kernel_size": 4
+      },
+      "mla_use_nope": true,
+      "model_max_length": 1048576,
+      "model_type": "kimi_linear",
+      "moe_intermediate_size": 1024,
+      "moe_layer_freq": 1,
+      "moe_renormalize": true,
+      "moe_router_activation_func": "sigmoid",
+      "num_attention_heads": 32,
+      "num_expert_group": 1,
+      "num_experts": 256,
+      "num_experts_per_token": 8,
+      "num_hidden_layers": 27,
+      "num_key_value_heads": 32,
+      "num_nextn_predict_layers": 0,
+      "num_shared_experts": 1,
+      "pad_token_id": 163839,
+      "q_lora_rank": null,
+      "qk_nope_head_dim": 128,
+      "qk_rope_head_dim": 64,
+      "rms_norm_eps": 0.00001,
+      "rope_scaling": null,
+      "rope_theta": 10000,
+      "routed_scaling_factor": 2.446,
+      "tie_word_embeddings": false,
+      "topk_group": 1,
+      "transformers_version": "4.57.0",
+      "use_cache": true,
+      "use_grouped_topk": true,
+      "v_head_dim": 128,
+      "vocab_size": 163840
+    },
+    "raw_config_bytes": 1316,
+    "context": {
+      "length": 1000000,
+      "effective_length": 1000000,
+      "recommended_context": 1000000,
+      "is_unlimited": false,
+      "is_approx": false,
+      "raw": "1,000,000",
+      "input_length": null,
+      "output_length": null,
+      "config_context": {
+        "value": null,
+        "source": "config.json",
+        "source_path": null,
+        "confidence": 0,
+        "status": "undisclosed",
+        "sources": [
+          {
+            "kind": "config",
+            "url": "https://huggingface.co/moonshotai/Kimi-Linear-48B-A3B-Base/blob/main/config.json",
+            "confidence": 1
+          },
+          {
+            "kind": "config_raw",
+            "url": "https://huggingface.co/moonshotai/Kimi-Linear-48B-A3B-Base/raw/main/config.json",
+            "confidence": 1
+          }
+        ],
+        "note": "no config value"
+      },
+      "advertised_context": {
+        "value": 1000000,
+        "source": "gallery",
+        "confidence": 0.9,
+        "status": "verified",
+        "sources": [
+          {
+            "kind": "gallery_image",
+            "url": "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/kimi-linear-48b-a3b.webp",
+            "confidence": 0.9
+          }
+        ],
+        "note": null
+      },
+      "native_context": {
+        "value": 1000000,
+        "source": "advertised",
+        "confidence": 0.55,
+        "status": "inferred",
+        "sources": [
+          {
+            "kind": "config",
+            "url": "https://huggingface.co/moonshotai/Kimi-Linear-48B-A3B-Base/blob/main/config.json",
+            "confidence": 1
+          },
+          {
+            "kind": "config_raw",
+            "url": "https://huggingface.co/moonshotai/Kimi-Linear-48B-A3B-Base/raw/main/config.json",
+            "confidence": 1
+          }
+        ],
+        "note": null
+      },
+      "trained_context": {
+        "value": 1000000,
+        "source": "advertised",
+        "confidence": 0.5,
+        "status": "inferred",
+        "sources": [],
+        "note": "requires tech report to confirm trained window"
+      },
+      "tested_context": {
+        "value": null,
+        "status": "unverified",
+        "confidence": 0,
+        "sources": [],
+        "note": "no independent HELM/BenchLM long-context eval; requires Needle-in-Haystack run"
+      },
+      "api_context": {
+        "value": null,
+        "status": "unverified",
+        "confidence": 0,
+        "sources": [],
+        "note": "requires live API max_tokens probe; may differ from advertised"
+      },
+      "conflict": false,
+      "conflict_note": null,
+      "resolution": "no config (gated), trust gallery with low confidence",
+      "verified_source": "gallery",
+      "confidence": 0.6,
+      "config_max_position_embeddings": null,
+      "config_source_path": null,
+      "_legacy_length": 1000000,
+      "_legacy_resolution": "no config (gated), trust gallery with low confidence",
+      "schema_version": "2.2-six-contexts"
+    },
+    "training": {
+      "dataset": {
+        "value": "K2 SFT extended, fair 1.4T ablations, final 5.7T",
+        "status": "verified",
+        "confidence": 0.95,
+        "sources": [
+          {
+            "kind": "tech_report",
+            "url": "https://arxiv.org/pdf/2510.26692",
+            "confidence": 0.95
+          },
+          {
+            "kind": "benchmark",
+            "url": "https://artificialanalysis.ai/models/kimi-linear-48b-a3b-instruct",
+            "confidence": 0.9
+          }
+        ],
+        "note": null
+      },
+      "tokens": {
+        "value": 5700,
+        "unit": "B",
+        "status": "verified",
+        "confidence": 0.95,
+        "sources": [
+          {
+            "kind": "tech_report",
+            "url": "https://arxiv.org/pdf/2510.26692",
+            "confidence": 0.95
+          }
+        ],
+        "note": null
+      },
+      "tokens_b": 5700,
+      "hardware": {
+        "value": "Undisclosed, KDA 3:1 KDA:MLA KV-cache -75% 6x decode",
+        "status": "undisclosed",
+        "confidence": 0.35,
+        "sources": [],
+        "note": null
+      },
+      "compute": {
+        "value": "5.7T final",
+        "status": "verified",
+        "confidence": 0.95,
+        "sources": [
+          {
+            "kind": "tech_report",
+            "url": "https://arxiv.org/pdf/2510.26692",
+            "confidence": 0.95
+          }
+        ],
+        "note": null
+      },
+      "post_training": {
+        "value": [
+          "Multi-stage SFT broad->reasoning",
+          "RL with PTX, truncated IS, dynamic KL, GRPO-K1.5"
+        ],
+        "status": "verified",
+        "confidence": 0.95,
+        "sources": [
+          {
+            "kind": "tech_report",
+            "url": "https://arxiv.org/pdf/2510.26692",
+            "confidence": 0.95
+          }
+        ],
+        "note": null
+      },
+      "post_training_methods": [
+        "Multi-stage SFT broad->reasoning",
+        "RL with PTX, truncated IS, dynamic KL, GRPO-K1.5"
+      ],
+      "_flat": {
+        "dataset": "K2 SFT extended, fair 1.4T ablations, final 5.7T",
+        "hardware": "Undisclosed, KDA 3:1 KDA:MLA KV-cache -75% 6x decode",
+        "compute": "5.7T final"
+      },
+      "overall_status": "mixed",
+      "overall_confidence": 0.83,
+      "verified_status": "mixed",
+      "confidence": 0.83,
+      "note": "verified from tech report/blog",
+      "_legacy_verified_status": "verified",
+      "_legacy_confidence": 0.95,
+      "schema_version": "2.2-per-field",
+      "_provenance_note": "per-field status fix 2.2: verified no longer whole-block; each claim now has status+confidence+sources"
+    },
+    "sources": [
+      {
+        "kind": "config",
+        "url": "https://huggingface.co/moonshotai/Kimi-Linear-48B-A3B-Base/blob/main/config.json",
+        "repo": "moonshotai/Kimi-Linear-48B-A3B-Base",
+        "label": "config.json",
+        "verified_status": "verified",
+        "confidence": 1,
+        "note": "fetch ok"
+      },
+      {
+        "kind": "config_raw",
+        "url": "https://huggingface.co/moonshotai/Kimi-Linear-48B-A3B-Base/raw/main/config.json",
+        "repo": "moonshotai/Kimi-Linear-48B-A3B-Base",
+        "label": "config.json raw",
+        "verified_status": "verified",
+        "confidence": 1,
+        "note": "bytes 1751"
+      },
+      {
+        "kind": "tech_report",
+        "url": "https://arxiv.org/pdf/2510.26692",
+        "repo": null,
+        "label": null,
+        "arxiv_id": "2510.26692",
+        "verified_status": "verified",
+        "confidence": 0.95
+      },
+      {
+        "kind": "gallery_image",
+        "url": "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/kimi-linear-48b-a3b.webp",
+        "repo": null,
+        "label": null,
+        "verified_status": "unverified",
+        "confidence": 0.9,
+        "note": "Raschka gallery"
+      },
+      {
+        "kind": "benchmark",
+        "url": "https://artificialanalysis.ai/models/kimi-linear-48b-a3b-instruct",
+        "repo": null,
+        "label": "Artificial Analysis",
+        "verified_status": "verified",
+        "confidence": 0.9,
+        "note": "AA index 8.5"
+      },
+      {
+        "kind": "license",
+        "url": "https://github.com/MoonshotAI/Kimi-Linear",
+        "repo": null,
+        "label": "MIT License",
+        "verified_status": "unverified",
+        "confidence": 0.9
+      }
+    ]
+  },
+  {
+    "index": 72,
+    "model_id": "minimax-m2-230b",
+    "model_name": "MiniMax M2 230B",
+    "company": "MiniMax",
+    "release_date": "2025-10-23",
+    "family": "minimax-m2",
+    "summary": "MiniMax's flagship returns to full attention and looks like a leaner, sparser cousin of Qwen3.",
+    "yichen": {
+      "vocab": 200064,
+      "depth": 62,
+      "dim": 3072,
+      "norm": "RMSNorm",
+      "parallel_layer": "Serial",
+      "pre_norm": "Pre",
+      "pos_emb": "RoPE",
+      "activation": "silu",
+      "attn_type": "gqa",
+      "context": 196608,
+      "bias_display": "undisclosed",
+      "tied_display": "untied",
+      "qk_norm": "QK-Norm",
+      "sliding": "—",
+      "stability": "RMSNorm eps=1e-06 • QK-LayerNorm"
+    },
+    "math_tricks": {
+      "attention_bias": null,
+      "attention_bias_display": "undisclosed",
+      "tie_word_embeddings": false,
+      "tie_display": "untied",
+      "rms_norm_eps": 0.000001,
+      "rope_theta": 5000000,
+      "hidden_act": "silu",
+      "swiglu_limit": null,
+      "use_qk_norm": true,
+      "learnable_sink": null,
+      "rope_scaling": null,
+      "attention_dropout": 0,
+      "norm_topk_prob": null,
+      "initializer_range": 0.02,
+      "tricks": [
+        "RMSNorm eps=1e-06",
+        "QK-LayerNorm"
+      ],
+      "tricks_display": "RMSNorm eps=1e-06 • QK-LayerNorm"
+    },
+    "scale": {
+      "total_params": 230000000000,
+      "active_params": 10000000000,
+      "active_pct": 4.3,
+      "extra": {
+        "mtp_params": null,
+        "lora_mb": null,
+        "lora_rank": null,
+        "backbone_label": "total",
+        "ngram_params": null,
+        "embedding_params": null
+      },
+      "raw": "230B total, 10B active (4.3% active)",
+      "parsed": true
+    },
+    "architecture": {
+      "decoder_type": "sparse_moe",
+      "decoder_display": "Sparse MoE",
+      "attention": {
+        "primary": "gqa",
+        "raw": "GQA with QK-Norm and partial RoPE",
+        "options": [],
+        "ratio": null
+      },
+      "layer_mix": {
+        "raw": "62 GQA",
+        "total_layers": 62,
+        "by_type": {},
+        "mtp_layers": 0
+      },
+      "hidden_size": 3072,
+      "hidden_size_source": "hidden_size",
+      "num_hidden_layers": 62,
+      "num_attention_heads": 48,
+      "num_key_value_heads": 8,
+      "head_dim": 128,
+      "intermediate_size": 1536,
+      "vocab_size": 200064,
+      "max_position_embeddings": 196608,
+      "rope": {
+        "theta": 5000000
+      },
+      "sliding_window": null,
+      "layer_types": null,
+      "moe": {
+        "num_experts_per_tok": 8,
+        "scoring_func": "sigmoid"
+      },
+      "model_type": "minimax_m2",
+      "architectures": [
+        "MiniMaxM2ForCausalLM"
+      ],
+      "raw_config_source": "MiniMaxAI/MiniMax-M2:config.json"
+    },
+    "raw_config": {
+      "architectures": [
+        "MiniMaxM2ForCausalLM"
+      ],
+      "attention_dropout": 0,
+      "attn_type_list": {
+        "audit_display_truncated": true,
+        "total_items": 62,
+        "first_items": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "auto_map": {
+        "AutoConfig": "configuration_minimax_m2.MiniMaxM2Config",
+        "AutoModelForCausalLM": "modeling_minimax_m2.MiniMaxM2ForCausalLM"
+      },
+      "bos_token_id": null,
+      "eos_token_id": null,
+      "head_dim": 128,
+      "hidden_act": "silu",
+      "hidden_size": 3072,
+      "initializer_range": 0.02,
+      "intermediate_size": 1536,
+      "layernorm_full_attention_beta": 1,
+      "layernorm_linear_attention_beta": 1,
+      "layernorm_mlp_beta": 1,
+      "max_position_embeddings": 196608,
+      "mlp_intermediate_size": 8192,
+      "model_type": "minimax_m2",
+      "mtp_transformer_layers": 1,
+      "num_attention_heads": 48,
+      "num_experts_per_tok": 8,
+      "num_hidden_layers": 62,
+      "num_key_value_heads": 8,
+      "num_local_experts": 256,
+      "num_mtp_modules": 3,
+      "output_router_logits": false,
+      "qk_norm_type": "per_layer",
+      "quantization_config": {
+        "activation_scheme": "dynamic",
+        "fmt": "float8_e4m3fn",
+        "quant_method": "fp8",
+        "weight_block_size": [
+          128,
+          128
+        ],
+        "modules_to_not_convert": [
+          "gate",
+          "e_score_correction_bias",
+          "lm_head"
+        ]
+      },
+      "rms_norm_eps": 0.000001,
+      "rope_theta": 5000000,
+      "rotary_dim": 64,
+      "router_aux_loss_coef": 0.001,
+      "router_jitter_noise": 0,
+      "scoring_func": "sigmoid",
+      "shared_intermediate_size": 0,
+      "shared_moe_mode": "sigmoid",
+      "sliding_window": null,
+      "tie_word_embeddings": false,
+      "transformers_version": "4.57.1",
+      "use_cache": true,
+      "use_mtp": true,
+      "use_qk_norm": true,
+      "use_routing_bias": true,
+      "vocab_size": 200064
+    },
+    "raw_config_bytes": 1460,
+    "context": {
+      "length": 196608,
+      "effective_length": 196608,
+      "recommended_context": 196608,
+      "is_unlimited": false,
+      "is_approx": false,
+      "raw": "196,608",
+      "input_length": null,
+      "output_length": null,
+      "config_context": {
+        "value": 196608,
+        "source": "config.json",
+        "source_path": "max_position_embeddings",
+        "confidence": 0.95,
+        "status": "verified",
+        "sources": [
+          {
+            "kind": "config",
+            "url": "https://huggingface.co/MiniMaxAI/MiniMax-M2/blob/main/config.json",
+            "confidence": 1
+          },
+          {
+            "kind": "config_raw",
+            "url": "https://huggingface.co/MiniMaxAI/MiniMax-M2/raw/main/config.json",
+            "confidence": 1
+          }
+        ],
+        "note": null
+      },
+      "advertised_context": {
+        "value": 196608,
+        "source": "gallery/config",
+        "confidence": 0.9,
+        "status": "verified",
+        "sources": [
+          {
+            "kind": "gallery_image",
+            "url": "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/minimax-m2-230b.webp",
+            "confidence": 0.9
+          }
+        ],
+        "note": null
+      },
+      "native_context": {
+        "value": 196608,
+        "source": "config_max_position_embeddings",
+        "confidence": 0.55,
+        "status": "inferred",
+        "sources": [
+          {
+            "kind": "config",
+            "url": "https://huggingface.co/MiniMaxAI/MiniMax-M2/blob/main/config.json",
+            "confidence": 1
+          },
+          {
+            "kind": "config_raw",
+            "url": "https://huggingface.co/MiniMaxAI/MiniMax-M2/raw/main/config.json",
+            "confidence": 1
+          }
+        ],
+        "note": null
+      },
+      "trained_context": {
+        "value": 196608,
+        "source": "config_max_position_embeddings",
+        "confidence": 0.5,
+        "status": "inferred",
+        "sources": [],
+        "note": "requires tech report to confirm trained window"
+      },
+      "tested_context": {
+        "value": null,
+        "status": "unverified",
+        "confidence": 0,
+        "sources": [],
+        "note": "no independent HELM/BenchLM long-context eval; requires Needle-in-Haystack run"
+      },
+      "api_context": {
+        "value": null,
+        "status": "unverified",
+        "confidence": 0,
+        "sources": [],
+        "note": "requires live API max_tokens probe; may differ from advertised"
+      },
+      "conflict": false,
+      "conflict_note": null,
+      "resolution": "consistent within 2%",
+      "verified_source": "config+gallery (consistent)",
+      "confidence": 0.9,
+      "config_max_position_embeddings": 196608,
+      "config_source_path": "max_position_embeddings",
+      "_legacy_length": 196608,
+      "_legacy_resolution": "consistent within 2%",
+      "schema_version": "2.2-six-contexts"
+    },
+    "training": {
+      "dataset": {
+        "value": "MiniMax web/code/math (inferred from M2 230B)",
+        "status": "inferred",
+        "confidence": 0.55,
+        "sources": [],
+        "note": "(inferred from M2 230B"
+      },
+      "tokens": {
+        "value": null,
+        "unit": null,
+        "status": "undisclosed",
+        "confidence": 0,
+        "sources": [],
+        "note": null
+      },
+      "tokens_b": null,
+      "hardware": {
+        "value": "Undisclosed H100 (inferred)",
+        "status": "inferred",
+        "confidence": 0.55,
+        "sources": [],
+        "note": null
+      },
+      "compute": {
+        "value": null,
+        "status": "undisclosed",
+        "confidence": 0,
+        "sources": [],
+        "note": null
+      },
+      "post_training": {
+        "value": [
+          "RL (inferred)"
+        ],
+        "status": "inferred",
+        "confidence": 0.55,
+        "sources": [],
+        "note": null
+      },
+      "post_training_methods": [
+        "RL (inferred)"
+      ],
+      "_flat": {
+        "dataset": "MiniMax web/code/math (inferred from M2 230B)",
+        "hardware": "Undisclosed H100 (inferred)",
+        "compute": null
+      },
+      "overall_status": "inferred",
+      "overall_confidence": 0.35,
+      "verified_status": "inferred",
+      "confidence": 0.35,
+      "note": "inferred from family/company heuristic",
+      "_legacy_verified_status": "inferred",
+      "_legacy_confidence": 0.35,
+      "schema_version": "2.2-per-field",
+      "_provenance_note": "per-field status fix 2.2: verified no longer whole-block; each claim now has status+confidence+sources"
+    },
+    "sources": [
+      {
+        "kind": "config",
+        "url": "https://huggingface.co/MiniMaxAI/MiniMax-M2/blob/main/config.json",
+        "repo": "MiniMaxAI/MiniMax-M2",
+        "label": "config.json",
+        "verified_status": "verified",
+        "confidence": 1,
+        "note": "fetch ok"
+      },
+      {
+        "kind": "config_raw",
+        "url": "https://huggingface.co/MiniMaxAI/MiniMax-M2/raw/main/config.json",
+        "repo": "MiniMaxAI/MiniMax-M2",
+        "label": "config.json raw",
+        "verified_status": "verified",
+        "confidence": 1,
+        "note": "bytes 2055"
+      },
+      {
+        "kind": "tech_report",
+        "url": "https://arxiv.org/abs/2605.26494",
+        "repo": null,
+        "label": null,
+        "arxiv_id": "2605.26494",
+        "verified_status": "verified",
+        "confidence": 0.95
+      },
+      {
+        "kind": "gallery_image",
+        "url": "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/minimax-m2-230b.webp",
+        "repo": null,
+        "label": null,
+        "verified_status": "unverified",
+        "confidence": 0.9,
+        "note": "Raschka gallery"
+      },
+      {
+        "kind": "benchmark",
+        "url": "https://artificialanalysis.ai/models/minimax-m2",
+        "repo": null,
+        "label": "Artificial Analysis",
+        "verified_status": "verified",
+        "confidence": 0.9,
+        "note": "AA index 28.3"
+      },
+      {
+        "kind": "license",
+        "url": "https://huggingface.co/MiniMaxAI/MiniMax-M2/blob/main/README.md",
+        "repo": null,
+        "label": "Modified MIT License",
+        "verified_status": "unverified",
+        "confidence": 0.9
+      }
+    ]
+  },
+  {
+    "index": 73,
+    "model_id": "qwen3-next-80b-a3b",
+    "model_name": "Qwen3 Next 80B-A3B",
+    "company": "Alibaba Cloud",
+    "release_date": "2025-09-09",
+    "family": "qwen3",
+    "summary": "Efficiency-focused Qwen refresh that swaps standard attention for a DeltaNet-attention hybrid.",
+    "yichen": {
+      "vocab": 151936,
+      "depth": 48,
+      "dim": 2048,
+      "norm": "RMSNorm",
+      "parallel_layer": "Serial",
+      "pre_norm": "Pre",
+      "pos_emb": "RoPE",
+      "activation": "silu",
+      "attn_type": "gated_deltanet",
+      "context": 262144,
+      "bias_display": "undisclosed",
+      "tied_display": "untied",
+      "qk_norm": "—",
+      "sliding": "—",
+      "stability": "RMSNorm eps=1e-06 • norm_topk"
+    },
+    "math_tricks": {
+      "attention_bias": null,
+      "attention_bias_display": "undisclosed",
+      "tie_word_embeddings": false,
+      "tie_display": "untied",
+      "rms_norm_eps": 0.000001,
+      "rope_theta": 10000000,
+      "hidden_act": "silu",
+      "swiglu_limit": null,
+      "use_qk_norm": null,
+      "learnable_sink": null,
+      "rope_scaling": null,
+      "attention_dropout": 0,
+      "norm_topk_prob": true,
+      "initializer_range": 0.02,
+      "tricks": [
+        "RMSNorm eps=1e-06",
+        "norm_topk"
+      ],
+      "tricks_display": "RMSNorm eps=1e-06 • norm_topk"
+    },
+    "scale": {
+      "total_params": 80000000000,
+      "active_params": 3000000000,
+      "active_pct": 3.8,
+      "extra": {
+        "mtp_params": null,
+        "lora_mb": null,
+        "lora_rank": null,
+        "backbone_label": "total",
+        "ngram_params": null,
+        "embedding_params": null
+      },
+      "raw": "80B total, 3B active (3.8% active)",
+      "parsed": true
+    },
+    "architecture": {
+      "decoder_type": "sparse_hybrid",
+      "decoder_display": "Sparse hybrid",
+      "attention": {
+        "primary": "gated_deltanet",
+        "raw": "3:1 Gated DeltaNet and Gated Attention",
+        "options": [],
+        "ratio": null
+      },
+      "layer_mix": {
+        "raw": "12 gated attention + 36 DeltaNet",
+        "total_layers": 48,
+        "by_type": {},
+        "mtp_layers": 0
+      },
+      "hidden_size": 2048,
+      "hidden_size_source": "hidden_size",
+      "num_hidden_layers": 48,
+      "num_attention_heads": 16,
+      "num_key_value_heads": 2,
+      "head_dim": 256,
+      "intermediate_size": 5120,
+      "vocab_size": 151936,
+      "max_position_embeddings": 262144,
+      "rope": {
+        "theta": 10000000,
+        "rope_scaling": null
+      },
+      "sliding_window": null,
+      "layer_types": null,
+      "moe": {
+        "num_experts": 512,
+        "num_experts_per_tok": 10,
+        "moe_intermediate_size": 512
+      },
+      "model_type": "qwen3_next",
+      "architectures": [
+        "Qwen3NextForCausalLM"
+      ],
+      "raw_config_source": "Qwen/Qwen3-Next-80B-A3B-Instruct:config.json"
+    },
+    "raw_config": {
+      "architectures": [
+        "Qwen3NextForCausalLM"
+      ],
+      "attention_dropout": 0,
+      "bos_token_id": 151643,
+      "decoder_sparse_step": 1,
+      "eos_token_id": 151645,
+      "full_attention_interval": 4,
+      "head_dim": 256,
+      "hidden_act": "silu",
+      "hidden_size": 2048,
+      "initializer_range": 0.02,
+      "intermediate_size": 5120,
+      "linear_conv_kernel_dim": 4,
+      "linear_key_head_dim": 128,
+      "linear_num_key_heads": 16,
+      "linear_num_value_heads": 32,
+      "linear_value_head_dim": 128,
+      "max_position_embeddings": 262144,
+      "mlp_only_layers": [],
+      "model_type": "qwen3_next",
+      "moe_intermediate_size": 512,
+      "norm_topk_prob": true,
+      "num_attention_heads": 16,
+      "num_experts": 512,
+      "num_experts_per_tok": 10,
+      "num_hidden_layers": 48,
+      "num_key_value_heads": 2,
+      "output_router_logits": false,
+      "partial_rotary_factor": 0.25,
+      "rms_norm_eps": 0.000001,
+      "rope_scaling": null,
+      "rope_theta": 10000000,
+      "router_aux_loss_coef": 0.001,
+      "shared_expert_intermediate_size": 512,
+      "tie_word_embeddings": false,
+      "torch_dtype": "bfloat16",
+      "transformers_version": "4.57.0.dev0",
+      "use_cache": true,
+      "use_sliding_window": false,
+      "vocab_size": 151936
+    },
+    "raw_config_bytes": 989,
+    "context": {
+      "length": 262144,
+      "effective_length": 262144,
+      "recommended_context": 262144,
+      "is_unlimited": false,
+      "is_approx": false,
+      "raw": "262,144",
+      "input_length": null,
+      "output_length": null,
+      "config_context": {
+        "value": 262144,
+        "source": "config.json",
+        "source_path": "max_position_embeddings",
+        "confidence": 0.95,
+        "status": "verified",
+        "sources": [
+          {
+            "kind": "config",
+            "url": "https://huggingface.co/Qwen/Qwen3-Next-80B-A3B-Instruct/blob/main/config.json",
+            "confidence": 1
+          },
+          {
+            "kind": "config_raw",
+            "url": "https://huggingface.co/Qwen/Qwen3-Next-80B-A3B-Instruct/raw/main/config.json",
+            "confidence": 1
+          }
+        ],
+        "note": null
+      },
+      "advertised_context": {
+        "value": 262144,
+        "source": "gallery/config",
+        "confidence": 0.9,
+        "status": "verified",
+        "sources": [
+          {
+            "kind": "gallery_image",
+            "url": "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/qwen3-next-80b-a3b.webp",
+            "confidence": 0.9
+          }
+        ],
+        "note": null
+      },
+      "native_context": {
+        "value": 262144,
+        "source": "config_max_position_embeddings",
+        "confidence": 0.55,
+        "status": "inferred",
+        "sources": [
+          {
+            "kind": "config",
+            "url": "https://huggingface.co/Qwen/Qwen3-Next-80B-A3B-Instruct/blob/main/config.json",
+            "confidence": 1
+          },
+          {
+            "kind": "config_raw",
+            "url": "https://huggingface.co/Qwen/Qwen3-Next-80B-A3B-Instruct/raw/main/config.json",
+            "confidence": 1
+          }
+        ],
+        "note": null
+      },
+      "trained_context": {
+        "value": 262144,
+        "source": "config_max_position_embeddings",
+        "confidence": 0.5,
+        "status": "inferred",
+        "sources": [],
+        "note": "requires tech report to confirm trained window"
+      },
+      "tested_context": {
+        "value": null,
+        "status": "unverified",
+        "confidence": 0,
+        "sources": [],
+        "note": "no independent HELM/BenchLM long-context eval; requires Needle-in-Haystack run"
+      },
+      "api_context": {
+        "value": null,
+        "status": "unverified",
+        "confidence": 0,
+        "sources": [],
+        "note": "requires live API max_tokens probe; may differ from advertised"
+      },
+      "conflict": false,
+      "conflict_note": null,
+      "resolution": "consistent within 2%",
+      "verified_source": "config+gallery (consistent)",
+      "confidence": 0.9,
+      "config_max_position_embeddings": 262144,
+      "config_source_path": "max_position_embeddings",
+      "_legacy_length": 262144,
+      "_legacy_resolution": "consistent within 2%",
+      "schema_version": "2.2-six-contexts"
+    },
+    "training": {
+      "dataset": {
+        "value": "Uniform subsample of Qwen3 36T",
+        "status": "verified",
+        "confidence": 0.95,
+        "sources": [
+          {
+            "kind": "benchmark",
+            "url": "https://artificialanalysis.ai/models/qwen3-next-80b-a3b-instruct",
+            "confidence": 0.9
+          }
+        ],
+        "note": null
+      },
+      "tokens": {
+        "value": 15000,
+        "unit": "B",
+        "status": "verified",
+        "confidence": 0.95,
+        "sources": [
+          {
+            "kind": "config",
+            "url": "https://huggingface.co/Qwen/Qwen3-Next-80B-A3B-Instruct/blob/main/config.json",
+            "confidence": 1
+          }
+        ],
+        "note": null
+      },
+      "tokens_b": 15000,
+      "hardware": {
+        "value": "Undisclosed",
+        "status": "undisclosed",
+        "confidence": 0.35,
+        "sources": [],
+        "note": null
+      },
+      "compute": {
+        "value": "9.3% of Qwen3-32B GPU-hr",
+        "status": "verified",
+        "confidence": 0.95,
+        "sources": [
+          {
+            "kind": "config",
+            "url": "https://huggingface.co/Qwen/Qwen3-Next-80B-A3B-Instruct/blob/main/config.json",
+            "confidence": 1
+          }
+        ],
+        "note": null
+      },
+      "post_training": {
+        "value": [
+          "Hybrid RL stabilized",
+          "Instruct & Thinking, 262K->1M ext, 10x throughput vs 32B"
+        ],
+        "status": "verified",
+        "confidence": 0.95,
+        "sources": [
+          {
+            "kind": "config",
+            "url": "https://huggingface.co/Qwen/Qwen3-Next-80B-A3B-Instruct/blob/main/config.json",
+            "confidence": 1
+          }
+        ],
+        "note": null
+      },
+      "post_training_methods": [
+        "Hybrid RL stabilized",
+        "Instruct & Thinking, 262K->1M ext, 10x throughput vs 32B"
+      ],
+      "_flat": {
+        "dataset": "Uniform subsample of Qwen3 36T",
+        "hardware": "Undisclosed",
+        "compute": "9.3% of Qwen3-32B GPU-hr"
+      },
+      "overall_status": "mixed",
+      "overall_confidence": 0.83,
+      "verified_status": "mixed",
+      "confidence": 0.83,
+      "note": "verified from tech report/blog",
+      "_legacy_verified_status": "verified",
+      "_legacy_confidence": 0.95,
+      "schema_version": "2.2-per-field",
+      "_provenance_note": "per-field status fix 2.2: verified no longer whole-block; each claim now has status+confidence+sources"
+    },
+    "sources": [
+      {
+        "kind": "config",
+        "url": "https://huggingface.co/Qwen/Qwen3-Next-80B-A3B-Instruct/blob/main/config.json",
+        "repo": "Qwen/Qwen3-Next-80B-A3B-Instruct",
+        "label": "config.json",
+        "verified_status": "verified",
+        "confidence": 1,
+        "note": "fetch ok"
+      },
+      {
+        "kind": "config_raw",
+        "url": "https://huggingface.co/Qwen/Qwen3-Next-80B-A3B-Instruct/raw/main/config.json",
+        "repo": "Qwen/Qwen3-Next-80B-A3B-Instruct",
+        "label": "config.json raw",
+        "verified_status": "verified",
+        "confidence": 1,
+        "note": "bytes 1154"
+      },
+      {
+        "kind": "gallery_image",
+        "url": "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/qwen3-next-80b-a3b.webp",
+        "repo": null,
+        "label": null,
+        "verified_status": "unverified",
+        "confidence": 0.9,
+        "note": "Raschka gallery"
+      },
+      {
+        "kind": "benchmark",
+        "url": "https://artificialanalysis.ai/models/qwen3-next-80b-a3b-instruct",
+        "repo": null,
+        "label": "Artificial Analysis",
+        "verified_status": "verified",
+        "confidence": 0.9,
+        "note": "AA index 13.7"
+      },
+      {
+        "kind": "license",
+        "url": "https://huggingface.co/Qwen/Qwen3-Next-80B-A3B-Instruct/blob/main/LICENSE",
+        "repo": null,
+        "label": "Apache License 2.0",
+        "verified_status": "unverified",
+        "confidence": 0.9
+      }
+    ]
+  },
+  {
+    "index": 74,
+    "model_id": "grok-2-5-270b",
+    "model_name": "Grok 2.5 270B",
+    "company": "xAI",
+    "release_date": "2025-08-22",
+    "family": "grok",
+    "summary": "Rare production-model release that shows an older MoE style with fewer, larger experts.",
+    "yichen": {
+      "vocab": 131072,
+      "depth": 64,
+      "dim": 8192,
+      "norm": "RMSNorm",
+      "parallel_layer": "Serial",
+      "pre_norm": "Pre",
+      "pos_emb": "RoPE",
+      "activation": "SwiGLU",
+      "attn_type": "gqa",
+      "context": 131072,
+      "bias_display": "undisclosed",
+      "tied_display": "undisclosed",
+      "qk_norm": "—",
+      "sliding": "—",
+      "stability": "RMSNorm eps=1e-05"
+    },
+    "math_tricks": {
+      "attention_bias": null,
+      "attention_bias_display": "undisclosed",
+      "tie_word_embeddings": null,
+      "tie_display": "undisclosed",
+      "rms_norm_eps": 0.00001,
+      "rope_theta": 208533496,
+      "hidden_act": null,
+      "swiglu_limit": null,
+      "use_qk_norm": null,
+      "learnable_sink": null,
+      "rope_scaling": null,
+      "attention_dropout": null,
+      "norm_topk_prob": null,
+      "initializer_range": null,
+      "tricks": [
+        "RMSNorm eps=1e-05"
+      ],
+      "tricks_display": "RMSNorm eps=1e-05"
+    },
+    "scale": {
+      "total_params": 270000000000,
+      "active_params": 270000000000,
+      "active_pct": 100,
+      "extra": {
+        "mtp_params": null,
+        "lora_mb": null,
+        "lora_rank": null,
+        "backbone_label": "total",
+        "ngram_params": null,
+        "embedding_params": null
+      },
+      "raw": "270B parameters",
+      "parsed": true
+    },
+    "architecture": {
+      "decoder_type": "sparse_moe",
+      "decoder_display": "Sparse MoE",
+      "attention": {
+        "primary": "gqa",
+        "raw": "GQA",
+        "options": [],
+        "ratio": null
+      },
+      "layer_mix": {
+        "raw": "64 GQA",
+        "total_layers": 64,
+        "by_type": {},
+        "mtp_layers": 0
+      },
+      "hidden_size": 8192,
+      "hidden_size_source": "hidden_size",
+      "num_hidden_layers": 64,
+      "num_attention_heads": 64,
+      "num_key_value_heads": 8,
+      "head_dim": 128,
+      "intermediate_size": 32768,
+      "vocab_size": 131072,
+      "max_position_embeddings": 131072,
+      "rope": {
+        "theta": 208533496
+      },
+      "sliding_window": null,
+      "layer_types": null,
+      "moe": {
+        "num_experts_per_tok": 2,
+        "moe_intermediate_size": 16384
+      },
+      "model_type": "git",
+      "architectures": [
+        "Grok1ForCausalLM"
+      ],
+      "raw_config_source": "xai-org/grok-2:config.json"
+    },
+    "raw_config": {
+      "architectures": [
+        "Grok1ForCausalLM"
+      ],
+      "embedding_multiplier_scale": 90.50966799187809,
+      "output_multiplier_scale": 0.5,
+      "vocab_size": 131072,
+      "hidden_size": 8192,
+      "intermediate_size": 32768,
+      "moe_intermediate_size": 16384,
+      "max_position_embeddings": 131072,
+      "num_experts_per_tok": 2,
+      "num_local_experts": 8,
+      "residual_moe": true,
+      "num_attention_heads": 64,
+      "num_key_value_heads": 8,
+      "num_hidden_layers": 64,
+      "head_dim": 128,
+      "rms_norm_eps": 0.00001,
+      "final_logit_softcapping": 50,
+      "attn_logit_softcapping": 30,
+      "router_logit_softcapping": 30,
+      "rope_theta": 208533496,
+      "attn_temperature_len": 1024,
+      "sliding_window_size": -1,
+      "global_attn_every_n": 1,
+      "model_type": "git",
+      "torch_dtype": "bfloat16",
+      "rope_type": "original",
+      "original_max_position_embeddings": 8192,
+      "scaling_factor": 16,
+      "extrapolation_factor": 1,
+      "attn_factor": 1,
+      "beta_fast": 8,
+      "beta_slow": 1
+    },
+    "raw_config_bytes": 802,
+    "context": {
+      "length": 131072,
+      "effective_length": 131072,
+      "recommended_context": 131072,
+      "is_unlimited": false,
+      "is_approx": false,
+      "raw": "131,072",
+      "input_length": null,
+      "output_length": null,
+      "config_context": {
+        "value": 131072,
+        "source": "config.json",
+        "source_path": "max_position_embeddings",
+        "confidence": 0.95,
+        "status": "verified",
+        "sources": [
+          {
+            "kind": "config",
+            "url": "https://huggingface.co/xai-org/grok-2/blob/main/config.json",
+            "confidence": 1
+          },
+          {
+            "kind": "config_raw",
+            "url": "https://huggingface.co/xai-org/grok-2/raw/main/config.json",
+            "confidence": 1
+          }
+        ],
+        "note": null
+      },
+      "advertised_context": {
+        "value": 131072,
+        "source": "gallery/config",
+        "confidence": 0.9,
+        "status": "verified",
+        "sources": [
+          {
+            "kind": "gallery_image",
+            "url": "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/grok-2-5-270b.webp",
+            "confidence": 0.9
+          }
+        ],
+        "note": null
+      },
+      "native_context": {
+        "value": 131072,
+        "source": "config_max_position_embeddings",
+        "confidence": 0.55,
+        "status": "inferred",
+        "sources": [
+          {
+            "kind": "config",
+            "url": "https://huggingface.co/xai-org/grok-2/blob/main/config.json",
+            "confidence": 1
+          },
+          {
+            "kind": "config_raw",
+            "url": "https://huggingface.co/xai-org/grok-2/raw/main/config.json",
+            "confidence": 1
+          }
+        ],
+        "note": null
+      },
+      "trained_context": {
+        "value": 131072,
+        "source": "config_max_position_embeddings",
+        "confidence": 0.5,
+        "status": "inferred",
+        "sources": [],
+        "note": "requires tech report to confirm trained window"
+      },
+      "tested_context": {
+        "value": null,
+        "status": "unverified",
+        "confidence": 0,
+        "sources": [],
+        "note": "no independent HELM/BenchLM long-context eval; requires Needle-in-Haystack run"
+      },
+      "api_context": {
+        "value": null,
+        "status": "unverified",
+        "confidence": 0,
+        "sources": [],
+        "note": "requires live API max_tokens probe; may differ from advertised"
+      },
+      "conflict": false,
+      "conflict_note": null,
+      "resolution": "consistent within 2%",
+      "verified_source": "config+gallery (consistent)",
+      "confidence": 0.9,
+      "config_max_position_embeddings": 131072,
+      "config_source_path": "max_position_embeddings",
+      "_legacy_length": 131072,
+      "_legacy_resolution": "consistent within 2%",
+      "schema_version": "2.2-six-contexts"
+    },
+    "training": {
+      "dataset": {
+        "value": "Undisclosed web-scale (vendor not published, inferred)",
+        "status": "inferred",
+        "confidence": 0.55,
+        "sources": [],
+        "note": "inferred from family/company heuristic"
+      },
+      "tokens": {
+        "value": null,
+        "unit": null,
+        "status": "undisclosed",
+        "confidence": 0,
+        "sources": [],
+        "note": null
+      },
+      "tokens_b": null,
+      "hardware": {
+        "value": "Undisclosed (inferred)",
+        "status": "inferred",
+        "confidence": 0.55,
+        "sources": [],
+        "note": null
+      },
+      "compute": {
+        "value": null,
+        "status": "undisclosed",
+        "confidence": 0,
+        "sources": [],
+        "note": null
+      },
+      "post_training": {
+        "value": [
+          "SFT (inferred)"
+        ],
+        "status": "inferred",
+        "confidence": 0.55,
+        "sources": [],
+        "note": null
+      },
+      "post_training_methods": [
+        "SFT (inferred)"
+      ],
+      "_flat": {
+        "dataset": "Undisclosed web-scale (vendor not published, inferred)",
+        "hardware": "Undisclosed (inferred)",
+        "compute": null
+      },
+      "overall_status": "inferred",
+      "overall_confidence": 0.35,
+      "verified_status": "inferred",
+      "confidence": 0.35,
+      "note": "inferred from family/company heuristic",
+      "_legacy_verified_status": "inferred",
+      "_legacy_confidence": 0.35,
+      "schema_version": "2.2-per-field",
+      "_provenance_note": "per-field status fix 2.2: verified no longer whole-block; each claim now has status+confidence+sources"
+    },
+    "sources": [
+      {
+        "kind": "config",
+        "url": "https://huggingface.co/xai-org/grok-2/blob/main/config.json",
+        "repo": "xai-org/grok-2",
+        "label": "config.json",
+        "verified_status": "verified",
+        "confidence": 1,
+        "note": "fetch ok"
+      },
+      {
+        "kind": "config_raw",
+        "url": "https://huggingface.co/xai-org/grok-2/raw/main/config.json",
+        "repo": "xai-org/grok-2",
+        "label": "config.json raw",
+        "verified_status": "verified",
+        "confidence": 1,
+        "note": "bytes 947"
+      },
+      {
+        "kind": "gallery_image",
+        "url": "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/grok-2-5-270b.webp",
+        "repo": null,
+        "label": null,
+        "verified_status": "unverified",
+        "confidence": 0.9,
+        "note": "Raschka gallery"
+      },
+      {
+        "kind": "license",
+        "url": "https://huggingface.co/xai-org/grok-2/blob/main/README.md",
+        "repo": null,
+        "label": "Grok 2 Community License Agreement",
+        "verified_status": "unverified",
+        "confidence": 0.9
+      }
+    ]
+  }
+]

@@ -1,0 +1,2186 @@
+[
+  {
+    "index": 30,
+    "model_id": "deepseek-v4-pro",
+    "model_name": "DeepSeek V4-Pro",
+    "company": "DeepSeek",
+    "release_date": "2026-04-24",
+    "family": "deepseek-v4",
+    "summary": "DeepSeek's flagship V4 preview scales to 1.6T parameters and introduces compressed sparse attention plus manifold-constrained hyper-connections for million-token contexts.",
+    "yichen": {
+      "vocab": 129280,
+      "depth": 61,
+      "dim": 7168,
+      "norm": "RMSNorm",
+      "parallel_layer": "Serial",
+      "pre_norm": "Pre",
+      "pos_emb": "RoPE",
+      "activation": "silu",
+      "attn_type": "mla",
+      "context": 1048576,
+      "bias_display": "no bias",
+      "tied_display": "untied",
+      "qk_norm": "—",
+      "sliding": "yes",
+      "stability": "RMSNorm eps=1e-06 • SwiGLU cap 10.0 • RoPE scaling yarn • norm_topk"
+    },
+    "math_tricks": {
+      "attention_bias": false,
+      "attention_bias_display": "no bias",
+      "tie_word_embeddings": false,
+      "tie_display": "untied",
+      "rms_norm_eps": 0.000001,
+      "rope_theta": 10000,
+      "hidden_act": "silu",
+      "swiglu_limit": 10,
+      "use_qk_norm": null,
+      "learnable_sink": null,
+      "rope_scaling": {
+        "beta_fast": 32,
+        "beta_slow": 1,
+        "factor": 16,
+        "original_max_position_embeddings": 65536,
+        "type": "yarn"
+      },
+      "attention_dropout": 0,
+      "norm_topk_prob": true,
+      "initializer_range": 0.02,
+      "tricks": [
+        "RMSNorm eps=1e-06",
+        "SwiGLU cap 10.0",
+        "RoPE scaling yarn",
+        "norm_topk"
+      ],
+      "tricks_display": "RMSNorm eps=1e-06 • SwiGLU cap 10.0 • RoPE scaling yarn • norm_topk"
+    },
+    "scale": {
+      "total_params": 1600000000000,
+      "active_params": 49000000000,
+      "active_pct": 3.1,
+      "extra": {
+        "mtp_params": null,
+        "lora_mb": null,
+        "lora_rank": null,
+        "backbone_label": "total",
+        "ngram_params": null,
+        "embedding_params": null
+      },
+      "raw": "1.6T total, 49B active (3.1% active)",
+      "parsed": true
+    },
+    "architecture": {
+      "decoder_type": "sparse_moe",
+      "decoder_display": "Sparse MoE",
+      "attention": {
+        "primary": "mla",
+        "raw": "MLA-style CSA/HCA with mHC",
+        "options": [],
+        "ratio": null
+      },
+      "layer_mix": {
+        "raw": "61 CSA/HCA",
+        "total_layers": 61,
+        "by_type": {},
+        "mtp_layers": 0
+      },
+      "hidden_size": 7168,
+      "hidden_size_source": "hidden_size",
+      "num_hidden_layers": 61,
+      "num_attention_heads": 128,
+      "num_key_value_heads": 1,
+      "head_dim": 512,
+      "intermediate_size": null,
+      "vocab_size": 129280,
+      "max_position_embeddings": 1048576,
+      "rope": {
+        "theta": 10000,
+        "rope_scaling": {
+          "beta_fast": 32,
+          "beta_slow": 1,
+          "factor": 16,
+          "original_max_position_embeddings": 65536,
+          "type": "yarn"
+        }
+      },
+      "sliding_window": 128,
+      "layer_types": null,
+      "moe": {
+        "n_routed_experts": 384,
+        "num_experts_per_tok": 6,
+        "n_shared_experts": 1,
+        "moe_intermediate_size": 3072,
+        "routed_scaling_factor": 2.5,
+        "scoring_func": "sqrtsoftplus"
+      },
+      "model_type": "deepseek_v4",
+      "architectures": [
+        "DeepseekV4ForCausalLM"
+      ],
+      "raw_config_source": "deepseek-ai/DeepSeek-V4-Pro:config.json"
+    },
+    "raw_config": {
+      "architectures": [
+        "DeepseekV4ForCausalLM"
+      ],
+      "attention_bias": false,
+      "attention_dropout": 0,
+      "bos_token_id": 0,
+      "eos_token_id": 1,
+      "expert_dtype": "fp4",
+      "hc_eps": 0.000001,
+      "hc_mult": 4,
+      "hc_sinkhorn_iters": 20,
+      "head_dim": 512,
+      "hidden_act": "silu",
+      "hidden_size": 7168,
+      "index_head_dim": 128,
+      "index_n_heads": 64,
+      "index_topk": 1024,
+      "initializer_range": 0.02,
+      "max_position_embeddings": 1048576,
+      "model_type": "deepseek_v4",
+      "moe_intermediate_size": 3072,
+      "n_routed_experts": 384,
+      "n_shared_experts": 1,
+      "norm_topk_prob": true,
+      "num_attention_heads": 128,
+      "num_experts_per_tok": 6,
+      "num_hidden_layers": 61,
+      "num_hash_layers": 3,
+      "num_key_value_heads": 1,
+      "num_nextn_predict_layers": 1,
+      "o_groups": 16,
+      "o_lora_rank": 1024,
+      "q_lora_rank": 1536,
+      "qk_rope_head_dim": 64,
+      "quantization_config": {
+        "activation_scheme": "dynamic",
+        "fmt": "e4m3",
+        "quant_method": "fp8",
+        "scale_fmt": "ue8m0",
+        "weight_block_size": [
+          128,
+          128
+        ]
+      },
+      "rms_norm_eps": 0.000001,
+      "rope_scaling": {
+        "beta_fast": 32,
+        "beta_slow": 1,
+        "factor": 16,
+        "original_max_position_embeddings": 65536,
+        "type": "yarn"
+      },
+      "rope_theta": 10000,
+      "routed_scaling_factor": 2.5,
+      "scoring_func": "sqrtsoftplus",
+      "sliding_window": 128,
+      "swiglu_limit": 10,
+      "tie_word_embeddings": false,
+      "topk_method": "noaux_tc",
+      "torch_dtype": "bfloat16",
+      "transformers_version": "4.57.1",
+      "use_cache": true,
+      "vocab_size": 129280,
+      "compress_rope_theta": 160000,
+      "compress_ratios": {
+        "audit_display_truncated": true,
+        "total_items": 62,
+        "first_items": [
+          128,
+          128,
+          4,
+          128,
+          4,
+          128,
+          4,
+          128,
+          4,
+          128,
+          4,
+          128,
+          4,
+          128,
+          4,
+          128,
+          4,
+          128,
+          4,
+          128,
+          4,
+          128,
+          4,
+          128
+        ]
+      }
+    },
+    "raw_config_bytes": 1482,
+    "context": {
+      "length": 1048576,
+      "effective_length": 1048576,
+      "recommended_context": 1048576,
+      "is_unlimited": false,
+      "is_approx": false,
+      "raw": "1,048,576",
+      "input_length": null,
+      "output_length": null,
+      "config_context": {
+        "value": 1048576,
+        "source": "config.json",
+        "source_path": "max_position_embeddings",
+        "confidence": 0.95,
+        "status": "verified",
+        "sources": [
+          {
+            "kind": "config",
+            "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro/blob/main/config.json",
+            "confidence": 1
+          },
+          {
+            "kind": "config_raw",
+            "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro/raw/main/config.json",
+            "confidence": 1
+          }
+        ],
+        "note": null
+      },
+      "advertised_context": {
+        "value": 1048576,
+        "source": "gallery/config",
+        "confidence": 0.9,
+        "status": "verified",
+        "sources": [
+          {
+            "kind": "gallery_image",
+            "url": "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/deepseek-v4-pro.webp",
+            "confidence": 0.9
+          }
+        ],
+        "note": null
+      },
+      "native_context": {
+        "value": 65536,
+        "source": "rope_scaling.original_max_position_embeddings",
+        "confidence": 0.88,
+        "status": "verified",
+        "sources": [
+          {
+            "kind": "config",
+            "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro/blob/main/config.json",
+            "confidence": 1
+          },
+          {
+            "kind": "config_raw",
+            "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro/raw/main/config.json",
+            "confidence": 1
+          }
+        ],
+        "note": "pre-YaRN window; scaled x16 -> 1048576"
+      },
+      "trained_context": {
+        "value": 65536,
+        "source": "rope_scaling.original_max_position_embeddings",
+        "confidence": 0.82,
+        "status": "verified",
+        "sources": [],
+        "note": "pre-YaRN window; scaled x16 -> 1048576"
+      },
+      "tested_context": {
+        "value": null,
+        "status": "unverified",
+        "confidence": 0,
+        "sources": [],
+        "note": "no independent HELM/BenchLM long-context eval; requires Needle-in-Haystack run"
+      },
+      "api_context": {
+        "value": null,
+        "status": "unverified",
+        "confidence": 0,
+        "sources": [],
+        "note": "requires live API max_tokens probe; may differ from advertised"
+      },
+      "conflict": false,
+      "conflict_note": null,
+      "resolution": "consistent within 2%",
+      "verified_source": "config+gallery (consistent)",
+      "confidence": 0.9,
+      "config_max_position_embeddings": 1048576,
+      "config_source_path": "max_position_embeddings",
+      "_legacy_length": 1048576,
+      "_legacy_resolution": "consistent within 2%",
+      "schema_version": "2.2-six-contexts"
+    },
+    "training": {
+      "dataset": {
+        "value": "Web/Code/Math/Knowledge high-quality diverse",
+        "status": "verified",
+        "confidence": 0.95,
+        "sources": [
+          {
+            "kind": "tech_report",
+            "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro/blob/main/DeepSeek_V4.pdf",
+            "confidence": 0.7
+          },
+          {
+            "kind": "benchmark",
+            "url": "https://artificialanalysis.ai/models/deepseek-v4-pro",
+            "confidence": 0.9
+          }
+        ],
+        "note": null
+      },
+      "tokens": {
+        "value": 33000,
+        "unit": "B",
+        "status": "verified",
+        "confidence": 0.95,
+        "sources": [
+          {
+            "kind": "tech_report",
+            "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro/blob/main/DeepSeek_V4.pdf",
+            "confidence": 0.7
+          }
+        ],
+        "note": null
+      },
+      "tokens_b": 33000,
+      "hardware": {
+        "value": "Undisclosed H800/H100 cluster (FP4 MoE, 384 experts top-6)",
+        "status": "undisclosed",
+        "confidence": 0.35,
+        "sources": [],
+        "note": null
+      },
+      "compute": {
+        "value": "Undisclosed, batch 94.4M, Muon+AdamW, seq 4K->1M",
+        "status": "undisclosed",
+        "confidence": 0.35,
+        "sources": [],
+        "note": null
+      },
+      "post_training": {
+        "value": [
+          "GRPO RL",
+          "SFT+GRPO distillation",
+          "QAT FP4"
+        ],
+        "status": "verified",
+        "confidence": 0.95,
+        "sources": [
+          {
+            "kind": "tech_report",
+            "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro/blob/main/DeepSeek_V4.pdf",
+            "confidence": 0.7
+          }
+        ],
+        "note": null
+      },
+      "post_training_methods": [
+        "GRPO RL",
+        "SFT+GRPO distillation",
+        "QAT FP4"
+      ],
+      "_flat": {
+        "dataset": "Web/Code/Math/Knowledge high-quality diverse",
+        "hardware": "Undisclosed H800/H100 cluster (FP4 MoE, 384 experts top-6)",
+        "compute": "Undisclosed, batch 94.4M, Muon+AdamW, seq 4K->1M"
+      },
+      "overall_status": "mixed",
+      "overall_confidence": 0.71,
+      "verified_status": "mixed",
+      "confidence": 0.71,
+      "note": "verified from tech report/blog",
+      "_legacy_verified_status": "verified",
+      "_legacy_confidence": 0.95,
+      "schema_version": "2.2-per-field",
+      "_provenance_note": "per-field status fix 2.2: verified no longer whole-block; each claim now has status+confidence+sources"
+    },
+    "sources": [
+      {
+        "kind": "config",
+        "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro/blob/main/config.json",
+        "repo": "deepseek-ai/DeepSeek-V4-Pro",
+        "label": "config.json",
+        "verified_status": "verified",
+        "confidence": 1,
+        "note": "fetch ok"
+      },
+      {
+        "kind": "config_raw",
+        "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro/raw/main/config.json",
+        "repo": "deepseek-ai/DeepSeek-V4-Pro",
+        "label": "config.json raw",
+        "verified_status": "verified",
+        "confidence": 1,
+        "note": "bytes 1828"
+      },
+      {
+        "kind": "tech_report",
+        "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro/blob/main/DeepSeek_V4.pdf",
+        "repo": null,
+        "label": null,
+        "arxiv_id": null,
+        "verified_status": "unverified",
+        "confidence": 0.7
+      },
+      {
+        "kind": "gallery_image",
+        "url": "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/deepseek-v4-pro.webp",
+        "repo": null,
+        "label": null,
+        "verified_status": "unverified",
+        "confidence": 0.9,
+        "note": "Raschka gallery"
+      },
+      {
+        "kind": "benchmark",
+        "url": "https://artificialanalysis.ai/models/deepseek-v4-pro",
+        "repo": null,
+        "label": "Artificial Analysis",
+        "verified_status": "verified",
+        "confidence": 0.9,
+        "note": "AA index 44.3"
+      },
+      {
+        "kind": "license",
+        "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro/blob/main/LICENSE",
+        "repo": null,
+        "label": "MIT License",
+        "verified_status": "unverified",
+        "confidence": 0.9
+      }
+    ]
+  },
+  {
+    "index": 31,
+    "model_id": "deepseek-v4-flash",
+    "model_name": "DeepSeek V4-Flash",
+    "company": "DeepSeek",
+    "release_date": "2026-04-24",
+    "family": "deepseek-v4",
+    "summary": "DeepSeek's efficient V4 preview keeps the million-token architecture while reducing the MoE scale to 284B parameters and 13B active parameters.",
+    "yichen": {
+      "vocab": 129280,
+      "depth": 43,
+      "dim": 4096,
+      "norm": "RMSNorm",
+      "parallel_layer": "Serial",
+      "pre_norm": "Pre",
+      "pos_emb": "RoPE",
+      "activation": "silu",
+      "attn_type": "mla",
+      "context": 1048576,
+      "bias_display": "no bias",
+      "tied_display": "untied",
+      "qk_norm": "—",
+      "sliding": "yes",
+      "stability": "RMSNorm eps=1e-06 • SwiGLU cap 10.0 • RoPE scaling yarn • norm_topk"
+    },
+    "math_tricks": {
+      "attention_bias": false,
+      "attention_bias_display": "no bias",
+      "tie_word_embeddings": false,
+      "tie_display": "untied",
+      "rms_norm_eps": 0.000001,
+      "rope_theta": 10000,
+      "hidden_act": "silu",
+      "swiglu_limit": 10,
+      "use_qk_norm": null,
+      "learnable_sink": null,
+      "rope_scaling": {
+        "beta_fast": 32,
+        "beta_slow": 1,
+        "factor": 16,
+        "original_max_position_embeddings": 65536,
+        "type": "yarn"
+      },
+      "attention_dropout": 0,
+      "norm_topk_prob": true,
+      "initializer_range": 0.02,
+      "tricks": [
+        "RMSNorm eps=1e-06",
+        "SwiGLU cap 10.0",
+        "RoPE scaling yarn",
+        "norm_topk"
+      ],
+      "tricks_display": "RMSNorm eps=1e-06 • SwiGLU cap 10.0 • RoPE scaling yarn • norm_topk"
+    },
+    "scale": {
+      "total_params": 284000000000,
+      "active_params": 13000000000,
+      "active_pct": 4.6,
+      "extra": {
+        "mtp_params": null,
+        "lora_mb": null,
+        "lora_rank": null,
+        "backbone_label": "total",
+        "ngram_params": null,
+        "embedding_params": null
+      },
+      "raw": "284B total, 13B active (4.6% active)",
+      "parsed": true
+    },
+    "architecture": {
+      "decoder_type": "sparse_moe",
+      "decoder_display": "Sparse MoE",
+      "attention": {
+        "primary": "mla",
+        "raw": "MLA-style CSA/HCA with mHC",
+        "options": [],
+        "ratio": null
+      },
+      "layer_mix": {
+        "raw": "43 CSA/HCA",
+        "total_layers": 43,
+        "by_type": {},
+        "mtp_layers": 0
+      },
+      "hidden_size": 4096,
+      "hidden_size_source": "hidden_size",
+      "num_hidden_layers": 43,
+      "num_attention_heads": 64,
+      "num_key_value_heads": 1,
+      "head_dim": 512,
+      "intermediate_size": null,
+      "vocab_size": 129280,
+      "max_position_embeddings": 1048576,
+      "rope": {
+        "theta": 10000,
+        "rope_scaling": {
+          "beta_fast": 32,
+          "beta_slow": 1,
+          "factor": 16,
+          "original_max_position_embeddings": 65536,
+          "type": "yarn"
+        }
+      },
+      "sliding_window": 128,
+      "layer_types": null,
+      "moe": {
+        "n_routed_experts": 256,
+        "num_experts_per_tok": 6,
+        "n_shared_experts": 1,
+        "moe_intermediate_size": 2048,
+        "routed_scaling_factor": 1.5,
+        "scoring_func": "sqrtsoftplus"
+      },
+      "model_type": "deepseek_v4",
+      "architectures": [
+        "DeepseekV4ForCausalLM"
+      ],
+      "raw_config_source": "deepseek-ai/DeepSeek-V4-Flash:config.json"
+    },
+    "raw_config": {
+      "architectures": [
+        "DeepseekV4ForCausalLM"
+      ],
+      "attention_bias": false,
+      "attention_dropout": 0,
+      "bos_token_id": 0,
+      "eos_token_id": 1,
+      "expert_dtype": "fp4",
+      "hc_eps": 0.000001,
+      "hc_mult": 4,
+      "hc_sinkhorn_iters": 20,
+      "head_dim": 512,
+      "hidden_act": "silu",
+      "hidden_size": 4096,
+      "index_head_dim": 128,
+      "index_n_heads": 64,
+      "index_topk": 512,
+      "initializer_range": 0.02,
+      "max_position_embeddings": 1048576,
+      "model_type": "deepseek_v4",
+      "moe_intermediate_size": 2048,
+      "n_routed_experts": 256,
+      "n_shared_experts": 1,
+      "norm_topk_prob": true,
+      "num_attention_heads": 64,
+      "num_experts_per_tok": 6,
+      "num_hidden_layers": 43,
+      "num_hash_layers": 3,
+      "num_key_value_heads": 1,
+      "num_nextn_predict_layers": 1,
+      "o_groups": 8,
+      "o_lora_rank": 1024,
+      "q_lora_rank": 1024,
+      "qk_rope_head_dim": 64,
+      "quantization_config": {
+        "activation_scheme": "dynamic",
+        "fmt": "e4m3",
+        "quant_method": "fp8",
+        "scale_fmt": "ue8m0",
+        "weight_block_size": [
+          128,
+          128
+        ]
+      },
+      "rms_norm_eps": 0.000001,
+      "rope_scaling": {
+        "beta_fast": 32,
+        "beta_slow": 1,
+        "factor": 16,
+        "original_max_position_embeddings": 65536,
+        "type": "yarn"
+      },
+      "rope_theta": 10000,
+      "routed_scaling_factor": 1.5,
+      "scoring_func": "sqrtsoftplus",
+      "sliding_window": 128,
+      "swiglu_limit": 10,
+      "tie_word_embeddings": false,
+      "topk_method": "noaux_tc",
+      "torch_dtype": "bfloat16",
+      "transformers_version": "4.57.1",
+      "use_cache": true,
+      "vocab_size": 129280,
+      "compress_rope_theta": 160000,
+      "compress_ratios": {
+        "audit_display_truncated": true,
+        "total_items": 44,
+        "first_items": [
+          0,
+          0,
+          4,
+          128,
+          4,
+          128,
+          4,
+          128,
+          4,
+          128,
+          4,
+          128,
+          4,
+          128,
+          4,
+          128,
+          4,
+          128,
+          4,
+          128,
+          4,
+          128,
+          4,
+          128
+        ]
+      }
+    },
+    "raw_config_bytes": 1421,
+    "context": {
+      "length": 1048576,
+      "effective_length": 1048576,
+      "recommended_context": 1048576,
+      "is_unlimited": false,
+      "is_approx": false,
+      "raw": "1,048,576",
+      "input_length": null,
+      "output_length": null,
+      "config_context": {
+        "value": 1048576,
+        "source": "config.json",
+        "source_path": "max_position_embeddings",
+        "confidence": 0.95,
+        "status": "verified",
+        "sources": [
+          {
+            "kind": "config",
+            "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash/blob/main/config.json",
+            "confidence": 1
+          },
+          {
+            "kind": "config_raw",
+            "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash/raw/main/config.json",
+            "confidence": 1
+          }
+        ],
+        "note": null
+      },
+      "advertised_context": {
+        "value": 1048576,
+        "source": "gallery/config",
+        "confidence": 0.9,
+        "status": "verified",
+        "sources": [
+          {
+            "kind": "gallery_image",
+            "url": "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/deepseek-v4-flash.webp",
+            "confidence": 0.9
+          }
+        ],
+        "note": null
+      },
+      "native_context": {
+        "value": 65536,
+        "source": "rope_scaling.original_max_position_embeddings",
+        "confidence": 0.88,
+        "status": "verified",
+        "sources": [
+          {
+            "kind": "config",
+            "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash/blob/main/config.json",
+            "confidence": 1
+          },
+          {
+            "kind": "config_raw",
+            "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash/raw/main/config.json",
+            "confidence": 1
+          }
+        ],
+        "note": "pre-YaRN window; scaled x16 -> 1048576"
+      },
+      "trained_context": {
+        "value": 65536,
+        "source": "rope_scaling.original_max_position_embeddings",
+        "confidence": 0.82,
+        "status": "verified",
+        "sources": [],
+        "note": "pre-YaRN window; scaled x16 -> 1048576"
+      },
+      "tested_context": {
+        "value": null,
+        "status": "unverified",
+        "confidence": 0,
+        "sources": [],
+        "note": "no independent HELM/BenchLM long-context eval; requires Needle-in-Haystack run"
+      },
+      "api_context": {
+        "value": null,
+        "status": "unverified",
+        "confidence": 0,
+        "sources": [],
+        "note": "requires live API max_tokens probe; may differ from advertised"
+      },
+      "conflict": false,
+      "conflict_note": null,
+      "resolution": "consistent within 2%",
+      "verified_source": "config+gallery (consistent)",
+      "confidence": 0.9,
+      "config_max_position_embeddings": 1048576,
+      "config_source_path": "max_position_embeddings",
+      "_legacy_length": 1048576,
+      "_legacy_resolution": "consistent within 2%",
+      "schema_version": "2.2-six-contexts"
+    },
+    "training": {
+      "dataset": {
+        "value": "Analogous Pro",
+        "status": "inferred",
+        "confidence": 0.5,
+        "sources": [],
+        "note": "inferred from family/company heuristic"
+      },
+      "tokens": {
+        "value": 32000,
+        "unit": "B",
+        "status": "inferred",
+        "confidence": 0.52,
+        "sources": [],
+        "note": null
+      },
+      "tokens_b": 32000,
+      "hardware": {
+        "value": "Undisclosed, weight 166.9GB vs Pro 892GB",
+        "status": "undisclosed",
+        "confidence": 0.35,
+        "sources": [],
+        "note": null
+      },
+      "compute": {
+        "value": "Batch 75.5M, LR 2.7e-4",
+        "status": "verified",
+        "confidence": 0.95,
+        "sources": [
+          {
+            "kind": "tech_report",
+            "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash/blob/main/DeepSeek_V4.pdf",
+            "confidence": 0.7
+          }
+        ],
+        "note": null
+      },
+      "post_training": {
+        "value": [
+          "GRPO",
+          "Modes High/xHigh"
+        ],
+        "status": "verified",
+        "confidence": 0.95,
+        "sources": [
+          {
+            "kind": "tech_report",
+            "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash/blob/main/DeepSeek_V4.pdf",
+            "confidence": 0.7
+          }
+        ],
+        "note": null
+      },
+      "post_training_methods": [
+        "GRPO",
+        "Modes High/xHigh"
+      ],
+      "_flat": {
+        "dataset": "Analogous Pro",
+        "hardware": "Undisclosed, weight 166.9GB vs Pro 892GB",
+        "compute": "Batch 75.5M, LR 2.7e-4"
+      },
+      "overall_status": "mixed",
+      "overall_confidence": 0.65,
+      "verified_status": "mixed",
+      "confidence": 0.65,
+      "note": "verified from tech report/blog",
+      "_legacy_verified_status": "verified",
+      "_legacy_confidence": 0.95,
+      "schema_version": "2.2-per-field",
+      "_provenance_note": "per-field status fix 2.2: verified no longer whole-block; each claim now has status+confidence+sources"
+    },
+    "sources": [
+      {
+        "kind": "config",
+        "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash/blob/main/config.json",
+        "repo": "deepseek-ai/DeepSeek-V4-Flash",
+        "label": "config.json",
+        "verified_status": "verified",
+        "confidence": 1,
+        "note": "fetch ok"
+      },
+      {
+        "kind": "config_raw",
+        "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash/raw/main/config.json",
+        "repo": "deepseek-ai/DeepSeek-V4-Flash",
+        "label": "config.json raw",
+        "verified_status": "verified",
+        "confidence": 1,
+        "note": "bytes 1749"
+      },
+      {
+        "kind": "tech_report",
+        "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash/blob/main/DeepSeek_V4.pdf",
+        "repo": null,
+        "label": null,
+        "arxiv_id": null,
+        "verified_status": "unverified",
+        "confidence": 0.7
+      },
+      {
+        "kind": "gallery_image",
+        "url": "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/deepseek-v4-flash.webp",
+        "repo": null,
+        "label": null,
+        "verified_status": "unverified",
+        "confidence": 0.9,
+        "note": "Raschka gallery"
+      },
+      {
+        "kind": "benchmark",
+        "url": "https://artificialanalysis.ai/models/deepseek-v4-flash",
+        "repo": null,
+        "label": "Artificial Analysis",
+        "verified_status": "verified",
+        "confidence": 0.9,
+        "note": "AA index 40.3"
+      },
+      {
+        "kind": "license",
+        "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash/blob/main/LICENSE",
+        "repo": null,
+        "label": "MIT License",
+        "verified_status": "unverified",
+        "confidence": 0.9
+      }
+    ]
+  },
+  {
+    "index": 32,
+    "model_id": "ling-2-6-1t",
+    "model_name": "Ling 2.6 1T",
+    "company": "InclusionAI",
+    "release_date": "2026-04-23",
+    "family": "ling-2-6",
+    "summary": "Ling 2.5 successor that keeps the Lightning Attention and MLA hybrid stack while adding an MTP layer for multi-token prediction.",
+    "yichen": {
+      "vocab": 157184,
+      "depth": 80,
+      "dim": 8192,
+      "norm": "RMSNorm",
+      "parallel_layer": "Serial",
+      "pre_norm": "Pre",
+      "pos_emb": "RoPE",
+      "activation": "silu",
+      "attn_type": "mla",
+      "context": 262144,
+      "bias_display": "undisclosed",
+      "tied_display": "untied",
+      "qk_norm": "QK-Norm",
+      "sliding": "—",
+      "stability": "RMSNorm eps=1e-06 • QK-LayerNorm"
+    },
+    "math_tricks": {
+      "attention_bias": null,
+      "attention_bias_display": "undisclosed",
+      "tie_word_embeddings": false,
+      "tie_display": "untied",
+      "rms_norm_eps": 0.000001,
+      "rope_theta": 6000000,
+      "hidden_act": "silu",
+      "swiglu_limit": null,
+      "use_qk_norm": true,
+      "learnable_sink": null,
+      "rope_scaling": null,
+      "attention_dropout": 0,
+      "norm_topk_prob": null,
+      "initializer_range": 0.02,
+      "tricks": [
+        "RMSNorm eps=1e-06",
+        "QK-LayerNorm"
+      ],
+      "tricks_display": "RMSNorm eps=1e-06 • QK-LayerNorm"
+    },
+    "scale": {
+      "total_params": 1000000000000,
+      "active_params": 63000000000,
+      "active_pct": 6.3,
+      "extra": {
+        "mtp_params": null,
+        "lora_mb": null,
+        "lora_rank": null,
+        "backbone_label": "total",
+        "ngram_params": null,
+        "embedding_params": null
+      },
+      "raw": "1T total, 63B active (6.3% active)",
+      "parsed": true
+    },
+    "architecture": {
+      "decoder_type": "sparse_hybrid",
+      "decoder_display": "Sparse hybrid",
+      "attention": {
+        "primary": "mla",
+        "raw": "Lightning Attention plus MLA",
+        "options": [],
+        "ratio": null
+      },
+      "layer_mix": {
+        "raw": "10 MLA + 70 Lightning Attention + 1 MTP layer",
+        "total_layers": 80,
+        "by_type": {},
+        "mtp_layers": 1
+      },
+      "hidden_size": 8192,
+      "hidden_size_source": "hidden_size",
+      "num_hidden_layers": 80,
+      "num_attention_heads": 64,
+      "num_key_value_heads": 64,
+      "head_dim": 128,
+      "intermediate_size": 18432,
+      "vocab_size": 157184,
+      "max_position_embeddings": 262144,
+      "rope": {
+        "theta": 6000000,
+        "rope_scaling": null
+      },
+      "sliding_window": null,
+      "layer_types": null,
+      "moe": {
+        "num_experts": 256,
+        "num_experts_per_tok": 8,
+        "n_group": 8,
+        "topk_group": 4,
+        "num_shared_experts": 1,
+        "moe_intermediate_size": 2048,
+        "first_k_dense_replace": 4,
+        "routed_scaling_factor": 2.5,
+        "scoring_func": "sigmoid"
+      },
+      "model_type": "bailing_hybrid",
+      "architectures": [
+        "BailingMoeV2_5ForCausalLM"
+      ],
+      "raw_config_source": "inclusionAI/Ling-2.6-1T:config.json"
+    },
+    "raw_config": {
+      "architectures": [
+        "BailingMoeV2_5ForCausalLM"
+      ],
+      "attention_dropout": 0,
+      "auto_map": {
+        "AutoConfig": "configuration_bailing_moe_v2_5.BailingMoeV2_5Config",
+        "AutoModel": "modeling_bailing_moe_v2_5.BailingMoeV2_5Model",
+        "AutoModelForCausalLM": "modeling_bailing_moe_v2_5.BailingMoeV2_5ForCausalLM"
+      },
+      "embedding_dropout": 0,
+      "eos_token_id": 156895,
+      "first_k_dense_replace": 4,
+      "group_norm_size": 8,
+      "head_dim": 128,
+      "hidden_act": "silu",
+      "hidden_size": 8192,
+      "initializer_range": 0.02,
+      "intermediate_size": 18432,
+      "kv_lora_rank": 512,
+      "layer_group_size": 8,
+      "linear_silu": false,
+      "max_position_embeddings": 262144,
+      "max_window_layers": 20,
+      "model_type": "bailing_hybrid",
+      "moe_intermediate_size": 2048,
+      "moe_router_enable_expert_bias": true,
+      "moe_shared_expert_intermediate_size": 2048,
+      "mtp_loss_scaling_factor": 0,
+      "n_group": 8,
+      "num_attention_heads": 64,
+      "num_experts": 256,
+      "num_experts_per_tok": 8,
+      "num_hidden_layers": 80,
+      "num_key_value_heads": 64,
+      "num_kv_heads_for_linear_attn": 64,
+      "num_nextn_predict_layers": 1,
+      "num_shared_experts": 1,
+      "output_dropout": 0,
+      "output_router_logits": false,
+      "pad_token_id": 156892,
+      "partial_rotary_factor": 0.5,
+      "q_lora_rank": 1536,
+      "qk_head_dim": 192,
+      "qk_nope_head_dim": 128,
+      "qk_rope_head_dim": 64,
+      "quantization_config": {
+        "config_groups": {
+          "FP8_DYNAMIC": {
+            "format": "float-quantized",
+            "input_activations": {
+              "actorder": null,
+              "block_structure": null,
+              "dynamic": true,
+              "group_size": null,
+              "num_bits": 8,
+              "observer": null,
+              "observer_kwargs": {},
+              "strategy": "token",
+              "symmetric": true,
+              "type": "float"
+            },
+            "output_activations": null,
+            "targets": [
+              "Linear"
+            ],
+            "weights": {
+              "actorder": null,
+              "block_structure": null,
+              "dynamic": false,
+              "group_size": null,
+              "num_bits": 8,
+              "observer": "static_minmax",
+              "observer_kwargs": {},
+              "strategy": "channel",
+              "symmetric": true,
+              "type": "float"
+            }
+          }
+        },
+        "format": "float-quantized",
+        "global_compression_ratio": null,
+        "ignore": {
+          "audit_display_truncated": true,
+          "total_items": 856,
+          "first_items": [
+            "model.layers.74.mlp.gate",
+            "model.layers.75.mlp.gate",
+            "model.layers.76.mlp.gate",
+            "model.layers.77.mlp.gate",
+            "model.layers.10.mlp.gate",
+            "model.layers.11.mlp.gate",
+            "model.layers.12.mlp.gate",
+            "model.layers.13.mlp.gate",
+            "model.layers.14.mlp.gate",
+            "model.layers.15.mlp.gate",
+            "model.layers.16.mlp.gate",
+            "model.layers.17.mlp.gate",
+            "model.layers.34.mlp.gate",
+            "model.layers.35.mlp.gate",
+            "model.layers.36.mlp.gate",
+            "model.layers.37.mlp.gate",
+            "model.layers.38.mlp.gate",
+            "model.layers.39.mlp.gate",
+            "model.layers.40.mlp.gate",
+            "model.layers.41.mlp.gate",
+            "model.layers.66.mlp.gate",
+            "model.layers.67.mlp.gate",
+            "model.layers.68.mlp.gate",
+            "model.layers.69.mlp.gate"
+          ]
+        },
+        "kv_cache_scheme": null,
+        "quant_method": "compressed-tensors",
+        "quantization_status": "compressed",
+        "sparsity_config": {},
+        "transform_config": {},
+        "version": "0.13.0"
+      },
+      "rms_norm_eps": 0.000001,
+      "rope_interleave": true,
+      "rope_scaling": null,
+      "rope_theta": 6000000,
+      "rotary_dim": 64,
+      "routed_scaling_factor": 2.5,
+      "router_dtype": "fp32",
+      "score_function": "sigmoid",
+      "scoring_func": "sigmoid",
+      "seq_aux": true,
+      "tie_word_embeddings": false,
+      "topk_group": 4,
+      "topk_method": "noaux_tc",
+      "torch_dtype": "bfloat16",
+      "transformers_version": "4.45.0",
+      "use_bias": false,
+      "use_cache": true,
+      "use_qk_norm": true,
+      "use_qkv_bias": false,
+      "v_head_dim": 128,
+      "vocab_size": 157184
+    },
+    "raw_config_bytes": 37781,
+    "context": {
+      "length": 262144,
+      "effective_length": 262144,
+      "recommended_context": 262144,
+      "is_unlimited": false,
+      "is_approx": false,
+      "raw": "262,144",
+      "input_length": null,
+      "output_length": null,
+      "config_context": {
+        "value": 262144,
+        "source": "config.json",
+        "source_path": "max_position_embeddings",
+        "confidence": 0.95,
+        "status": "verified",
+        "sources": [
+          {
+            "kind": "config",
+            "url": "https://huggingface.co/inclusionAI/Ling-2.6-1T/blob/main/config.json",
+            "confidence": 1
+          },
+          {
+            "kind": "config_raw",
+            "url": "https://huggingface.co/inclusionAI/Ling-2.6-1T/raw/main/config.json",
+            "confidence": 1
+          }
+        ],
+        "note": null
+      },
+      "advertised_context": {
+        "value": 262144,
+        "source": "gallery/config",
+        "confidence": 0.9,
+        "status": "verified",
+        "sources": [
+          {
+            "kind": "gallery_image",
+            "url": "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/ling-2-6-1t.webp",
+            "confidence": 0.9
+          }
+        ],
+        "note": null
+      },
+      "native_context": {
+        "value": 262144,
+        "source": "config_max_position_embeddings",
+        "confidence": 0.55,
+        "status": "inferred",
+        "sources": [
+          {
+            "kind": "config",
+            "url": "https://huggingface.co/inclusionAI/Ling-2.6-1T/blob/main/config.json",
+            "confidence": 1
+          },
+          {
+            "kind": "config_raw",
+            "url": "https://huggingface.co/inclusionAI/Ling-2.6-1T/raw/main/config.json",
+            "confidence": 1
+          }
+        ],
+        "note": null
+      },
+      "trained_context": {
+        "value": 262144,
+        "source": "config_max_position_embeddings",
+        "confidence": 0.5,
+        "status": "inferred",
+        "sources": [],
+        "note": "requires tech report to confirm trained window"
+      },
+      "tested_context": {
+        "value": null,
+        "status": "unverified",
+        "confidence": 0,
+        "sources": [],
+        "note": "no independent HELM/BenchLM long-context eval; requires Needle-in-Haystack run"
+      },
+      "api_context": {
+        "value": null,
+        "status": "unverified",
+        "confidence": 0,
+        "sources": [],
+        "note": "requires live API max_tokens probe; may differ from advertised"
+      },
+      "conflict": false,
+      "conflict_note": null,
+      "resolution": "consistent within 2%",
+      "verified_source": "config+gallery (consistent)",
+      "confidence": 0.9,
+      "config_max_position_embeddings": 262144,
+      "config_source_path": "max_position_embeddings",
+      "_legacy_length": 262144,
+      "_legacy_resolution": "consistent within 2%",
+      "schema_version": "2.2-six-contexts"
+    },
+    "training": {
+      "dataset": {
+        "value": "Undisclosed web-scale (vendor not published, inferred)",
+        "status": "inferred",
+        "confidence": 0.55,
+        "sources": [],
+        "note": "inferred from family/company heuristic"
+      },
+      "tokens": {
+        "value": null,
+        "unit": null,
+        "status": "undisclosed",
+        "confidence": 0,
+        "sources": [],
+        "note": null
+      },
+      "tokens_b": null,
+      "hardware": {
+        "value": "Undisclosed (inferred)",
+        "status": "inferred",
+        "confidence": 0.55,
+        "sources": [],
+        "note": null
+      },
+      "compute": {
+        "value": null,
+        "status": "undisclosed",
+        "confidence": 0,
+        "sources": [],
+        "note": null
+      },
+      "post_training": {
+        "value": [
+          "SFT (inferred)"
+        ],
+        "status": "inferred",
+        "confidence": 0.55,
+        "sources": [],
+        "note": null
+      },
+      "post_training_methods": [
+        "SFT (inferred)"
+      ],
+      "_flat": {
+        "dataset": "Undisclosed web-scale (vendor not published, inferred)",
+        "hardware": "Undisclosed (inferred)",
+        "compute": null
+      },
+      "overall_status": "inferred",
+      "overall_confidence": 0.35,
+      "verified_status": "inferred",
+      "confidence": 0.35,
+      "note": "inferred from family/company heuristic",
+      "_legacy_verified_status": "inferred",
+      "_legacy_confidence": 0.35,
+      "schema_version": "2.2-per-field",
+      "_provenance_note": "per-field status fix 2.2: verified no longer whole-block; each claim now has status+confidence+sources"
+    },
+    "sources": [
+      {
+        "kind": "config",
+        "url": "https://huggingface.co/inclusionAI/Ling-2.6-1T/blob/main/config.json",
+        "repo": "inclusionAI/Ling-2.6-1T",
+        "label": "config.json",
+        "verified_status": "verified",
+        "confidence": 1,
+        "note": "fetch ok"
+      },
+      {
+        "kind": "config_raw",
+        "url": "https://huggingface.co/inclusionAI/Ling-2.6-1T/raw/main/config.json",
+        "repo": "inclusionAI/Ling-2.6-1T",
+        "label": "config.json raw",
+        "verified_status": "verified",
+        "confidence": 1,
+        "note": "bytes 44467"
+      },
+      {
+        "kind": "tech_report",
+        "url": "https://huggingface.co/inclusionAI/Ling-2.6-1T",
+        "repo": null,
+        "label": null,
+        "arxiv_id": null,
+        "verified_status": "unverified",
+        "confidence": 0.7
+      },
+      {
+        "kind": "gallery_image",
+        "url": "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/ling-2-6-1t.webp",
+        "repo": null,
+        "label": null,
+        "verified_status": "unverified",
+        "confidence": 0.9,
+        "note": "Raschka gallery"
+      },
+      {
+        "kind": "benchmark",
+        "url": "https://artificialanalysis.ai/models/ling-2-6-1t",
+        "repo": null,
+        "label": "Artificial Analysis",
+        "verified_status": "verified",
+        "confidence": 0.9,
+        "note": "AA index 26.1"
+      },
+      {
+        "kind": "license",
+        "url": "https://huggingface.co/inclusionAI/Ling-2.6-1T/blob/main/README.md",
+        "repo": null,
+        "label": "MIT License",
+        "verified_status": "unverified",
+        "confidence": 0.9
+      }
+    ]
+  },
+  {
+    "index": 33,
+    "model_id": "tencent-hy3-preview-295b-a21b",
+    "model_name": "Tencent Hy3-preview 295B-A21B",
+    "company": "Tencent",
+    "release_date": "2026-04-23",
+    "family": "hy3",
+    "summary": "Tencent Hunyuan's 295B sparse MoE preview combines a dense first FFN layer, GQA with QK-Norm, and one extra MTP layer for faster generation.",
+    "yichen": {
+      "vocab": 120832,
+      "depth": 80,
+      "dim": 4096,
+      "norm": "RMSNorm",
+      "parallel_layer": "Serial",
+      "pre_norm": "Pre",
+      "pos_emb": "RoPE",
+      "activation": "silu",
+      "attn_type": "gqa",
+      "context": 262144,
+      "bias_display": "undisclosed",
+      "tied_display": "untied",
+      "qk_norm": "—",
+      "sliding": "—",
+      "stability": "RMSNorm eps=1e-05"
+    },
+    "math_tricks": {
+      "attention_bias": null,
+      "attention_bias_display": "undisclosed",
+      "tie_word_embeddings": false,
+      "tie_display": "untied",
+      "rms_norm_eps": 0.00001,
+      "rope_theta": 11158840,
+      "hidden_act": "silu",
+      "swiglu_limit": null,
+      "use_qk_norm": null,
+      "learnable_sink": null,
+      "rope_scaling": null,
+      "attention_dropout": null,
+      "norm_topk_prob": null,
+      "initializer_range": 0.006,
+      "tricks": [
+        "RMSNorm eps=1e-05"
+      ],
+      "tricks_display": "RMSNorm eps=1e-05"
+    },
+    "scale": {
+      "total_params": 295000000000,
+      "active_params": 21000000000,
+      "active_pct": 7.1,
+      "extra": {
+        "mtp_params": null,
+        "lora_mb": null,
+        "lora_rank": null,
+        "backbone_label": "total",
+        "ngram_params": null,
+        "embedding_params": null
+      },
+      "raw": "295B total, 21B active (7.1% active)",
+      "parsed": true
+    },
+    "architecture": {
+      "decoder_type": "sparse_moe",
+      "decoder_display": "Sparse MoE",
+      "attention": {
+        "primary": "gqa",
+        "raw": "GQA with QK-Norm",
+        "options": [],
+        "ratio": null
+      },
+      "layer_mix": {
+        "raw": "80 GQA + 1 MTP layer",
+        "total_layers": 80,
+        "by_type": {},
+        "mtp_layers": 1
+      },
+      "hidden_size": 4096,
+      "hidden_size_source": "hidden_size",
+      "num_hidden_layers": 80,
+      "num_attention_heads": 64,
+      "num_key_value_heads": 8,
+      "head_dim": 128,
+      "intermediate_size": 13312,
+      "vocab_size": 120832,
+      "max_position_embeddings": 262144,
+      "rope": {
+        "rope_parameters": {
+          "rope_theta": 11158840,
+          "rope_type": "default"
+        }
+      },
+      "sliding_window": null,
+      "layer_types": null,
+      "moe": {
+        "num_experts": 192,
+        "num_experts_per_tok": 8,
+        "num_shared_experts": 1,
+        "moe_intermediate_size": 1536,
+        "first_k_dense_replace": 1
+      },
+      "model_type": "hy_v3",
+      "architectures": [
+        "HYV3ForCausalLM"
+      ],
+      "raw_config_source": "tencent/Hy3-preview:config.json"
+    },
+    "raw_config": {
+      "architectures": [
+        "HYV3ForCausalLM"
+      ],
+      "bos_token_id": 120000,
+      "enable_attention_fp32_softmax": false,
+      "enable_lm_head_fp32": true,
+      "enable_moe_fp32_combine": false,
+      "eod_token_id": 120026,
+      "eos_token_id": 120025,
+      "expert_hidden_dim": 1536,
+      "moe_intermediate_size": 1536,
+      "first_k_dense_replace": 1,
+      "head_dim": 128,
+      "hidden_act": "silu",
+      "hidden_size": 4096,
+      "initializer_range": 0.006,
+      "intermediate_size": 13312,
+      "max_position_embeddings": 262144,
+      "model_type": "hy_v3",
+      "moe_router_enable_expert_bias": true,
+      "moe_router_use_sigmoid": true,
+      "num_attention_heads": 64,
+      "num_experts": 192,
+      "num_experts_per_tok": 8,
+      "num_hidden_layers": 80,
+      "num_key_value_heads": 8,
+      "num_shared_experts": 1,
+      "output_router_logits": true,
+      "pad_token_id": 120002,
+      "qk_norm": true,
+      "rms_norm_eps": 0.00001,
+      "rope_parameters": {
+        "rope_theta": 11158840,
+        "rope_type": "default"
+      },
+      "route_norm": true,
+      "router_scaling_factor": 2.826,
+      "sep_token_id": 120007,
+      "tie_word_embeddings": false,
+      "transformers_version": "5.6.0",
+      "use_cache": true,
+      "use_grouped_mm": false,
+      "vocab_size": 120832,
+      "num_nextn_predict_layers": 1
+    },
+    "raw_config_bytes": 1014,
+    "context": {
+      "length": 262144,
+      "effective_length": 262144,
+      "recommended_context": 262144,
+      "is_unlimited": false,
+      "is_approx": false,
+      "raw": "262,144",
+      "input_length": null,
+      "output_length": null,
+      "config_context": {
+        "value": 262144,
+        "source": "config.json",
+        "source_path": "max_position_embeddings",
+        "confidence": 0.95,
+        "status": "verified",
+        "sources": [
+          {
+            "kind": "config",
+            "url": "https://huggingface.co/tencent/Hy3-preview/blob/main/config.json",
+            "confidence": 1
+          },
+          {
+            "kind": "config_raw",
+            "url": "https://huggingface.co/tencent/Hy3-preview/raw/main/config.json",
+            "confidence": 1
+          }
+        ],
+        "note": null
+      },
+      "advertised_context": {
+        "value": 262144,
+        "source": "gallery/config",
+        "confidence": 0.9,
+        "status": "verified",
+        "sources": [
+          {
+            "kind": "gallery_image",
+            "url": "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/tencent-hy3.webp",
+            "confidence": 0.9
+          }
+        ],
+        "note": null
+      },
+      "native_context": {
+        "value": 262144,
+        "source": "config_max_position_embeddings",
+        "confidence": 0.55,
+        "status": "inferred",
+        "sources": [
+          {
+            "kind": "config",
+            "url": "https://huggingface.co/tencent/Hy3-preview/blob/main/config.json",
+            "confidence": 1
+          },
+          {
+            "kind": "config_raw",
+            "url": "https://huggingface.co/tencent/Hy3-preview/raw/main/config.json",
+            "confidence": 1
+          }
+        ],
+        "note": null
+      },
+      "trained_context": {
+        "value": 262144,
+        "source": "config_max_position_embeddings",
+        "confidence": 0.5,
+        "status": "inferred",
+        "sources": [],
+        "note": "requires tech report to confirm trained window"
+      },
+      "tested_context": {
+        "value": null,
+        "status": "unverified",
+        "confidence": 0,
+        "sources": [],
+        "note": "no independent HELM/BenchLM long-context eval; requires Needle-in-Haystack run"
+      },
+      "api_context": {
+        "value": null,
+        "status": "unverified",
+        "confidence": 0,
+        "sources": [],
+        "note": "requires live API max_tokens probe; may differ from advertised"
+      },
+      "conflict": false,
+      "conflict_note": null,
+      "resolution": "consistent within 2%",
+      "verified_source": "config+gallery (consistent)",
+      "confidence": 0.9,
+      "config_max_position_embeddings": 262144,
+      "config_source_path": "max_position_embeddings",
+      "_legacy_length": 262144,
+      "_legacy_resolution": "consistent within 2%",
+      "schema_version": "2.2-six-contexts"
+    },
+    "training": {
+      "dataset": {
+        "value": "Tencent Hy3 20T Chinese/English web/code/math (inferred)",
+        "status": "inferred",
+        "confidence": 0.55,
+        "sources": [],
+        "note": "(inferred"
+      },
+      "tokens": {
+        "value": 20000,
+        "unit": "B",
+        "status": "inferred",
+        "confidence": 0.52,
+        "sources": [],
+        "note": null
+      },
+      "tokens_b": 20000,
+      "hardware": {
+        "value": "Undisclosed H800/H20 (inferred)",
+        "status": "inferred",
+        "confidence": 0.55,
+        "sources": [],
+        "note": null
+      },
+      "compute": {
+        "value": null,
+        "status": "undisclosed",
+        "confidence": 0,
+        "sources": [],
+        "note": null
+      },
+      "post_training": {
+        "value": [
+          "SFT + RLHF"
+        ],
+        "status": "verified",
+        "confidence": 0.95,
+        "sources": [
+          {
+            "kind": "tech_report",
+            "url": "https://www.tencent.com/en-us/articles/2202320.html",
+            "confidence": 0.7
+          }
+        ],
+        "note": null
+      },
+      "post_training_methods": [
+        "SFT + RLHF"
+      ],
+      "_flat": {
+        "dataset": "Tencent Hy3 20T Chinese/English web/code/math (inferred)",
+        "hardware": "Undisclosed H800/H20 (inferred)",
+        "compute": null
+      },
+      "overall_status": "mixed",
+      "overall_confidence": 0.64,
+      "verified_status": "mixed",
+      "confidence": 0.64,
+      "note": "verified from tech report/blog",
+      "_legacy_verified_status": "verified",
+      "_legacy_confidence": 0.95,
+      "schema_version": "2.2-per-field",
+      "_provenance_note": "per-field status fix 2.2: verified no longer whole-block; each claim now has status+confidence+sources"
+    },
+    "sources": [
+      {
+        "kind": "config",
+        "url": "https://huggingface.co/tencent/Hy3-preview/blob/main/config.json",
+        "repo": "tencent/Hy3-preview",
+        "label": "config.json",
+        "verified_status": "verified",
+        "confidence": 1,
+        "note": "fetch ok"
+      },
+      {
+        "kind": "config_raw",
+        "url": "https://huggingface.co/tencent/Hy3-preview/raw/main/config.json",
+        "repo": "tencent/Hy3-preview",
+        "label": "config.json raw",
+        "verified_status": "verified",
+        "confidence": 1,
+        "note": "bytes 1194"
+      },
+      {
+        "kind": "tech_report",
+        "url": "https://www.tencent.com/en-us/articles/2202320.html",
+        "repo": null,
+        "label": null,
+        "arxiv_id": null,
+        "verified_status": "unverified",
+        "confidence": 0.7
+      },
+      {
+        "kind": "gallery_image",
+        "url": "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/tencent-hy3.webp",
+        "repo": null,
+        "label": null,
+        "verified_status": "unverified",
+        "confidence": 0.9,
+        "note": "Raschka gallery"
+      },
+      {
+        "kind": "benchmark",
+        "url": "https://artificialanalysis.ai/models/hy3-non-reasoning",
+        "repo": null,
+        "label": "Artificial Analysis",
+        "verified_status": "verified",
+        "confidence": 0.9,
+        "note": "AA index 26.1"
+      },
+      {
+        "kind": "license",
+        "url": "https://huggingface.co/tencent/Hy3-preview/blob/main/LICENSE",
+        "repo": null,
+        "label": "Tencent Hy Community License Agreement",
+        "verified_status": "unverified",
+        "confidence": 0.9
+      }
+    ]
+  },
+  {
+    "index": 34,
+    "model_id": "xiaomi-mimo-v2-5-pro-1-02t",
+    "model_name": "Xiaomi MiMo-V2.5-Pro 1.02T",
+    "company": "Xiaomi",
+    "release_date": "2026-04-22",
+    "family": "mimo-v2",
+    "summary": "Trillion-parameter sparse MoE model for long-horizon agentic and software-engineering tasks.",
+    "yichen": {
+      "vocab": 152576,
+      "depth": 70,
+      "dim": 6144,
+      "norm": "RMSNorm",
+      "parallel_layer": "Serial",
+      "pre_norm": "Pre",
+      "pos_emb": "RoPE",
+      "activation": "silu",
+      "attn_type": "gqa",
+      "context": 1048576,
+      "bias_display": "no bias",
+      "tied_display": "untied",
+      "qk_norm": "—",
+      "sliding": "yes",
+      "stability": "norm_topk"
+    },
+    "math_tricks": {
+      "attention_bias": false,
+      "attention_bias_display": "no bias",
+      "tie_word_embeddings": false,
+      "tie_display": "untied",
+      "rms_norm_eps": null,
+      "rope_theta": 10000000,
+      "hidden_act": "silu",
+      "swiglu_limit": null,
+      "use_qk_norm": null,
+      "learnable_sink": null,
+      "rope_scaling": null,
+      "attention_dropout": 0,
+      "norm_topk_prob": true,
+      "initializer_range": 0.02,
+      "tricks": [
+        "norm_topk"
+      ],
+      "tricks_display": "norm_topk"
+    },
+    "scale": {
+      "total_params": 1020000000000,
+      "active_params": 42000000000,
+      "active_pct": 4.1,
+      "extra": {
+        "mtp_params": null,
+        "lora_mb": null,
+        "lora_rank": null,
+        "backbone_label": "total",
+        "ngram_params": null,
+        "embedding_params": null
+      },
+      "raw": "1.02T total, 42B active (4.1% active)",
+      "parsed": true
+    },
+    "architecture": {
+      "decoder_type": "sparse_moe",
+      "decoder_display": "Sparse MoE",
+      "attention": {
+        "primary": "gqa",
+        "raw": "GQA with 6:1 sliding-window/global attention",
+        "options": [],
+        "ratio": null
+      },
+      "layer_mix": {
+        "raw": "60 sliding-window + 10 global",
+        "total_layers": 70,
+        "by_type": {},
+        "mtp_layers": 0
+      },
+      "hidden_size": 6144,
+      "hidden_size_source": "hidden_size",
+      "num_hidden_layers": 70,
+      "num_attention_heads": 128,
+      "num_key_value_heads": 8,
+      "head_dim": 192,
+      "intermediate_size": 16384,
+      "vocab_size": 152576,
+      "max_position_embeddings": 1048576,
+      "rope": {
+        "theta": 10000000
+      },
+      "sliding_window": 128,
+      "layer_types": null,
+      "moe": {
+        "n_routed_experts": 384,
+        "num_experts_per_tok": 8,
+        "n_group": 1,
+        "topk_group": 1,
+        "n_shared_experts": null,
+        "moe_intermediate_size": 2048,
+        "routed_scaling_factor": null,
+        "scoring_func": "sigmoid"
+      },
+      "model_type": "mimo_v2",
+      "architectures": [
+        "MiMoV2ForCausalLM"
+      ],
+      "raw_config_source": "XiaomiMiMo/MiMo-V2.5-Pro:config.json"
+    },
+    "raw_config": {
+      "architectures": [
+        "MiMoV2ForCausalLM"
+      ],
+      "auto_map": {
+        "AutoConfig": "configuration_mimo_v2.MiMoV2Config",
+        "AutoModel": "modeling_mimo_v2.MiMoV2Model",
+        "AutoModelForCausalLM": "modeling_mimo_v2.MiMoV2ForCausalLM"
+      },
+      "quantization_config": {
+        "activation_scheme": "dynamic",
+        "fmt": "e4m3",
+        "quant_method": "fp8",
+        "weight_block_size": [
+          128,
+          128
+        ],
+        "ignored_layers": {
+          "audit_display_truncated": true,
+          "total_items": 71,
+          "first_items": [
+            "model.layers.0.self_attn.o_proj",
+            "model.layers.1.self_attn.o_proj",
+            "model.layers.2.self_attn.o_proj",
+            "model.layers.3.self_attn.o_proj",
+            "model.layers.4.self_attn.o_proj",
+            "model.layers.5.self_attn.o_proj",
+            "model.layers.6.self_attn.o_proj",
+            "model.layers.7.self_attn.o_proj",
+            "model.layers.8.self_attn.o_proj",
+            "model.layers.9.self_attn.o_proj",
+            "model.layers.10.self_attn.o_proj",
+            "model.layers.11.self_attn.o_proj",
+            "model.layers.12.self_attn.o_proj",
+            "model.layers.13.self_attn.o_proj",
+            "model.layers.14.self_attn.o_proj",
+            "model.layers.15.self_attn.o_proj",
+            "model.layers.16.self_attn.o_proj",
+            "model.layers.17.self_attn.o_proj",
+            "model.layers.18.self_attn.o_proj",
+            "model.layers.19.self_attn.o_proj",
+            "model.layers.20.self_attn.o_proj",
+            "model.layers.21.self_attn.o_proj",
+            "model.layers.22.self_attn.o_proj",
+            "model.layers.23.self_attn.o_proj"
+          ]
+        }
+      },
+      "add_full_attention_sink_bias": false,
+      "add_swa_attention_sink_bias": true,
+      "attention_bias": false,
+      "attention_chunk_size": 128,
+      "attention_dropout": 0,
+      "attention_projection_layout": "fused_qkv",
+      "attention_value_scale": 0.612,
+      "head_dim": 192,
+      "hidden_act": "silu",
+      "hidden_size": 6144,
+      "hybrid_layer_pattern": {
+        "audit_display_truncated": true,
+        "total_items": 70,
+        "first_items": [
+          0,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          0,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          0,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          0
+        ]
+      },
+      "initializer_range": 0.02,
+      "intermediate_size": 16384,
+      "layernorm_epsilon": 0.00001,
+      "max_position_embeddings": 1048576,
+      "model_type": "mimo_v2",
+      "moe_intermediate_size": 2048,
+      "moe_layer_freq": {
+        "audit_display_truncated": true,
+        "total_items": 70,
+        "first_items": [
+          0,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "n_group": 1,
+      "n_routed_experts": 384,
+      "n_shared_experts": null,
+      "norm_topk_prob": true,
+      "num_attention_heads": 128,
+      "num_experts_per_tok": 8,
+      "num_hidden_layers": 70,
+      "num_key_value_heads": 8,
+      "partial_rotary_factor": 0.334,
+      "rope_theta": 10000000,
+      "routed_scaling_factor": null,
+      "scoring_func": "sigmoid",
+      "sliding_window": 128,
+      "sliding_window_size": 128,
+      "swa_head_dim": 192,
+      "swa_num_attention_heads": 128,
+      "swa_num_key_value_heads": 8,
+      "swa_rope_theta": 10000,
+      "swa_v_head_dim": 128,
+      "tie_word_embeddings": false,
+      "topk_group": 1,
+      "topk_method": "noaux_tc",
+      "torch_dtype": "bfloat16",
+      "transformers_version": "4.57.1",
+      "use_cache": true,
+      "v_head_dim": 128,
+      "vocab_size": 152576
+    },
+    "raw_config_bytes": 4205,
+    "context": {
+      "length": 1048576,
+      "effective_length": 1048576,
+      "recommended_context": 1048576,
+      "is_unlimited": false,
+      "is_approx": false,
+      "raw": "1,048,576",
+      "input_length": null,
+      "output_length": null,
+      "config_context": {
+        "value": 1048576,
+        "source": "config.json",
+        "source_path": "max_position_embeddings",
+        "confidence": 0.95,
+        "status": "verified",
+        "sources": [
+          {
+            "kind": "config",
+            "url": "https://huggingface.co/XiaomiMiMo/MiMo-V2.5-Pro/blob/main/config.json",
+            "confidence": 1
+          },
+          {
+            "kind": "config_raw",
+            "url": "https://huggingface.co/XiaomiMiMo/MiMo-V2.5-Pro/raw/main/config.json",
+            "confidence": 1
+          }
+        ],
+        "note": null
+      },
+      "advertised_context": {
+        "value": 1048576,
+        "source": "gallery/config",
+        "confidence": 0.9,
+        "status": "verified",
+        "sources": [
+          {
+            "kind": "gallery_image",
+            "url": "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/xiaomi-mimo25-pro.webp",
+            "confidence": 0.9
+          }
+        ],
+        "note": null
+      },
+      "native_context": {
+        "value": 1048576,
+        "source": "config_max_position_embeddings",
+        "confidence": 0.55,
+        "status": "inferred",
+        "sources": [
+          {
+            "kind": "config",
+            "url": "https://huggingface.co/XiaomiMiMo/MiMo-V2.5-Pro/blob/main/config.json",
+            "confidence": 1
+          },
+          {
+            "kind": "config_raw",
+            "url": "https://huggingface.co/XiaomiMiMo/MiMo-V2.5-Pro/raw/main/config.json",
+            "confidence": 1
+          }
+        ],
+        "note": null
+      },
+      "trained_context": {
+        "value": 1048576,
+        "source": "config_max_position_embeddings",
+        "confidence": 0.5,
+        "status": "inferred",
+        "sources": [],
+        "note": "requires tech report to confirm trained window"
+      },
+      "tested_context": {
+        "value": null,
+        "status": "unverified",
+        "confidence": 0,
+        "sources": [],
+        "note": "no independent HELM/BenchLM long-context eval; requires Needle-in-Haystack run"
+      },
+      "api_context": {
+        "value": null,
+        "status": "unverified",
+        "confidence": 0,
+        "sources": [],
+        "note": "requires live API max_tokens probe; may differ from advertised"
+      },
+      "conflict": false,
+      "conflict_note": null,
+      "resolution": "consistent within 2%",
+      "verified_source": "config+gallery (consistent)",
+      "confidence": 0.9,
+      "config_max_position_embeddings": 1048576,
+      "config_source_path": "max_position_embeddings",
+      "_legacy_length": 1048576,
+      "_legacy_resolution": "consistent within 2%",
+      "schema_version": "2.2-six-contexts"
+    },
+    "training": {
+      "dataset": {
+        "value": "Xiaomi MiMo web/code/math synthetic (inferred)",
+        "status": "inferred",
+        "confidence": 0.55,
+        "sources": [],
+        "note": "(inferred"
+      },
+      "tokens": {
+        "value": null,
+        "unit": null,
+        "status": "undisclosed",
+        "confidence": 0,
+        "sources": [],
+        "note": null
+      },
+      "tokens_b": null,
+      "hardware": {
+        "value": "Undisclosed H100 (inferred)",
+        "status": "inferred",
+        "confidence": 0.55,
+        "sources": [],
+        "note": null
+      },
+      "compute": {
+        "value": null,
+        "status": "undisclosed",
+        "confidence": 0,
+        "sources": [],
+        "note": null
+      },
+      "post_training": {
+        "value": [
+          "RL (inferred)"
+        ],
+        "status": "inferred",
+        "confidence": 0.55,
+        "sources": [],
+        "note": null
+      },
+      "post_training_methods": [
+        "RL (inferred)"
+      ],
+      "_flat": {
+        "dataset": "Xiaomi MiMo web/code/math synthetic (inferred)",
+        "hardware": "Undisclosed H100 (inferred)",
+        "compute": null
+      },
+      "overall_status": "inferred",
+      "overall_confidence": 0.35,
+      "verified_status": "inferred",
+      "confidence": 0.35,
+      "note": "inferred from family/company heuristic",
+      "_legacy_verified_status": "inferred",
+      "_legacy_confidence": 0.35,
+      "schema_version": "2.2-per-field",
+      "_provenance_note": "per-field status fix 2.2: verified no longer whole-block; each claim now has status+confidence+sources"
+    },
+    "sources": [
+      {
+        "kind": "config",
+        "url": "https://huggingface.co/XiaomiMiMo/MiMo-V2.5-Pro/blob/main/config.json",
+        "repo": "XiaomiMiMo/MiMo-V2.5-Pro",
+        "label": "config.json",
+        "verified_status": "verified",
+        "confidence": 1,
+        "note": "fetch ok"
+      },
+      {
+        "kind": "config_raw",
+        "url": "https://huggingface.co/XiaomiMiMo/MiMo-V2.5-Pro/raw/main/config.json",
+        "repo": "XiaomiMiMo/MiMo-V2.5-Pro",
+        "label": "config.json raw",
+        "verified_status": "verified",
+        "confidence": 1,
+        "note": "bytes 5350"
+      },
+      {
+        "kind": "tech_report",
+        "url": "https://mimo.xiaomi.com/mimo-v2-5",
+        "repo": null,
+        "label": null,
+        "arxiv_id": null,
+        "verified_status": "unverified",
+        "confidence": 0.7
+      },
+      {
+        "kind": "gallery_image",
+        "url": "https://sebastianraschka.com/llm-architecture-gallery/images/architectures/xiaomi-mimo25-pro.webp",
+        "repo": null,
+        "label": null,
+        "verified_status": "unverified",
+        "confidence": 0.9,
+        "note": "Raschka gallery"
+      },
+      {
+        "kind": "benchmark",
+        "url": "https://artificialanalysis.ai/models/mimo-v2-5-pro",
+        "repo": null,
+        "label": "Artificial Analysis",
+        "verified_status": "verified",
+        "confidence": 0.9,
+        "note": "AA index 42.2"
+      },
+      {
+        "kind": "license",
+        "url": "https://huggingface.co/XiaomiMiMo/MiMo-V2.5-Pro/blob/main/README.md",
+        "repo": null,
+        "label": "MIT License",
+        "verified_status": "unverified",
+        "confidence": 0.9
+      }
+    ]
+  }
+]

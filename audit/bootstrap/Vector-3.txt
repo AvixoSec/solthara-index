@@ -1,0 +1,601 @@
+              <p className="muted">{m.arch}</p>
+            </div>
+          </article>
+        ))}
+    </div>
+  );
+}
+function About({ data }) {
+  return (
+    <div className="about">
+      <p className="eyebrow accent">Open data. A clearer interface.</p>
+      <h2>
+        More of the original.
+        <br />
+        Less noise around it.
+      </h2>
+      <p className="lead">
+        VECTOR pairs a compact model registry with readable dossiers, original image references and
+        the complete source records.
+      </p>
+      <div className="two-columns">
+        <section className="panel">
+          <h3>What this version contains</h3>
+          <KeyValues
+            items={[
+              ['Model records', data.models.length],
+              ['Foundational milestones', data.milestones?.length || 0],
+              ['Dataset version', data.version],
+              ['Snapshot', data.generated_at],
+              ['Data license', data.license],
+            ]}
+          />
+          <button className="button" onClick={() => download(data, 'all-configs.json')}>
+            <Icon name="download" />
+            Full dataset JSON
+          </button>
+        </section>
+        <section className="panel">
+          <h3>How to read the evidence</h3>
+          <p>
+            Descriptions, dates, confidence labels, training claims and benchmark scores are
+            preserved from the supplied repository. They have not been scientifically re-verified
+            here.
+          </p>
+          <p>Unknown means unknown. Source confidence is not a leaderboard score.</p>
+          <p>
+            Architecture images use the original links. If unavailable, a clearly labeled
+            configuration map appears; it is not a replica of the source diagram.
+          </p>
+        </section>
+      </div>
+      <section className="panel detail-section">
+        <h3>Credits & original project</h3>
+        <div className="credit-list">
+          <Link href={REPO}>
+            Solthara Index · original repository <Icon name="external" />
+          </Link>
+          <Link href="https://github.com/rasbt/llm-architecture-gallery">
+            Sebastian Raschka · architecture diagrams <Icon name="external" />
+          </Link>
+          <Link href="https://github.com/YichenZW/llm-arch-table">
+            YichenZW · architecture matrix <Icon name="external" />
+          </Link>
+          <Link href="https://github.com/Superposition09m/Awesome-LM-Architecture">
+            Awesome-LM-Architecture · theory references <Icon name="external" />
+          </Link>
+        </div>
+      </section>
+      <details className="panel disclosure">
+        <summary>Original dataset provenance</summary>
+        <LazyRaw value={data.provenance || {}} filename="solthara-provenance.json" />
+      </details>
+    </div>
+  );
+}
+function Empty({ onReset }) {
+  return (
+    <div className="empty">
+      <Icon name="search" size={32} />
+      <h3>No models match.</h3>
+      <p>Try a different name, lab, architecture or attention mechanism.</p>
+      <button className="button" onClick={onReset}>
+        Reset all filters
+      </button>
+    </div>
+  );
+}
+
+export default function Vector({ data }) {
+  const models = useMemo(
+    () => (Array.isArray(data?.models) ? data.models : Object.values(data?.models || {})),
+    [data],
+  );
+  const [route, setRoute] = useState('registry'),
+    [query, setQuery] = useState(''),
+    [company, setCompany] = useState('all'),
+    [kind, setKind] = useState('all'),
+    [att, setAtt] = useState('all'),
+    [training, setTraining] = useState('all'),
+    [bias, setBias] = useState('all'),
+    [tied, setTied] = useState('all'),
+    [sort, setSort] = useState('newest'),
+    [tableSort, setTableSort] = useState(null),
+    [page, setPage] = useState(1),
+    [view, setView] = useState('table'),
+    [more, setMore] = useState(false),
+    [menu, setMenu] = useState(false),
+    [inspected, setInspected] = useState(models[0]?.model_id),
+    [dossier, setDossier] = useState(null),
+    [lightbox, setLightbox] = useState(null),
+    [comparison, setComparison] = useState(false),
+    [selected, setSelected] = useState(new Set()),
+    [toast, setToast] = useState('');
+  const searchRef = useRef(null),
+    catalogRef = useRef(null),
+    inspectorRef = useRef(null),
+    pageSize = 8;
+  const searchable = useMemo(
+    () =>
+      new Map(
+        models.map((m) => [
+          m.model_id,
+          [
+            m.model_name,
+            m.model_id,
+            m.company,
+            m.summary,
+            m.family,
+            m.scale?.raw,
+            m.architecture?.decoder_display,
+            m.architecture?.decoder_type,
+            m.architecture?.attention?.raw,
+            attention(m),
+            ...(m.tags || []),
+            m.math_tricks?.hidden_act,
+            m.math_tricks?.tricks_display,
+          ]
+            .filter(Boolean)
+            .join(' ')
+            .toLowerCase(),
+        ]),
+      ),
+    [models],
+  );
+  const filtered = useMemo(() => {
+    let out = models.filter((m) => {
+      const type = (m.architecture?.decoder_type || '').toLowerCase();
+      return (
+        (!query.trim() || searchable.get(m.model_id).includes(query.trim().toLowerCase())) &&
+        (company === 'all' || m.company === company) &&
+        (kind === 'all' ||
+          (kind === 'moe'
+            ? type.includes('moe') || type.startsWith('sparse')
+            : kind === 'dense'
+              ? type.includes('dense')
+              : kind === 'hybrid'
+                ? type.includes('hybrid')
+                : true)) &&
+        (att === 'all' || m.architecture?.attention?.primary === att) &&
+        (training === 'all' ||
+          (m.training?.overall_status || m.training?.verified_status) === training) &&
+        (bias === 'all' || m.math_tricks?.attention_bias_display === bias) &&
+        (tied === 'all' || m.math_tricks?.tie_display === tied)
+      );
+    });
+    const column = tableSort && MATRIX.find(([k]) => k === tableSort.key),
+      fn =
+        column?.[2] ||
+        (sort === 'largest'
+          ? params
+          : sort === 'context'
+            ? effective
+            : sort === 'layers'
+              ? (m) => m.architecture?.num_hidden_layers
+              : sort === 'name'
+                ? (m) => m.model_name
+                : (m) => m.release_date),
+      asc = tableSort ? tableSort.asc : ['name', 'oldest'].includes(sort);
+    out.sort((a, b) => {
+      const x = fn(a),
+        y = fn(b);
+      if (absent(x)) return absent(y) ? 0 : 1;
+      if (absent(y)) return -1;
+      const d =
+        typeof x === 'number' && typeof y === 'number'
+          ? x - y
+          : String(x).localeCompare(String(y), undefined, { numeric: true });
+      return (asc ? d : -d) || a.model_name.localeCompare(b.model_name);
+    });
+    return out;
+  }, [models, query, company, kind, att, training, bias, tied, sort, tableSort, searchable]);
+  const pages = Math.max(1, Math.ceil(filtered.length / pageSize)),
+    currentPage = Math.min(page, pages),
+    visible = filtered.slice((currentPage - 1) * pageSize, currentPage * pageSize),
+    inspectModel = models.find((m) => m.model_id === inspected) || models[0],
+    modalModel = models.find((m) => m.model_id === dossier),
+    isDataView = ['registry', 'matrix'].includes(route),
+    activeFilters = [company, kind, att, training, bias, tied].filter((x) => x !== 'all').length;
+  useEffect(() => setPage(1), [query, company, kind, att, training, bias, tied, sort, tableSort]);
+  useEffect(() => {
+    if (!toast) return;
+    const t = setTimeout(() => setToast(''), 3500);
+    return () => clearTimeout(t);
+  }, [toast]);
+  useEffect(() => {
+    const fn = (e) => {
+      if (
+        (e.ctrlKey || e.metaKey) &&
+        e.key.toLowerCase() === 'k' &&
+        !document.querySelector('dialog[open]')
+      ) {
+        e.preventDefault();
+        setRoute('registry');
+        setTimeout(() => searchRef.current?.focus(), 0);
+      }
+      if (e.key === 'Escape') setMenu(false);
+    };
+    document.addEventListener('keydown', fn);
+    return () => document.removeEventListener('keydown', fn);
+  }, []);
+  function navigate(r) {
+    setRoute(r);
+    setMenu(false);
+    setPage(1);
+    setTableSort(null);
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }
+  function reset() {
+    setQuery('');
+    setCompany('all');
+    setKind('all');
+    setAtt('all');
+    setTraining('all');
+    setBias('all');
+    setTied('all');
+    setSort('newest');
+    setTableSort(null);
+    setPage(1);
+    searchRef.current?.focus();
+  }
+  function choose(id) {
+    if (!selected.has(id) && selected.size >= 3) {
+      setToast('Choose up to 3 models. Remove one to add another.');
+      return;
+    }
+    setSelected((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
+  }
+  function open(id) {
+    setInspected(id);
+    setDossier(id);
+  }
+  function quickLook(id) {
+    setInspected(id);
+    if (window.innerWidth < 1240)
+      setTimeout(
+        () =>
+          inspectorRef.current?.scrollIntoView({
+            block: 'start',
+            behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches
+              ? 'instant'
+              : 'smooth',
+          }),
+        0,
+      );
+  }
+  function sortBy(key) {
+    setTableSort((s) => ({ key, asc: s?.key === key ? !s.asc : true }));
+  }
+  function pageTo(p) {
+    setPage(p);
+    catalogRef.current?.scrollIntoView({ block: 'start', behavior: 'instant' });
+  }
+  function exportResults() {
+    download(
+      {
+        version: data.version,
+        generated_at: data.generated_at,
+        license: data.license,
+        source_total_models: models.length,
+        total_models: filtered.length,
+        export_note:
+          'Complete model records for the current filters. Dataset assertions are not newly verified.',
+        filters: { query, company, kind, attention: att, training, bias, tied },
+        models: filtered,
+      },
+      'solthara-vector-results.json',
+    );
+    setToast('Full records for ' + filtered.length + ' models exported.');
+  }
+  const title =
+      route === 'registry'
+        ? 'Architecture registry'
+        : route === 'matrix'
+          ? 'Architecture matrix'
+          : route === 'timeline'
+            ? 'Where it all began'
+            : route === 'theory'
+              ? 'The reference library'
+              : 'Open by design',
+    sub =
+      route === 'registry'
+        ? 'Inspect the structure. Open the full story.'
+        : route === 'matrix'
+          ? '19 architectural fields. Sort, scroll and compare.'
+          : route === 'timeline'
+            ? '15 foundational milestones, preserved from the original dataset.'
+            : route === 'theory'
+              ? 'Optimizers, scaling laws and the ideas behind the models.'
+              : 'Complete records. Traceable sources. No invented scores.';
+  const sortHeaders = (columns) => (
+    <thead>
+      <tr>
+        {columns.map(([key, label]) => (
+          <th
+            key={key}
+            scope="col"
+            aria-sort={
+              tableSort?.key === key ? (tableSort.asc ? 'ascending' : 'descending') : 'none'
+            }
+          >
+            <button onClick={() => sortBy(key)}>
+              {label}
+              <span aria-hidden="true">
+                {tableSort?.key === key ? (tableSort.asc ? '↑' : '↓') : '↕'}
+              </span>
+            </button>
+          </th>
+        ))}
+        <th scope="col" className="select-head">
+          <span className="sr-only">Select for comparison</span>
+          <Icon name="compare" />
+        </th>
+        {route === 'registry' && (
+          <th scope="col" className="select-head">
+            <span className="sr-only">Quick preview</span>
+            <Icon name="eye" />
+          </th>
+        )}
+      </tr>
+    </thead>
+  );
+  const checkbox = (m) => (
+    <label className="check-target">
+      <input
+        type="checkbox"
+        checked={selected.has(m.model_id)}
+        onChange={() => choose(m.model_id)}
+        aria-label={'Compare ' + m.model_name}
+      />
+      <span className="sr-only">Compare</span>
+    </label>
+  );
+  const renderTable = () => {
+    const cols = route === 'matrix' ? MATRIX : CATALOG;
+    return (
+      <>
+        <div className="table-hint">
+          <Icon name="arrow" size={16} />
+          Scroll horizontally for all columns. Select a model for the full dossier.
+        </div>
+        <div
+          className={'table-scroll ' + (route === 'matrix' ? 'matrix-scroll' : '')}
+          tabIndex="0"
+          role="region"
+          aria-label={
+            route === 'matrix'
+              ? 'Architecture matrix; scroll horizontally'
+              : 'Model registry; scroll horizontally'
+          }
+        >
+          <table className={'model-table ' + (route === 'matrix' ? 'matrix-table' : '')}>
+            {sortHeaders(cols)}
+            <tbody>
+              {visible.map((m) => (
+                <tr
+                  key={m.model_id}
+                  className={m.model_id === inspected ? 'inspected' : ''}
+                  onClick={(e) => {
+                    if (!e.target.closest('button,a,input,label')) open(m.model_id);
+                  }}
+                >
+                  {cols.map(([key, label, fn]) => (
+                    <td key={key} className={key === 'model_name' ? 'model-cell' : ''}>
+                      {key === 'model_name' ? (
+                        <div className="model-cell-content">
+                          {route === 'registry' && <Thumb model={m} />}
+                          <div>
+                            <button className="model-name" onClick={() => open(m.model_id)}>
+                              {m.model_name}
+                            </button>
+                            <span className="model-byline">
+                              {m.company} ·{' '}
+                              {route === 'registry'
+                                ? date(m.release_date)
+                                : m.architecture?.decoder_display}
+                            </span>
+                          </div>
+                        </div>
+                      ) : key === 'attention' ? (
+                        <Badge>{attention(m)}</Badge>
+                      ) : key === 'scale' ? (
+                        <>
+                          <span className="mono value">{compact(fn(m))}</span>
+                          {route === 'registry' && m.scale?.active_params != null && (
+                            <span className="cell-note">
+                              {compact(m.scale.active_params)} active
+                            </span>
+                          )}
+                        </>
+                      ) : key === 'context' ? (
+                        <span className="mono value">{contextText(m)}</span>
+                      ) : (
+                        <span
+                          className={['depth', 'dim', 'vocab'].includes(key) ? 'mono value' : ''}
+                        >
+                          {val(fn(m))}
+                        </span>
+                      )}
+                    </td>
+                  ))}
+                  <td>{checkbox(m)}</td>
+                  {route === 'registry' && (
+                    <td>
+                      <button
+                        className="icon-button peek"
+                        aria-label={'Preview ' + m.model_name + ' in side panel'}
+                        onClick={() => quickLook(m.model_id)}
+                      >
+                        <Icon name="eye" />
+                      </button>
+                    </td>
+                  )}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </>
+    );
+  };
+  if (!models.length)
+    return (
+      <main className="boot-error">
+        <h1>No dataset loaded</h1>
+        <p>Place the original all-configs.js beside index.html, then reload.</p>
+      </main>
+    );
+
+  return (
+    <div className="vector-app">
+      <a className="skip" href="#registry-main">
+        Skip to content
+      </a>
+      <div className="app-shell">
+        <aside className="sidebar">
+          <div className="brand-row">
+            <button className="brand" onClick={() => navigate('registry')}>
+              <Icon name="mark" size={31} />
+              <span>
+                solthara<span className="brand-dot">.</span>
+              </span>
+            </button>
+            <button
+              className="icon-button mobile-menu"
+              aria-label="Toggle navigation"
+              aria-expanded={menu}
+              aria-controls="main-nav"
+              onClick={() => setMenu(!menu)}
+            >
+              <Icon name={menu ? 'close' : 'menu'} />
+            </button>
+          </div>
+          <nav id="main-nav" className={menu ? 'open' : ''} aria-label="Primary navigation">
+            <span className="nav-label">Workspace</span>
+            {ROUTES.map(([k, label, icon]) => (
+              <button
+                key={k}
+                onClick={() => navigate(k)}
+                aria-current={route === k ? 'page' : undefined}
+              >
+                <Icon name={icon} />
+                <span>{label}</span>
+                {k === 'registry' && <small>{models.length}</small>}
+              </button>
+            ))}
+            <div className="sidebar-source">
+              <span className="nav-label">Source</span>
+              <Link href={REPO}>
+                GitHub repository <Icon name="external" />
+              </Link>
+              <p>
+                Open dataset
+                <br />
+                Apache-2.0
+              </p>
+            </div>
+          </nav>
+          <div className="sidebar-bottom">
+            <span className="mini-mark">S</span>
+            <div>
+              VECTOR <span className="muted">/ 02</span>
+              <small>Full-record edition</small>
+            </div>
+          </div>
+        </aside>
+        <div className="workspace">
+          <header className="topbar">
+            <div className="breadcrumb">
+              <span>Workspace</span>
+              <span>/</span>
+              <strong>{ROUTES.find(([k]) => k === route)?.[1]}</strong>
+            </div>
+            <div className="topbar-actions">
+              <span className="snapshot-label">Snapshot · {data.generated_at?.slice(0, 10)}</span>
+              <button className="button secondary" onClick={exportResults}>
+                <Icon name="download" />
+                <span>Export {isDataView ? 'results' : 'models'}</span>
+              </button>
+            </div>
+          </header>
+          <main id="registry-main" className="main">
+            <section className="page-heading">
+              <div>
+                <p className="eyebrow accent">
+                  Research workspace <span className="muted">/ VECTOR</span>
+                </p>
+                <h1>
+                  {title}
+                  <span className="accent">_</span>
+                </h1>
+                <p>{sub}</p>
+              </div>
+              <div className="version">
+                <span>DATASET</span>
+                <strong>v{data.version}</strong>
+              </div>
+            </section>
+            {route === 'registry' && (
+              <div className="summary-strip">
+                <div>
+                  <strong>{models.length}</strong>
+                  <span>full model records</span>
+                </div>
+                <div>
+                  <strong>{data.milestones?.length || 0}</strong>
+                  <span>foundational milestones</span>
+                </div>
+                <div>
+                  <Icon name="image" size={22} />
+                  <span>
+                    Original figures
+                    <br />
+                    <small>+ local configuration maps</small>
+                  </span>
+                </div>
+              </div>
+            )}
+            {isDataView ? (
+              <section className="catalog" ref={catalogRef}>
+                <div className="catalog-toolbar">
+                  <label className="search-field">
+                    <Icon name="search" />
+                    <span className="sr-only">Search models, labs and architecture details</span>
+                    <input
+                      ref={searchRef}
+                      type="search"
+                      placeholder="Search models, labs, architecture…"
+                      value={query}
+                      onChange={(e) => setQuery(e.target.value)}
+                      spellCheck="false"
+                    />
+                    <kbd>⌘ K</kbd>
+                  </label>
+                  <label className="select-field">
+                    <span className="sr-only">Filter by lab</span>
+                    <select value={company} onChange={(e) => setCompany(e.target.value)}>
+                      <option value="all">All labs</option>
+                      {[...new Set(models.map((m) => m.company))].sort().map((c) => (
+                        <option key={c}>{c}</option>
+                      ))}
+                    </select>
+                  </label>
+                  <label className="select-field">
+                    <span className="sr-only">Sort models</span>
+                    <select
+                      value={sort}
+                      onChange={(e) => {
+                        setSort(e.target.value);
+                        setTableSort(null);
+                      }}
+                    >
+                      <option value="newest">Newest first</option>
+                      <option value="oldest">Oldest first</option>
+                      <option value="largest">Largest scale</option>
+                      <option value="context">Longest context</option>
+                      <option value="layers">Most layers</option>

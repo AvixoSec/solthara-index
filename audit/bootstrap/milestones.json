@@ -1,0 +1,152 @@
+[
+  {
+    "id": "transformer-2017",
+    "name": "Transformer (Vaswani et al.)",
+    "date": "2017-06-12",
+    "org": "Google",
+    "params": "65M",
+    "ctx": "512",
+    "arch": "Dense • MHA • Post-LN • Sinusoidal PE",
+    "note": "Attention Is All You Need — encoder-decoder, scaled dot-product, no MoE"
+  },
+  {
+    "id": "bert-2018",
+    "name": "BERT 340M",
+    "date": "2018-10-11",
+    "org": "Google",
+    "params": "340M",
+    "ctx": "512",
+    "arch": "Dense • MHA • Post-LN • Learned PE",
+    "note": "Bidirectional encoder, MLM+NSP, first large-scale pretrain"
+  },
+  {
+    "id": "gpt2-2019",
+    "name": "GPT-2 1.5B",
+    "date": "2019-02-14",
+    "org": "OpenAI",
+    "params": "1.5B",
+    "ctx": "1024",
+    "arch": "Dense • MHA • Pre-LN (moved) • Learned PE",
+    "note": "Decoder-only, zero-shot via language modeling"
+  },
+  {
+    "id": "t5-2019",
+    "name": "T5 11B",
+    "date": "2019-10-23",
+    "org": "Google",
+    "params": "11B",
+    "ctx": "512",
+    "arch": "Dense • Enc-Dec • Relative PE",
+    "note": "Text-to-Text, C4, span corruption"
+  },
+  {
+    "id": "gpt3-2020",
+    "name": "GPT-3 175B",
+    "date": "2020-05-28",
+    "org": "OpenAI",
+    "params": "175B",
+    "ctx": "2048",
+    "arch": "Dense • MHA • Pre-LN • Learned PE",
+    "note": "Few-shot in-context, 300B tokens, no finetune"
+  },
+  {
+    "id": "vit-2020",
+    "name": "ViT (cross-pollination)",
+    "date": "2020-10-22",
+    "org": "Google",
+    "params": "632M",
+    "ctx": "—",
+    "arch": "Dense • MHA",
+    "note": "Patch embeddings prove Transformer modality-agnostic"
+  },
+  {
+    "id": "switch-2021",
+    "name": "Switch-Transformer 1.6T",
+    "date": "2021-01-11",
+    "org": "Google",
+    "params": "1.6T (2048 experts, 1 active)",
+    "ctx": "512",
+    "arch": "Sparse MoE • top-1 routing",
+    "note": "First trillion-scale MoE, expert-choice vs token-choice"
+  },
+  {
+    "id": "chinchilla-2022",
+    "name": "Chinchilla 70B",
+    "date": "2022-03-29",
+    "org": "DeepMind",
+    "params": "70B",
+    "ctx": "2048",
+    "arch": "Dense • GQA precursor",
+    "note": "Scaling Laws: 1.4T tokens, compute-optimal > size"
+  },
+  {
+    "id": "llama1-2023",
+    "name": "LLaMA 65B",
+    "date": "2023-02-24",
+    "org": "Meta",
+    "params": "65B",
+    "ctx": "2048",
+    "arch": "Dense • GQA • RMSNorm • SwiGLU • RoPE θ=10k",
+    "note": "Open weights, RMSNorm+RoPE+SwiGLU canon"
+  },
+  {
+    "id": "llama2-2023",
+    "name": "Llama 2 70B",
+    "date": "2023-07-18",
+    "org": "Meta",
+    "params": "70B",
+    "ctx": "4096",
+    "arch": "Dense • GQA • RMSNorm • SwiGLU • RoPE",
+    "note": "GQA + 2T tokens, RLHF, RoPE scaling start"
+  },
+  {
+    "id": "mistral-2023a",
+    "name": "Mistral 7B",
+    "date": "2023-09-27",
+    "org": "Mistral",
+    "params": "7B",
+    "ctx": "32K (Sliding 4K)",
+    "arch": "Dense • Sliding Window • GQA",
+    "note": "SW attention revival, Apache-2.0"
+  },
+  {
+    "id": "mamba-2023",
+    "name": "Mamba (SSM)",
+    "date": "2023-12-01",
+    "org": "CMU/Princeton",
+    "params": "2.8B",
+    "ctx": "1M (linear)",
+    "arch": "Recurrent • SSM • Selective scan",
+    "note": "Alternative to attention: O(N) linear, hybrid era start"
+  },
+  {
+    "id": "mixtral-2023",
+    "name": "Mixtral 8x7B",
+    "date": "2023-12-11",
+    "org": "Mistral",
+    "params": "47B (13B active)",
+    "ctx": "32K",
+    "arch": "Sparse MoE • 8 experts top-2",
+    "note": "MoE becomes mainstream"
+  },
+  {
+    "id": "mixtral-8x22b",
+    "name": "Mixtral 8x22B",
+    "date": "2024-01-08",
+    "org": "Mistral",
+    "params": "141B (39B active)",
+    "ctx": "64K",
+    "arch": "Sparse MoE • 8 experts top-2",
+    "note": "Scale MoE further"
+  },
+  {
+    "id": "gemini-2023",
+    "name": "Gemini 1.0 Ultra",
+    "date": "2023-12-06",
+    "org": "Google",
+    "params": "~1.5T est.",
+    "ctx": "32K",
+    "arch": "Dense hybrid • MHA",
+    "note": "Native multimodal, 1M in 1.5 Pro Feb 2024"
+  }
+]
