@@ -1,0 +1,115 @@
+name: Apply verified repair package
+on:
+  push:
+    branches: ['fix/research-audit-2026-09-05']
+    paths: ['repair/bundle-*.b64', '.github/workflows/apply-repair.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  apply:
+    if: github.repository == 'AvixoSec/solthara-index' && github.ref == 'refs/heads/fix/research-audit-2026-09-05'
+    runs-on: ubuntu-22.04
+    timeout-minutes: 15
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Extract checked package into an isolated directory
+        id: extract
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import path from 'node:path';
+          import {createHash} from 'node:crypto';
+          import {brotliDecompressSync} from 'node:zlib';
+          const encoded=[1,2,3,4,5,6].map(i=>fs.readFileSync(`repair/bundle-${i}.b64`,'utf8').trim()).join('');
+          const bytes=Buffer.from(encoded,'base64');
+          if(createHash('sha256').update(bytes).digest('hex')!=='72bc4bd7bbca796faef78ad22e7f8fd153c25b08331ade8967ee01283eb7db3e')throw Error('Package checksum mismatch');
+          const files=JSON.parse(brotliDecompressSync(bytes,{maxOutputLength:1048576}));
+          if(!Array.isArray(files)||files.length!==22)throw Error('Unexpected package manifest');
+          const root=path.resolve('.repair-stage'); fs.mkdirSync(root);
+          for(const f of files){
+            if(typeof f.content!=='string'||typeof f.path!=='string'||f.path.includes('..')||f.path.includes('\\')||!(/^(apply-repair\.mjs|lib\/install\.mjs|overlay\/.+)$/.test(f.path)))throw Error('Unsafe package path');
+            const p=path.resolve(root,f.path);if(!p.startsWith(root+path.sep))throw Error('Path escape');
+            fs.mkdirSync(path.dirname(p),{recursive:true});fs.writeFileSync(p,f.content,{flag:'wx'});
+          }
+          fs.appendFileSync('.git/info/exclude','\n.repair-stage/\n');
+          NODE
+      - name: Apply, test, build and check original-data preservation
+        id: verify
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p audit
+          {
+            cp all-configs.json /tmp/solthara-original.json
+            node .repair-stage/apply-repair.mjs --repo . --apply
+            npm ci --ignore-scripts
+            npm test > audit/unit-tests.log 2>&1
+            cat audit/unit-tests.log
+            npm run validate
+            npm run build
+            npm run validate
+            npm run audit:data
+            node scripts/check-preservation.mjs /tmp/solthara-original.json
+            cp audit/current-integrity.json /tmp/first-integrity.json
+            npm run build
+            cmp audit/current-integrity.json /tmp/first-integrity.json
+          } > audit/process.log 2>&1
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: repair-structural-evidence
+          path: |
+            audit/process.log
+            audit/unit-tests.log
+            audit/current-integrity.json
+            audit/preservation.json
+            audit/data-audit.json
+          retention-days: 14
+      - name: Commit candidate only after structural checks; otherwise diagnostics only
+        if: always()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs=require('fs'), cp=require('child_process');
+            const branch='fix/research-audit-2026-09-05';
+            if(context.repo.owner!=='AvixoSec'||context.repo.repo!=='solthara-index'||context.ref!==`refs/heads/${branch}`)throw Error('Unexpected target');
+            const ok='${{ steps.verify.outcome }}'==='success';
+            const api={owner:context.repo.owner,repo:context.repo.repo};
+            const head=await github.rest.git.getRef({...api,ref:`heads/${branch}`});
+            if(head.data.object.sha!==context.sha)throw Error('Branch advanced; refusing to overwrite');
+            const read=(p)=>fs.existsSync(p)?fs.readFileSync(p,'utf8'):'';
+            const parse=(p)=>read(p)?JSON.parse(read(p)):null;
+            const runUrl='https://github.com/'+context.repo.owner+'/'+context.repo.repo+'/actions/runs/'+context.runId;
+            fs.mkdirSync('audit',{recursive:true});
+            const report={status:ok?'structural_passed_browser_pending':'failed',workflow_url:runUrl,source_commit:context.sha,base_commit:'30a2ea0f117d37fc24a64f2eb4a69229d635169a',extract_status:'${{ steps.extract.outcome }}',validation_status:'${{ steps.verify.outcome }}',integrity:ok?parse('audit/current-integrity.json'):null,preservation:ok?parse('audit/preservation.json'):null,unit_test_summary:read('audit/unit-tests.log').slice(-1500),browser:'Pending the permanent read-only CI workflow; do not merge before it passes.'};
+            fs.writeFileSync('audit/verification.json',JSON.stringify(report,null,2)+'\n');
+            fs.writeFileSync('audit/repair-attempt.log',read('audit/process.log').slice(-20000));
+            const selected=new Set(['audit/verification.json','audit/repair-attempt.log']);
+            const git=(args)=>cp.execFileSync('git',args,{encoding:'utf8',maxBuffer:1048576}).split('\0').filter(Boolean);
+            if(ok){
+              for(const p of [...git(['diff','--name-only','-z']),...git(['ls-files','--others','--exclude-standard','-z'])]){
+                if(p.startsWith('.github/'))continue;
+                if(/^(\.gitignore|README\.md|VECTOR-README\.md|RESEARCH-AUDIT\.md|package\.json|build\.mjs|build-meta\.json|all-configs\.(json|js)|models\.yml|index\.html|Solthara-VECTOR-v2\.html|VECTOR-RELEASE\.json|filter-qa\.json|interaction-qa\.json|visual-qa\.json|qa-report\.json|source-integrity\.json|contrast-report\.json)$/.test(p)||/^(src|assets|scripts|tests)\//.test(p)||/^audit\/(legacy\/|repair-log\.json$|current-integrity\.json$|preservation\.json$)/.test(p))selected.add(p);
+              }
+            }
+            const tree=[];
+            for(const p of [...selected].sort()){
+              if(!fs.statSync(p).isFile())throw Error('Unexpected non-file');
+              const b=await github.rest.git.createBlob({...api,content:fs.readFileSync(p).toString('base64'),encoding:'base64'});
+              tree.push({path:p,mode:'100644',type:'blob',sha:b.data.sha});
+            }
+            if(ok)for(const p of git(['ls-files','-z','--','audit/bootstrap','tools/research-bootstrap.mjs','repair']))tree.push({path:p,mode:'100644',type:'blob',sha:null});
+            const parent=await github.rest.git.getCommit({...api,commit_sha:context.sha});
+            const nextTree=await github.rest.git.createTree({...api,base_tree:parent.data.tree.sha,tree});
+            const commit=await github.rest.git.createCommit({...api,tree:nextTree.data.sha,parents:[context.sha],message:ok?'fix: apply researched corrections and reproducible build':'chore: record repair diagnostics without applying changes'});
+            await github.rest.git.updateRef({...api,ref:`heads/${branch}`,sha:commit.data.sha,force:false});
+            if(!ok)core.setFailed('Repair checks failed; only diagnostics were committed.');
