@@ -1,52 +1,40 @@
-# Solthara Index
+# Solthara Index — VECTOR
 
-[![License: Apache-2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
-[![Models](https://img.shields.io/badge/Models-101%20Architectures-6366f1.svg)](#)
-[![Milestones](https://img.shields.io/badge/Milestones-15%20Key%20Models-10b981.svg)](#)
-[![Data Format](https://img.shields.io/badge/Data-JSON%20%7C%20YAML-06b6d4.svg)](#)
+A static architecture catalog with 101 model records, 15 milestones, full dossiers and explicit uncertainty. This is a repository snapshot, not a live leaderboard.
 
-Structured dataset and offline viewer for LLM architectures from 2017 to 2026. Covers 101 modern models and 15 foundational milestones.
+## Open
 
----
+- `index.html`: keep `all-configs.js` and `assets/` beside it, or serve the repository with a static HTTP server.
+- `Solthara-VECTOR-v2.html`: standalone edition with embedded data, JavaScript and CSS. External architecture images still need a network; unavailable images show labeled configuration maps.
+- `all-configs.json`: canonical dataset. JS and YAML exports are generated from it.
 
-## Overview
+The interface includes a registry, gallery, 19-column matrix, timeline, theory library, three-model comparison and eight tabs per dossier. JSON downloads retain complete records and raw configurations.
 
-- **Web interface (index.html)**: Single-page app with full-text search, architecture filters (Dense, Sparse MoE, Hybrid, Recurrent), 7-tab modal for model inspection, and a sortable 19-column parameter matrix.
-- **Dataset (ll-configs.json / models.yml)**: Specifications covering vocabulary, layer count, hidden dimensions, normalization placement, positional encodings, activation functions, attention mechanisms, training compute/tokens, and primary source links.
-- **Theory section**: Reference tables for optimizers (AdamW vs Muon), empirical scaling laws, test-time learning methods (TTL, TTT, Titans), and tokenizers.
-- **Zero build dependencies**: Runs directly in the browser without bundlers or server runtimes.
+## Development
 
----
+Node.js 20+ is required; CI uses Node.js 22. React and esbuild are build dependencies, not runtime CDN requirements.
 
-## Files
+```sh
+npm ci --ignore-scripts
+npm test
+npm run validate
+npm run build
+npm run validate
+npm run audit:data
+```
 
-`	ext
-index.html              # Standalone web viewer
-all-configs.json        # Full dataset in JSON format
-all-configs.js          # JavaScript wrapper for local browser loading
-models.yml              # YAML export of the 19-column matrix
-images/                 # Architecture diagram mirror utilities
-NOTICE                  # Third-party attributions
-LICENSE                 # Apache License 2.0
-`
+The build validates data before replacing artifacts and writes `audit/current-integrity.json`. It does not silently rewrite the canonical JSON. The generated `audit/data-audit.json` reports review candidates, not scientific certification.
 
----
+CI additionally installs isolated Playwright 1.55.0, runs `scripts/browser-smoke.mjs`, and uploads browser reports/screenshots. It visits every real model's eight tabs and checks filters, sorting, pagination, exports, comparison, timeline, theory categories, mobile navigation and the actual standalone page. External requests are blocked for deterministic fallback testing.
 
-## Data Sources & References
+## Corrections and evidence
 
-Data is compiled from papers, model repositories, and existing open-source collections:
+See [RESEARCH-AUDIT.md](RESEARCH-AUDIT.md). Revision `2026-09-06.1` separates primary-source-backed corrections from mechanical projections of explicit raw language-config values. Field-level `_solthara_audit` metadata preserves before/after values and sources. Unknowns stay unknown; original raw configurations and training assertions are preserved.
 
-- Architecture diagrams: [rasbt/llm-architecture-gallery](https://github.com/rasbt/llm-architecture-gallery)
-- 19-column architecture matrix format: [YichenZW/llm-arch-table](https://github.com/YichenZW/llm-arch-table)
-- Theory and architecture notes: [Superposition09m/Awesome-LM-Architecture](https://github.com/Superposition09m/Awesome-LM-Architecture)
+**Passing tests do not independently verify every scientific claim in the catalog.** Current repair results are in `audit/verification.json`; output hashes are in `audit/current-integrity.json`. Historical QA reports are retained under `audit/legacy/` and are not current passing evidence. No production speedup or lazy-loaded dataset is claimed.
 
-Citation:
-`	ext
-Solthara Index Contributors (2026). Solthara Index: Open Neural Architecture Observatory (2017-2026), Version 2.4.
-`
+## License and credits
 
----
+Apache-2.0. Preserve `LICENSE`, `NOTICE`, `THIRD_PARTY_NOTICES.md` and `licenses/`. Third-party figures retain their own licenses.
 
-## License
-
-Apache License 2.0. See [LICENSE](./LICENSE) and [NOTICE](./NOTICE).\n
+References: [Raschka's gallery](https://github.com/rasbt/llm-architecture-gallery), [YichenZW's table](https://github.com/YichenZW/llm-arch-table), [Awesome-LM-Architecture](https://github.com/Superposition09m/Awesome-LM-Architecture).

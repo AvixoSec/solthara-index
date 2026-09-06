@@ -1,17 +1,7 @@
 {
-  "status": "pass",
-  "results": [
-    {
-      "category": "MoE",
-      "count": 67
-    },
-    {
-      "category": "Dense",
-      "count": 33
-    },
-    {
-      "category": "Hybrid",
-      "count": 24
-    }
-  ]
+  "status": "historical_not_current",
+  "applies_to_commit": "30a2ea0f117d37fc24a64f2eb4a69229d635169a",
+  "original_report": "audit/legacy/filter-qa.json",
+  "notice": "Archived release evidence, not proof that the repaired dataset or interface passes tests. Run the current validation/build and review CI.",
+  "current_integrity": "audit/current-integrity.json"
 }

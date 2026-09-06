@@ -1,0 +1,59 @@
+{
+  "status": "passed",
+  "workflow_url": "https://github.com/AvixoSec/solthara-index/actions/runs/34056408014",
+  "source_commit": "b30dfa28c2bd17a5cf44b0d938e6ce13d8692570",
+  "base_commit": "30a2ea0f117d37fc24a64f2eb4a69229d635169a",
+  "extract_status": "success",
+  "validation_status": "success",
+  "integrity": {
+    "schema": 1,
+    "input_json_sha256": "c5197229ee3f9be0d9cbaf514e2529137e8b550e21388686333a5ded198982a0",
+    "outputs": {
+      "all-configs.js": {
+        "sha256": "da88d14db4f8b70b8d4f3e7cd0849bc2557e378dd5b8aafe86eb3ce4b9a6ca36",
+        "bytes": 8719395
+      },
+      "models.yml": {
+        "sha256": "016b2b74cb573658273ead7d92c985caf7cf9ac8dd1845a0787bc4b035974200",
+        "bytes": 43511
+      },
+      "assets/vector.js": {
+        "sha256": "abe8e68071f2c0dc5bbd5717c2bfc86d9b772ebc4137766e61fa2761358deff8",
+        "bytes": 256584
+      },
+      "assets/vector.css": {
+        "sha256": "415e7d6f44834fcbaf16f107a3540c6c972b73e8ac1908129a54e2732ad4a695",
+        "bytes": 46612
+      },
+      "index.html": {
+        "sha256": "eb44bf4943f3824c043e2d8e2840b728b5fcadd71d563a17b9dc16f5da19671c",
+        "bytes": 808
+      },
+      "Solthara-VECTOR-v2.html": {
+        "sha256": "de3e98e25e3a6381ba443aaa64fa547da7f545d85adc3a819c37e50cb0a91e2b",
+        "bytes": 9023310
+      }
+    },
+    "counts": {
+      "models": 101,
+      "milestones": 15
+    },
+    "note": "Content integrity and structural validation only; not scientific verification or proof of UI tests."
+  },
+  "preservation": {
+    "status": "passed",
+    "models_checked": 101,
+    "raw_configs_unchanged": true,
+    "training_unchanged": true,
+    "context_unchanged": true,
+    "original_sha256": "5054ceb0133b4eb6249d31f5e47c10d6d8d043cf69f81bfc4b73b1b7832a4de8",
+    "current_sha256": "c5197229ee3f9be0d9cbaf514e2529137e8b550e21388686333a5ded198982a0"
+  },
+  "unit_test_summary": " and position are corrected without inventing context/training\nok 26 - xLSTM aliases and position are corrected without inventing context/training\n  ---\n  duration_ms: 0.983952\n  type: 'test'\n  ...\n# Subtest: Gemini and references retain auditable corrections and idempotency\nok 27 - Gemini and references retain auditable corrections and idempotency\n  ---\n  duration_ms: 2.285822\n  type: 'test'\n  ...\n# Subtest: validation rejects tampering with a projected dimension\nok 28 - validation rejects tampering with a projected dimension\n  ---\n  duration_ms: 0.786558\n  type: 'test'\n  ...\n# Subtest: both external scripts defer in dependency order\nok 29 - both external scripts defer in dependency order\n  ---\n  duration_ms: 1.352402\n  type: 'test'\n  ...\n# Subtest: split page has a real loading state, noscript content and responsive metadata\nok 30 - split page has a real loading state, noscript content and responsive metadata\n  ---\n  duration_ms: 0.46906\n  type: 'test'\n  ...\n# Subtest: standalone carries data and CSS without external script dependencies\nok 31 - standalone carries data and CSS without external script dependencies\n  ---\n  duration_ms: 0.652648\n  type: 'test'\n  ...\n# Subtest: mixed-case closing tags are neutralized for inline scripts and styles\nok 32 - mixed-case closing tags are neutralized for inline scripts and styles\n  ---\n  duration_ms: 0.339358\n  type: 'test'\n  ...\n1..32\n# tests 32\n# suites 0\n# pass 32\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 122.636168\n",
+  "browser": {
+    "status": "passed",
+    "workflow_url": "https://github.com/AvixoSec/solthara-index/actions/runs/34056942100",
+    "report": "audit/browser-results.json",
+    "source_commit": "b2505b72cfd8a570ec67302a12835e62fa025a1d"
+  }
+}

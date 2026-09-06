@@ -1,0 +1,35 @@
+{
+  "schema": 1,
+  "input_json_sha256": "c5197229ee3f9be0d9cbaf514e2529137e8b550e21388686333a5ded198982a0",
+  "outputs": {
+    "all-configs.js": {
+      "sha256": "da88d14db4f8b70b8d4f3e7cd0849bc2557e378dd5b8aafe86eb3ce4b9a6ca36",
+      "bytes": 8719395
+    },
+    "models.yml": {
+      "sha256": "016b2b74cb573658273ead7d92c985caf7cf9ac8dd1845a0787bc4b035974200",
+      "bytes": 43511
+    },
+    "assets/vector.js": {
+      "sha256": "abe8e68071f2c0dc5bbd5717c2bfc86d9b772ebc4137766e61fa2761358deff8",
+      "bytes": 256584
+    },
+    "assets/vector.css": {
+      "sha256": "415e7d6f44834fcbaf16f107a3540c6c972b73e8ac1908129a54e2732ad4a695",
+      "bytes": 46612
+    },
+    "index.html": {
+      "sha256": "eb44bf4943f3824c043e2d8e2840b728b5fcadd71d563a17b9dc16f5da19671c",
+      "bytes": 808
+    },
+    "Solthara-VECTOR-v2.html": {
+      "sha256": "de3e98e25e3a6381ba443aaa64fa547da7f545d85adc3a819c37e50cb0a91e2b",
+      "bytes": 9023310
+    }
+  },
+  "counts": {
+    "models": 101,
+    "milestones": 15
+  },
+  "note": "Content integrity and structural validation only; not scientific verification or proof of UI tests."
+}

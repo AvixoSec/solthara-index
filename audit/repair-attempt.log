@@ -1,0 +1,313 @@
+{
+  "mode": "apply",
+  "files_to_change": [
+    ".github/workflows/ci.yml",
+    "audit/legacy/README.md",
+    "build.mjs",
+    "README.md",
+    "RESEARCH-AUDIT.md",
+    "scripts/audit-data.mjs",
+    "scripts/browser-smoke.mjs",
+    "scripts/check-preservation.mjs",
+    "scripts/export-data.mjs",
+    "scripts/lib/data.mjs",
+    "scripts/lib/extended.mjs",
+    "scripts/lib/html.mjs",
+    "scripts/validate-data.mjs",
+    "src/audit.css",
+    "src/main.jsx",
+    "tests/data.test.mjs",
+    "tests/extended.test.mjs",
+    "tests/fixtures.mjs",
+    "tests/html.test.mjs",
+    "VECTOR-README.md",
+    "all-configs.json",
+    "all-configs.js",
+    "models.yml",
+    "src/Vector.jsx",
+    "package.json",
+    ".gitignore",
+    "audit/legacy/VECTOR-RELEASE.json",
+    "VECTOR-RELEASE.json",
+    "audit/legacy/qa-report.json",
+    "qa-report.json",
+    "audit/legacy/source-integrity.json",
+    "source-integrity.json",
+    "audit/legacy/contrast-report.json",
+    "contrast-report.json",
+    "audit/legacy/filter-qa.json",
+    "filter-qa.json",
+    "audit/legacy/interaction-qa.json",
+    "interaction-qa.json",
+    "audit/legacy/visual-qa.json",
+    "visual-qa.json"
+  ],
+  "data_changes": 205
+}
+{
+  "status": "applied",
+  "changed_files": 40,
+  "next": "npm ci --ignore-scripts && npm test && npm run validate && npm run build && npm run validate && npm run audit:data"
+}
+
+added 5 packages, and audited 6 packages in 3s
+
+found 0 vulnerabilities
+
+> solthara-vector-v2@2.0.0 test
+> node --test tests/*.test.mjs
+
+TAP version 13
+# Subtest: accept array and object model containers
+ok 1 - accept array and object model containers
+  ---
+  duration_ms: 3.90392
+  type: 'test'
+  ...
+# Subtest: correct GPT-2 norm, position and activation from primary sources
+ok 2 - correct GPT-2 norm, position and activation from primary sources
+  ---
+  duration_ms: 1.862054
+  type: 'test'
+  ...
+# Subtest: correct GPT-2 bias and weight tying in both matrix and filters
+ok 3 - correct GPT-2 bias and weight tying in both matrix and filters
+  ---
+  duration_ms: 0.55304
+  type: 'test'
+  ...
+# Subtest: inapplicable rotary/RMSNorm fields become null without editing raw config
+ok 4 - inapplicable rotary/RMSNorm fields become null without editing raw config
+  ---
+  duration_ms: 1.229131
+  type: 'test'
+  ...
+# Subtest: source records, training claims and unrelated stats are preserved
+ok 5 - source records, training claims and unrelated stats are preserved
+  ---
+  duration_ms: 0.654752
+  type: 'test'
+  ...
+# Subtest: audit scope is explicit and each changed field has provenance
+ok 6 - audit scope is explicit and each changed field has provenance
+  ---
+  duration_ms: 0.656034
+  type: 'test'
+  ...
+# Subtest: repairs are idempotent
+ok 7 - repairs are idempotent
+  ---
+  duration_ms: 0.940574
+  type: 'test'
+  ...
+# Subtest: missing or ambiguous patch targets fail before any writes
+ok 8 - missing or ambiguous patch targets fail before any writes
+  ---
+  duration_ms: 0.491631
+  type: 'test'
+  ...
+# Subtest: an unexpected nested shape is not overwritten
+ok 9 - an unexpected nested shape is not overwritten
+  ---
+  duration_ms: 0.462959
+  type: 'test'
+  ...
+# Subtest: Llama 1 no longer claims GQA and Chinchilla loses unsupported precursor label
+ok 10 - Llama 1 no longer claims GQA and Chinchilla loses unsupported precursor label
+  ---
+  duration_ms: 0.759369
+  type: 'test'
+  ...
+# Subtest: Mixtral announcement date is explicitly distinguished from first weights
+ok 11 - Mixtral announcement date is explicitly distinguished from first weights
+  ---
+  duration_ms: 0.989171
+  type: 'test'
+  ...
+# Subtest: missing numeric values are real YAML null, not None strings
+ok 12 - missing numeric values are real YAML null, not None strings
+  ---
+  duration_ms: 0.695446
+  type: 'test'
+  ...
+# Subtest: YAML mirrors corrected display fields and quotes dates
+ok 13 - YAML mirrors corrected display fields and quotes dates
+  ---
+  duration_ms: 0.36256
+  type: 'test'
+  ...
+# Subtest: numeric strings, zero, negatives and non-finite numbers fail validation
+ok 14 - numeric strings, zero, negatives and non-finite numbers fail validation
+  ---
+  duration_ms: 0.243957
+  type: 'test'
+  ...
+# Subtest: counts, unique IDs and active/total parameter order are checked
+ok 15 - counts, unique IDs and active/total parameter order are checked
+  ---
+  duration_ms: 0.158264
+  type: 'test'
+  ...
+# Subtest: dataset JS is data-only and round-trips dangerous HTML strings safely
+ok 16 - dataset JS is data-only and round-trips dangerous HTML strings safely
+  ---
+  duration_ms: 0.646988
+  type: 'test'
+  ...
+# Subtest: parser refuses arbitrary JavaScript rather than evaluating it
+ok 17 - parser refuses arbitrary JavaScript rather than evaluating it
+  ---
+  duration_ms: 0.200599
+  type: 'test'
+  ...
+# Subtest: exports are deterministic and drift is detected
+ok 18 - exports are deterministic and drift is detected
+  ---
+  duration_ms: 1.088989
+  type: 'test'
+  ...
+# Subtest: Git blob hashes include the correct object header
+ok 19 - Git blob hashes include the correct object header
+  ---
+  duration_ms: 0.601988
+  type: 'test'
+  ...
+# Subtest: regression checks reject tampered audit-marked data
+ok 20 - regression checks reject tampered audit-marked data
+  ---
+  duration_ms: 0.615993
+  type: 'test'
+  ...
+# Subtest: literal None in normalized numeric fields is logged as null, not guessed
+ok 21 - literal None in normalized numeric fields is logged as null, not guessed
+  ---
+  duration_ms: 0.438214
+  type: 'test'
+  ...
+# Subtest: matrix display regressions cannot hide behind correct filter values
+ok 22 - matrix display regressions cannot hide behind correct filter values
+  ---
+  duration_ms: 0.528807
+  type: 'test'
+  ...
+# Subtest: nested language dimensions take precedence over vision/root values
+ok 23 - nested language dimensions take precedence over vision/root values
+  ---
+  duration_ms: 6.097988
+  type: 'test'
+  ...
+# Subtest: absent config flags stay unknown
+ok 24 - absent config flags stay unknown
+  ---
+  duration_ms: 1.439688
+  type: 'test'
+  ...
+# Subtest: MLA uses explicit component dimensions, not hidden size divided by heads
+ok 25 - MLA uses explicit component dimensions, not hidden size divided by heads
+  ---
+  duration_ms: 2.705023
+  type: 'test'
+  ...
+# Subtest: xLSTM aliases and position are corrected without inventing context/training
+ok 26 - xLSTM aliases and position are corrected without inventing context/training
+  ---
+  duration_ms: 0.983952
+  type: 'test'
+  ...
+# Subtest: Gemini and references retain auditable corrections and idempotency
+ok 27 - Gemini and references retain auditable corrections and idempotency
+  ---
+  duration_ms: 2.285822
+  type: 'test'
+  ...
+# Subtest: validation rejects tampering with a projected dimension
+ok 28 - validation rejects tampering with a projected dimension
+  ---
+  duration_ms: 0.786558
+  type: 'test'
+  ...
+# Subtest: both external scripts defer in dependency order
+ok 29 - both external scripts defer in dependency order
+  ---
+  duration_ms: 1.352402
+  type: 'test'
+  ...
+# Subtest: split page has a real loading state, noscript content and responsive metadata
+ok 30 - split page has a real loading state, noscript content and responsive metadata
+  ---
+  duration_ms: 0.46906
+  type: 'test'
+  ...
+# Subtest: standalone carries data and CSS without external script dependencies
+ok 31 - standalone carries data and CSS without external script dependencies
+  ---
+  duration_ms: 0.652648
+  type: 'test'
+  ...
+# Subtest: mixed-case closing tags are neutralized for inline scripts and styles
+ok 32 - mixed-case closing tags are neutralized for inline scripts and styles
+  ---
+  duration_ms: 0.339358
+  type: 'test'
+  ...
+1..32
+# tests 32
+# suites 0
+# pass 32
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 122.636168
+
+> solthara-vector-v2@2.0.0 validate
+> node scripts/validate-data.mjs
+
+{
+  "errors": [],
+  "warnings": [],
+  "model_count": 101,
+  "milestone_count": 15
+}
+
+> solthara-vector-v2@2.0.0 build
+> node build.mjs
+
+{
+  "status": "built",
+  "models": 101,
+  "milestones": 15,
+  "standalone_bytes": 9023310,
+  "data_bytes": 8719395
+}
+
+> solthara-vector-v2@2.0.0 validate
+> node scripts/validate-data.mjs
+
+{
+  "errors": [],
+  "warnings": [],
+  "model_count": 101,
+  "milestone_count": 15
+}
+
+> solthara-vector-v2@2.0.0 audit:data
+> node scripts/audit-data.mjs
+
+{
+  "models_scanned": 101,
+  "conflicts_to_review": 0,
+  "report": "audit/data-audit.json"
+}
+All original raw configs, training and context fields preserved.
+
+> solthara-vector-v2@2.0.0 build
+> node build.mjs
+
+{
+  "status": "built",
+  "models": 101,
+  "milestones": 15,
+  "standalone_bytes": 9023310,
+  "data_bytes": 8719395
+}

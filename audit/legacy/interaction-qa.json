@@ -1,0 +1,33 @@
+{
+  "status": "pass",
+  "checks": [
+    "Principal text and input-boundary contrast passes",
+    "Keyboard tab arrow navigation",
+    "Keyboard tab End",
+    "Keyboard tab Home",
+    "Zoom changes actual diagram dimensions",
+    "Zoom reset restores dimensions",
+    "Nested close keeps outer modal scroll lock",
+    "Focus returns to model link",
+    "Large raw preview bounded",
+    "Largest record downloads without truncation",
+    "Architecture matrix fits 390",
+    "Release timeline fits 390",
+    "Theory library fits 390",
+    "About & sources fits 390",
+    "Gallery fits 390",
+    "Gallery headers present 390",
+    "Architecture matrix fits 320",
+    "Release timeline fits 320",
+    "Theory library fits 320",
+    "About & sources fits 320",
+    "Gallery fits 320",
+    "Gallery headers present 320",
+    "Successful image branch and uncropped fit (synthetic response)",
+    "Original image URL retained",
+    "Clicking original image opens viewer",
+    "No extra-test JavaScript errors"
+  ],
+  "errors": [],
+  "source_image_test": "Synthetic HTTP success response; no remote source image was downloaded or visually certified."
+}

@@ -1,0 +1,83 @@
+{
+  "status": "passed",
+  "dataset": "actual_repository",
+  "models": 101,
+  "milestones": 15,
+  "browser": "140.0.7339.16",
+  "external_network": "blocked",
+  "results": [
+    {
+      "name": "Complete dataset loads",
+      "status": "passed",
+      "models": 101
+    },
+    {
+      "name": "Empty results and reset",
+      "status": "passed"
+    },
+    {
+      "name": "Bias and tying filters",
+      "status": "passed"
+    },
+    {
+      "name": "Pagination",
+      "status": "passed"
+    },
+    {
+      "name": "Date sort",
+      "status": "passed"
+    },
+    {
+      "name": "Complete corrected record export",
+      "status": "passed"
+    },
+    {
+      "name": "Keyboard tab navigation",
+      "status": "passed"
+    },
+    {
+      "name": "Every real dossier and tab",
+      "status": "passed",
+      "dossiers": 101,
+      "tabs": 808
+    },
+    {
+      "name": "Comparison and selection limit",
+      "status": "passed"
+    },
+    {
+      "name": "Gallery with external requests blocked",
+      "status": "passed"
+    },
+    {
+      "name": "Corrected matrix and timeline",
+      "status": "passed"
+    },
+    {
+      "name": "All theory categories",
+      "status": "passed"
+    },
+    {
+      "name": "Complete dataset export",
+      "status": "passed"
+    },
+    {
+      "name": "Mobile layout and navigation",
+      "status": "passed",
+      "width": 390,
+      "overflow": 0
+    },
+    {
+      "name": "Actual standalone page",
+      "status": "passed"
+    },
+    {
+      "name": "No uncaught browser errors",
+      "status": "passed"
+    }
+  ],
+  "page_errors": [],
+  "note": "Automated functional coverage, not scientific or manual visual certification.",
+  "workflow_url": "https://github.com/AvixoSec/solthara-index/actions/runs/34056942100",
+  "source_commit": "b2505b72cfd8a570ec67302a12835e62fa025a1d"
+}

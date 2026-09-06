@@ -1,0 +1,85 @@
+{
+  "scope": "Sampled principal foreground/background pairs from computed styles; not a complete WCAG certification",
+  "pairs": [
+    {
+      "selector": ".page-heading h1",
+      "foreground": "rgb(232, 237, 230)",
+      "background": "rgb(17, 21, 20)",
+      "size": "38px",
+      "ratio": 15.5,
+      "minimum": 4.5,
+      "pass": true
+    },
+    {
+      "selector": ".page-heading>div>p:last-child",
+      "foreground": "rgb(161, 175, 165)",
+      "background": "rgb(17, 21, 20)",
+      "size": "16px",
+      "ratio": 8.05,
+      "minimum": 4.5,
+      "pass": true
+    },
+    {
+      "selector": ".nav-label",
+      "foreground": "rgb(161, 175, 165)",
+      "background": "rgb(13, 17, 15)",
+      "size": "14px",
+      "ratio": 8.32,
+      "minimum": 4.5,
+      "pass": true
+    },
+    {
+      "selector": ".snapshot-label",
+      "foreground": "rgb(161, 175, 165)",
+      "background": "rgb(17, 23, 19)",
+      "size": "14px",
+      "ratio": 7.95,
+      "minimum": 4.5,
+      "pass": true
+    },
+    {
+      "selector": ".chip[aria-pressed=true]",
+      "foreground": "rgb(24, 35, 19)",
+      "background": "rgb(194, 242, 113)",
+      "size": "14px",
+      "ratio": 12.6,
+      "minimum": 4.5,
+      "pass": true
+    },
+    {
+      "selector": ".inspector-title h2",
+      "foreground": "rgb(232, 237, 230)",
+      "background": "rgb(24, 30, 27)",
+      "size": "21px",
+      "ratio": 14.26,
+      "minimum": 4.5,
+      "pass": true
+    },
+    {
+      "selector": ".map-attention",
+      "foreground": "rgb(24, 35, 19)",
+      "background": "rgb(194, 242, 113)",
+      "size": "17px",
+      "ratio": 12.6,
+      "minimum": 4.5,
+      "pass": true
+    },
+    {
+      "selector": ".inspector-open",
+      "foreground": "rgb(24, 35, 19)",
+      "background": "rgb(194, 242, 113)",
+      "size": "14px",
+      "ratio": 12.6,
+      "minimum": 4.5,
+      "pass": true
+    },
+    {
+      "selector": "Search input boundary",
+      "foreground": "rgb(110, 129, 116)",
+      "background": "rgb(17, 21, 20)",
+      "minimum": 3,
+      "ratio": 4.43,
+      "pass": true
+    }
+  ]
+}

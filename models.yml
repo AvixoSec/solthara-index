@@ -1,113 +1,21 @@
-# models.yml - Solthara Index v2.4 - 101 models + 15 milestones
-# generated 2026-09-01T09:58:27.336941Z
-# SPDX-License-Identifier: Apache-2.0
-version: '2.4'
-license: 'Apache-2.0'
+# Generated from all-configs.json; do not edit by hand.
+# Unknowns are null; no architecture defaults are inferred.
+version: "2.4"
+license: "Apache 2.0"
+generated_at: "2026-09-01T09:58:27.088704Z"
+source_file: "all-configs.json"
 total_models: 101
-
-milestones:
-  - id: transformer-2017
-    name: "Transformer (Vaswani et al.)"
-    date: 2017-06-12
-    org: Google
-    params: "65M"
-    arch: "Dense • MHA • Post-LN • Sinusoidal PE"
-  - id: bert-2018
-    name: "BERT 340M"
-    date: 2018-10-11
-    org: Google
-    params: "340M"
-    arch: "Dense • MHA • Post-LN • Learned PE"
-  - id: gpt2-2019
-    name: "GPT-2 1.5B"
-    date: 2019-02-14
-    org: OpenAI
-    params: "1.5B"
-    arch: "Dense • MHA • Pre-LN (moved) • Learned PE"
-  - id: t5-2019
-    name: "T5 11B"
-    date: 2019-10-23
-    org: Google
-    params: "11B"
-    arch: "Dense • Enc-Dec • Relative PE"
-  - id: gpt3-2020
-    name: "GPT-3 175B"
-    date: 2020-05-28
-    org: OpenAI
-    params: "175B"
-    arch: "Dense • MHA • Pre-LN • Learned PE"
-  - id: vit-2020
-    name: "ViT (cross-pollination)"
-    date: 2020-10-22
-    org: Google
-    params: "632M"
-    arch: "Dense • MHA"
-  - id: switch-2021
-    name: "Switch-Transformer 1.6T"
-    date: 2021-01-11
-    org: Google
-    params: "1.6T (2048 experts, 1 active)"
-    arch: "Sparse MoE • top-1 routing"
-  - id: chinchilla-2022
-    name: "Chinchilla 70B"
-    date: 2022-03-29
-    org: DeepMind
-    params: "70B"
-    arch: "Dense • GQA precursor"
-  - id: llama1-2023
-    name: "LLaMA 65B"
-    date: 2023-02-24
-    org: Meta
-    params: "65B"
-    arch: "Dense • GQA • RMSNorm • SwiGLU • RoPE θ=10k"
-  - id: llama2-2023
-    name: "Llama 2 70B"
-    date: 2023-07-18
-    org: Meta
-    params: "70B"
-    arch: "Dense • GQA • RMSNorm • SwiGLU • RoPE"
-  - id: mistral-2023a
-    name: "Mistral 7B"
-    date: 2023-09-27
-    org: Mistral
-    params: "7B"
-    arch: "Dense • Sliding Window • GQA"
-  - id: mamba-2023
-    name: "Mamba (SSM)"
-    date: 2023-12-01
-    org: CMU/Princeton
-    params: "2.8B"
-    arch: "Recurrent • SSM • Selective scan"
-  - id: mixtral-2023
-    name: "Mixtral 8x7B"
-    date: 2023-12-11
-    org: Mistral
-    params: "47B (13B active)"
-    arch: "Sparse MoE • 8 experts top-2"
-  - id: mixtral-8x22b
-    name: "Mixtral 8x22B"
-    date: 2024-01-08
-    org: Mistral
-    params: "141B (39B active)"
-    arch: "Sparse MoE • 8 experts top-2"
-  - id: gemini-2023
-    name: "Gemini 1.0 Ultra"
-    date: 2023-12-06
-    org: Google
-    params: "~1.5T est."
-    arch: "Dense hybrid • MHA"
-
 models:
-  - model_id: tencent-hy4-preview-770b-a49b
+  - model_id: "tencent-hy4-preview-770b-a49b"
     model_name: "Tencent Hy4-preview 770B-A49B"
-    company: Tencent
-    date: 2026-08-28
+    company: "Tencent"
+    date: "2026-08-28"
     vocab: 120832
     depth: 78
     dim: 6144
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Pre
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Pre"
     pos_emb: "RoPE"
     activation: "silu"
     attn: "mla"
@@ -115,84 +23,84 @@ models:
     tied: "untied"
     qk_norm: "—"
     sliding: "—"
-  - model_id: glm-5-3-flash
+  - model_id: "glm-5-3-flash"
     model_name: "GLM-5.3-Flash"
-    company: Z.ai
-    date: 2026-08-26
+    company: "Z.ai"
+    date: "2026-08-26"
     vocab: 154880
     depth: 45
     dim: 4096
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Pre
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Pre"
     pos_emb: "RoPE"
     activation: "SwiGLU"
     attn: "mla"
-    bias: "undisclosed"
+    bias: "no bias"
     tied: "untied"
     qk_norm: "—"
     sliding: "—"
-  - model_id: qwen3-8-flash-next-125b-a6b
+  - model_id: "qwen3-8-flash-next-125b-a6b"
     model_name: "Qwen3.8-Flash-Next 125B-A6B"
-    company: Alibaba Cloud
-    date: 2026-08-26
+    company: "Alibaba Cloud"
+    date: "2026-08-26"
     vocab: 248320
     depth: 48
     dim: 2560
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Pre
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Pre"
     pos_emb: "RoPE"
     activation: "SwiGLU"
     attn: "gated_deltanet"
-    bias: "undisclosed"
+    bias: "no bias"
     tied: "untied"
     qk_norm: "—"
     sliding: "—"
-  - model_id: ornith-1-5-35b-a3b
+  - model_id: "ornith-1-5-35b-a3b"
     model_name: "Ornith 1.5 35B-A3B"
-    company: Ornith
-    date: 2026-08-23
+    company: "Ornith"
+    date: "2026-08-23"
     vocab: 248320
     depth: 40
     dim: 2048
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Pre
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Pre"
     pos_emb: "RoPE"
     activation: "SwiGLU"
     attn: "gated_deltanet"
-    bias: "undisclosed"
+    bias: "no bias"
     tied: "untied"
     qk_norm: "—"
     sliding: "—"
-  - model_id: qwen3-8-27b
+  - model_id: "qwen3-8-27b"
     model_name: "Qwen3.8 27B"
-    company: Alibaba Cloud
-    date: 2026-08-14
+    company: "Alibaba Cloud"
+    date: "2026-08-14"
     vocab: 248320
     depth: 64
     dim: 5120
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Pre
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Pre"
     pos_emb: "RoPE"
     activation: "SwiGLU"
     attn: "gated_deltanet"
-    bias: "undisclosed"
+    bias: "no bias"
     tied: "untied"
     qk_norm: "—"
     sliding: "—"
-  - model_id: nemotron-3-5-lightning-30b-a3b
+  - model_id: "nemotron-3-5-lightning-30b-a3b"
     model_name: "Nemotron 3.5 Lightning 30B-A3B"
-    company: NVIDIA
-    date: 2026-08-11
+    company: "NVIDIA"
+    date: "2026-08-11"
     vocab: 131072
     depth: 52
     dim: 2688
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Pre
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Pre"
     pos_emb: "RoPE"
     activation: "SwiGLU"
     attn: "gqa"
@@ -200,33 +108,33 @@ models:
     tied: "untied"
     qk_norm: "—"
     sliding: "—"
-  - model_id: muse-glimmer-30b
+  - model_id: "muse-glimmer-30b"
     model_name: "Muse Glimmer 30B"
-    company: Meta
-    date: 2026-08-10
+    company: "Meta"
+    date: "2026-08-10"
     vocab: 202048
     depth: 52
     dim: 6656
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Pre
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Pre"
     pos_emb: "RoPE + NoPE"
     activation: "SwiGLU"
     attn: "gqa"
-    bias: "undisclosed"
-    tied: "undisclosed"
+    bias: "no bias"
+    tied: "untied"
     qk_norm: "—"
     sliding: "yes"
-  - model_id: ling-3-0-flash
+  - model_id: "ling-3-0-flash"
     model_name: "Ling 3.0 Flash"
-    company: InclusionAI
-    date: 2026-08-04
+    company: "InclusionAI"
+    date: "2026-08-04"
     vocab: 157184
     depth: 42
     dim: 2560
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Pre
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Pre"
     pos_emb: "RoPE"
     activation: "silu"
     attn: "mla"
@@ -234,16 +142,16 @@ models:
     tied: "untied"
     qk_norm: "QK-Norm"
     sliding: "—"
-  - model_id: kimi-k3
+  - model_id: "kimi-k3"
     model_name: "Kimi K3"
-    company: Moonshot AI
-    date: 2026-07-27
+    company: "Moonshot AI"
+    date: "2026-07-27"
     vocab: 163840
     depth: 93
     dim: 7168
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Pre
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Pre"
     pos_emb: "NoPE"
     activation: "SwiGLU"
     attn: "mla"
@@ -251,16 +159,16 @@ models:
     tied: "untied"
     qk_norm: "—"
     sliding: "—"
-  - model_id: solar-open-2
+  - model_id: "solar-open-2"
     model_name: "Solar Open 2"
-    company: Upstage
-    date: 2026-07-22
+    company: "Upstage"
+    date: "2026-07-22"
     vocab: 196608
     depth: 48
     dim: 4096
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Pre
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Pre"
     pos_emb: "NoPE"
     activation: "SwiGLU"
     attn: "gqa"
@@ -268,16 +176,16 @@ models:
     tied: "untied"
     qk_norm: "—"
     sliding: "—"
-  - model_id: motif-3-beta
+  - model_id: "motif-3-beta"
     model_name: "Motif 3 Beta"
-    company: Motif Technologies
-    date: 2026-07-21
+    company: "Motif Technologies"
+    date: "2026-07-21"
     vocab: 220160
     depth: 53
     dim: 4096
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Pre
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Pre"
     pos_emb: "RoPE"
     activation: "poly_norm"
     attn: "mla"
@@ -285,16 +193,16 @@ models:
     tied: "untied"
     qk_norm: "—"
     sliding: "yes"
-  - model_id: laguna-s-2-1
+  - model_id: "laguna-s-2-1"
     model_name: "Laguna S 2.1"
-    company: Poolside
-    date: 2026-07-21
+    company: "Poolside"
+    date: "2026-07-21"
     vocab: 100352
     depth: 48
     dim: 3072
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Pre
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Pre"
     pos_emb: "RoPE"
     activation: "SwiGLU"
     attn: "gqa"
@@ -302,16 +210,16 @@ models:
     tied: "untied"
     qk_norm: "—"
     sliding: "yes"
-  - model_id: nanbeige-4-2-3b
+  - model_id: "nanbeige-4-2-3b"
     model_name: "Nanbeige 4.2 3B"
-    company: BOSS Zhipin
-    date: 2026-07-21
+    company: "BOSS Zhipin"
+    date: "2026-07-21"
     vocab: 166144
     depth: 22
     dim: 3072
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Pre
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Pre"
     pos_emb: "RoPE"
     activation: "silu"
     attn: "gqa"
@@ -319,16 +227,16 @@ models:
     tied: "untied"
     qk_norm: "—"
     sliding: "—"
-  - model_id: antares-1b
+  - model_id: "antares-1b"
     model_name: "Antares 1B"
-    company: Cisco
-    date: 2026-07-21
-    vocab: None
-    depth: None
-    dim: None
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Pre
+    company: "Cisco"
+    date: "2026-07-21"
+    vocab: null
+    depth: null
+    dim: null
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Pre"
     pos_emb: "RoPE"
     activation: "SwiGLU"
     attn: "gqa"
@@ -336,16 +244,16 @@ models:
     tied: "undisclosed"
     qk_norm: "—"
     sliding: "—"
-  - model_id: btl-3-27b
+  - model_id: "btl-3-27b"
     model_name: "BTL-3 27B"
-    company: Bad Theory Labs
-    date: 2026-07-20
-    vocab: None
-    depth: None
-    dim: None
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Pre
+    company: "Bad Theory Labs"
+    date: "2026-07-20"
+    vocab: null
+    depth: null
+    dim: null
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Pre"
     pos_emb: "RoPE"
     activation: "SwiGLU"
     attn: "gated_deltanet"
@@ -353,16 +261,16 @@ models:
     tied: "undisclosed"
     qk_norm: "—"
     sliding: "—"
-  - model_id: inkling
+  - model_id: "inkling"
     model_name: "Inkling"
-    company: Thinking Machines Lab
-    date: 2026-07-15
+    company: "Thinking Machines Lab"
+    date: "2026-07-15"
     vocab: 201024
     depth: 66
     dim: 6144
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Pre
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Pre"
     pos_emb: "RoPE"
     activation: "SwiGLU"
     attn: "gqa"
@@ -370,16 +278,16 @@ models:
     tied: "undisclosed"
     qk_norm: "—"
     sliding: "—"
-  - model_id: soofi-s-30b-a3b
+  - model_id: "soofi-s-30b-a3b"
     model_name: "Soofi S 30B-A3B"
-    company: SOOFI Consortium
-    date: 2026-07-10
-    vocab: None
-    depth: None
-    dim: None
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Pre
+    company: "SOOFI Consortium"
+    date: "2026-07-10"
+    vocab: null
+    depth: null
+    dim: null
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Pre"
     pos_emb: "NoPE"
     activation: "SwiGLU"
     attn: "gqa"
@@ -387,16 +295,16 @@ models:
     tied: "undisclosed"
     qk_norm: "—"
     sliding: "—"
-  - model_id: laguna-xs-2-1
+  - model_id: "laguna-xs-2-1"
     model_name: "Laguna XS 2.1"
-    company: Poolside
-    date: 2026-07-02
+    company: "Poolside"
+    date: "2026-07-02"
     vocab: 100352
     depth: 40
     dim: 2048
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Pre
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Pre"
     pos_emb: "RoPE"
     activation: "SwiGLU"
     attn: "gqa"
@@ -404,16 +312,16 @@ models:
     tied: "untied"
     qk_norm: "—"
     sliding: "yes"
-  - model_id: glm-5-2
+  - model_id: "glm-5-2"
     model_name: "GLM-5.2"
-    company: Z.ai
-    date: 2026-06-16
+    company: "Z.ai"
+    date: "2026-06-16"
     vocab: 154880
     depth: 78
     dim: 6144
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Pre
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Pre"
     pos_emb: "RoPE"
     activation: "silu"
     attn: "mla"
@@ -421,16 +329,16 @@ models:
     tied: "untied"
     qk_norm: "—"
     sliding: "—"
-  - model_id: vibethinker-3b
+  - model_id: "vibethinker-3b"
     model_name: "VibeThinker-3B"
-    company: Weibo
-    date: 2026-06-15
+    company: "Weibo"
+    date: "2026-06-15"
     vocab: 151936
     depth: 36
     dim: 2048
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Pre
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Pre"
     pos_emb: "RoPE"
     activation: "silu"
     attn: "gqa"
@@ -438,50 +346,50 @@ models:
     tied: "tied"
     qk_norm: "—"
     sliding: "yes"
-  - model_id: minimax-m3-428b
+  - model_id: "minimax-m3-428b"
     model_name: "MiniMax M3 428B"
-    company: MiniMax
-    date: 2026-06-13
+    company: "MiniMax"
+    date: "2026-06-13"
     vocab: 200064
     depth: 60
     dim: 6144
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Pre
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Pre"
     pos_emb: "RoPE"
     activation: "SwiGLU"
     attn: "gqa"
     bias: "undisclosed"
-    tied: "undisclosed"
-    qk_norm: "—"
-    sliding: "—"
-  - model_id: kimi-k2-7-code
-    model_name: "Kimi K2.7 Code"
-    company: Moonshot AI
-    date: 2026-06-12
-    vocab: 163840
-    depth: 61
-    dim: 7168
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Pre
-    pos_emb: "RoPE"
-    activation: "SwiGLU"
-    attn: "mla"
-    bias: "undisclosed"
     tied: "untied"
     qk_norm: "—"
     sliding: "—"
-  - model_id: north-mini-code-30b-a3b
+  - model_id: "kimi-k2-7-code"
+    model_name: "Kimi K2.7 Code"
+    company: "Moonshot AI"
+    date: "2026-06-12"
+    vocab: 163840
+    depth: 61
+    dim: 7168
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Pre"
+    pos_emb: "RoPE"
+    activation: "SwiGLU"
+    attn: "mla"
+    bias: "no bias"
+    tied: "untied"
+    qk_norm: "—"
+    sliding: "—"
+  - model_id: "north-mini-code-30b-a3b"
     model_name: "North Mini Code 30B-A3B"
-    company: Cohere
-    date: 2026-06-05
+    company: "Cohere"
+    date: "2026-06-05"
     vocab: 262144
     depth: 49
     dim: 2048
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Pre
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Pre"
     pos_emb: "RoPE"
     activation: "silu"
     attn: "gqa"
@@ -489,16 +397,16 @@ models:
     tied: "undisclosed"
     qk_norm: "—"
     sliding: "yes"
-  - model_id: nemotron-3-ultra-550b-a55b
+  - model_id: "nemotron-3-ultra-550b-a55b"
     model_name: "Nemotron 3 Ultra 550B-A55B"
-    company: NVIDIA
-    date: 2026-06-04
+    company: "NVIDIA"
+    date: "2026-06-04"
     vocab: 131072
-    depth: None
+    depth: null
     dim: 8192
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Pre
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Pre"
     pos_emb: "RoPE"
     activation: "SwiGLU"
     attn: "gqa"
@@ -506,33 +414,33 @@ models:
     tied: "untied"
     qk_norm: "—"
     sliding: "—"
-  - model_id: gemma-4-12b
+  - model_id: "gemma-4-12b"
     model_name: "Gemma 4 12B"
-    company: Google
-    date: 2026-06-03
+    company: "Google"
+    date: "2026-06-03"
     vocab: 262144
     depth: 48
     dim: 3840
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Pre
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Pre"
     pos_emb: "RoPE"
     activation: "SwiGLU"
     attn: "gqa"
-    bias: "undisclosed"
+    bias: "no bias"
     tied: "tied"
     qk_norm: "—"
     sliding: "yes"
-  - model_id: jetbrains-mellum2-thinking-12b-a2-5b
+  - model_id: "jetbrains-mellum2-thinking-12b-a2-5b"
     model_name: "JetBrains Mellum2 Thinking 12B-A2.5B"
-    company: JetBrains
-    date: 2026-06-01
+    company: "JetBrains"
+    date: "2026-06-01"
     vocab: 98304
     depth: 28
     dim: 2304
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Pre
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Pre"
     pos_emb: "RoPE"
     activation: "silu"
     attn: "gqa"
@@ -540,33 +448,33 @@ models:
     tied: "untied"
     qk_norm: "—"
     sliding: "yes"
-  - model_id: command-a-218b-a25b
+  - model_id: "command-a-218b-a25b"
     model_name: "Command A+ 218B-A25B"
-    company: Cohere
-    date: 2026-05-20
+    company: "Cohere"
+    date: "2026-05-20"
     vocab: 262144
     depth: 32
     dim: 4096
-    norm: LayerNorm
-    parallel: Parallel
-    pre_norm: Pre
+    norm: "LayerNorm"
+    parallel: "Parallel"
+    pre_norm: "Pre"
     pos_emb: "RoPE"
     activation: "SwiGLU"
     attn: "gqa"
-    bias: "undisclosed"
+    bias: "no bias"
     tied: "undisclosed"
     qk_norm: "—"
     sliding: "yes"
-  - model_id: zaya1-8b
+  - model_id: "zaya1-8b"
     model_name: "ZAYA1-8B"
-    company: Zyphra
-    date: 2026-05-06
+    company: "Zyphra"
+    date: "2026-05-06"
     vocab: 262272
     depth: 40
     dim: 2048
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Pre
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Pre"
     pos_emb: "RoPE"
     activation: "silu"
     attn: "gqa"
@@ -574,16 +482,16 @@ models:
     tied: "tied"
     qk_norm: "—"
     sliding: "—"
-  - model_id: granite-4-1-30b
+  - model_id: "granite-4-1-30b"
     model_name: "Granite 4.1 30B"
-    company: IBM
-    date: 2026-04-29
+    company: "IBM"
+    date: "2026-04-29"
     vocab: 100352
     depth: 64
     dim: 4096
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Pre
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Pre"
     pos_emb: "RoPE"
     activation: "silu"
     attn: "gqa"
@@ -591,16 +499,16 @@ models:
     tied: "tied"
     qk_norm: "—"
     sliding: "—"
-  - model_id: laguna-xs-2
+  - model_id: "laguna-xs-2"
     model_name: "Laguna XS.2"
-    company: Poolside
-    date: 2026-04-28
+    company: "Poolside"
+    date: "2026-04-28"
     vocab: 100352
     depth: 40
     dim: 2048
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Pre
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Pre"
     pos_emb: "RoPE"
     activation: "SwiGLU"
     attn: "gqa"
@@ -608,16 +516,16 @@ models:
     tied: "untied"
     qk_norm: "—"
     sliding: "yes"
-  - model_id: deepseek-v4-pro
+  - model_id: "deepseek-v4-pro"
     model_name: "DeepSeek V4-Pro"
-    company: DeepSeek
-    date: 2026-04-24
+    company: "DeepSeek"
+    date: "2026-04-24"
     vocab: 129280
     depth: 61
     dim: 7168
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Pre
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Pre"
     pos_emb: "RoPE"
     activation: "silu"
     attn: "mla"
@@ -625,16 +533,16 @@ models:
     tied: "untied"
     qk_norm: "—"
     sliding: "yes"
-  - model_id: deepseek-v4-flash
+  - model_id: "deepseek-v4-flash"
     model_name: "DeepSeek V4-Flash"
-    company: DeepSeek
-    date: 2026-04-24
+    company: "DeepSeek"
+    date: "2026-04-24"
     vocab: 129280
     depth: 43
     dim: 4096
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Pre
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Pre"
     pos_emb: "RoPE"
     activation: "silu"
     attn: "mla"
@@ -642,16 +550,16 @@ models:
     tied: "untied"
     qk_norm: "—"
     sliding: "yes"
-  - model_id: ling-2-6-1t
+  - model_id: "ling-2-6-1t"
     model_name: "Ling 2.6 1T"
-    company: InclusionAI
-    date: 2026-04-23
+    company: "InclusionAI"
+    date: "2026-04-23"
     vocab: 157184
     depth: 80
     dim: 8192
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Pre
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Pre"
     pos_emb: "RoPE"
     activation: "silu"
     attn: "mla"
@@ -659,16 +567,16 @@ models:
     tied: "untied"
     qk_norm: "QK-Norm"
     sliding: "—"
-  - model_id: tencent-hy3-preview-295b-a21b
+  - model_id: "tencent-hy3-preview-295b-a21b"
     model_name: "Tencent Hy3-preview 295B-A21B"
-    company: Tencent
-    date: 2026-04-23
+    company: "Tencent"
+    date: "2026-04-23"
     vocab: 120832
     depth: 80
     dim: 4096
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Pre
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Pre"
     pos_emb: "RoPE"
     activation: "silu"
     attn: "gqa"
@@ -676,16 +584,16 @@ models:
     tied: "untied"
     qk_norm: "—"
     sliding: "—"
-  - model_id: xiaomi-mimo-v2-5-pro-1-02t
+  - model_id: "xiaomi-mimo-v2-5-pro-1-02t"
     model_name: "Xiaomi MiMo-V2.5-Pro 1.02T"
-    company: Xiaomi
-    date: 2026-04-22
+    company: "Xiaomi"
+    date: "2026-04-22"
     vocab: 152576
     depth: 70
     dim: 6144
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Pre
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Pre"
     pos_emb: "RoPE"
     activation: "silu"
     attn: "gqa"
@@ -693,16 +601,16 @@ models:
     tied: "untied"
     qk_norm: "—"
     sliding: "yes"
-  - model_id: xiaomi-mimo-v2-5-310b
+  - model_id: "xiaomi-mimo-v2-5-310b"
     model_name: "Xiaomi MiMo-V2.5 310B"
-    company: Xiaomi
-    date: 2026-04-22
+    company: "Xiaomi"
+    date: "2026-04-22"
     vocab: 152576
     depth: 48
     dim: 4096
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Pre
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Pre"
     pos_emb: "RoPE"
     activation: "silu"
     attn: "sliding_window"
@@ -710,67 +618,67 @@ models:
     tied: "untied"
     qk_norm: "—"
     sliding: "yes"
-  - model_id: qwen3-6-35b-a3b
+  - model_id: "qwen3-6-35b-a3b"
     model_name: "Qwen3.6 35B-A3B"
-    company: Alibaba Cloud
-    date: 2026-04-22
+    company: "Alibaba Cloud"
+    date: "2026-04-22"
     vocab: 248320
     depth: 40
     dim: 2048
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Pre
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Pre"
     pos_emb: "RoPE"
     activation: "SwiGLU"
     attn: "gated_deltanet"
-    bias: "undisclosed"
+    bias: "no bias"
     tied: "untied"
     qk_norm: "—"
     sliding: "—"
-  - model_id: qwen3-6-27b
+  - model_id: "qwen3-6-27b"
     model_name: "Qwen3.6 27B"
-    company: Alibaba Cloud
-    date: 2026-04-22
+    company: "Alibaba Cloud"
+    date: "2026-04-22"
     vocab: 248320
     depth: 64
     dim: 5120
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Pre
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Pre"
     pos_emb: "RoPE"
     activation: "SwiGLU"
     attn: "gated_deltanet"
-    bias: "undisclosed"
+    bias: "no bias"
     tied: "untied"
     qk_norm: "—"
     sliding: "—"
-  - model_id: kimi-k2-6
+  - model_id: "kimi-k2-6"
     model_name: "Kimi K2.6"
-    company: Moonshot AI
-    date: 2026-04-21
+    company: "Moonshot AI"
+    date: "2026-04-21"
     vocab: 163840
     depth: 61
     dim: 7168
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Pre
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Pre"
     pos_emb: "RoPE"
     activation: "SwiGLU"
     attn: "mla"
-    bias: "undisclosed"
+    bias: "no bias"
     tied: "untied"
     qk_norm: "—"
     sliding: "—"
-  - model_id: glm-5-1
+  - model_id: "glm-5-1"
     model_name: "GLM-5.1"
-    company: Z.ai
-    date: 2026-04-07
+    company: "Z.ai"
+    date: "2026-04-07"
     vocab: 154880
     depth: 78
     dim: 6144
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Pre
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Pre"
     pos_emb: "RoPE"
     activation: "silu"
     attn: "mla"
@@ -778,84 +686,84 @@ models:
     tied: "untied"
     qk_norm: "—"
     sliding: "—"
-  - model_id: gemma-4-31b
+  - model_id: "gemma-4-31b"
     model_name: "Gemma 4 31B"
-    company: Google
-    date: 2026-04-02
+    company: "Google"
+    date: "2026-04-02"
     vocab: 262144
     depth: 60
     dim: 5376
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Pre
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Pre"
     pos_emb: "RoPE"
     activation: "SwiGLU"
     attn: "gqa"
-    bias: "undisclosed"
+    bias: "no bias"
     tied: "tied"
     qk_norm: "—"
     sliding: "yes"
-  - model_id: gemma-4-26b-a4b
+  - model_id: "gemma-4-26b-a4b"
     model_name: "Gemma 4 26B-A4B"
-    company: Google
-    date: 2026-04-02
+    company: "Google"
+    date: "2026-04-02"
     vocab: 262144
     depth: 30
     dim: 2816
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Pre
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Pre"
     pos_emb: "RoPE"
     activation: "SwiGLU"
     attn: "gqa"
-    bias: "undisclosed"
+    bias: "no bias"
     tied: "tied"
     qk_norm: "—"
     sliding: "yes"
-  - model_id: gemma-4-e4b
+  - model_id: "gemma-4-e4b"
     model_name: "Gemma 4 E4B"
-    company: Google
-    date: 2026-04-02
+    company: "Google"
+    date: "2026-04-02"
     vocab: 262144
     depth: 42
     dim: 2560
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Pre
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Pre"
     pos_emb: "RoPE"
     activation: "SwiGLU"
     attn: "gqa"
-    bias: "undisclosed"
+    bias: "no bias"
     tied: "tied"
     qk_norm: "—"
     sliding: "yes"
-  - model_id: gemma-4-e2b
+  - model_id: "gemma-4-e2b"
     model_name: "Gemma 4 E2B"
-    company: Google
-    date: 2026-04-02
+    company: "Google"
+    date: "2026-04-02"
     vocab: 262144
     depth: 35
     dim: 1536
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Pre
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Pre"
     pos_emb: "RoPE"
     activation: "SwiGLU"
     attn: "sliding_window"
-    bias: "undisclosed"
+    bias: "no bias"
     tied: "tied"
     qk_norm: "—"
     sliding: "yes"
-  - model_id: lfm2-5-8b-a1b
+  - model_id: "lfm2-5-8b-a1b"
     model_name: "LFM2.5 8B-A1B"
-    company: Liquid AI
-    date: 2026-03-31
+    company: "Liquid AI"
+    date: "2026-03-31"
     vocab: 128000
     depth: 24
     dim: 2048
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Pre
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Pre"
     pos_emb: "RoPE"
     activation: "SwiGLU"
     attn: "gqa"
@@ -863,16 +771,16 @@ models:
     tied: "tied"
     qk_norm: "—"
     sliding: "—"
-  - model_id: lfm2-5-350m
+  - model_id: "lfm2-5-350m"
     model_name: "LFM2.5 350M"
-    company: Liquid AI
-    date: 2026-03-31
+    company: "Liquid AI"
+    date: "2026-03-31"
     vocab: 65536
     depth: 16
     dim: 1024
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Pre
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Pre"
     pos_emb: "RoPE"
     activation: "SwiGLU"
     attn: "gqa"
@@ -880,16 +788,16 @@ models:
     tied: "undisclosed"
     qk_norm: "—"
     sliding: "—"
-  - model_id: minimax-m2-7-230b
+  - model_id: "minimax-m2-7-230b"
     model_name: "MiniMax M2.7 230B"
-    company: MiniMax
-    date: 2026-03-18
+    company: "MiniMax"
+    date: "2026-03-18"
     vocab: 200064
     depth: 62
     dim: 3072
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Pre
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Pre"
     pos_emb: "RoPE"
     activation: "silu"
     attn: "gqa"
@@ -897,33 +805,33 @@ models:
     tied: "untied"
     qk_norm: "QK-Norm"
     sliding: "—"
-  - model_id: mistral-small-4
+  - model_id: "mistral-small-4"
     model_name: "Mistral Small 4"
-    company: Mistral AI
-    date: 2026-03-16
+    company: "Mistral AI"
+    date: "2026-03-16"
     vocab: 131072
     depth: 36
     dim: 4096
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Pre
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Pre"
     pos_emb: "RoPE"
     activation: "SwiGLU"
     attn: "mla"
-    bias: "undisclosed"
+    bias: "no bias"
     tied: "untied"
     qk_norm: "—"
     sliding: "—"
-  - model_id: nemotron-3-nano-4b
+  - model_id: "nemotron-3-nano-4b"
     model_name: "Nemotron 3 Nano 4B"
-    company: NVIDIA
-    date: 2026-03-16
+    company: "NVIDIA"
+    date: "2026-03-16"
     vocab: 131072
     depth: 42
     dim: 3136
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Pre
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Pre"
     pos_emb: "RoPE"
     activation: "SwiGLU"
     attn: "gqa"
@@ -931,16 +839,16 @@ models:
     tied: "untied"
     qk_norm: "—"
     sliding: "—"
-  - model_id: nemotron-3-super-120b-a12b
+  - model_id: "nemotron-3-super-120b-a12b"
     model_name: "Nemotron 3 Super 120B-A12B"
-    company: NVIDIA
-    date: 2026-03-11
+    company: "NVIDIA"
+    date: "2026-03-11"
     vocab: 131072
     depth: 88
     dim: 4096
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Pre
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Pre"
     pos_emb: "RoPE"
     activation: "SwiGLU"
     attn: "gqa"
@@ -948,16 +856,16 @@ models:
     tied: "untied"
     qk_norm: "—"
     sliding: "—"
-  - model_id: sarvam-105b
+  - model_id: "sarvam-105b"
     model_name: "Sarvam 105B"
-    company: Sarvam AI
-    date: 2026-03-03
+    company: "Sarvam AI"
+    date: "2026-03-03"
     vocab: 262144
     depth: 32
     dim: 4096
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Pre
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Pre"
     pos_emb: "RoPE + NoPE"
     activation: "silu"
     attn: "mla"
@@ -965,16 +873,16 @@ models:
     tied: "untied"
     qk_norm: "QK-Norm"
     sliding: "—"
-  - model_id: sarvam-30b
+  - model_id: "sarvam-30b"
     model_name: "Sarvam 30B"
-    company: Sarvam AI
-    date: 2026-03-03
+    company: "Sarvam AI"
+    date: "2026-03-03"
     vocab: 262144
     depth: 19
     dim: 4096
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Pre
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Pre"
     pos_emb: "RoPE"
     activation: "silu"
     attn: "gqa"
@@ -982,16 +890,16 @@ models:
     tied: "untied"
     qk_norm: "QK-Norm"
     sliding: "—"
-  - model_id: ling-2-5-1t
+  - model_id: "ling-2-5-1t"
     model_name: "Ling 2.5 1T"
-    company: InclusionAI
-    date: 2026-02-15
+    company: "InclusionAI"
+    date: "2026-02-15"
     vocab: 157184
     depth: 80
     dim: 8192
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Pre
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Pre"
     pos_emb: "RoPE"
     activation: "silu"
     attn: "mla"
@@ -999,33 +907,33 @@ models:
     tied: "untied"
     qk_norm: "QK-Norm"
     sliding: "—"
-  - model_id: qwen3-5-397b
+  - model_id: "qwen3-5-397b"
     model_name: "Qwen3.5 397B"
-    company: Alibaba Cloud
-    date: 2026-02-15
+    company: "Alibaba Cloud"
+    date: "2026-02-15"
     vocab: 248320
     depth: 60
     dim: 4096
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Pre
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Pre"
     pos_emb: "RoPE"
     activation: "SwiGLU"
     attn: "gated_deltanet"
-    bias: "undisclosed"
+    bias: "no bias"
     tied: "untied"
     qk_norm: "—"
     sliding: "—"
-  - model_id: tiny-aya-3-35b
+  - model_id: "tiny-aya-3-35b"
     model_name: "Tiny Aya 3.35B"
-    company: Cohere
-    date: 2026-02-13
-    vocab: None
-    depth: None
-    dim: None
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Pre
+    company: "Cohere"
+    date: "2026-02-13"
+    vocab: null
+    depth: null
+    dim: null
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Pre"
     pos_emb: "RoPE"
     activation: "SwiGLU"
     attn: "gqa"
@@ -1033,16 +941,16 @@ models:
     tied: "undisclosed"
     qk_norm: "—"
     sliding: "—"
-  - model_id: minimax-m2-5-230b
+  - model_id: "minimax-m2-5-230b"
     model_name: "MiniMax M2.5 230B"
-    company: MiniMax
-    date: 2026-02-12
+    company: "MiniMax"
+    date: "2026-02-12"
     vocab: 200064
     depth: 62
     dim: 3072
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Pre
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Pre"
     pos_emb: "RoPE"
     activation: "silu"
     attn: "gqa"
@@ -1050,16 +958,16 @@ models:
     tied: "untied"
     qk_norm: "QK-Norm"
     sliding: "—"
-  - model_id: glm-5-744b
+  - model_id: "glm-5-744b"
     model_name: "GLM-5 744B"
-    company: Z.ai
-    date: 2026-02-11
+    company: "Z.ai"
+    date: "2026-02-11"
     vocab: 154880
     depth: 78
     dim: 6144
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Pre
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Pre"
     pos_emb: "RoPE"
     activation: "silu"
     attn: "mla"
@@ -1067,16 +975,16 @@ models:
     tied: "untied"
     qk_norm: "—"
     sliding: "—"
-  - model_id: nanbeige-4-1-3b
+  - model_id: "nanbeige-4-1-3b"
     model_name: "Nanbeige 4.1 3B"
-    company: BOSS Zhipin
-    date: 2026-02-10
+    company: "BOSS Zhipin"
+    date: "2026-02-10"
     vocab: 166144
     depth: 32
     dim: 2560
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Pre
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Pre"
     pos_emb: "RoPE"
     activation: "silu"
     attn: "gqa"
@@ -1084,16 +992,16 @@ models:
     tied: "untied"
     qk_norm: "—"
     sliding: "—"
-  - model_id: step-3-5-flash-196b
+  - model_id: "step-3-5-flash-196b"
     model_name: "Step 3.5 Flash 196B"
-    company: StepFun
-    date: 2026-02-01
+    company: "StepFun"
+    date: "2026-02-01"
     vocab: 128896
     depth: 45
     dim: 4096
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Pre
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Pre"
     pos_emb: "RoPE"
     activation: "SwiGLU"
     attn: "gqa"
@@ -1101,16 +1009,16 @@ models:
     tied: "untied"
     qk_norm: "QK-Norm"
     sliding: "yes"
-  - model_id: longcat-flash-lite-68-5b-a3b
+  - model_id: "longcat-flash-lite-68-5b-a3b"
     model_name: "LongCat-Flash-Lite 68.5B-A3B"
-    company: Meituan
-    date: 2026-01-28
+    company: "Meituan"
+    date: "2026-01-28"
     vocab: 131072
-    depth: None
+    depth: null
     dim: 3072
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Pre
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Pre"
     pos_emb: "RoPE + NoPE"
     activation: "SwiGLU"
     attn: "mla"
@@ -1118,33 +1026,33 @@ models:
     tied: "undisclosed"
     qk_norm: "—"
     sliding: "—"
-  - model_id: kimi-k2-5
+  - model_id: "kimi-k2-5"
     model_name: "Kimi K2.5"
-    company: Moonshot AI
-    date: 2026-01-27
+    company: "Moonshot AI"
+    date: "2026-01-27"
     vocab: 163840
     depth: 61
     dim: 7168
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Pre
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Pre"
     pos_emb: "RoPE"
     activation: "SwiGLU"
     attn: "mla"
-    bias: "undisclosed"
+    bias: "no bias"
     tied: "untied"
     qk_norm: "—"
     sliding: "—"
-  - model_id: arcee-ai-trinity-large-400b
+  - model_id: "arcee-ai-trinity-large-400b"
     model_name: "Arcee AI Trinity Large 400B"
-    company: Arcee AI
-    date: 2026-01-27
+    company: "Arcee AI"
+    date: "2026-01-27"
     vocab: 200192
     depth: 60
     dim: 3072
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Pre
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Pre"
     pos_emb: "RoPE"
     activation: "silu"
     attn: "gqa"
@@ -1152,16 +1060,16 @@ models:
     tied: "untied"
     qk_norm: "—"
     sliding: "yes"
-  - model_id: lfm2-5-1-2b
+  - model_id: "lfm2-5-1-2b"
     model_name: "LFM2.5 1.2B"
-    company: Liquid AI
-    date: 2026-01-05
+    company: "Liquid AI"
+    date: "2026-01-05"
     vocab: 65536
     depth: 16
     dim: 2048
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Pre
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Pre"
     pos_emb: "RoPE"
     activation: "SwiGLU"
     attn: "gqa"
@@ -1169,16 +1077,16 @@ models:
     tied: "undisclosed"
     qk_norm: "—"
     sliding: "—"
-  - model_id: glm-4-7-355b
+  - model_id: "glm-4-7-355b"
     model_name: "GLM-4.7 355B"
-    company: Z.ai
-    date: 2025-12-22
+    company: "Z.ai"
+    date: "2025-12-22"
     vocab: 151552
     depth: 92
     dim: 5120
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Pre
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Pre"
     pos_emb: "RoPE"
     activation: "silu"
     attn: "gqa"
@@ -1186,16 +1094,16 @@ models:
     tied: "untied"
     qk_norm: "QK-Norm"
     sliding: "—"
-  - model_id: xiaomi-mimo-v2-flash-309b
+  - model_id: "xiaomi-mimo-v2-flash-309b"
     model_name: "Xiaomi MiMo-V2-Flash 309B"
-    company: Xiaomi
-    date: 2025-12-16
+    company: "Xiaomi"
+    date: "2025-12-16"
     vocab: 152576
     depth: 48
     dim: 4096
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Pre
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Pre"
     pos_emb: "RoPE"
     activation: "silu"
     attn: "sliding_window"
@@ -1203,16 +1111,16 @@ models:
     tied: "untied"
     qk_norm: "—"
     sliding: "yes"
-  - model_id: nemotron-3-nano-30b-a3b
+  - model_id: "nemotron-3-nano-30b-a3b"
     model_name: "Nemotron 3 Nano 30B-A3B"
-    company: NVIDIA
-    date: 2025-12-04
+    company: "NVIDIA"
+    date: "2025-12-04"
     vocab: 131072
     depth: 52
     dim: 2688
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Pre
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Pre"
     pos_emb: "NoPE"
     activation: "SwiGLU"
     attn: "gqa"
@@ -1220,16 +1128,16 @@ models:
     tied: "untied"
     qk_norm: "—"
     sliding: "—"
-  - model_id: mistral-large-3
+  - model_id: "mistral-large-3"
     model_name: "Mistral Large 3"
-    company: Mistral AI
-    date: 2025-12-02
+    company: "Mistral AI"
+    date: "2025-12-02"
     vocab: 131072
     depth: 61
-    dim: None
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Pre
+    dim: null
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Pre"
     pos_emb: "RoPE"
     activation: "SwiGLU"
     attn: "mla"
@@ -1237,16 +1145,16 @@ models:
     tied: "undisclosed"
     qk_norm: "—"
     sliding: "—"
-  - model_id: deepseek-v3-2
+  - model_id: "deepseek-v3-2"
     model_name: "DeepSeek V3.2"
-    company: DeepSeek
-    date: 2025-12-01
+    company: "DeepSeek"
+    date: "2025-12-01"
     vocab: 129280
     depth: 61
     dim: 7168
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Pre
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Pre"
     pos_emb: "RoPE"
     activation: "silu"
     attn: "mla"
@@ -1254,16 +1162,16 @@ models:
     tied: "untied"
     qk_norm: "—"
     sliding: "—"
-  - model_id: intellect-3
+  - model_id: "intellect-3"
     model_name: "INTELLECT-3"
-    company: Prime Intellect
-    date: 2025-11-26
+    company: "Prime Intellect"
+    date: "2025-11-26"
     vocab: 151552
     depth: 46
     dim: 4096
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Pre
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Pre"
     pos_emb: "RoPE"
     activation: "silu"
     attn: "gqa"
@@ -1271,16 +1179,16 @@ models:
     tied: "untied"
     qk_norm: "—"
     sliding: "—"
-  - model_id: olmo-3-32b
+  - model_id: "olmo-3-32b"
     model_name: "OLMo 3 32B"
-    company: Ai2
-    date: 2025-11-20
+    company: "Ai2"
+    date: "2025-11-20"
     vocab: 100278
     depth: 64
     dim: 5120
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Pre
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Pre"
     pos_emb: "RoPE"
     activation: "silu"
     attn: "gqa"
@@ -1288,16 +1196,16 @@ models:
     tied: "untied"
     qk_norm: "—"
     sliding: "yes"
-  - model_id: olmo-3-7b
+  - model_id: "olmo-3-7b"
     model_name: "OLMo 3 7B"
-    company: Ai2
-    date: 2025-11-20
+    company: "Ai2"
+    date: "2025-11-20"
     vocab: 100278
     depth: 32
     dim: 4096
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Pre
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Pre"
     pos_emb: "RoPE"
     activation: "silu"
     attn: "mha"
@@ -1305,16 +1213,16 @@ models:
     tied: "untied"
     qk_norm: "—"
     sliding: "yes"
-  - model_id: kimi-linear-48b-a3b
+  - model_id: "kimi-linear-48b-a3b"
     model_name: "Kimi Linear 48B-A3B"
-    company: Moonshot AI
-    date: 2025-10-30
+    company: "Moonshot AI"
+    date: "2025-10-30"
     vocab: 163840
     depth: 27
     dim: 2304
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Pre
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Pre"
     pos_emb: "RoPE"
     activation: "silu"
     attn: "mla"
@@ -1322,16 +1230,16 @@ models:
     tied: "untied"
     qk_norm: "—"
     sliding: "—"
-  - model_id: minimax-m2-230b
+  - model_id: "minimax-m2-230b"
     model_name: "MiniMax M2 230B"
-    company: MiniMax
-    date: 2025-10-23
+    company: "MiniMax"
+    date: "2025-10-23"
     vocab: 200064
     depth: 62
     dim: 3072
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Pre
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Pre"
     pos_emb: "RoPE"
     activation: "silu"
     attn: "gqa"
@@ -1339,16 +1247,16 @@ models:
     tied: "untied"
     qk_norm: "QK-Norm"
     sliding: "—"
-  - model_id: qwen3-next-80b-a3b
+  - model_id: "qwen3-next-80b-a3b"
     model_name: "Qwen3 Next 80B-A3B"
-    company: Alibaba Cloud
-    date: 2025-09-09
+    company: "Alibaba Cloud"
+    date: "2025-09-09"
     vocab: 151936
     depth: 48
     dim: 2048
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Pre
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Pre"
     pos_emb: "RoPE"
     activation: "silu"
     attn: "gated_deltanet"
@@ -1356,16 +1264,16 @@ models:
     tied: "untied"
     qk_norm: "—"
     sliding: "—"
-  - model_id: grok-2-5-270b
+  - model_id: "grok-2-5-270b"
     model_name: "Grok 2.5 270B"
-    company: xAI
-    date: 2025-08-22
+    company: "xAI"
+    date: "2025-08-22"
     vocab: 131072
     depth: 64
     dim: 8192
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Pre
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Pre"
     pos_emb: "RoPE"
     activation: "SwiGLU"
     attn: "gqa"
@@ -1373,16 +1281,16 @@ models:
     tied: "undisclosed"
     qk_norm: "—"
     sliding: "—"
-  - model_id: gemma-3-270m
+  - model_id: "gemma-3-270m"
     model_name: "Gemma 3 270M"
-    company: Google
-    date: 2025-08-14
+    company: "Google"
+    date: "2025-08-14"
     vocab: 262144
     depth: 18
     dim: 640
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Both
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Both"
     pos_emb: "RoPE"
     activation: "GeLU"
     attn: "sliding_window"
@@ -1390,16 +1298,16 @@ models:
     tied: "undisclosed"
     qk_norm: "—"
     sliding: "yes"
-  - model_id: gpt-oss-120b
+  - model_id: "gpt-oss-120b"
     model_name: "GPT-OSS 120B"
-    company: OpenAI
-    date: 2025-08-04
+    company: "OpenAI"
+    date: "2025-08-04"
     vocab: 201088
     depth: 36
     dim: 2880
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Both
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Both"
     pos_emb: "RoPE"
     activation: "silu"
     attn: "gqa"
@@ -1407,16 +1315,16 @@ models:
     tied: "untied"
     qk_norm: "—"
     sliding: "yes"
-  - model_id: gpt-oss-20b
+  - model_id: "gpt-oss-20b"
     model_name: "GPT-OSS 20B"
-    company: OpenAI
-    date: 2025-08-04
+    company: "OpenAI"
+    date: "2025-08-04"
     vocab: 201088
     depth: 24
     dim: 2880
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Both
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Both"
     pos_emb: "RoPE"
     activation: "silu"
     attn: "gqa"
@@ -1424,16 +1332,16 @@ models:
     tied: "untied"
     qk_norm: "—"
     sliding: "yes"
-  - model_id: qwen3-coder-flash-30b-a3b
+  - model_id: "qwen3-coder-flash-30b-a3b"
     model_name: "Qwen3 Coder Flash 30B-A3B"
-    company: Alibaba Cloud
-    date: 2025-07-31
+    company: "Alibaba Cloud"
+    date: "2025-07-31"
     vocab: 151936
     depth: 48
     dim: 2048
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Pre
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Pre"
     pos_emb: "RoPE"
     activation: "silu"
     attn: "gqa"
@@ -1441,16 +1349,16 @@ models:
     tied: "untied"
     qk_norm: "—"
     sliding: "—"
-  - model_id: glm-4-5-355b
+  - model_id: "glm-4-5-355b"
     model_name: "GLM-4.5 355B"
-    company: Z.ai
-    date: 2025-07-28
+    company: "Z.ai"
+    date: "2025-07-28"
     vocab: 151552
     depth: 92
     dim: 5120
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Pre
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Pre"
     pos_emb: "RoPE"
     activation: "silu"
     attn: "gqa"
@@ -1458,16 +1366,16 @@ models:
     tied: "untied"
     qk_norm: "QK-Norm"
     sliding: "—"
-  - model_id: glm-4-5-air
+  - model_id: "glm-4-5-air"
     model_name: "GLM-4.5-Air"
-    company: Z.ai
-    date: 2025-07-28
+    company: "Z.ai"
+    date: "2025-07-28"
     vocab: 151552
     depth: 46
     dim: 4096
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Pre
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Pre"
     pos_emb: "RoPE"
     activation: "silu"
     attn: "gqa"
@@ -1475,16 +1383,16 @@ models:
     tied: "untied"
     qk_norm: "—"
     sliding: "—"
-  - model_id: kimi-k2
+  - model_id: "kimi-k2"
     model_name: "Kimi K2"
-    company: Moonshot AI
-    date: 2025-07-10
+    company: "Moonshot AI"
+    date: "2025-07-10"
     vocab: 163840
     depth: 61
     dim: 7168
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Pre
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Pre"
     pos_emb: "RoPE"
     activation: "silu"
     attn: "mla"
@@ -1492,16 +1400,16 @@ models:
     tied: "untied"
     qk_norm: "—"
     sliding: "—"
-  - model_id: smollm3-3b
+  - model_id: "smollm3-3b"
     model_name: "SmolLM3 3B"
-    company: Hugging Face
-    date: 2025-06-19
+    company: "Hugging Face"
+    date: "2025-06-19"
     vocab: 128256
     depth: 36
     dim: 2048
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Pre
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Pre"
     pos_emb: "NoPE"
     activation: "silu"
     attn: "gqa"
@@ -1509,16 +1417,16 @@ models:
     tied: "tied"
     qk_norm: "—"
     sliding: "—"
-  - model_id: qwen3-235b-a22b
+  - model_id: "qwen3-235b-a22b"
     model_name: "Qwen3 235B-A22B"
-    company: Alibaba Cloud
-    date: 2025-04-28
+    company: "Alibaba Cloud"
+    date: "2025-04-28"
     vocab: 151936
     depth: 94
     dim: 4096
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Pre
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Pre"
     pos_emb: "RoPE"
     activation: "silu"
     attn: "gqa"
@@ -1526,16 +1434,16 @@ models:
     tied: "untied"
     qk_norm: "—"
     sliding: "—"
-  - model_id: qwen3-32b
+  - model_id: "qwen3-32b"
     model_name: "Qwen3 32B"
-    company: Alibaba Cloud
-    date: 2025-04-28
+    company: "Alibaba Cloud"
+    date: "2025-04-28"
     vocab: 151936
     depth: 64
     dim: 5120
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Pre
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Pre"
     pos_emb: "RoPE"
     activation: "silu"
     attn: "gqa"
@@ -1543,16 +1451,16 @@ models:
     tied: "untied"
     qk_norm: "—"
     sliding: "—"
-  - model_id: qwen3-30b-a3b
+  - model_id: "qwen3-30b-a3b"
     model_name: "Qwen3 30B-A3B"
-    company: Alibaba Cloud
-    date: 2025-04-28
+    company: "Alibaba Cloud"
+    date: "2025-04-28"
     vocab: 151936
     depth: 48
     dim: 2048
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Pre
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Pre"
     pos_emb: "RoPE"
     activation: "silu"
     attn: "gqa"
@@ -1560,16 +1468,16 @@ models:
     tied: "untied"
     qk_norm: "—"
     sliding: "—"
-  - model_id: qwen3-8b
+  - model_id: "qwen3-8b"
     model_name: "Qwen3 8B"
-    company: Alibaba Cloud
-    date: 2025-04-28
+    company: "Alibaba Cloud"
+    date: "2025-04-28"
     vocab: 151936
     depth: 36
     dim: 4096
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Pre
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Pre"
     pos_emb: "RoPE"
     activation: "silu"
     attn: "gqa"
@@ -1577,16 +1485,16 @@ models:
     tied: "untied"
     qk_norm: "—"
     sliding: "—"
-  - model_id: qwen3-4b
+  - model_id: "qwen3-4b"
     model_name: "Qwen3 4B"
-    company: Alibaba Cloud
-    date: 2025-04-28
+    company: "Alibaba Cloud"
+    date: "2025-04-28"
     vocab: 151936
     depth: 36
     dim: 2560
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Pre
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Pre"
     pos_emb: "RoPE"
     activation: "silu"
     attn: "gqa"
@@ -1594,16 +1502,16 @@ models:
     tied: "tied"
     qk_norm: "—"
     sliding: "—"
-  - model_id: qwen3-0-6b
+  - model_id: "qwen3-0-6b"
     model_name: "Qwen3 0.6B"
-    company: Alibaba Cloud
-    date: 2025-04-28
+    company: "Alibaba Cloud"
+    date: "2025-04-28"
     vocab: 151936
     depth: 28
     dim: 1024
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Pre
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Pre"
     pos_emb: "RoPE"
     activation: "silu"
     attn: "gqa"
@@ -1611,16 +1519,16 @@ models:
     tied: "tied"
     qk_norm: "—"
     sliding: "—"
-  - model_id: llama-4-maverick
+  - model_id: "llama-4-maverick"
     model_name: "Llama 4 Maverick"
-    company: Meta
-    date: 2025-04-05
-    vocab: None
-    depth: None
-    dim: None
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Pre
+    company: "Meta"
+    date: "2025-04-05"
+    vocab: null
+    depth: null
+    dim: null
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Pre"
     pos_emb: "RoPE"
     activation: "SwiGLU"
     attn: "gqa"
@@ -1628,16 +1536,16 @@ models:
     tied: "undisclosed"
     qk_norm: "—"
     sliding: "—"
-  - model_id: mistral-small-3-1-24b
+  - model_id: "mistral-small-3-1-24b"
     model_name: "Mistral Small 3.1 24B"
-    company: Mistral AI
-    date: 2025-03-18
+    company: "Mistral AI"
+    date: "2025-03-18"
     vocab: 131072
     depth: 40
     dim: 5120
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Pre
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Pre"
     pos_emb: "RoPE"
     activation: "SwiGLU"
     attn: "gqa"
@@ -1645,33 +1553,33 @@ models:
     tied: "undisclosed"
     qk_norm: "—"
     sliding: "—"
-  - model_id: xlstm-7b
+  - model_id: "xlstm-7b"
     model_name: "xLSTM 7B"
-    company: NXAI
-    date: 2025-03-17
+    company: "NXAI"
+    date: "2025-03-17"
     vocab: 50304
-    depth: None
-    dim: None
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Pre
-    pos_emb: "RoPE"
+    depth: 32
+    dim: 4096
+    norm: "RMSNorm + head-wise LayerNorm"
+    parallel: "Serial"
+    pre_norm: "Pre"
+    pos_emb: "None (recurrent)"
     activation: "SwiGLU"
     attn: "other"
-    bias: "undisclosed"
+    bias: "Mixed (gate biases)"
     tied: "untied"
     qk_norm: "—"
     sliding: "—"
-  - model_id: gemma-3-27b
+  - model_id: "gemma-3-27b"
     model_name: "Gemma 3 27B"
-    company: Google
-    date: 2025-03-11
-    vocab: None
+    company: "Google"
+    date: "2025-03-11"
+    vocab: null
     depth: 62
     dim: 5376
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Both
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Both"
     pos_emb: "RoPE"
     activation: "GeLU"
     attn: "gqa"
@@ -1679,16 +1587,16 @@ models:
     tied: "undisclosed"
     qk_norm: "—"
     sliding: "yes"
-  - model_id: deepseek-r1
+  - model_id: "deepseek-r1"
     model_name: "DeepSeek R1"
-    company: DeepSeek
-    date: 2025-01-20
+    company: "DeepSeek"
+    date: "2025-01-20"
     vocab: 129280
     depth: 61
     dim: 7168
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Pre
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Pre"
     pos_emb: "RoPE"
     activation: "silu"
     attn: "mla"
@@ -1696,16 +1604,16 @@ models:
     tied: "untied"
     qk_norm: "—"
     sliding: "—"
-  - model_id: deepseek-v3
+  - model_id: "deepseek-v3"
     model_name: "DeepSeek V3"
-    company: DeepSeek
-    date: 2024-12-26
+    company: "DeepSeek"
+    date: "2024-12-26"
     vocab: 129280
     depth: 61
     dim: 7168
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Pre
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Pre"
     pos_emb: "RoPE"
     activation: "silu"
     attn: "mla"
@@ -1713,16 +1621,16 @@ models:
     tied: "untied"
     qk_norm: "—"
     sliding: "—"
-  - model_id: phi-4
+  - model_id: "phi-4"
     model_name: "Phi-4"
-    company: Microsoft
-    date: 2024-12-12
+    company: "Microsoft"
+    date: "2024-12-12"
     vocab: 100352
     depth: 40
     dim: 5120
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Pre
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Pre"
     pos_emb: "RoPE"
     activation: "silu"
     attn: "gqa"
@@ -1730,16 +1638,16 @@ models:
     tied: "untied"
     qk_norm: "—"
     sliding: "—"
-  - model_id: olmo-2-7b
+  - model_id: "olmo-2-7b"
     model_name: "OLMo 2 7B"
-    company: Ai2
-    date: 2024-11-25
+    company: "Ai2"
+    date: "2024-11-25"
     vocab: 100352
     depth: 32
     dim: 4096
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Post
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Post"
     pos_emb: "RoPE"
     activation: "silu"
     attn: "mha"
@@ -1747,16 +1655,16 @@ models:
     tied: "untied"
     qk_norm: "—"
     sliding: "—"
-  - model_id: llama-3-2-3b
+  - model_id: "llama-3-2-3b"
     model_name: "Llama 3.2 3B"
-    company: Meta
-    date: 2024-09-25
-    vocab: None
-    depth: None
-    dim: None
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Pre
+    company: "Meta"
+    date: "2024-09-25"
+    vocab: null
+    depth: null
+    dim: null
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Pre"
     pos_emb: "RoPE"
     activation: "SwiGLU"
     attn: "gqa"
@@ -1764,16 +1672,16 @@ models:
     tied: "undisclosed"
     qk_norm: "—"
     sliding: "—"
-  - model_id: llama-3-2-1b
+  - model_id: "llama-3-2-1b"
     model_name: "Llama 3.2 1B"
-    company: Meta
-    date: 2024-09-25
-    vocab: None
-    depth: None
-    dim: None
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Pre
+    company: "Meta"
+    date: "2024-09-25"
+    vocab: null
+    depth: null
+    dim: null
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Pre"
     pos_emb: "RoPE"
     activation: "SwiGLU"
     attn: "gqa"
@@ -1781,16 +1689,16 @@ models:
     tied: "undisclosed"
     qk_norm: "—"
     sliding: "—"
-  - model_id: llama-3-8b
+  - model_id: "llama-3-8b"
     model_name: "Llama 3 8B"
-    company: Meta
-    date: 2024-04-18
-    vocab: None
-    depth: None
-    dim: None
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Pre
+    company: "Meta"
+    date: "2024-04-18"
+    vocab: null
+    depth: null
+    dim: null
+    norm: "RMSNorm"
+    parallel: "Serial"
+    pre_norm: "Pre"
     pos_emb: "RoPE"
     activation: "SwiGLU"
     attn: "gqa"
@@ -1798,20 +1706,22 @@ models:
     tied: "undisclosed"
     qk_norm: "—"
     sliding: "—"
-  - model_id: gpt-2-xl-1-5b
+  - model_id: "gpt-2-xl-1-5b"
     model_name: "GPT-2 XL 1.5B"
-    company: OpenAI
-    date: 2019-11-05
+    company: "OpenAI"
+    date: "2019-11-05"
     vocab: 50257
     depth: 48
     dim: 1600
-    norm: RMSNorm
-    parallel: Serial
-    pre_norm: Pre
-    pos_emb: "RoPE"
-    activation: "SwiGLU"
+    norm: "LayerNorm"
+    parallel: "Serial"
+    pre_norm: "Pre"
+    pos_emb: "Learned absolute"
+    activation: "GELU"
     attn: "mha"
-    bias: "undisclosed"
-    tied: "undisclosed"
+    bias: "with bias"
+    tied: "tied"
     qk_norm: "—"
     sliding: "—"
+milestones: [{"id":"transformer-2017","name":"Transformer (Vaswani et al.)","date":"2017-06-12","org":"Google","params":"65M","ctx":"512","arch":"Dense • MHA • Post-LN • Sinusoidal PE","note":"Attention Is All You Need — encoder-decoder, scaled dot-product, no MoE"},{"id":"bert-2018","name":"BERT 340M","date":"2018-10-11","org":"Google","params":"340M","ctx":"512","arch":"Dense • MHA • Post-LN • Learned PE","note":"Bidirectional encoder, MLM+NSP, first large-scale pretrain"},{"id":"gpt2-2019","name":"GPT-2 1.5B","date":"2019-02-14","org":"OpenAI","params":"1.5B","ctx":"1024","arch":"Dense • MHA • Pre-LN (moved) • Learned PE","note":"Decoder-only, zero-shot via language modeling"},{"id":"t5-2019","name":"T5 11B","date":"2019-10-23","org":"Google","params":"11B","ctx":"512","arch":"Dense • Enc-Dec • Relative PE","note":"Text-to-Text, C4, span corruption"},{"id":"gpt3-2020","name":"GPT-3 175B","date":"2020-05-28","org":"OpenAI","params":"175B","ctx":"2048","arch":"Dense • MHA • Pre-LN • Learned PE","note":"Few-shot in-context, 300B tokens, no finetune"},{"id":"vit-2020","name":"ViT (cross-pollination)","date":"2020-10-22","org":"Google","params":"632M","ctx":"—","arch":"Dense • MHA","note":"Patch embeddings prove Transformer modality-agnostic"},{"id":"switch-2021","name":"Switch-Transformer 1.6T","date":"2021-01-11","org":"Google","params":"1.6T (2048 experts, 1 active)","ctx":"512","arch":"Sparse MoE • top-1 routing","note":"First trillion-scale MoE, expert-choice vs token-choice"},{"id":"chinchilla-2022","name":"Chinchilla 70B","date":"2022-03-29","org":"DeepMind","params":"70B","ctx":"2048","arch":"Dense","note":"Scaling Laws: 1.4T tokens, compute-optimal > size","_solthara_audit":{"revision":"2026-09-06.1","checked_on":"2026-09-06","scope":"listed_fields_only","changes":[{"record_id":"chinchilla-2022","path":"arch","existed":true,"before":"Dense • GQA precursor","after":"Dense","sources":["https://arxiv.org/pdf/2203.15556"],"reason":"Remove the unsupported GQA-precursor label; the paper specifies the Gopher architecture and Table 4."}]}},{"id":"llama1-2023","name":"LLaMA 65B","date":"2023-02-24","org":"Meta","params":"65B","ctx":"2048","arch":"Dense • MHA • RMSNorm • SwiGLU • RoPE θ=10k","note":"Open weights, RMSNorm+RoPE+SwiGLU canon","_solthara_audit":{"revision":"2026-09-06.1","checked_on":"2026-09-06","scope":"listed_fields_only","changes":[{"record_id":"llama1-2023","path":"arch","existed":true,"before":"Dense • GQA • RMSNorm • SwiGLU • RoPE θ=10k","after":"Dense • MHA • RMSNorm • SwiGLU • RoPE θ=10k","sources":["https://arxiv.org/pdf/2307.09288","https://arxiv.org/abs/2302.13971"],"reason":"Llama 2 paper Table 1 marks all Llama 1 models, including 65B, as not using GQA."}]}},{"id":"llama2-2023","name":"Llama 2 70B","date":"2023-07-18","org":"Meta","params":"70B","ctx":"4096","arch":"Dense • GQA • RMSNorm • SwiGLU • RoPE","note":"GQA + 2T tokens, RLHF, RoPE scaling start"},{"id":"mistral-2023a","name":"Mistral 7B","date":"2023-09-27","org":"Mistral","params":"7B","ctx":"32K (Sliding 4K)","arch":"Dense • Sliding Window • GQA","note":"SW attention revival, Apache-2.0"},{"id":"mamba-2023","name":"Mamba (SSM)","date":"2023-12-01","org":"CMU/Princeton","params":"2.8B","ctx":"1M (linear)","arch":"Recurrent • SSM • Selective scan","note":"Alternative to attention: O(N) linear, hybrid era start"},{"id":"mixtral-2023","name":"Mixtral 8x7B","date":"2023-12-11","org":"Mistral","params":"47B (13B active)","ctx":"32K","arch":"Sparse MoE • 8 experts top-2","note":"MoE becomes mainstream"},{"id":"mixtral-8x22b","name":"Mixtral 8x22B","date":"2024-04-17","org":"Mistral","params":"141B (39B active)","ctx":"64K","arch":"Sparse MoE • 8 experts top-2","note":"Scale MoE further","_solthara_audit":{"revision":"2026-09-06.1","checked_on":"2026-09-06","scope":"listed_fields_only","changes":[{"record_id":"mixtral-8x22b","path":"date","existed":true,"before":"2024-01-08","after":"2024-04-17","sources":["https://mistral.ai/news/mixtral-8x22b","https://docs.mistral.ai/models/mixtral-8x22b-0-1-0-3"],"reason":"Official announcement/documentation date, not first base-weight availability."},{"record_id":"mixtral-8x22b","path":"date_basis","existed":false,"before":null,"after":"official_announcement","sources":["https://mistral.ai/news/mixtral-8x22b"],"reason":"Disambiguate announcement from the earlier base-weight publication."},{"record_id":"mixtral-8x22b","path":"date_note","existed":false,"before":null,"after":"Official announcement: 2024-04-17. Earlier base weights circulated in April; first-weight publication is not verified by this correction.","sources":["https://mistral.ai/news/mixtral-8x22b","https://docs.mistral.ai/models/mixtral-8x22b-0-1-0-3"],"reason":"Do not conflate announcement and initial weight availability."}]},"date_basis":"official_announcement","date_note":"Official announcement: 2024-04-17. Earlier base weights circulated in April; first-weight publication is not verified by this correction."},{"id":"gemini-2023","name":"Gemini 1.0 Ultra","date":"2023-12-06","org":"Google","params":"Undisclosed","ctx":"32K","arch":"Multimodal Transformer decoder; efficient attention (e.g. MQA)","note":"Gemini 1.0 supports a trained sequence length of 32,768 tokens. Gemini 1.5 long-context results refer to a different model generation.","_solthara_audit":{"revision":"2026-09-06.1","checked_on":"2026-09-06","scope":"listed_fields_only","changes":[{"record_id":"gemini-2023","path":"params","existed":true,"before":"~1.5T est.","after":"Undisclosed","sources":["https://storage.googleapis.com/deepmind-media/gemini/gemini_1_report.pdf"],"reason":"The report does not disclose an Ultra parameter count; the unsourced 1.5T estimate is not a specification."},{"record_id":"gemini-2023","path":"arch","existed":true,"before":"Dense hybrid • MHA","after":"Multimodal Transformer decoder; efficient attention (e.g. MQA)","sources":["https://storage.googleapis.com/deepmind-media/gemini/gemini_1_report.pdf"],"reason":"Use family-level report wording, not an unsupported Dense hybrid / MHA classification."},{"record_id":"gemini-2023","path":"note","existed":true,"before":"Native multimodal, 1M in 1.5 Pro Feb 2024","after":"Gemini 1.0 supports a trained sequence length of 32,768 tokens. Gemini 1.5 long-context results refer to a different model generation.","sources":["https://storage.googleapis.com/deepmind-media/gemini/gemini_1_report.pdf"],"reason":"Separate the 1.0 milestone from later family results."}]}}]
+audit_revision: "2026-09-06.1"

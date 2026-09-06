@@ -1,0 +1,37 @@
+{
+  "version": "VECTOR v2",
+  "models": 101,
+  "baseline_main": "976bcc2737f5a2bc4d56c79d5f1f0f71ea7e92ec",
+  "source_commit": "5e5ab80a10f12f373ec59735843614c1b8319075",
+  "run_url": "https://github.com/AvixoSec/solthara-index/actions/runs/33971001751",
+  "publish_method": "git push --force-with-lease",
+  "backup_branch_created": false,
+  "build_matches_delivered_release": true,
+  "source_archive_sha256": "b55cc072098ec4a4f38041b3e812d94b191d70b1a1fce57a05c0b3a98623ead2",
+  "source_sha256": {
+    ".gitignore": "797e73b845dec7689d67d0c1218ffff93a6f1a9c2a47059a3916510e6f58196c",
+    "THIRD_PARTY_NOTICES.md": "856af5bed7a4576f40fb7508193b94d542b5b2fb9f1055be4fffe8c9fe72d7f2",
+    "VECTOR-README.md": "331c3858090d467a28ca31033d7797e85232d29857a479d87c8b4e5ddc6bd2ca",
+    "build.mjs": "4b1aefa899c9f6fbc8a62efbcdc9f4fa1f7a63764592b4770e9d2ce68557298b",
+    "contrast-report.json": "ce5687ae7eb693ed24da2aefddfda7db672a748d829f7a0c63398dc5cc01e4dc",
+    "filter-qa.json": "ed027aed2fd48dbf640816d27dc5523d91cabd5e774e9c5ab68cce06d69d93a0",
+    "interaction-qa.json": "f92904b612f6fcdc99f3bacc5f16ab0f2e2ec1d6f148885ae201c5db11be2e05",
+    "licenses/esbuild-MIT.txt": "b40ec5baec7bb34fa5b1c09521fa3cd52d5fad7adafed74932a2010d3612a681",
+    "licenses/react-MIT.txt": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93",
+    "licenses/react-dom-MIT.txt": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93",
+    "licenses/scheduler-MIT.txt": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93",
+    "package.json": "3346a46edecaa765b10a0e0ce2099ded88d6477979ed601ac038e7fb893d8111",
+    "qa-report.json": "8f496963c8ce5cbb12d18da0502417e3dd9b4b58ca7964123e3a3143ef8b94fd",
+    "source-integrity.json": "0805bc9bd2998073efceb2ea5fd2f107878625d592fd9fc60aceee02d99d3f31",
+    "src/Vector.jsx": "9d0eefb24d2f441ccf3a9175dc6d2e76e14a03f4585c9c0d42dcd251afc291a8",
+    "src/main.jsx": "8b1090ead728b2c3e9f44f3110b21a1ff64676be24a4b9bc5708f2059ffc400a",
+    "src/vector.css": "c4ff6f90b36c0de3dc26845e38f14b6c188f0546e7866a0a4f1d92eb2097ad26",
+    "visual-qa.json": "3870da7c539eec925add8481e2f5a9d84fdc9221630a19252510148e66d482c7"
+  },
+  "build_sha256": {
+    "assets/vector.js": "7c333c159c8b8055c0bf4d768239d4290541035d23d95cb2cbb4f81337ed2ced",
+    "assets/vector.css": "c4e9687781057114bea267af8ddade02ad30ba86f38357a3ad0d6e7b6c719bea",
+    "index.html": "d22ef92405e174092beb850fc0fc4c7f8975791887b574ae4fb6f295851b4419",
+    "Solthara-VECTOR-v2.html": "c1e653141e2101fb869de4d847f35b45e9afc4eaf5a3698aac18365dd20577f4"
+  }
+}
