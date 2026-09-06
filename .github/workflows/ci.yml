@@ -1,0 +1,45 @@
+name: Validate Solthara
+on:
+  push:
+    branches: [main, 'fix/**']
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - run: npm test
+      - run: npm run validate
+      - run: npm run build
+      - run: npm run validate && npm run audit:data
+      - name: Check generated artifact drift
+        run: git diff --exit-code -- all-configs.js models.yml assets/vector.js assets/vector.css index.html Solthara-VECTOR-v2.html audit/current-integrity.json build-meta.json
+      - name: Install isolated browser tooling
+        run: |
+          npm install --prefix /tmp/solthara-browser --no-package-lock --ignore-scripts playwright@1.55.0
+          node /tmp/solthara-browser/node_modules/playwright/cli.js install chromium
+      - name: Check all real dossiers and interface flows
+        env:
+          PLAYWRIGHT_MODULE: /tmp/solthara-browser/node_modules/playwright/index.mjs
+        run: node scripts/browser-smoke.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: solthara-verification
+          path: |
+            audit/current-integrity.json
+            audit/data-audit.json
+            audit/browser-results.json
+            audit/screenshots/
+          retention-days: 14
