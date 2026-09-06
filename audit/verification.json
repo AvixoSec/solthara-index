@@ -1,5 +1,5 @@
 {
-  "status": "structural_passed_browser_pending",
+  "status": "passed",
   "workflow_url": "https://github.com/AvixoSec/solthara-index/actions/runs/34056408014",
   "source_commit": "b30dfa28c2bd17a5cf44b0d938e6ce13d8692570",
   "base_commit": "30a2ea0f117d37fc24a64f2eb4a69229d635169a",
@@ -50,5 +50,10 @@
     "current_sha256": "c5197229ee3f9be0d9cbaf514e2529137e8b550e21388686333a5ded198982a0"
   },
   "unit_test_summary": " and position are corrected without inventing context/training\nok 26 - xLSTM aliases and position are corrected without inventing context/training\n  ---\n  duration_ms: 0.983952\n  type: 'test'\n  ...\n# Subtest: Gemini and references retain auditable corrections and idempotency\nok 27 - Gemini and references retain auditable corrections and idempotency\n  ---\n  duration_ms: 2.285822\n  type: 'test'\n  ...\n# Subtest: validation rejects tampering with a projected dimension\nok 28 - validation rejects tampering with a projected dimension\n  ---\n  duration_ms: 0.786558\n  type: 'test'\n  ...\n# Subtest: both external scripts defer in dependency order\nok 29 - both external scripts defer in dependency order\n  ---\n  duration_ms: 1.352402\n  type: 'test'\n  ...\n# Subtest: split page has a real loading state, noscript content and responsive metadata\nok 30 - split page has a real loading state, noscript content and responsive metadata\n  ---\n  duration_ms: 0.46906\n  type: 'test'\n  ...\n# Subtest: standalone carries data and CSS without external script dependencies\nok 31 - standalone carries data and CSS without external script dependencies\n  ---\n  duration_ms: 0.652648\n  type: 'test'\n  ...\n# Subtest: mixed-case closing tags are neutralized for inline scripts and styles\nok 32 - mixed-case closing tags are neutralized for inline scripts and styles\n  ---\n  duration_ms: 0.339358\n  type: 'test'\n  ...\n1..32\n# tests 32\n# suites 0\n# pass 32\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 122.636168\n",
-  "browser": "Pending the permanent read-only CI workflow; do not merge before it passes."
+  "browser": {
+    "status": "passed",
+    "workflow_url": "https://github.com/AvixoSec/solthara-index/actions/runs/34056942100",
+    "report": "audit/browser-results.json",
+    "source_commit": "b2505b72cfd8a570ec67302a12835e62fa025a1d"
+  }
 }
