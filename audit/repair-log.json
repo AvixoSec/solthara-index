@@ -1,0 +1,2408 @@
+{
+  "status": "applied",
+  "revision": "2026-09-06.1",
+  "base_commit": "30a2ea0f117d37fc24a64f2eb4a69229d635169a",
+  "changed_files": 40,
+  "changes": [
+    {
+      "record_id": "gpt-2-xl-1-5b",
+      "path": "yichen.norm",
+      "existed": true,
+      "before": "RMSNorm",
+      "after": "LayerNorm",
+      "sources": [
+        "https://github.com/openai/gpt-2/blob/9b63575ef42771a015060c964af2c3da4cf7c8ab/src/model.py",
+        "https://huggingface.co/openai-community/gpt2-xl/blob/cefd64e6208bcba99d6e3f55ff78cca372c1a46f/config.json"
+      ],
+      "reason": "OpenAI GPT-2 code and XL configuration; no modern-Transformer defaults."
+    },
+    {
+      "record_id": "gpt-2-xl-1-5b",
+      "path": "yichen.pos_emb",
+      "existed": true,
+      "before": "RoPE",
+      "after": "Learned absolute",
+      "sources": [
+        "https://github.com/openai/gpt-2/blob/9b63575ef42771a015060c964af2c3da4cf7c8ab/src/model.py",
+        "https://huggingface.co/openai-community/gpt2-xl/blob/cefd64e6208bcba99d6e3f55ff78cca372c1a46f/config.json"
+      ],
+      "reason": "OpenAI GPT-2 code and XL configuration; no modern-Transformer defaults."
+    },
+    {
+      "record_id": "gpt-2-xl-1-5b",
+      "path": "yichen.activation",
+      "existed": true,
+      "before": "SwiGLU",
+      "after": "GELU",
+      "sources": [
+        "https://github.com/openai/gpt-2/blob/9b63575ef42771a015060c964af2c3da4cf7c8ab/src/model.py",
+        "https://huggingface.co/openai-community/gpt2-xl/blob/cefd64e6208bcba99d6e3f55ff78cca372c1a46f/config.json"
+      ],
+      "reason": "OpenAI GPT-2 code and XL configuration; no modern-Transformer defaults."
+    },
+    {
+      "record_id": "gpt-2-xl-1-5b",
+      "path": "yichen.bias_display",
+      "existed": true,
+      "before": "undisclosed",
+      "after": "with bias",
+      "sources": [
+        "https://github.com/openai/gpt-2/blob/9b63575ef42771a015060c964af2c3da4cf7c8ab/src/model.py",
+        "https://huggingface.co/openai-community/gpt2-xl/blob/cefd64e6208bcba99d6e3f55ff78cca372c1a46f/config.json"
+      ],
+      "reason": "OpenAI GPT-2 code and XL configuration; no modern-Transformer defaults."
+    },
+    {
+      "record_id": "gpt-2-xl-1-5b",
+      "path": "yichen.tied_display",
+      "existed": true,
+      "before": "undisclosed",
+      "after": "tied",
+      "sources": [
+        "https://github.com/openai/gpt-2/blob/9b63575ef42771a015060c964af2c3da4cf7c8ab/src/model.py",
+        "https://huggingface.co/openai-community/gpt2-xl/blob/cefd64e6208bcba99d6e3f55ff78cca372c1a46f/config.json"
+      ],
+      "reason": "OpenAI GPT-2 code and XL configuration; no modern-Transformer defaults."
+    },
+    {
+      "record_id": "gpt-2-xl-1-5b",
+      "path": "math_tricks.hidden_act",
+      "existed": true,
+      "before": null,
+      "after": "gelu_new",
+      "sources": [
+        "https://github.com/openai/gpt-2/blob/9b63575ef42771a015060c964af2c3da4cf7c8ab/src/model.py",
+        "https://huggingface.co/openai-community/gpt2-xl/blob/cefd64e6208bcba99d6e3f55ff78cca372c1a46f/config.json"
+      ],
+      "reason": "OpenAI GPT-2 code and XL configuration; no modern-Transformer defaults."
+    },
+    {
+      "record_id": "gpt-2-xl-1-5b",
+      "path": "math_tricks.attention_bias",
+      "existed": true,
+      "before": null,
+      "after": true,
+      "sources": [
+        "https://github.com/openai/gpt-2/blob/9b63575ef42771a015060c964af2c3da4cf7c8ab/src/model.py",
+        "https://huggingface.co/openai-community/gpt2-xl/blob/cefd64e6208bcba99d6e3f55ff78cca372c1a46f/config.json"
+      ],
+      "reason": "OpenAI GPT-2 code and XL configuration; no modern-Transformer defaults."
+    },
+    {
+      "record_id": "gpt-2-xl-1-5b",
+      "path": "math_tricks.attention_bias_display",
+      "existed": true,
+      "before": "undisclosed",
+      "after": "with bias",
+      "sources": [
+        "https://github.com/openai/gpt-2/blob/9b63575ef42771a015060c964af2c3da4cf7c8ab/src/model.py",
+        "https://huggingface.co/openai-community/gpt2-xl/blob/cefd64e6208bcba99d6e3f55ff78cca372c1a46f/config.json"
+      ],
+      "reason": "OpenAI GPT-2 code and XL configuration; no modern-Transformer defaults."
+    },
+    {
+      "record_id": "gpt-2-xl-1-5b",
+      "path": "math_tricks.tie_word_embeddings",
+      "existed": true,
+      "before": null,
+      "after": true,
+      "sources": [
+        "https://github.com/openai/gpt-2/blob/9b63575ef42771a015060c964af2c3da4cf7c8ab/src/model.py",
+        "https://huggingface.co/openai-community/gpt2-xl/blob/cefd64e6208bcba99d6e3f55ff78cca372c1a46f/config.json"
+      ],
+      "reason": "OpenAI GPT-2 code and XL configuration; no modern-Transformer defaults."
+    },
+    {
+      "record_id": "gpt-2-xl-1-5b",
+      "path": "math_tricks.tie_display",
+      "existed": true,
+      "before": "undisclosed",
+      "after": "tied",
+      "sources": [
+        "https://github.com/openai/gpt-2/blob/9b63575ef42771a015060c964af2c3da4cf7c8ab/src/model.py",
+        "https://huggingface.co/openai-community/gpt2-xl/blob/cefd64e6208bcba99d6e3f55ff78cca372c1a46f/config.json"
+      ],
+      "reason": "OpenAI GPT-2 code and XL configuration; no modern-Transformer defaults."
+    },
+    {
+      "record_id": "llama1-2023",
+      "path": "arch",
+      "existed": true,
+      "before": "Dense • GQA • RMSNorm • SwiGLU • RoPE θ=10k",
+      "after": "Dense • MHA • RMSNorm • SwiGLU • RoPE θ=10k",
+      "sources": [
+        "https://arxiv.org/pdf/2307.09288",
+        "https://arxiv.org/abs/2302.13971"
+      ],
+      "reason": "Llama 2 paper Table 1 marks all Llama 1 models, including 65B, as not using GQA."
+    },
+    {
+      "record_id": "mixtral-8x22b",
+      "path": "date",
+      "existed": true,
+      "before": "2024-01-08",
+      "after": "2024-04-17",
+      "sources": [
+        "https://mistral.ai/news/mixtral-8x22b",
+        "https://docs.mistral.ai/models/mixtral-8x22b-0-1-0-3"
+      ],
+      "reason": "Official announcement/documentation date, not first base-weight availability."
+    },
+    {
+      "record_id": "mixtral-8x22b",
+      "path": "date_basis",
+      "existed": false,
+      "before": null,
+      "after": "official_announcement",
+      "sources": [
+        "https://mistral.ai/news/mixtral-8x22b"
+      ],
+      "reason": "Disambiguate announcement from the earlier base-weight publication."
+    },
+    {
+      "record_id": "mixtral-8x22b",
+      "path": "date_note",
+      "existed": false,
+      "before": null,
+      "after": "Official announcement: 2024-04-17. Earlier base weights circulated in April; first-weight publication is not verified by this correction.",
+      "sources": [
+        "https://mistral.ai/news/mixtral-8x22b",
+        "https://docs.mistral.ai/models/mixtral-8x22b-0-1-0-3"
+      ],
+      "reason": "Do not conflate announcement and initial weight availability."
+    },
+    {
+      "record_id": "chinchilla-2022",
+      "path": "arch",
+      "existed": true,
+      "before": "Dense • GQA precursor",
+      "after": "Dense",
+      "sources": [
+        "https://arxiv.org/pdf/2203.15556"
+      ],
+      "reason": "Remove the unsupported GQA-precursor label; the paper specifies the Gopher architecture and Table 4."
+    },
+    {
+      "record_id": "glm-5-3-flash",
+      "path": "math_tricks.rms_norm_eps",
+      "existed": true,
+      "before": null,
+      "after": 0.00001,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.rms_norm_eps; not independent upstream verification."
+    },
+    {
+      "record_id": "glm-5-3-flash",
+      "path": "math_tricks.attention_dropout",
+      "existed": true,
+      "before": null,
+      "after": 0,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.attention_dropout; not independent upstream verification."
+    },
+    {
+      "record_id": "glm-5-3-flash",
+      "path": "math_tricks.initializer_range",
+      "existed": true,
+      "before": null,
+      "after": 0.02,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.initializer_range; not independent upstream verification."
+    },
+    {
+      "record_id": "glm-5-3-flash",
+      "path": "math_tricks.hidden_act",
+      "existed": true,
+      "before": null,
+      "after": "silu",
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.hidden_act; not independent upstream verification."
+    },
+    {
+      "record_id": "glm-5-3-flash",
+      "path": "math_tricks.attention_bias",
+      "existed": true,
+      "before": null,
+      "after": false,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.attention_bias; not independent upstream verification."
+    },
+    {
+      "record_id": "glm-5-3-flash",
+      "path": "math_tricks.attention_bias_display",
+      "existed": true,
+      "before": "undisclosed",
+      "after": "no bias",
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.attention_bias; not independent upstream verification."
+    },
+    {
+      "record_id": "glm-5-3-flash",
+      "path": "yichen.bias_display",
+      "existed": true,
+      "before": "undisclosed",
+      "after": "no bias",
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.attention_bias; not independent upstream verification."
+    },
+    {
+      "record_id": "qwen3-8-flash-next-125b-a6b",
+      "path": "math_tricks.rms_norm_eps",
+      "existed": true,
+      "before": null,
+      "after": 0.000001,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.rms_norm_eps; not independent upstream verification."
+    },
+    {
+      "record_id": "qwen3-8-flash-next-125b-a6b",
+      "path": "math_tricks.attention_dropout",
+      "existed": true,
+      "before": null,
+      "after": 0,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.attention_dropout; not independent upstream verification."
+    },
+    {
+      "record_id": "qwen3-8-flash-next-125b-a6b",
+      "path": "math_tricks.initializer_range",
+      "existed": true,
+      "before": null,
+      "after": 0.02,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.initializer_range; not independent upstream verification."
+    },
+    {
+      "record_id": "qwen3-8-flash-next-125b-a6b",
+      "path": "math_tricks.hidden_act",
+      "existed": true,
+      "before": null,
+      "after": "silu",
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.hidden_act; not independent upstream verification."
+    },
+    {
+      "record_id": "qwen3-8-flash-next-125b-a6b",
+      "path": "math_tricks.attention_bias",
+      "existed": true,
+      "before": null,
+      "after": false,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.attention_bias; not independent upstream verification."
+    },
+    {
+      "record_id": "qwen3-8-flash-next-125b-a6b",
+      "path": "math_tricks.attention_bias_display",
+      "existed": true,
+      "before": "undisclosed",
+      "after": "no bias",
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.attention_bias; not independent upstream verification."
+    },
+    {
+      "record_id": "qwen3-8-flash-next-125b-a6b",
+      "path": "yichen.bias_display",
+      "existed": true,
+      "before": "undisclosed",
+      "after": "no bias",
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.attention_bias; not independent upstream verification."
+    },
+    {
+      "record_id": "ornith-1-5-35b-a3b",
+      "path": "architecture.head_dim",
+      "existed": true,
+      "before": 128,
+      "after": 256,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.head_dim; not independent upstream verification."
+    },
+    {
+      "record_id": "ornith-1-5-35b-a3b",
+      "path": "architecture.hidden_size_source",
+      "existed": true,
+      "before": "hidden_size",
+      "after": "text_config.hidden_size",
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Record the language-config path, not a vision-config field."
+    },
+    {
+      "record_id": "ornith-1-5-35b-a3b",
+      "path": "math_tricks.rms_norm_eps",
+      "existed": true,
+      "before": null,
+      "after": 0.000001,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.rms_norm_eps; not independent upstream verification."
+    },
+    {
+      "record_id": "ornith-1-5-35b-a3b",
+      "path": "math_tricks.attention_dropout",
+      "existed": true,
+      "before": null,
+      "after": 0,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.attention_dropout; not independent upstream verification."
+    },
+    {
+      "record_id": "ornith-1-5-35b-a3b",
+      "path": "math_tricks.initializer_range",
+      "existed": true,
+      "before": null,
+      "after": 0.02,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.initializer_range; not independent upstream verification."
+    },
+    {
+      "record_id": "ornith-1-5-35b-a3b",
+      "path": "math_tricks.hidden_act",
+      "existed": true,
+      "before": null,
+      "after": "silu",
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.hidden_act; not independent upstream verification."
+    },
+    {
+      "record_id": "ornith-1-5-35b-a3b",
+      "path": "math_tricks.attention_bias",
+      "existed": true,
+      "before": null,
+      "after": false,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.attention_bias; not independent upstream verification."
+    },
+    {
+      "record_id": "ornith-1-5-35b-a3b",
+      "path": "math_tricks.attention_bias_display",
+      "existed": true,
+      "before": "undisclosed",
+      "after": "no bias",
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.attention_bias; not independent upstream verification."
+    },
+    {
+      "record_id": "ornith-1-5-35b-a3b",
+      "path": "yichen.bias_display",
+      "existed": true,
+      "before": "undisclosed",
+      "after": "no bias",
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.attention_bias; not independent upstream verification."
+    },
+    {
+      "record_id": "qwen3-8-27b",
+      "path": "math_tricks.rms_norm_eps",
+      "existed": true,
+      "before": null,
+      "after": 0.000001,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.rms_norm_eps; not independent upstream verification."
+    },
+    {
+      "record_id": "qwen3-8-27b",
+      "path": "math_tricks.attention_dropout",
+      "existed": true,
+      "before": null,
+      "after": 0,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.attention_dropout; not independent upstream verification."
+    },
+    {
+      "record_id": "qwen3-8-27b",
+      "path": "math_tricks.initializer_range",
+      "existed": true,
+      "before": null,
+      "after": 0.02,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.initializer_range; not independent upstream verification."
+    },
+    {
+      "record_id": "qwen3-8-27b",
+      "path": "math_tricks.hidden_act",
+      "existed": true,
+      "before": null,
+      "after": "silu",
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.hidden_act; not independent upstream verification."
+    },
+    {
+      "record_id": "qwen3-8-27b",
+      "path": "math_tricks.attention_bias",
+      "existed": true,
+      "before": null,
+      "after": false,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.attention_bias; not independent upstream verification."
+    },
+    {
+      "record_id": "qwen3-8-27b",
+      "path": "math_tricks.attention_bias_display",
+      "existed": true,
+      "before": "undisclosed",
+      "after": "no bias",
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.attention_bias; not independent upstream verification."
+    },
+    {
+      "record_id": "qwen3-8-27b",
+      "path": "yichen.bias_display",
+      "existed": true,
+      "before": "undisclosed",
+      "after": "no bias",
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.attention_bias; not independent upstream verification."
+    },
+    {
+      "record_id": "muse-glimmer-30b",
+      "path": "math_tricks.rms_norm_eps",
+      "existed": true,
+      "before": null,
+      "after": 0.00001,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.rms_norm_eps; not independent upstream verification."
+    },
+    {
+      "record_id": "muse-glimmer-30b",
+      "path": "math_tricks.attention_dropout",
+      "existed": true,
+      "before": null,
+      "after": 0,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.attention_dropout; not independent upstream verification."
+    },
+    {
+      "record_id": "muse-glimmer-30b",
+      "path": "math_tricks.initializer_range",
+      "existed": true,
+      "before": null,
+      "after": 0.02,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.initializer_range; not independent upstream verification."
+    },
+    {
+      "record_id": "muse-glimmer-30b",
+      "path": "math_tricks.attention_bias",
+      "existed": true,
+      "before": null,
+      "after": false,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.attention_bias; not independent upstream verification."
+    },
+    {
+      "record_id": "muse-glimmer-30b",
+      "path": "math_tricks.tie_word_embeddings",
+      "existed": true,
+      "before": null,
+      "after": false,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.tie_word_embeddings; not independent upstream verification."
+    },
+    {
+      "record_id": "muse-glimmer-30b",
+      "path": "math_tricks.attention_bias_display",
+      "existed": true,
+      "before": "undisclosed",
+      "after": "no bias",
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.attention_bias; not independent upstream verification."
+    },
+    {
+      "record_id": "muse-glimmer-30b",
+      "path": "yichen.bias_display",
+      "existed": true,
+      "before": "undisclosed",
+      "after": "no bias",
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.attention_bias; not independent upstream verification."
+    },
+    {
+      "record_id": "muse-glimmer-30b",
+      "path": "math_tricks.tie_display",
+      "existed": true,
+      "before": "undisclosed",
+      "after": "untied",
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.tie_word_embeddings; not independent upstream verification."
+    },
+    {
+      "record_id": "muse-glimmer-30b",
+      "path": "yichen.tied_display",
+      "existed": true,
+      "before": "undisclosed",
+      "after": "untied",
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.tie_word_embeddings; not independent upstream verification."
+    },
+    {
+      "record_id": "kimi-k3",
+      "path": "math_tricks.rms_norm_eps",
+      "existed": true,
+      "before": null,
+      "after": 0.00001,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.rms_norm_eps; not independent upstream verification."
+    },
+    {
+      "record_id": "kimi-k3",
+      "path": "math_tricks.initializer_range",
+      "existed": true,
+      "before": null,
+      "after": 0.02,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.initializer_range; not independent upstream verification."
+    },
+    {
+      "record_id": "kimi-k3",
+      "path": "math_tricks.hidden_act",
+      "existed": true,
+      "before": null,
+      "after": "situ",
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.hidden_act; not independent upstream verification."
+    },
+    {
+      "record_id": "kimi-k3",
+      "path": "architecture.qk_nope_head_dim",
+      "existed": false,
+      "before": null,
+      "after": 128,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.qk_nope_head_dim; not independent upstream verification."
+    },
+    {
+      "record_id": "kimi-k3",
+      "path": "architecture.qk_rope_head_dim",
+      "existed": false,
+      "before": null,
+      "after": 64,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.qk_rope_head_dim; not independent upstream verification."
+    },
+    {
+      "record_id": "kimi-k3",
+      "path": "architecture.v_head_dim",
+      "existed": false,
+      "before": null,
+      "after": 128,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.v_head_dim; not independent upstream verification."
+    },
+    {
+      "record_id": "inkling",
+      "path": "math_tricks.rms_norm_eps",
+      "existed": true,
+      "before": null,
+      "after": 0.000001,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.rms_norm_eps; not independent upstream verification."
+    },
+    {
+      "record_id": "minimax-m3-428b",
+      "path": "math_tricks.rms_norm_eps",
+      "existed": true,
+      "before": null,
+      "after": 0.000001,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.rms_norm_eps; not independent upstream verification."
+    },
+    {
+      "record_id": "minimax-m3-428b",
+      "path": "math_tricks.rope_theta",
+      "existed": true,
+      "before": null,
+      "after": 5000000,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.rope_theta; not independent upstream verification."
+    },
+    {
+      "record_id": "minimax-m3-428b",
+      "path": "math_tricks.hidden_act",
+      "existed": true,
+      "before": null,
+      "after": "swigluoai",
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.hidden_act; not independent upstream verification."
+    },
+    {
+      "record_id": "minimax-m3-428b",
+      "path": "math_tricks.tie_word_embeddings",
+      "existed": true,
+      "before": null,
+      "after": false,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.tie_word_embeddings; not independent upstream verification."
+    },
+    {
+      "record_id": "minimax-m3-428b",
+      "path": "math_tricks.tie_display",
+      "existed": true,
+      "before": "undisclosed",
+      "after": "untied",
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.tie_word_embeddings; not independent upstream verification."
+    },
+    {
+      "record_id": "minimax-m3-428b",
+      "path": "yichen.tied_display",
+      "existed": true,
+      "before": "undisclosed",
+      "after": "untied",
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.tie_word_embeddings; not independent upstream verification."
+    },
+    {
+      "record_id": "kimi-k2-7-code",
+      "path": "math_tricks.rms_norm_eps",
+      "existed": true,
+      "before": null,
+      "after": 0.00001,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.rms_norm_eps; not independent upstream verification."
+    },
+    {
+      "record_id": "kimi-k2-7-code",
+      "path": "math_tricks.rope_theta",
+      "existed": true,
+      "before": null,
+      "after": 50000,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.rope_theta; not independent upstream verification."
+    },
+    {
+      "record_id": "kimi-k2-7-code",
+      "path": "math_tricks.attention_dropout",
+      "existed": true,
+      "before": null,
+      "after": 0,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.attention_dropout; not independent upstream verification."
+    },
+    {
+      "record_id": "kimi-k2-7-code",
+      "path": "math_tricks.initializer_range",
+      "existed": true,
+      "before": null,
+      "after": 0.02,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.initializer_range; not independent upstream verification."
+    },
+    {
+      "record_id": "kimi-k2-7-code",
+      "path": "math_tricks.hidden_act",
+      "existed": true,
+      "before": null,
+      "after": "silu",
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.hidden_act; not independent upstream verification."
+    },
+    {
+      "record_id": "kimi-k2-7-code",
+      "path": "math_tricks.attention_bias",
+      "existed": true,
+      "before": null,
+      "after": false,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.attention_bias; not independent upstream verification."
+    },
+    {
+      "record_id": "kimi-k2-7-code",
+      "path": "math_tricks.attention_bias_display",
+      "existed": true,
+      "before": "undisclosed",
+      "after": "no bias",
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.attention_bias; not independent upstream verification."
+    },
+    {
+      "record_id": "kimi-k2-7-code",
+      "path": "yichen.bias_display",
+      "existed": true,
+      "before": "undisclosed",
+      "after": "no bias",
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.attention_bias; not independent upstream verification."
+    },
+    {
+      "record_id": "kimi-k2-7-code",
+      "path": "architecture.qk_nope_head_dim",
+      "existed": false,
+      "before": null,
+      "after": 128,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.qk_nope_head_dim; not independent upstream verification."
+    },
+    {
+      "record_id": "kimi-k2-7-code",
+      "path": "architecture.qk_rope_head_dim",
+      "existed": false,
+      "before": null,
+      "after": 64,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.qk_rope_head_dim; not independent upstream verification."
+    },
+    {
+      "record_id": "kimi-k2-7-code",
+      "path": "architecture.v_head_dim",
+      "existed": false,
+      "before": null,
+      "after": 128,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.v_head_dim; not independent upstream verification."
+    },
+    {
+      "record_id": "gemma-4-12b",
+      "path": "math_tricks.rms_norm_eps",
+      "existed": true,
+      "before": null,
+      "after": 0.000001,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.rms_norm_eps; not independent upstream verification."
+    },
+    {
+      "record_id": "gemma-4-12b",
+      "path": "math_tricks.attention_dropout",
+      "existed": true,
+      "before": null,
+      "after": 0,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.attention_dropout; not independent upstream verification."
+    },
+    {
+      "record_id": "gemma-4-12b",
+      "path": "math_tricks.attention_bias",
+      "existed": true,
+      "before": null,
+      "after": false,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.attention_bias; not independent upstream verification."
+    },
+    {
+      "record_id": "gemma-4-12b",
+      "path": "math_tricks.attention_bias_display",
+      "existed": true,
+      "before": "undisclosed",
+      "after": "no bias",
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.attention_bias; not independent upstream verification."
+    },
+    {
+      "record_id": "gemma-4-12b",
+      "path": "yichen.bias_display",
+      "existed": true,
+      "before": "undisclosed",
+      "after": "no bias",
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.attention_bias; not independent upstream verification."
+    },
+    {
+      "record_id": "command-a-218b-a25b",
+      "path": "math_tricks.rope_theta",
+      "existed": true,
+      "before": null,
+      "after": 50000,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.rope_theta; not independent upstream verification."
+    },
+    {
+      "record_id": "command-a-218b-a25b",
+      "path": "math_tricks.attention_dropout",
+      "existed": true,
+      "before": null,
+      "after": 0,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.attention_dropout; not independent upstream verification."
+    },
+    {
+      "record_id": "command-a-218b-a25b",
+      "path": "math_tricks.initializer_range",
+      "existed": true,
+      "before": null,
+      "after": 0.02,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.initializer_range; not independent upstream verification."
+    },
+    {
+      "record_id": "command-a-218b-a25b",
+      "path": "math_tricks.hidden_act",
+      "existed": true,
+      "before": null,
+      "after": "silu",
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.hidden_act; not independent upstream verification."
+    },
+    {
+      "record_id": "command-a-218b-a25b",
+      "path": "math_tricks.attention_bias",
+      "existed": true,
+      "before": null,
+      "after": false,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.attention_bias; not independent upstream verification."
+    },
+    {
+      "record_id": "command-a-218b-a25b",
+      "path": "math_tricks.attention_bias_display",
+      "existed": true,
+      "before": "undisclosed",
+      "after": "no bias",
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.attention_bias; not independent upstream verification."
+    },
+    {
+      "record_id": "command-a-218b-a25b",
+      "path": "yichen.bias_display",
+      "existed": true,
+      "before": "undisclosed",
+      "after": "no bias",
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.attention_bias; not independent upstream verification."
+    },
+    {
+      "record_id": "qwen3-6-35b-a3b",
+      "path": "math_tricks.rms_norm_eps",
+      "existed": true,
+      "before": null,
+      "after": 0.000001,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.rms_norm_eps; not independent upstream verification."
+    },
+    {
+      "record_id": "qwen3-6-35b-a3b",
+      "path": "math_tricks.attention_dropout",
+      "existed": true,
+      "before": null,
+      "after": 0,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.attention_dropout; not independent upstream verification."
+    },
+    {
+      "record_id": "qwen3-6-35b-a3b",
+      "path": "math_tricks.initializer_range",
+      "existed": true,
+      "before": null,
+      "after": 0.02,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.initializer_range; not independent upstream verification."
+    },
+    {
+      "record_id": "qwen3-6-35b-a3b",
+      "path": "math_tricks.hidden_act",
+      "existed": true,
+      "before": null,
+      "after": "silu",
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.hidden_act; not independent upstream verification."
+    },
+    {
+      "record_id": "qwen3-6-35b-a3b",
+      "path": "math_tricks.attention_bias",
+      "existed": true,
+      "before": null,
+      "after": false,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.attention_bias; not independent upstream verification."
+    },
+    {
+      "record_id": "qwen3-6-35b-a3b",
+      "path": "math_tricks.attention_bias_display",
+      "existed": true,
+      "before": "undisclosed",
+      "after": "no bias",
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.attention_bias; not independent upstream verification."
+    },
+    {
+      "record_id": "qwen3-6-35b-a3b",
+      "path": "yichen.bias_display",
+      "existed": true,
+      "before": "undisclosed",
+      "after": "no bias",
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.attention_bias; not independent upstream verification."
+    },
+    {
+      "record_id": "qwen3-6-27b",
+      "path": "math_tricks.rms_norm_eps",
+      "existed": true,
+      "before": null,
+      "after": 0.000001,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.rms_norm_eps; not independent upstream verification."
+    },
+    {
+      "record_id": "qwen3-6-27b",
+      "path": "math_tricks.attention_dropout",
+      "existed": true,
+      "before": null,
+      "after": 0,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.attention_dropout; not independent upstream verification."
+    },
+    {
+      "record_id": "qwen3-6-27b",
+      "path": "math_tricks.initializer_range",
+      "existed": true,
+      "before": null,
+      "after": 0.02,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.initializer_range; not independent upstream verification."
+    },
+    {
+      "record_id": "qwen3-6-27b",
+      "path": "math_tricks.hidden_act",
+      "existed": true,
+      "before": null,
+      "after": "silu",
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.hidden_act; not independent upstream verification."
+    },
+    {
+      "record_id": "qwen3-6-27b",
+      "path": "math_tricks.attention_bias",
+      "existed": true,
+      "before": null,
+      "after": false,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.attention_bias; not independent upstream verification."
+    },
+    {
+      "record_id": "qwen3-6-27b",
+      "path": "math_tricks.attention_bias_display",
+      "existed": true,
+      "before": "undisclosed",
+      "after": "no bias",
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.attention_bias; not independent upstream verification."
+    },
+    {
+      "record_id": "qwen3-6-27b",
+      "path": "yichen.bias_display",
+      "existed": true,
+      "before": "undisclosed",
+      "after": "no bias",
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.attention_bias; not independent upstream verification."
+    },
+    {
+      "record_id": "kimi-k2-6",
+      "path": "math_tricks.rms_norm_eps",
+      "existed": true,
+      "before": null,
+      "after": 0.00001,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.rms_norm_eps; not independent upstream verification."
+    },
+    {
+      "record_id": "kimi-k2-6",
+      "path": "math_tricks.rope_theta",
+      "existed": true,
+      "before": null,
+      "after": 50000,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.rope_theta; not independent upstream verification."
+    },
+    {
+      "record_id": "kimi-k2-6",
+      "path": "math_tricks.attention_dropout",
+      "existed": true,
+      "before": null,
+      "after": 0,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.attention_dropout; not independent upstream verification."
+    },
+    {
+      "record_id": "kimi-k2-6",
+      "path": "math_tricks.initializer_range",
+      "existed": true,
+      "before": null,
+      "after": 0.02,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.initializer_range; not independent upstream verification."
+    },
+    {
+      "record_id": "kimi-k2-6",
+      "path": "math_tricks.hidden_act",
+      "existed": true,
+      "before": null,
+      "after": "silu",
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.hidden_act; not independent upstream verification."
+    },
+    {
+      "record_id": "kimi-k2-6",
+      "path": "math_tricks.attention_bias",
+      "existed": true,
+      "before": null,
+      "after": false,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.attention_bias; not independent upstream verification."
+    },
+    {
+      "record_id": "kimi-k2-6",
+      "path": "math_tricks.attention_bias_display",
+      "existed": true,
+      "before": "undisclosed",
+      "after": "no bias",
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.attention_bias; not independent upstream verification."
+    },
+    {
+      "record_id": "kimi-k2-6",
+      "path": "yichen.bias_display",
+      "existed": true,
+      "before": "undisclosed",
+      "after": "no bias",
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.attention_bias; not independent upstream verification."
+    },
+    {
+      "record_id": "kimi-k2-6",
+      "path": "architecture.qk_nope_head_dim",
+      "existed": false,
+      "before": null,
+      "after": 128,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.qk_nope_head_dim; not independent upstream verification."
+    },
+    {
+      "record_id": "kimi-k2-6",
+      "path": "architecture.qk_rope_head_dim",
+      "existed": false,
+      "before": null,
+      "after": 64,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.qk_rope_head_dim; not independent upstream verification."
+    },
+    {
+      "record_id": "kimi-k2-6",
+      "path": "architecture.v_head_dim",
+      "existed": false,
+      "before": null,
+      "after": 128,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.v_head_dim; not independent upstream verification."
+    },
+    {
+      "record_id": "gemma-4-31b",
+      "path": "math_tricks.rms_norm_eps",
+      "existed": true,
+      "before": null,
+      "after": 0.000001,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.rms_norm_eps; not independent upstream verification."
+    },
+    {
+      "record_id": "gemma-4-31b",
+      "path": "math_tricks.attention_dropout",
+      "existed": true,
+      "before": null,
+      "after": 0,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.attention_dropout; not independent upstream verification."
+    },
+    {
+      "record_id": "gemma-4-31b",
+      "path": "math_tricks.attention_bias",
+      "existed": true,
+      "before": null,
+      "after": false,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.attention_bias; not independent upstream verification."
+    },
+    {
+      "record_id": "gemma-4-31b",
+      "path": "math_tricks.attention_bias_display",
+      "existed": true,
+      "before": "undisclosed",
+      "after": "no bias",
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.attention_bias; not independent upstream verification."
+    },
+    {
+      "record_id": "gemma-4-31b",
+      "path": "yichen.bias_display",
+      "existed": true,
+      "before": "undisclosed",
+      "after": "no bias",
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.attention_bias; not independent upstream verification."
+    },
+    {
+      "record_id": "gemma-4-26b-a4b",
+      "path": "math_tricks.rms_norm_eps",
+      "existed": true,
+      "before": null,
+      "after": 0.000001,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.rms_norm_eps; not independent upstream verification."
+    },
+    {
+      "record_id": "gemma-4-26b-a4b",
+      "path": "math_tricks.attention_dropout",
+      "existed": true,
+      "before": null,
+      "after": 0,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.attention_dropout; not independent upstream verification."
+    },
+    {
+      "record_id": "gemma-4-26b-a4b",
+      "path": "math_tricks.attention_bias",
+      "existed": true,
+      "before": null,
+      "after": false,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.attention_bias; not independent upstream verification."
+    },
+    {
+      "record_id": "gemma-4-26b-a4b",
+      "path": "math_tricks.attention_bias_display",
+      "existed": true,
+      "before": "undisclosed",
+      "after": "no bias",
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.attention_bias; not independent upstream verification."
+    },
+    {
+      "record_id": "gemma-4-26b-a4b",
+      "path": "yichen.bias_display",
+      "existed": true,
+      "before": "undisclosed",
+      "after": "no bias",
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.attention_bias; not independent upstream verification."
+    },
+    {
+      "record_id": "gemma-4-e4b",
+      "path": "math_tricks.rms_norm_eps",
+      "existed": true,
+      "before": null,
+      "after": 0.000001,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.rms_norm_eps; not independent upstream verification."
+    },
+    {
+      "record_id": "gemma-4-e4b",
+      "path": "math_tricks.attention_dropout",
+      "existed": true,
+      "before": null,
+      "after": 0,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.attention_dropout; not independent upstream verification."
+    },
+    {
+      "record_id": "gemma-4-e4b",
+      "path": "math_tricks.attention_bias",
+      "existed": true,
+      "before": null,
+      "after": false,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.attention_bias; not independent upstream verification."
+    },
+    {
+      "record_id": "gemma-4-e4b",
+      "path": "math_tricks.attention_bias_display",
+      "existed": true,
+      "before": "undisclosed",
+      "after": "no bias",
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.attention_bias; not independent upstream verification."
+    },
+    {
+      "record_id": "gemma-4-e4b",
+      "path": "yichen.bias_display",
+      "existed": true,
+      "before": "undisclosed",
+      "after": "no bias",
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.attention_bias; not independent upstream verification."
+    },
+    {
+      "record_id": "gemma-4-e2b",
+      "path": "math_tricks.rms_norm_eps",
+      "existed": true,
+      "before": null,
+      "after": 0.000001,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.rms_norm_eps; not independent upstream verification."
+    },
+    {
+      "record_id": "gemma-4-e2b",
+      "path": "math_tricks.attention_dropout",
+      "existed": true,
+      "before": null,
+      "after": 0,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.attention_dropout; not independent upstream verification."
+    },
+    {
+      "record_id": "gemma-4-e2b",
+      "path": "math_tricks.attention_bias",
+      "existed": true,
+      "before": null,
+      "after": false,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.attention_bias; not independent upstream verification."
+    },
+    {
+      "record_id": "gemma-4-e2b",
+      "path": "math_tricks.attention_bias_display",
+      "existed": true,
+      "before": "undisclosed",
+      "after": "no bias",
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.attention_bias; not independent upstream verification."
+    },
+    {
+      "record_id": "gemma-4-e2b",
+      "path": "yichen.bias_display",
+      "existed": true,
+      "before": "undisclosed",
+      "after": "no bias",
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.attention_bias; not independent upstream verification."
+    },
+    {
+      "record_id": "mistral-small-4",
+      "path": "math_tricks.rms_norm_eps",
+      "existed": true,
+      "before": null,
+      "after": 0.000001,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.rms_norm_eps; not independent upstream verification."
+    },
+    {
+      "record_id": "mistral-small-4",
+      "path": "math_tricks.attention_dropout",
+      "existed": true,
+      "before": null,
+      "after": 0,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.attention_dropout; not independent upstream verification."
+    },
+    {
+      "record_id": "mistral-small-4",
+      "path": "math_tricks.initializer_range",
+      "existed": true,
+      "before": null,
+      "after": 0.02,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.initializer_range; not independent upstream verification."
+    },
+    {
+      "record_id": "mistral-small-4",
+      "path": "math_tricks.hidden_act",
+      "existed": true,
+      "before": null,
+      "after": "silu",
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.hidden_act; not independent upstream verification."
+    },
+    {
+      "record_id": "mistral-small-4",
+      "path": "math_tricks.attention_bias",
+      "existed": true,
+      "before": null,
+      "after": false,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.attention_bias; not independent upstream verification."
+    },
+    {
+      "record_id": "mistral-small-4",
+      "path": "math_tricks.attention_bias_display",
+      "existed": true,
+      "before": "undisclosed",
+      "after": "no bias",
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.attention_bias; not independent upstream verification."
+    },
+    {
+      "record_id": "mistral-small-4",
+      "path": "yichen.bias_display",
+      "existed": true,
+      "before": "undisclosed",
+      "after": "no bias",
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.attention_bias; not independent upstream verification."
+    },
+    {
+      "record_id": "qwen3-5-397b",
+      "path": "math_tricks.rms_norm_eps",
+      "existed": true,
+      "before": null,
+      "after": 0.000001,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.rms_norm_eps; not independent upstream verification."
+    },
+    {
+      "record_id": "qwen3-5-397b",
+      "path": "math_tricks.attention_dropout",
+      "existed": true,
+      "before": null,
+      "after": 0,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.attention_dropout; not independent upstream verification."
+    },
+    {
+      "record_id": "qwen3-5-397b",
+      "path": "math_tricks.initializer_range",
+      "existed": true,
+      "before": null,
+      "after": 0.02,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.initializer_range; not independent upstream verification."
+    },
+    {
+      "record_id": "qwen3-5-397b",
+      "path": "math_tricks.hidden_act",
+      "existed": true,
+      "before": null,
+      "after": "silu",
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.hidden_act; not independent upstream verification."
+    },
+    {
+      "record_id": "qwen3-5-397b",
+      "path": "math_tricks.attention_bias",
+      "existed": true,
+      "before": null,
+      "after": false,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.attention_bias; not independent upstream verification."
+    },
+    {
+      "record_id": "qwen3-5-397b",
+      "path": "math_tricks.attention_bias_display",
+      "existed": true,
+      "before": "undisclosed",
+      "after": "no bias",
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.attention_bias; not independent upstream verification."
+    },
+    {
+      "record_id": "qwen3-5-397b",
+      "path": "yichen.bias_display",
+      "existed": true,
+      "before": "undisclosed",
+      "after": "no bias",
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.attention_bias; not independent upstream verification."
+    },
+    {
+      "record_id": "longcat-flash-lite-68-5b-a3b",
+      "path": "architecture.head_dim",
+      "existed": true,
+      "before": 96,
+      "after": null,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "MLA has separate query/key/value dimensions; hidden_size/heads is not an explicit common head dimension."
+    },
+    {
+      "record_id": "longcat-flash-lite-68-5b-a3b",
+      "path": "architecture.qk_nope_head_dim",
+      "existed": false,
+      "before": null,
+      "after": 128,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.qk_nope_head_dim; not independent upstream verification."
+    },
+    {
+      "record_id": "longcat-flash-lite-68-5b-a3b",
+      "path": "architecture.qk_rope_head_dim",
+      "existed": false,
+      "before": null,
+      "after": 64,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.qk_rope_head_dim; not independent upstream verification."
+    },
+    {
+      "record_id": "longcat-flash-lite-68-5b-a3b",
+      "path": "architecture.v_head_dim",
+      "existed": false,
+      "before": null,
+      "after": 128,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.v_head_dim; not independent upstream verification."
+    },
+    {
+      "record_id": "kimi-k2-5",
+      "path": "math_tricks.rms_norm_eps",
+      "existed": true,
+      "before": null,
+      "after": 0.00001,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.rms_norm_eps; not independent upstream verification."
+    },
+    {
+      "record_id": "kimi-k2-5",
+      "path": "math_tricks.rope_theta",
+      "existed": true,
+      "before": null,
+      "after": 50000,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.rope_theta; not independent upstream verification."
+    },
+    {
+      "record_id": "kimi-k2-5",
+      "path": "math_tricks.attention_dropout",
+      "existed": true,
+      "before": null,
+      "after": 0,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.attention_dropout; not independent upstream verification."
+    },
+    {
+      "record_id": "kimi-k2-5",
+      "path": "math_tricks.initializer_range",
+      "existed": true,
+      "before": null,
+      "after": 0.02,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.initializer_range; not independent upstream verification."
+    },
+    {
+      "record_id": "kimi-k2-5",
+      "path": "math_tricks.hidden_act",
+      "existed": true,
+      "before": null,
+      "after": "silu",
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.hidden_act; not independent upstream verification."
+    },
+    {
+      "record_id": "kimi-k2-5",
+      "path": "math_tricks.attention_bias",
+      "existed": true,
+      "before": null,
+      "after": false,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.attention_bias; not independent upstream verification."
+    },
+    {
+      "record_id": "kimi-k2-5",
+      "path": "math_tricks.attention_bias_display",
+      "existed": true,
+      "before": "undisclosed",
+      "after": "no bias",
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.attention_bias; not independent upstream verification."
+    },
+    {
+      "record_id": "kimi-k2-5",
+      "path": "yichen.bias_display",
+      "existed": true,
+      "before": "undisclosed",
+      "after": "no bias",
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.attention_bias; not independent upstream verification."
+    },
+    {
+      "record_id": "kimi-k2-5",
+      "path": "architecture.qk_nope_head_dim",
+      "existed": false,
+      "before": null,
+      "after": 128,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.qk_nope_head_dim; not independent upstream verification."
+    },
+    {
+      "record_id": "kimi-k2-5",
+      "path": "architecture.qk_rope_head_dim",
+      "existed": false,
+      "before": null,
+      "after": 64,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.qk_rope_head_dim; not independent upstream verification."
+    },
+    {
+      "record_id": "kimi-k2-5",
+      "path": "architecture.v_head_dim",
+      "existed": false,
+      "before": null,
+      "after": 128,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.v_head_dim; not independent upstream verification."
+    },
+    {
+      "record_id": "deepseek-v3-2",
+      "path": "architecture.head_dim",
+      "existed": true,
+      "before": 56,
+      "after": null,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "MLA has separate query/key/value dimensions; hidden_size/heads is not an explicit common head dimension."
+    },
+    {
+      "record_id": "deepseek-v3-2",
+      "path": "architecture.qk_nope_head_dim",
+      "existed": false,
+      "before": null,
+      "after": 128,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.qk_nope_head_dim; not independent upstream verification."
+    },
+    {
+      "record_id": "deepseek-v3-2",
+      "path": "architecture.qk_rope_head_dim",
+      "existed": false,
+      "before": null,
+      "after": 64,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.qk_rope_head_dim; not independent upstream verification."
+    },
+    {
+      "record_id": "deepseek-v3-2",
+      "path": "architecture.v_head_dim",
+      "existed": false,
+      "before": null,
+      "after": 128,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.v_head_dim; not independent upstream verification."
+    },
+    {
+      "record_id": "kimi-k2",
+      "path": "architecture.head_dim",
+      "existed": true,
+      "before": 112,
+      "after": null,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "MLA has separate query/key/value dimensions; hidden_size/heads is not an explicit common head dimension."
+    },
+    {
+      "record_id": "kimi-k2",
+      "path": "architecture.qk_nope_head_dim",
+      "existed": false,
+      "before": null,
+      "after": 128,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.qk_nope_head_dim; not independent upstream verification."
+    },
+    {
+      "record_id": "kimi-k2",
+      "path": "architecture.qk_rope_head_dim",
+      "existed": false,
+      "before": null,
+      "after": 64,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.qk_rope_head_dim; not independent upstream verification."
+    },
+    {
+      "record_id": "kimi-k2",
+      "path": "architecture.v_head_dim",
+      "existed": false,
+      "before": null,
+      "after": 128,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.v_head_dim; not independent upstream verification."
+    },
+    {
+      "record_id": "mistral-small-3-1-24b",
+      "path": "math_tricks.rms_norm_eps",
+      "existed": true,
+      "before": null,
+      "after": 0.00001,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.rms_norm_eps; not independent upstream verification."
+    },
+    {
+      "record_id": "mistral-small-3-1-24b",
+      "path": "math_tricks.rope_theta",
+      "existed": true,
+      "before": null,
+      "after": 1000000000,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.rope_theta; not independent upstream verification."
+    },
+    {
+      "record_id": "mistral-small-3-1-24b",
+      "path": "math_tricks.attention_dropout",
+      "existed": true,
+      "before": null,
+      "after": 0,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.attention_dropout; not independent upstream verification."
+    },
+    {
+      "record_id": "mistral-small-3-1-24b",
+      "path": "math_tricks.initializer_range",
+      "existed": true,
+      "before": null,
+      "after": 0.02,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.initializer_range; not independent upstream verification."
+    },
+    {
+      "record_id": "mistral-small-3-1-24b",
+      "path": "math_tricks.hidden_act",
+      "existed": true,
+      "before": null,
+      "after": "silu",
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.hidden_act; not independent upstream verification."
+    },
+    {
+      "record_id": "gemma-3-27b",
+      "path": "architecture.head_dim",
+      "existed": true,
+      "before": 168,
+      "after": 128,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.text_config.head_dim; not independent upstream verification."
+    },
+    {
+      "record_id": "gemma-3-27b",
+      "path": "architecture.hidden_size_source",
+      "existed": true,
+      "before": "hidden_size",
+      "after": "text_config.hidden_size",
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Record the language-config path, not a vision-config field."
+    },
+    {
+      "record_id": "deepseek-r1",
+      "path": "architecture.head_dim",
+      "existed": true,
+      "before": 56,
+      "after": null,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "MLA has separate query/key/value dimensions; hidden_size/heads is not an explicit common head dimension."
+    },
+    {
+      "record_id": "deepseek-r1",
+      "path": "architecture.qk_nope_head_dim",
+      "existed": false,
+      "before": null,
+      "after": 128,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.qk_nope_head_dim; not independent upstream verification."
+    },
+    {
+      "record_id": "deepseek-r1",
+      "path": "architecture.qk_rope_head_dim",
+      "existed": false,
+      "before": null,
+      "after": 64,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.qk_rope_head_dim; not independent upstream verification."
+    },
+    {
+      "record_id": "deepseek-r1",
+      "path": "architecture.v_head_dim",
+      "existed": false,
+      "before": null,
+      "after": 128,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.v_head_dim; not independent upstream verification."
+    },
+    {
+      "record_id": "deepseek-v3",
+      "path": "architecture.head_dim",
+      "existed": true,
+      "before": 56,
+      "after": null,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "MLA has separate query/key/value dimensions; hidden_size/heads is not an explicit common head dimension."
+    },
+    {
+      "record_id": "deepseek-v3",
+      "path": "architecture.qk_nope_head_dim",
+      "existed": false,
+      "before": null,
+      "after": 128,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.qk_nope_head_dim; not independent upstream verification."
+    },
+    {
+      "record_id": "deepseek-v3",
+      "path": "architecture.qk_rope_head_dim",
+      "existed": false,
+      "before": null,
+      "after": 64,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.qk_rope_head_dim; not independent upstream verification."
+    },
+    {
+      "record_id": "deepseek-v3",
+      "path": "architecture.v_head_dim",
+      "existed": false,
+      "before": null,
+      "after": 128,
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mechanical projection from preserved raw_config.v_head_dim; not independent upstream verification."
+    },
+    {
+      "record_id": "xlstm-7b",
+      "path": "architecture.num_hidden_layers",
+      "existed": true,
+      "before": null,
+      "after": 32,
+      "sources": [
+        "https://github.com/NX-AI/xlstm/blob/c98d429ad970d20e4fa77f5f7c4059f47e54c6c5/xlstm/xlstm_large/model.py",
+        "https://huggingface.co/NX-AI/xLSTM-7b/raw/main/config.json",
+        "https://arxiv.org/html/2503.13427v1"
+      ],
+      "reason": "xLSTM implementation/config: 32 recurrent blocks, dimension 4096, no rotary positional transform; gate biases differ from projection biases."
+    },
+    {
+      "record_id": "xlstm-7b",
+      "path": "architecture.hidden_size",
+      "existed": true,
+      "before": null,
+      "after": 4096,
+      "sources": [
+        "https://github.com/NX-AI/xlstm/blob/c98d429ad970d20e4fa77f5f7c4059f47e54c6c5/xlstm/xlstm_large/model.py",
+        "https://huggingface.co/NX-AI/xLSTM-7b/raw/main/config.json",
+        "https://arxiv.org/html/2503.13427v1"
+      ],
+      "reason": "xLSTM implementation/config: 32 recurrent blocks, dimension 4096, no rotary positional transform; gate biases differ from projection biases."
+    },
+    {
+      "record_id": "xlstm-7b",
+      "path": "architecture.hidden_size_source",
+      "existed": true,
+      "before": null,
+      "after": "embedding_dim",
+      "sources": [
+        "https://github.com/NX-AI/xlstm/blob/c98d429ad970d20e4fa77f5f7c4059f47e54c6c5/xlstm/xlstm_large/model.py",
+        "https://huggingface.co/NX-AI/xLSTM-7b/raw/main/config.json",
+        "https://arxiv.org/html/2503.13427v1"
+      ],
+      "reason": "xLSTM implementation/config: 32 recurrent blocks, dimension 4096, no rotary positional transform; gate biases differ from projection biases."
+    },
+    {
+      "record_id": "xlstm-7b",
+      "path": "architecture.layer_mix.total_layers",
+      "existed": true,
+      "before": null,
+      "after": 32,
+      "sources": [
+        "https://github.com/NX-AI/xlstm/blob/c98d429ad970d20e4fa77f5f7c4059f47e54c6c5/xlstm/xlstm_large/model.py",
+        "https://huggingface.co/NX-AI/xLSTM-7b/raw/main/config.json",
+        "https://arxiv.org/html/2503.13427v1"
+      ],
+      "reason": "xLSTM implementation/config: 32 recurrent blocks, dimension 4096, no rotary positional transform; gate biases differ from projection biases."
+    },
+    {
+      "record_id": "xlstm-7b",
+      "path": "architecture.recurrent_heads",
+      "existed": false,
+      "before": null,
+      "after": 8,
+      "sources": [
+        "https://github.com/NX-AI/xlstm/blob/c98d429ad970d20e4fa77f5f7c4059f47e54c6c5/xlstm/xlstm_large/model.py",
+        "https://huggingface.co/NX-AI/xLSTM-7b/raw/main/config.json",
+        "https://arxiv.org/html/2503.13427v1"
+      ],
+      "reason": "xLSTM implementation/config: 32 recurrent blocks, dimension 4096, no rotary positional transform; gate biases differ from projection biases."
+    },
+    {
+      "record_id": "xlstm-7b",
+      "path": "yichen.depth",
+      "existed": true,
+      "before": null,
+      "after": 32,
+      "sources": [
+        "https://github.com/NX-AI/xlstm/blob/c98d429ad970d20e4fa77f5f7c4059f47e54c6c5/xlstm/xlstm_large/model.py",
+        "https://huggingface.co/NX-AI/xLSTM-7b/raw/main/config.json",
+        "https://arxiv.org/html/2503.13427v1"
+      ],
+      "reason": "xLSTM implementation/config: 32 recurrent blocks, dimension 4096, no rotary positional transform; gate biases differ from projection biases."
+    },
+    {
+      "record_id": "xlstm-7b",
+      "path": "yichen.dim",
+      "existed": true,
+      "before": null,
+      "after": 4096,
+      "sources": [
+        "https://github.com/NX-AI/xlstm/blob/c98d429ad970d20e4fa77f5f7c4059f47e54c6c5/xlstm/xlstm_large/model.py",
+        "https://huggingface.co/NX-AI/xLSTM-7b/raw/main/config.json",
+        "https://arxiv.org/html/2503.13427v1"
+      ],
+      "reason": "xLSTM implementation/config: 32 recurrent blocks, dimension 4096, no rotary positional transform; gate biases differ from projection biases."
+    },
+    {
+      "record_id": "xlstm-7b",
+      "path": "yichen.norm",
+      "existed": true,
+      "before": "RMSNorm",
+      "after": "RMSNorm + head-wise LayerNorm",
+      "sources": [
+        "https://github.com/NX-AI/xlstm/blob/c98d429ad970d20e4fa77f5f7c4059f47e54c6c5/xlstm/xlstm_large/model.py",
+        "https://huggingface.co/NX-AI/xLSTM-7b/raw/main/config.json",
+        "https://arxiv.org/html/2503.13427v1"
+      ],
+      "reason": "xLSTM implementation/config: 32 recurrent blocks, dimension 4096, no rotary positional transform; gate biases differ from projection biases."
+    },
+    {
+      "record_id": "xlstm-7b",
+      "path": "yichen.pos_emb",
+      "existed": true,
+      "before": "RoPE",
+      "after": "None (recurrent)",
+      "sources": [
+        "https://github.com/NX-AI/xlstm/blob/c98d429ad970d20e4fa77f5f7c4059f47e54c6c5/xlstm/xlstm_large/model.py",
+        "https://huggingface.co/NX-AI/xLSTM-7b/raw/main/config.json",
+        "https://arxiv.org/html/2503.13427v1"
+      ],
+      "reason": "xLSTM implementation/config: 32 recurrent blocks, dimension 4096, no rotary positional transform; gate biases differ from projection biases."
+    },
+    {
+      "record_id": "xlstm-7b",
+      "path": "yichen.bias_display",
+      "existed": true,
+      "before": "undisclosed",
+      "after": "Mixed (gate biases)",
+      "sources": [
+        "https://github.com/NX-AI/xlstm/blob/c98d429ad970d20e4fa77f5f7c4059f47e54c6c5/xlstm/xlstm_large/model.py",
+        "https://huggingface.co/NX-AI/xLSTM-7b/raw/main/config.json",
+        "https://arxiv.org/html/2503.13427v1"
+      ],
+      "reason": "xLSTM implementation/config: 32 recurrent blocks, dimension 4096, no rotary positional transform; gate biases differ from projection biases."
+    },
+    {
+      "record_id": "xlstm-7b",
+      "path": "math_tricks.attention_bias_display",
+      "existed": true,
+      "before": "undisclosed",
+      "after": "not applicable",
+      "sources": [
+        "https://github.com/NX-AI/xlstm/blob/c98d429ad970d20e4fa77f5f7c4059f47e54c6c5/xlstm/xlstm_large/model.py",
+        "https://huggingface.co/NX-AI/xLSTM-7b/raw/main/config.json",
+        "https://arxiv.org/html/2503.13427v1"
+      ],
+      "reason": "xLSTM implementation/config: 32 recurrent blocks, dimension 4096, no rotary positional transform; gate biases differ from projection biases."
+    },
+    {
+      "record_id": "xlstm-7b",
+      "path": "math_tricks.hidden_act",
+      "existed": true,
+      "before": null,
+      "after": "silu",
+      "sources": [
+        "https://github.com/NX-AI/xlstm/blob/c98d429ad970d20e4fa77f5f7c4059f47e54c6c5/xlstm/xlstm_large/model.py",
+        "https://huggingface.co/NX-AI/xLSTM-7b/raw/main/config.json",
+        "https://arxiv.org/html/2503.13427v1"
+      ],
+      "reason": "xLSTM implementation/config: 32 recurrent blocks, dimension 4096, no rotary positional transform; gate biases differ from projection biases."
+    },
+    {
+      "record_id": "gemini-2023",
+      "path": "params",
+      "existed": true,
+      "before": "~1.5T est.",
+      "after": "Undisclosed",
+      "sources": [
+        "https://storage.googleapis.com/deepmind-media/gemini/gemini_1_report.pdf"
+      ],
+      "reason": "The report does not disclose an Ultra parameter count; the unsourced 1.5T estimate is not a specification."
+    },
+    {
+      "record_id": "gemini-2023",
+      "path": "arch",
+      "existed": true,
+      "before": "Dense hybrid • MHA",
+      "after": "Multimodal Transformer decoder; efficient attention (e.g. MQA)",
+      "sources": [
+        "https://storage.googleapis.com/deepmind-media/gemini/gemini_1_report.pdf"
+      ],
+      "reason": "Use family-level report wording, not an unsupported Dense hybrid / MHA classification."
+    },
+    {
+      "record_id": "gemini-2023",
+      "path": "note",
+      "existed": true,
+      "before": "Native multimodal, 1M in 1.5 Pro Feb 2024",
+      "after": "Gemini 1.0 supports a trained sequence length of 32,768 tokens. Gemini 1.5 long-context results refer to a different model generation.",
+      "sources": [
+        "https://storage.googleapis.com/deepmind-media/gemini/gemini_1_report.pdf"
+      ],
+      "reason": "Separate the 1.0 milestone from later family results."
+    },
+    {
+      "record_id": "dataset",
+      "path": "theory.literature",
+      "existed": true,
+      "before": [
+        {
+          "title": "Attention Is All You Need (2017)",
+          "url": "https://arxiv.org/abs/1706.03762"
+        },
+        {
+          "title": "Chinchilla Scaling Laws (2022)",
+          "url": "https://arxiv.org/abs/2203.15556"
+        },
+        {
+          "title": "Llama 3 Herd of Models (2024)",
+          "url": "https://arxiv.org/abs/2407.21783"
+        },
+        {
+          "title": "DeepSeek-V3 Technical Report (2024)",
+          "url": "https://arxiv.org/abs/2412.19437"
+        },
+        {
+          "title": "Mamba: Linear-Time SSM (2023)",
+          "url": "https://arxiv.org/abs/2312.00752"
+        },
+        {
+          "title": "Muon Optimizer (2024)",
+          "url": "https://arxiv.org/abs/2402.10002"
+        },
+        {
+          "title": "Test-Time Training (TTT, 2024)",
+          "url": "https://arxiv.org/abs/2407.01944"
+        },
+        {
+          "title": "Titans: Learning to Memorize at Test Time (2024)",
+          "url": "https://arxiv.org/abs/2501.00663"
+        }
+      ],
+      "after": [
+        {
+          "title": "Attention Is All You Need (2017)",
+          "url": "https://arxiv.org/abs/1706.03762"
+        },
+        {
+          "title": "Chinchilla Scaling Laws (2022)",
+          "url": "https://arxiv.org/abs/2203.15556"
+        },
+        {
+          "title": "Llama 3 Herd of Models (2024)",
+          "url": "https://arxiv.org/abs/2407.21783"
+        },
+        {
+          "title": "DeepSeek-V3 Technical Report (2024)",
+          "url": "https://arxiv.org/abs/2412.19437"
+        },
+        {
+          "title": "Mamba: Linear-Time SSM (2023)",
+          "url": "https://arxiv.org/abs/2312.00752"
+        },
+        {
+          "title": "Muon Optimizer (2024)",
+          "url": "https://kellerjordan.github.io/posts/muon/"
+        },
+        {
+          "title": "Test-Time Training (TTT, 2024)",
+          "url": "https://arxiv.org/abs/2407.01944"
+        },
+        {
+          "title": "Titans: Learning to Memorize at Test Time",
+          "url": "https://arxiv.org/abs/2501.00663"
+        }
+      ],
+      "sources": [
+        "https://kellerjordan.github.io/posts/muon/",
+        "https://arxiv.org/abs/2501.00663"
+      ],
+      "reason": "Fix Muon reference (old ID is MM-Point) and use the Titans title without an inconsistent year."
+    },
+    {
+      "record_id": "dataset",
+      "path": "theory.short_conv",
+      "existed": true,
+      "before": [
+        {
+          "name": "Hippo / S4",
+          "paper": "2212.14052",
+          "idea": "state-space with HiPPO init",
+          "use": "S4, Mamba progenitor"
+        },
+        {
+          "name": "Hyena Hierarchy (2023)",
+          "paper": "2302.10866",
+          "idea": "long convolution + gating, sub-quadratic",
+          "use": "Hyena, alternative to attention"
+        },
+        {
+          "name": "Canon Layers (Allen-Zhu 2025)",
+          "paper": "blog physics.allen-zhu",
+          "idea": "synthetic pretraining reveals canonical layer pattern",
+          "use": "architecture design heuristic"
+        }
+      ],
+      "after": [
+        {
+          "name": "HiPPO / S4",
+          "paper": "2111.00396",
+          "idea": "Structured state-space model with HiPPO-based initialization",
+          "use": "Long-sequence modeling; see S4 and HiPPO foundations"
+        },
+        {
+          "name": "Hyena Hierarchy (2023)",
+          "paper": "2302.10866",
+          "idea": "long convolution + gating, sub-quadratic",
+          "use": "Hyena, alternative to attention"
+        },
+        {
+          "name": "Canon Layers (Allen-Zhu 2025)",
+          "paper": "blog physics.allen-zhu",
+          "idea": "synthetic pretraining reveals canonical layer pattern",
+          "use": "architecture design heuristic"
+        }
+      ],
+      "sources": [
+        "https://arxiv.org/abs/2111.00396",
+        "https://arxiv.org/abs/2008.07669"
+      ],
+      "reason": "The original 2212.14052 paper is H3, not HiPPO/S4."
+    },
+    {
+      "record_id": "dataset",
+      "path": "provenance.training_coverage",
+      "existed": true,
+      "before": "41/101 verified",
+      "after": "Inherited labels: 4 fully verified, 37 mixed, 60 inferred, 0 other. Not newly independently verified training claims.",
+      "sources": [
+        "https://raw.githubusercontent.com/AvixoSec/solthara-index/30a2ea0f117d37fc24a64f2eb4a69229d635169a/all-configs.json"
+      ],
+      "reason": "Mixed training records are not fully verified records."
+    }
+  ],
+  "full_repository_tested": false,
+  "follow_up": "npm ci --ignore-scripts && npm test && npm run validate && npm run build && npm run validate && npm run audit:data"
+}

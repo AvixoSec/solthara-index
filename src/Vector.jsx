@@ -1,4 +1,4 @@
-/* Solthara VECTOR v2. Apache-2.0. Complete repository records, unchanged. */
+/* Solthara VECTOR v2. Apache-2.0. Complete repository records with explicitly scoped corrections. */
 import React, { useState, useMemo, useEffect, useRef } from 'react';
 import './vector.css';
 const REPO = 'https://github.com/AvixoSec/solthara-index';
@@ -267,7 +267,7 @@ function Raw({ value, filename = 'record.json' }) {
       <div className="section-title">
         <div>
           <h3>Machine-readable record</h3>
-          <p>Original keys and values. No enrichment or silent corrections.</p>
+          <p>Complete records with documented corrections. Original raw configurations are preserved.</p>
         </div>
         <button className="button" onClick={() => download(value, filename)}>
           <Icon name="download" />
@@ -910,7 +910,7 @@ function Theory({ data, inside = false }) {
       <Note>
         {inside
           ? 'General reference notes from the dataset — not a claim that every technique is used by this model.'
-          : 'Original theory library: preserved notes and literature, not an independently reviewed technical reference.'}
+          : 'Theory references include documented corrections; other notes remain source assertions, not a fully reviewed technical reference.'}
       </Note>
       <div className="theory-categories" role="group" aria-label="Theory category">
         {keys.map((k) => (
@@ -1359,7 +1359,7 @@ function About({ data }) {
           <h3>What this version contains</h3>
           <KeyValues
             items={[
-              ['Model records', data.models.length],
+              ['Model records', Array.isArray(data.models) ? data.models.length : Object.keys(data.models || {}).length],
               ['Foundational milestones', data.milestones?.length || 0],
               ['Dataset version', data.version],
               ['Snapshot', data.generated_at],
@@ -1374,9 +1374,7 @@ function About({ data }) {
         <section className="panel">
           <h3>How to read the evidence</h3>
           <p>
-            Descriptions, dates, confidence labels, training claims and benchmark scores are
-            preserved from the supplied repository. They have not been scientifically re-verified
-            here.
+            Only fields listed in audit metadata were rechecked. Other descriptions, confidence labels, training claims and benchmark scores remain original dataset assertions, not independent verification.
           </p>
           <p>Unknown means unknown. Source confidence is not a leaderboard score.</p>
           <p>
@@ -1644,7 +1642,7 @@ export default function Vector({ data }) {
         : route === 'matrix'
           ? '19 architectural fields. Sort, scroll and compare.'
           : route === 'timeline'
-            ? '15 foundational milestones, preserved from the original dataset.'
+            ? 'Foundational milestones with documented source corrections.'
             : route === 'theory'
               ? 'Optimizers, scaling laws and the ideas behind the models.'
               : 'Complete records. Traceable sources. No invented scores.';
@@ -2040,7 +2038,7 @@ export default function Vector({ data }) {
                         ['all', 'Any bias'],
                         ['no bias', 'No bias'],
                         ['with bias', 'With bias'],
-                        ['undisclosed', 'Undisclosed'],
+                        ['undisclosed', 'Undisclosed'], ['not applicable', 'Not applicable'],
                       ],
                     ],
                     [

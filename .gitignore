@@ -8,3 +8,7 @@ Thumbs.db
 node_modules/
 
 build-meta.json
+
+# Local repair backups and derived audit report
+.solthara-repair-backup/
+audit/data-audit.json

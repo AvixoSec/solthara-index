@@ -1,0 +1,12 @@
+{
+  "models": 101,
+  "original_files_sha256": {
+    "all-configs.js": "57bd09f8c28346b50afa0ad85ba641c46c07f2a009489295bef43c00a4f2836a",
+    "all-configs.json": "5054ceb0133b4eb6249d31f5e47c10d6d8d043cf69f81bfc4b73b1b7832a4de8",
+    "models.yml": "7a1789f3f36be945046dab699c3ce48d6a7b173c6d144503fa87bfd4a302563e",
+    "index-original.html": "6569e1a0a69058d71e20e38e0fbb13102c9d3cd6771cb6fbf7685de6d56911fa"
+  },
+  "json_equals_js": true,
+  "image_files_in_supplied_archive": 0,
+  "source_figures": "Original external URLs preserved; labeled local configuration maps used when unavailable."
+}

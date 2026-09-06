@@ -5,7 +5,11 @@
   "description": "Full-record VECTOR interface for Solthara Index",
   "license": "Apache-2.0",
   "scripts": {
-    "build": "node build.mjs"
+    "build": "node build.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "validate": "node scripts/validate-data.mjs",
+    "data:export": "node scripts/export-data.mjs",
+    "audit:data": "node scripts/audit-data.mjs"
   },
   "engines": {
     "node": ">=20"
