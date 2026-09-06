@@ -36,15 +36,15 @@ try {
   record('Empty results and reset');
   await page.getByRole('button', { name: 'Filters', exact: true }).click();
   for (const [label, value, field] of [['Attention bias', 'with bias', 'attention_bias_display'], ['Weight tying', 'tied', 'tie_display']]) {
-    await page.getByLabel(label, { exact: true }).selectOption(value);
+    await page.getByLabel(label).selectOption(value);
     await countIs(models.filter((m) => m.math_tricks?.[field] === value).length);
-    await page.getByLabel(label, { exact: true }).selectOption('all');
+    await page.getByLabel(label).selectOption('all');
   }
   record('Bias and tying filters');
   await page.getByRole('button', { name: 'Next results page', exact: true }).click();
   assert.match(await page.locator('.page-controls').innerText(), /9[–-]16/);
   await page.getByRole('button', { name: 'Previous results page', exact: true }).click(); record('Pagination');
-  await page.getByLabel('Sort models', { exact: true }).selectOption('oldest');
+  await page.getByLabel('Sort models').selectOption('oldest');
   assert.equal(await page.locator('.model-name').first().innerText(), [...models].filter((m) => m.release_date).sort((a, b) => a.release_date.localeCompare(b.release_date))[0].model_name); record('Date sort');
   let renderedTabs = 0;
   for (const model of models) {
@@ -82,7 +82,9 @@ try {
   assert.equal(await mixtral.locator('time').getAttribute('datetime'), '2024-04-17'); record('Corrected matrix and timeline');
   await nav('Theory library');
   const categories = page.getByRole('group', { name: 'Theory category' }).getByRole('button');
-  for (let i = 0; i < await categories.count(); i++) { await categories.nth(i).click(); assert.ok(await page.locator('.theory-card').count()); }
+  const theoryKeys = Object.keys(data.theory).filter((k) => Array.isArray(data.theory[k]));
+  assert.equal(await categories.count(), theoryKeys.length);
+  for (let i = 0; i < theoryKeys.length; i++) { await categories.nth(i).click(); await page.waitForFunction((n) => document.querySelectorAll('.theory-card').length === n, data.theory[theoryKeys[i]].length); }
   record('All theory categories');
   await nav('About & sources');
   const [full] = await Promise.all([page.waitForEvent('download'), page.getByRole('button', { name: 'Full dataset JSON', exact: true }).click()]);
@@ -94,7 +96,11 @@ try {
   await page.goto(origin + '/Solthara-VECTOR-v2.html', { waitUntil: 'domcontentloaded' }); await countIs(models.length);
   assert.equal(await page.locator('script[src]').count(), 0); record('Actual standalone page');
   assert.deepEqual(errors, []); record('No uncaught browser errors');
-} catch (error) { results.push({ name: 'Browser suite', status: 'failed', error: error.stack }); process.exitCode = 1; }
+} catch (error) {
+  results.push({ name: 'Browser suite', status: 'failed', error: error.stack }); process.exitCode = 1; console.error(error.stack);
+  const failedPage = browser?.contexts()[0]?.pages()[0];
+  if (failedPage) await failedPage.screenshot({ path: 'audit/screenshots/failure.png', fullPage: true }).catch(() => {});
+}
 finally {
   await writeFile('audit/browser-results.json', JSON.stringify({ status: process.exitCode ? 'failed' : 'passed', dataset: 'actual_repository', models: models.length, milestones: data.milestones.length, browser: browser ? await browser.version() : null, external_network: 'blocked', results, page_errors: errors, note: 'Automated functional coverage, not scientific or manual visual certification.' }, null, 2) + '\n');
   if (browser) await browser.close(); await new Promise((done) => server.close(done));
